@@ -10,12 +10,12 @@ For example let's say that we added another chapter and named the file `03-chapt
 
 book_filename: "ITCR_Course_Name"  
 chapter_name: "Chapter "  
-repo: https://github.com/jhudsl/ITCR_Course_Template/ # make sure you update this for your GitHub Repo!!  
+repo: https://github.com/jhudsl/ITCR_Course_Template/ ##Make sure you update this for your GitHub Repo!!  
 rmd_files: ["index.Rmd",  
-                     "01-intro.Rmd",   
-                     "02-chapter_of_course.Rmd",   
-                     "03-chapter_of_course.Rmd",  
-                       "about.Rmd"]  
+            "01-intro.Rmd",   
+            "02-chapter_of_course.Rmd",   
+            "03-chapter_of_course.Rmd",  ##Only this is new!
+            "about.Rmd"]  
 new_session: yes  
 delete_merged_file: true  
 language:  
