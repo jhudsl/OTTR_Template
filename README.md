@@ -8,7 +8,7 @@ For example let's say that we added another chapter and named the file `03-chapt
 
 book_filename: "ITCR_Course_Name"  
 chapter_name: "Chapter "  
-repo: https://github.com/jhudsl/ITCR_Course_Template/ # make sure you update this to reflect your GitHub Repository!!  
+repo: https://github.com/jhudsl/ITCR_Course_Template/ # make sure you update this for your GitHub Repo!!  
 rmd_files: ["index.Rmd",  
             "01-intro.Rmd",   
             "02-chapter_of_course.Rmd",   
