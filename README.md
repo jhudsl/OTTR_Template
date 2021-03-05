@@ -1,6 +1,8 @@
 # ITCR_Course_Template
 
-This template includes all of the files that you need to get started creating your course in [R Markdown](https://rmarkdown.rstudio.com/) using the [bookdown package](https://bookdown.org/). This is useful as this package allows you to preview your course easily from R Studio and to eventually host a book on GitHub.
+This template includes all of the files that you need to get started creating your course in [R Markdown](https://rmarkdown.rstudio.com/) using the [bookdown package](https://bookdown.org/). This is useful as this package allows you to preview your course easily from RStudio and to eventually host a book on GitHub and Leanpub.
+
+## Creating your course
 
 As you modify the names of the chapters of your course and add more chapters (using the `.Rmd` files), you need to update the `_bookdown.yml` file accordingly.
 
@@ -10,10 +12,10 @@ book_filename: "ITCR_Course_Name"
 chapter_name: "Chapter "  
 repo: https://github.com/jhudsl/ITCR_Course_Template/ # make sure you update this for your GitHub Repo!!  
 rmd_files: ["index.Rmd",  
-            "01-intro.Rmd",   
-            "02-chapter_of_course.Rmd",   
-            "03-chapter_of_course.Rmd",  
-            "about.Rmd"]  
+                     "01-intro.Rmd",   
+                     "02-chapter_of_course.Rmd",   
+                     "03-chapter_of_course.Rmd",  
+                       "about.Rmd"]  
 new_session: yes  
 delete_merged_file: true  
 language:  
