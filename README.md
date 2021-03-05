@@ -6,27 +6,28 @@ As you modify the names of the chapters of your course and add more chapters (us
 
 For example let's say that we added another chapter and named the file `03-chapter_of_course.Rmd`. We would update our `_bookdown.yml` to look like this:
 
-book_filename: "ITCR_Course_Name"
-chapter_name: "Chapter "
-repo: https://github.com/jhudsl/ITCR_Course_Template/ # make sure you update this to reflect your GitHub Repository!!
-rmd_files: ["index.Rmd", 
-            "01-intro.Rmd", 
-            "02-chapter_of_course.Rmd", 
-            "03-chapter_of_course.Rmd", ##### Notice how this line is different from the file located in this template repository
-            "about.Rmd"]
-new_session: yes
-delete_merged_file: true
-language:
-  ui:
-    chapter_name: "Chapter "
-output_dir: "docs"
+book_filename: "ITCR_Course_Name"  
+chapter_name: "Chapter "  
+repo: https://github.com/jhudsl/ITCR_Course_Template/ # make sure you update this to reflect your GitHub Repository!!  
+rmd_files: ["index.Rmd",  
+            "01-intro.Rmd",   
+            "02-chapter_of_course.Rmd",   
+            "03-chapter_of_course.Rmd",  
+            "about.Rmd"]  
+new_session: yes  
+delete_merged_file: true  
+language:  
+  ui:  
+    chapter_name: "Chapter "  
+output_dir: "docs"  
 
-Be sure to be careful about quotation marks: `""` as well as commas: `,`!
+Notice how only one line is different - the one that says `03-chapter_of_course.Rmd",`
+Be careful about quotation marks: `""` as well as commas: `,`!
 
-Once we do this we can preview the book!
+Once we do this we can preview the book! 
 
 You can do so by typing: 
-`bookdown::serve_book()` in the RStudio Console. 
+`bookdown::serve_book()` in the RStudio Console.  
 
 You will then see a live version of your book in your RStudio viewer. 
 
@@ -36,32 +37,32 @@ We also include the necessary files to allow you to get your course ready for pu
 
 If you are comfortable using commands like the following, you can do this in a more automated way in the RStudio terminal:
 
-cp docs/*.md manuscript
-cp -r docs/images/ manuscript/resources/images
+cp docs/*.md manuscript  
+cp -r docs/images/ manuscript/resources/images  
 
 
 
-Finally you need to modify the `Book.txt` file in the `manuscript` directory to include the `.md` files that you wish in the order that you would like. We have also included a quiz example. If you wanted two quizzes (one called `quiz_1.md` and one called `quiz_2.md`) you could duplicate and modify `quiz_1.md` for your needs and then you could make the `Book.txt` file look like this (assuming you created a chapter called `"03-chapter_of_course.Rmd"` and you wanted quiz_1 to be after `02-chapter-of_course` and quiz_2 to be after `03_chapter_of_course`:
+Finally you need to modify the `Book.txt` file in the `manuscript` directory to include the `.md` files that you wish in the order that you would like. We have also included a quiz example. If you wanted two quizzes (one called `quiz_1.md` and one called `quiz_2.md`) you could duplicate and modify `quiz_1.md` for your needs and then you could make the `Book.txt` file look like this (assuming you created a chapter called `"03-chapter_of_course.Rmd"` and you wanted quiz_1 to be after `02-chapter-of_course` and quiz_2 to be after `03_chapter_of_course`:  
 
-01-intro.md
-02-chapter_of_course.md
-quiz_1.md
-03-chapter_of_course.md
-quiz_2.md
-about.md
-
-
-Note that any `.md` files with an `#` in front of the name in the `Book.txt` file will be ignored by Leanpub. We have included an example of this in the `Book.txt` file.
-
-### Hosting your course on Leanpub
-
-To then host your course on Leanpub follow these steps:
-
-1) Make a Leanpub account here: https://leanpub.com/  
+01-intro.md  
+02-chapter_of_course.md  
+quiz_1.md  
+03-chapter_of_course.md  
+quiz_2.md  
+about.md  
 
 
-2) Start a course
- - click on the 3 line menu button
+Note that any `.md` files with an `#` in front of the name in the `Book.txt` file will be ignored by Leanpub. We have included an example of this in the `Book.txt` file.  
+
+### Hosting your course on Leanpub  
+
+To then host your course on Leanpub follow these steps:  
+
+1) Make a Leanpub account here: https://leanpub.com/    
+
+
+2) Start a course  
+ - click on the 3 line menu button  
  - click the author tab on the far left
  - click Courses
  - click the text that says `create a new course`
