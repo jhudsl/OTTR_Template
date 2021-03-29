@@ -31,3 +31,23 @@ More text
 
 ### Subtopic of subtopic
 
+![](images/Image_res_72 copy 2.png)
+
+![](images/Image_res_72 copy.png)
+
+![](images/Image_res_72.png)
+
+Embedded video:
+
+html way - (good for bookdown & not for Leanpub):
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VOCYL-FNbr0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+For Leanpub (does not work for bookdown):
+![Introducing Markua](https://www.youtube.com/watch?t=105&v=VOCYL-FNbr0)
+
+Markdown way- (good for bookdown (but defaults to small image) & does not work for Leanpub):
+[![Introducing Markua](http://img.youtube.com/vi/VOCYL-FNbr0/mqdefault.jpg)](https://www.youtube.com/watch?t=105&v=VOCYL-FNbr0)
+
+Markdown way with bigger image- (good for bookdown  & does not work for Leanpub):
+[![Introducing Markua](http://img.youtube.com/vi/VOCYL-FNbr0/mqdefault.jpg){ width=60% }](https://www.youtube.com/watch?t=105&v=VOCYL-FNbr0)
+
