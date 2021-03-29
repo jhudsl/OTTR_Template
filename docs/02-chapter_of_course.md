@@ -29,9 +29,6 @@ More text
 
 ### Subtopic of subtopic
 
-![](images/Image_res_72 copy 2.png)
-
-![](images/Image_res_72 copy.png)
 
 ![](images/Image_res_72.png)
 
