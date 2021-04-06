@@ -22,7 +22,7 @@ iris %>%
   theme_bw()
 ```
 
-{alt: 'an image', width=80%}![](manuscript/resources/images/02-chapter_of_course/unnamed-chunk-2-1.png)<!-- -->
+{alt: 'an image', width=80%}![](/Users/cansav091/Desktop/GitRepos/ITCR_Course_Template/manuscript/resources/images/02-chapter_of_course/unnamed-chunk-2-1.png)<!-- -->
 
 
 
