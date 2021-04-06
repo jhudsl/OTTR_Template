@@ -4,11 +4,7 @@ output: html_document
 
 ---
 
-```{r,include=FALSE}
-library(here)
-library(ggplot2)
-library(magrittr)
-```
+
 
 # Topic of Course
 
@@ -18,16 +14,24 @@ Text text
 
 Text Text 
 
-```{r}
+
+```r
 iris %>% 
   ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) + 
   geom_point() + 
   theme_bw()
 ```
 
+![](resources/images/unnamed-chunk-2-1.png)
 
-```{r}
+
+
+```r
 ggsave(file.path("test_ggplot2.png"))
+```
+
+```
+## Saving 7 x 7 in image
 ```
 
 ![](images/itcr_training_network.png)
