@@ -36,19 +36,22 @@ make_markua <- function(rmd) {
   
   # Run the rendering
   rmarkdown::render(rmd,
+                    intermediates_dir = manuscript_dir,
                     output_dir = manuscript_dir,
                     clean = FALSE, # We have to say clean false so plots stay
+                    run_pandoc = FALSE,
                     output_format = rmarkdown::output_format(
                       knitr = rmarkdown::knitr_options(opts_chunk = list(fig.path = fig_loc)),
-                      pandoc = rmarkdown::pandoc_options(to = "markdown"))
+                      # We aren't running pandoc but it doesn't like not having something for this argument
+                      pandoc = rmarkdown::pandoc_options(to = "md"))
                     )
   
-  # But now, we have to pay the consequences for using clean = FALSE 
-  file.remove(paste0(base_name, ".knit.md"))
-  file.remove(paste0(base_name, ".utf8.md"))
+  # But now, we have to pay the consequences for using clean = FALSE and pandoc
+  file.remove(file.path(manuscript_dir, paste0(base_name, ".md")))
+  file.remove(file.path(manuscript_dir, paste0(base_name, ".utf8.md")))
   
-  # Declare markdown file name and path
-  md_file <- file.path(manuscript_dir, paste0(base_name, ".md"))
+  # Declare markdown file name and path for the one we want
+  md_file <- file.path(manuscript_dir, paste0(base_name, ".knit.md"))
   
   ##### Add Markua tags to all images
   # Read in as lines
