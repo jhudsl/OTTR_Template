@@ -47,12 +47,12 @@ make_markua <- function(rmd) {
   file.remove(paste0(base_name, ".knit.md"))
   file.remove(paste0(base_name, ".utf8.md"))
   
-  # Declare markdown file name
-  md_file <- paste0(base_name, ".md")
+  # Declare markdown file name and path
+  md_file <- file.path(manuscript_dir, paste0(base_name, ".md"))
   
   ##### Add Markua tags to all images
   # Read in as lines
-  lines <- readr::read_lines(file.path(manuscript_dir, md_file))
+  lines <- readr::read_lines(md_file)
   
   # Set up image tag that will be used for all images
   image_tag <- "{alt: 'an image', width=80%}"
@@ -67,7 +67,3 @@ make_markua <- function(rmd) {
 # Run this on all the files!
 lapply(rmds, make_markua)
   
-  
-  
-
-
