@@ -18,6 +18,15 @@ Text text
 
 Text Text 
 
+### Code examples
+
+```{r}
+output_dir <- "code_output"
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir)
+}
+```
+
 ```{r}
 iris %>% 
   ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) + 
@@ -25,33 +34,30 @@ iris %>%
   theme_bw()
 ```
 
-
 ```{r}
-ggsave(file.path("test_ggplot2.png"))
+ggsave(file.path(output_dir, "test_ggplot2.png"))
 ```
+
+### Image examples
 
 ![](images/itcr_training_network.png)
 
-More text
-
 ![](images/tools.png)
 
-### Subtopic of subtopic
+### Video example
 
-
-![](images/Image_res_72.png)
-
-Embedded video:
-
-html way - (good for bookdown & not for Leanpub):
-<iframe width="560" height="315" src="https://www.youtube.com/embed/VOCYL-FNbr0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-For Leanpub (does not work for bookdown):
 ![Introducing Markua](https://www.youtube.com/watch?t=105&v=VOCYL-FNbr0)
 
-Markdown way- (good for bookdown (but defaults to small image) & does not work for Leanpub):
-[![Introducing Markua](http://img.youtube.com/vi/VOCYL-FNbr0/mqdefault.jpg)](https://www.youtube.com/watch?t=105&v=VOCYL-FNbr0)
+### Citation examples
 
-Markdown way with bigger image- (good for bookdown  & does not work for Leanpub):
-[![Introducing Markua](http://img.youtube.com/vi/VOCYL-FNbr0/mqdefault.jpg){ width=60% }](https://www.youtube.com/watch?t=105&v=VOCYL-FNbr0)
+We can put citations at the end of a sentence like this [@bookdown2016]. 
+
+In text, we can put citations like this @bookdown2016. 
+
+## Print out session info
+
+```{r}
+devtools::session_info()
+```
+## References 
 
