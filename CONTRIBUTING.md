@@ -17,6 +17,7 @@ This is useful as this package allows you to preview your course easily from RSt
     - [Hosting your course on Leanpub](#hosting-your-course-on-leanpub)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Creating your course
 
 In the upper right of this screen, click `Use this template` and follow the steps to set up your course's GitHub repository.
