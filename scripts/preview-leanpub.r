@@ -7,9 +7,10 @@
 #
 # Command line example:
 #
-# Rscript publish-leanpub.R \
-# -s jhu/jhudsl_course_template
-# -a BLAHBLAHBLAH1234
+# Rscript scripts/preview-leanpub.R \
+# -s jhu/jhudsl_course_template \
+# -a BLAHBLAHBLAH
+
 
 # Establish base dir
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
