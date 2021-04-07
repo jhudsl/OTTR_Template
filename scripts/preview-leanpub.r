@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 #
-# When given a Publishes to a Leanpub book
+# Publishes the Git Repo to a Leanpub book
 #
 # Candace Savonen - jhudsl
 # 2021
