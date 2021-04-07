@@ -20,6 +20,11 @@ To pull the docker image associated with this template, you can run this command
 ```
 docker pull jhudsl/itcr_course_template
 ```
+Alternatively, if you'd prefer to build from the Dockerfile locally you can run:
+
+```
+docker build -< docker/Dockerfile -t jhudsl/itcr_course_template
+```
 
 To use the Docker image associated with the course template, first navigate to the the top of this GitHub repository.
 Now you can start up the Docker container using the command below.
