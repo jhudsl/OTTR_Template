@@ -112,9 +112,6 @@ make_markua <- function(rmd,
   ##### Add Markua tags to all images
   # Read in as lines
   lines <- readr::read_lines(md_file)
-  
-  #image_lines <- grep("\\!\\[", lines)
-  #video_lines <- 
     
   # Set up image tag that will be used for all images
   image_tag <- "{alt: 'an image', width=80%}"
