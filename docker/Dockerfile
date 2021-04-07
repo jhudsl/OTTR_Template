@@ -15,6 +15,7 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
 # Commonly used R packages
 RUN Rscript -e  "install.packages( \
     c('bookdown', \
+      'here', \
       'optparse', \
       'R.utils', \
       'rprojroot', \
