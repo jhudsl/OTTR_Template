@@ -54,10 +54,11 @@ system(paste("cp -r ", opt$images_dir, images_dest))
 # Establish base dir by looking for .git file
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 
-# Re-serve the bookdown to make sure all is up to date
+# Optionally re-serve the bookdown
 if (opt$bookdown) {
   # Run bookdown
-  bookdown::serve_book(dir = root_dir)
+  bookdown::serve_book(dir = root_dir, 
+                       preview = FALSE)
 }
 
 # Obtain the list of Rmd files we want to convert
