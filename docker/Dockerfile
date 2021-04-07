@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends apt-utils dialo
 # Add curl, bzip2
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     bzip2 \
-    curl \
+    curl 
 
 ## R packages
 
