@@ -1,6 +1,0 @@
-01-intro.md
-02-chapter_of_course.knit.md
-02-chapter_of_course.utf8.md
-quiz_1.md
-#03-chapter_of_course.md
-about.md
