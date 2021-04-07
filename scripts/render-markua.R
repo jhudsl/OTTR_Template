@@ -34,14 +34,14 @@ images_dir <- file.path(manuscript_dir, "resources", "images")
 
 # Recursively make these files if they don't exist
 if (!dir.exists(images_dir)) {
-  dir.create(images_dir)
+  dir.create(images_dir, recursive = TRUE)
 }
 
 # Remove all the old files
-file.remove(images_dir, recursive = TRUE)
+system(paste("rm -r", images_dir))
 
 # Copy over images that are otherwise needed
-system("cp -r docs/images/manuscript/resources/images") 
+system("cp -r docs/images/manuscript/resources/images/") 
 
 # Establish base dir by looking for .git file
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
@@ -79,7 +79,7 @@ make_markua <- function(rmd, output_dir = manuscript_dir) {
   
   # Create this directory if it doesn't exist yet
   if (!dir.exists(fig_loc)) {
-    dir.create(fig_loc)
+    dir.create(fig_loc, recursive = TRUE)
   }
   
   # Run the rendering
