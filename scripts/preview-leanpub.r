@@ -11,6 +11,11 @@
 # -s jhu/jhudsl_course_template \
 # -a BLAHBLAHBLAH
 
+# Setting up your API Key
+# If you don't want to directly supply your API Key everytime, you can set it
+# to your environment using the following command. Where `BLAHBLAHBLAH` if the
+# API Key you obtained from your Leanpub: https://leanpub.com/user_dashboard/api_key
+# Sys.setenv("LEANPUB_API_KEY" = "BLAHBLAHBLAH")
 
 # Establish base dir
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
@@ -40,6 +45,15 @@ option_list <- list(
 
 # Parse options
 opt <- parse_args(OptionParser(option_list = option_list))
+
+# If no API key is supplied, try to grab it from the .env
+if (is.null(opt$api_key)) {
+ opt$api_key <- Sys.getenv('LEANPUB_API_KEY')
+  if (opt$api_key == "") {
+  stop("Tried to obtain the API Key from Sys.getenv('LEANPUB_API_KEY') but it
+  was not set. Use Sys.setenv("LEANPUB_API_KEY" = "BLAHBLAHBLAH") to set it")
+  }
+}
 
 # Publish if --publish was used, otherwise do a preview
 if (opt$publish) {
