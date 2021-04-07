@@ -1,7 +1,8 @@
 # Contributing Guidelines for ITCR Course Template
 
-This template includes all of the files that you need to get started creating your course in [R Markdown](https://rmarkdown.rstudio.com/) using the [bookdown package](https://bookdown.org/).
-This is useful as this package allows you to preview your course easily from RStudio and to eventually host a book on GitHub and Leanpub.
+This template includes all of the files that you need to get started creating your course in [R Markdown](https://rmarkdown.rstudio.com/) using the [bookdown package](https://bookdown.org/) and/or Leanpub.
+
+TODO: This will need to be revised if/when we split into separate bookdown Leanpub repositories. 
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
