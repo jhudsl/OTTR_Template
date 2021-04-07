@@ -24,6 +24,7 @@ RUN Rscript -e  "install.packages( \
       'optparse', \
       'R.utils', \
       'rprojroot', \
+      'servr', \
       'spelling', \
       'styler'))"
 
