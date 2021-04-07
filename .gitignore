@@ -1,0 +1,9 @@
+
+# ignore nonsense files
+.DS_Store
+.Rhistory
+.local
+.rstudio
+.bash_history
+
+
