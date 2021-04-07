@@ -45,9 +45,9 @@ ggsave(file.path(output_dir, "test_ggplot2.png"))
 
 ### Image examples
 
-![](images/itcr_training_network.png)
+![](resources/images/itcr_training_network.png)
 
-![](images/tools.png)
+![](resources/images/tools.png)
 
 ### Video example
 
@@ -138,5 +138,6 @@ devtools::session_info()
 ## [1] /usr/local/lib/R/site-library
 ## [2] /usr/local/lib/R/library
 ```
+
 ## References 
 
