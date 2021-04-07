@@ -41,7 +41,7 @@ if (!dir.exists(images_dir)) {
 system(paste("rm -r", images_dir))
 
 # Copy over images that are otherwise needed
-system("cp -r docs/images/manuscript/resources/images/") 
+system(paste("cp -r docs/images/manuscript/resources/images/", images_dir))
 
 # Establish base dir by looking for .git file
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
