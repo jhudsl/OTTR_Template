@@ -24,7 +24,7 @@ option_list <- list(
     metavar = "character"
   ), 
   make_option(
-    opt_str = c("-i", "--image_dir"), type = "character",
+    opt_str = c("-i", "--images_dir"), type = "character",
     default = "resources/images", help = "Directory where the images are located",
     metavar = "character"
   )
@@ -38,18 +38,15 @@ opt <- parse_args(OptionParser(option_list = option_list))
 manuscript_dir <- opt$output_dir
 
 # Where the images should end up
-images_dest <- file.path(manuscript_dir, opt$image_dir)
-
-# Recursively make the destination folders if they don't exist
-if (!dir.exists(images_dest)) {
-  dir.create(images_dest, recursive = TRUE)
-}
+images_dest <- file.path(manuscript_dir, opt$images_dir)
 
 # Remove all the old files if they exist
-system(paste("rm -r", images_dest))
+if (dir.exists(images_dest)){
+  system(paste("rm -r", images_dest))
+}
 
 # Copy over images that are otherwise needed
-system(paste("cp -r ", opt$images_dir, images_dest))
+system(paste("cp -r", dirname(opt$images_dir), manuscript_dir))
 
 # Establish base dir by looking for .git file
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
@@ -70,7 +67,7 @@ rmds <- grep("index", rmds, invert = TRUE, value = TRUE)
 # Establish a function to convert an Rmd -> Markua friendly md
 make_markua <- function(rmd, 
                         output_folder = manuscript_dir, 
-                        image_folder = opt$image_dir) {
+                        image_folder = images_dest) {
   # When supplied a file path to an Rmd, snag the markdown intermediate file and 
   # add Markua tags to image and video links. Then save the final adjusted file 
   # to the output directory supplied.
@@ -78,7 +75,7 @@ make_markua <- function(rmd,
   # Args:
   #   rmd : A file path to an Rmd to be converted to something Markua friendly
   #   output_folder : Where the final Markua friendly file should go
-  #   image_folder : The folder within output_folder where images should go
+  #   image_folder : The file path to where images should go
   #
   # Returns:
   # A Markua friendly file and its associated plots
@@ -134,4 +131,4 @@ make_markua <- function(rmd,
 # Run this on all the files!
 purrr::map(rmds, make_markua, 
            output_folder = manuscript_dir, 
-           image_folder = opt$image_dir)
+           image_folder = opt$images_dir)

@@ -12,7 +12,7 @@ Text text
 
 ## Subtopic
 
-Text Text
+Text Text 
 
 ### Code examples
 
@@ -26,9 +26,9 @@ if (!dir.exists(output_dir)) {
 
 
 ```r
-iris %>%
-  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) +
-  geom_point() +
+iris %>% 
+  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) + 
+  geom_point() + 
   theme_bw()
 ```
 
@@ -55,9 +55,9 @@ ggsave(file.path(output_dir, "test_ggplot2.png"))
 
 ### Citation examples
 
-We can put citations at the end of a sentence like this [@bookdown2016].
+We can put citations at the end of a sentence like this [@bookdown2016]. 
 
-In text, we can put citations like this @bookdown2016.
+In text, we can put citations like this @bookdown2016. 
 
 ## Print out session info
 
@@ -78,7 +78,7 @@ devtools::session_info()
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
 ##  date     2021-04-07                  
-##
+## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version date       lib source        
 ##  assertthat    0.2.1   2019-03-21 [1] RSPM (R 4.0.3)
@@ -138,9 +138,10 @@ devtools::session_info()
 ##  withr         2.3.0   2020-09-22 [1] RSPM (R 4.0.2)
 ##  xfun          0.18    2020-09-29 [1] RSPM (R 4.0.2)
 ##  yaml          2.2.1   2020-02-01 [1] RSPM (R 4.0.3)
-##
+## 
 ## [1] /usr/local/lib/R/site-library
 ## [2] /usr/local/lib/R/library
 ```
 
-## References
+## References 
+
