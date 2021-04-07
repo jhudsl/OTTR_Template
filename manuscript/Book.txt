@@ -1,4 +1,0 @@
-01-intro.knit.md
-02-chapter_of_course.knit.md
-quiz_1.md
-about.md
