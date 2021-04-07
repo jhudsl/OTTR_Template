@@ -3,6 +3,20 @@
 This template includes all of the files that you need to get started creating your course in [R Markdown](https://rmarkdown.rstudio.com/) using the [bookdown package](https://bookdown.org/).
 This is useful as this package allows you to preview your course easily from RStudio and to eventually host a book on GitHub and Leanpub.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+  - [Creating your course](#creating-your-course)
+  - [Setting up Docker image](#setting-up-docker-image)
+    - [Starting a new Docker image](#starting-a-new-docker-image)
+  - [Citations](#citations)
+  - [Spell check](#spell-check)
+  - [Style guide](#style-guide)
+  - [Bookdown Rendering](#bookdown-rendering)
+  - [Leanpub rendering](#leanpub-rendering)
+    - [Hosting your course on Leanpub](#hosting-your-course-on-leanpub)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 ## Creating your course
 
 In the upper right of this screen, click `Use this template` and follow the steps to set up your course's GitHub repository.
