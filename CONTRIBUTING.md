@@ -9,12 +9,13 @@ Particularly for courses that involve running example code, it's recommended tha
 If you haven't installed Docker, you can do [so here](https://docs.docker.com/get-docker/).
 You will need to create a Docker account if you don't have one.
 
-To use the Docker image associated with the course template, in your command line, at the top of this repository, run this command:
+To pull the docker image associated with this template, you can run this command in your command line.
 
 ```
 docker pull jhudsl/itcr_course_template
 ```
 
+To use the Docker image associated with the course template, first navigate to the the top of this GitHub repository.
 Now you can start up the Docker container using the command below.
 Replace `password` with something else of your choosing
 
