@@ -10,11 +10,12 @@ on:
 
 # Here's the main action of checking URLs
 jobs:
-  getfiles:
+  check_urls:
     runs-on: ubuntu-latest
     steps:
-      - name: Get Rmd file names
       - uses: actions/checkout@v2
+
+      - name: Get Rmd file names
         id: get_rmds
         run: |
           rmd_files=$(find . -type f -name '*.Rmd' -exec basename {} \;)
@@ -23,11 +24,7 @@ jobs:
           echo "::set-output name=all_files::$file_list"
           echo $file_list
 
-  dochecking:
-    needs: getfiles
-    runs-on: ubuntu-latest
-    steps:
       - name: Check URLs
       - uses: paramt/url-checker@master
         with:
-          files: "${{ jobs.getfiles.steps.get_rmds.outputs.all_files }}"
+          files: "${{ steps.get_rmds.outputs.all_files }}"
