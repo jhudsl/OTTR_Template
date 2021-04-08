@@ -12,13 +12,11 @@ on:
 jobs:
   get_files:
     runs-on: ubuntu-latest
+    name: Get file names list
     steps:
-      - name: Get Rmd file names
       - uses: actions/checkout@v2
-          # What branch to commit to: the one from the pull request
-            with:
-            ref: ${{ github.event.pull_request.head.ref }}
 
+      - name: Get Rmd file names
         id: get_rmds
         run: |
           rmd_files=$(find . -type f -name '*.Rmd' -exec basename {} \;)
@@ -27,8 +25,9 @@ jobs:
           echo "::set-output name=all_files::$file_list"
           echo $file_list
 
-  do_checking:
+ do_checking:
     runs-on: ubuntu-latest
+    name: D the URL check
     needs: [get_files]
     steps:
       - name: Check URLs
