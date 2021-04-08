@@ -70,5 +70,3 @@ In text, we can put citations like this @bookdown2016.
 devtools::session_info()
 ```
 
-## References 
-
