@@ -13,7 +13,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Get Rmd file names
+        id: get rmds
+        run: |
+          rmd_files=$(ls -d -- *.Rmd)
+          echo "::set-output name=rmd_files::$rmd_files"
+          cat rmd_files
       - name: Check URLs
         uses: paramt/url-checker@master
         with:
-          files: "README.md,CONTRIBUTING.md, *Rmd"
+          files: "README.md,CONTRIBUTING.md, $rmd_files"
