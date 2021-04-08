@@ -12,5 +12,4 @@ This course will cover
 The course is intended for 
 
 **Curriculum:**  
-This course will feature 
-The curriculum will also cover 
+The curriculum will cover
