@@ -4,7 +4,7 @@ This course is a part of an [ITCR training series](https://www.itcrtraining.org/
 
 You can see the rendered course material here: {Link to rendered bookdown and/or to the Leanpub.}
 
-If you would like to contribute to this course material, take a look at the CONTRIBUTING.md to get started and/or contact us on the [ITCR training website](https://www.itcrtraining.org/join-us).
+If you would like to contribute to this course material, take a look at the [CONTRIBUTING.md](./CONTRIBUTING.md) to get started and/or contact us on the [ITCR training website](https://www.itcrtraining.org/join-us).
 
 ## About this course
 This course introduces {info on what this course introduces}
