@@ -64,7 +64,7 @@ You'll need to use `rstudio` as the username and whatever password you chose to 
 
 Should you find that your course needs additional packages beyond what's included in the template, you should probably start a new Docker image.
 
-To start up a new Docker image for your new course, you can start with the Dockerfile in this repository and add the additional packages you need using the tips in the next section, but you'll need to change the tag. 
+To start up a new Docker image for your new course, you can start with the Dockerfile in this repository and add the additional packages you need using the tips in the next section, but you'll need to change the tag.
 
 ### Adding packages to the Dockerfile
 
@@ -146,12 +146,12 @@ To reference the citations in your writing follow the [bookdown instructions](ht
 
 ## Style guide
 
-Github actions will run the [`styler` package to all style R in all Rmds](https://github.com/jhudsl/ITCR_Course_Template_Bookdown/.github/workflows/style-and-sp-check.yml) whenever a pull request to the `main` branch is filed.
+Github actions will run the [`styler` package to all style R in all Rmds](https://github.com/jhudsl/ITCR_Course_Template_Bookdown/blob/main/.github/workflows/style-and-sp-check.yml) whenever a pull request to the `main` branch is filed.
 Style changes will automatically be committed back to your branch.
 
 ## Spell check
 
-Github actions will automatically [run a spell check on all Rmds](https://github.com/jhudsl/ITCR_Course_Template_Bookdown/.github/workflows/style-and-sp-check.yml) whenever a pull request to the `main` branch is filed.
+Github actions will automatically [run a spell check on all Rmds](https://github.com/jhudsl/ITCR_Course_Template_Bookdown/blob/main/.github/workflows/style-and-sp-check.yml) whenever a pull request to the `main` branch is filed.
 
 It will fail if there are more than 2 spelling errors and you'll need to resolve those before being able to merge your pull request.
 
