@@ -14,11 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get Rmd file names
-        id: get rmds
+        id: get_rmds
         run: |
           rmd_files=$(ls -d -- *.Rmd)
           echo "::set-output name=rmd_files::$rmd_files"
           cat rmd_files
+          
       - name: Check URLs
         uses: paramt/url-checker@master
         with:
