@@ -25,4 +25,5 @@ jobs:
       - name: Check URLs
         uses: paramt/url-checker@master
         with:
-          files: "${{ steps.get_rmds.outputs.all_files }}"
+          files: "02-chapter_of_course.Rmd"
+          #files: "${{ steps.get_rmds.outputs.all_files }}"
