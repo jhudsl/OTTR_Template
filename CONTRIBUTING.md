@@ -2,7 +2,7 @@
 
 This template includes all of the files that you need to get started creating your course in [R Markdown](https://rmarkdown.rstudio.com/) using the [bookdown package](https://bookdown.org/) and/or Leanpub.
 
-TODO: This will need to be revised if/when we split into separate bookdown Leanpub repositories. 
+TODO: This will need to be revised if/when we split into separate bookdown Leanpub repositories.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -67,13 +67,47 @@ TODO: Add more information about how to start a new image and add packages to ex
 
 TODO: How to add and use citations
 
-## Spell check
-
-TODO: Can have github actions run this for us.
-
 ## Style guide
 
-TODO: Are there any standards we wanna keep to
+Github actions will run the [`styler` package to all style R in all Rmds](https://github.com/jhudsl/ITCR_Course_Template_Bookdown/.github/workflows/style-and-sp-check.yml) whenever a pull request to the `main` branch is filed.
+Style changes will automatically be committed back to your branch.
+
+## Spell check
+
+Github actions will automatically [run a spell check on all Rmds](https://github.com/jhudsl/ITCR_Course_Template_Bookdown/.github/workflows/style-and-sp-check.yml) whenever a pull request to the `main` branch is filed.
+
+It will fail if there are more than 2 spelling errors and you'll need to resolve those before being able to merge your pull request.
+
+To resolve those spelling errors, go to this repository's `Actions` tab.
+Then, click on the GitHub action from the PR you just submitted.
+Scroll all the way down to `Artifacts` and click `spell-check-results`.
+This will download a zip file with a TSV that lists all the spelling errors.
+
+Some of these errors may be things that the spell check doesn't recognize for example: `ITCR`.
+If it's a 'word' the spell check should recognize, you'll need to add this to the dictionary.
+
+Go to the `resources/dictionary.txt` file.
+Open the file and add the new 'word' to its appropriate place (the words are in alphabetical order).
+Then commit the changes to `resources/dictionary.txt` to your branch and this should make the spell check status check pass.
+
+### Running spell check and styler manually
+
+If you are using the [Docker container](#setting-up-docker-image), or otherwise have the `spelling` and `styler` package installed, you can run spell check and styling locally on all Rmds by running this:
+
+```
+Rscript scripts/spell-check.R
+```
+
+The spell check results file will be saved to a file called `spell_check_results.tsv`.
+This file should not be pushed to the github repository (it is in the gitignore so this shouldn't happen).
+
+### URL Checking
+
+Github actions runs a check on all the URLs upon creating a pull request to the `main` branch.
+If it fails, you'll need to go the `Actions` tab of this repository, then find the Github `check_urls` job for the last commit you just pushed.
+Click on `check_urls` and the specific step of `Check URLs` to see a print out of the URLs tested.
+
+If the URL checker is trying to check something that isn't really a URL or doesn't need to be checked, open up the GitHub actions file: `.github/workflows/url-checker.yml` and add the imposter URL on to the end of the quote with a comma.
 
 ### Adding Images and Graphics
 

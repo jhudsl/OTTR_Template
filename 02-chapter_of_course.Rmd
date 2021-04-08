@@ -1,18 +1,28 @@
 ---
-title: "Chapter of course"
+title: "Chapter title"
 output: html_document
-
 ---
 
-```{r,include=FALSE}
+## Learning Objectives
+
+This chapter will cover:  
+
+- {You can use https://www.bu.edu/cme/forms/RSS_forms/tips_for_writing_objectives.pdf to define some learning objectives here}
+- {Another learning objective}
+
+## Libraries
+
+For this chapter, we'll need the following packages attached. 
+
+```{r}
 library(here)
 library(ggplot2)
 library(magrittr)
 ```
 
-# Topic of Course
+# Topic of Section
 
-Text text
+Text Text
 
 ## Subtopic
 
@@ -28,9 +38,9 @@ if (!dir.exists(output_dir)) {
 ```
 
 ```{r}
-iris %>% 
-  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) + 
-  geom_point() + 
+iris %>%
+  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) +
+  geom_point() +
   theme_bw()
 ```
 
