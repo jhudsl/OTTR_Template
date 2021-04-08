@@ -32,6 +32,23 @@ Name your repository, starting with `ITCR_` and fill in a short description.
 Now start filling out the documents with the information for the course! Make sure that the existing Rmd template files are changed to fit your course, and delete the `code_output` folder if you do not expect to have any code_output (or if you wish to call the folder something else).
 There are `{}` in these files to get you started filling out information and should be deleted after you've filled them out.
 
+### Recommended repository settings:
+
+With your course repository set up, there are some settings recommended for development.
+
+Go to `Settings` > `Branches` and click `Add new rule`.
+For `Branch name pattern`, put `main`.
+
+_Protect the main branch_:
+Then check the box that says `Require pull request reviews before merging`.
+
+_Use automatic spell and URL checks_
+You will have to file on initial pull request before setting this.
+But then check the box that says `Require status checks to pass before merging` and choose `style-n-check` as well as `url-check`
+
+_Make sure branches are updated_
+Underneath the checkbox of `Require status checks to pass before merging`, also choose `Require branches to be up to date before merging`. 
+
 ## Setting up Docker image
 
 Particularly for courses that involve running example code, it's recommended that you use a Docker image for development to maintain software version consistency across course developers.
