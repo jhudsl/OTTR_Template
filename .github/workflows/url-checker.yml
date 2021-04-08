@@ -16,7 +16,7 @@ jobs:
       - name: Get Rmd file names
         id: get_rmds
         run: |
-          rmd_files=$(find . -type f -name '*.Rmd')
+          rmd_files=$(find . -type f -name '*.Rmd' -exec basename {} \;)
           rmd_files=$(echo "$rmd_files" | xargs | sed -e 's/ /,/g')
           file_list="README.md,CONTRIBUTING.md,${rmd_files}"
           echo "::set-output name=all_files::$file_list"
