@@ -1,0 +1,60 @@
+
+# This code was originally written by Josh Shapiro and Candace Savonen
+# for the Childhood Cancer Data Lab, an initiative of Alexs Lemonade Stand Foundation.
+# https://github.com/AlexsLemonade/refinebio-examples/blob/33cdeff66d57f9fe8ee4fcb5156aea4ac2dce07f/.github/workflows/style-and-sp-check.yml#L1
+
+# Adapted for this jhudsl repository by Candace Savonen Apr 2021
+
+name: Style and spell check R markdowns
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the main branch
+on:
+  pull_request:
+    branches: [ main ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "style and check"
+  style-n-check:
+    runs-on: ubuntu-latest
+    container:
+      image: rocker/tidyverse:4.0.2
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
+        # What branch to commit to: the one from the pull request
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Install packages
+        run: Rscript -e "install.packages(c('styler', 'spelling'))"
+
+      - name: Run spell check
+        id: spell_check_run
+        run: |
+          results=$(Rscript "scripts/spell-check.R")
+          echo "::set-output name=sp_chk_results::$results"
+          cat spell_check_results.tsv
+      - name: Archive spelling errors
+        uses: actions/upload-artifact@v2
+        with:
+          name: spell-check-results
+          path: spell_check_results.tsv
+
+      # If there are too many spelling errors, this will stop the workflow
+      - name: Check spell check results - fail if too many errors
+        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
+        run: exit 1
+
+      - name: Run styler
+        run: Rscript -e "styler::style_file(list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE));warnings()"
+
+      - name: Commit
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add \*.Rmd
+          git commit -m 'Style Rmds' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
