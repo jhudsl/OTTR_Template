@@ -101,6 +101,14 @@ Rscript scripts/spell-check.R
 The spell check results file will be saved to a file called `spell_check_results.tsv`.
 This file should not be pushed to the github repository (it is in the gitignore so this shouldn't happen).
 
+### URL Checking
+
+Github actions runs a check on all the URLs upon creating a pull request to the `main` branch.
+If it fails, you'll need to go the `Actions` tab of this repository, then find the Github `check_urls` job for the last commit you just pushed.
+Click on `check_urls` and the specific step of `Check URLs` to see a print out of the URLs tested.
+
+If the URL checker is trying to check something that isn't really a URL or doesn't need to be checked, open up the GitHub actions file: `.github/workflows/url-checker.yml` and add the imposter URL on to the end of the quote with a comma.
+
 ## Bookdown Rendering
 
 As you modify the names of the chapters of your course and add more chapters (using the `.Rmd` files), you need to update the `_bookdown.yml` file accordingly.
