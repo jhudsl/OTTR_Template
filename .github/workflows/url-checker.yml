@@ -17,10 +17,12 @@ jobs:
         id: get_rmds
         run: |
           rmd_files=$(find . -type f -name '*.Rmd')
-          echo "::set-output name=rmd_files::$rmd_files"
-          echo $rmd_files
+          rmd_files=$(echo "$rmd_files" | xargs | sed -e 's/ /,/g')
+          file_list="README.md,CONTRIBUTING.md,${rmd_files}"
+          echo "::set-output name=all_files::$file_list"
+          echo $file_list
 
       - name: Check URLs
         uses: paramt/url-checker@master
         with:
-          files: "README.md,CONTRIBUTING.md, ${{ steps.get_rmds.outputs.rmd_files }}"
+          files: "${{ steps.get_rmds.outputs.all_files }}"
