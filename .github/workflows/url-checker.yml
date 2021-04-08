@@ -33,4 +33,4 @@ jobs:
       - name: Check URLs
         uses: paramt/url-checker@master
         with:
-          files: "${{ steps.get_rmds.outputs.all_files }}"
+          files: "${{ jobs.get_files.steps.get_rmds.outputs.all_files }}"
