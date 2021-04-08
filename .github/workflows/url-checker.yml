@@ -22,5 +22,6 @@ jobs:
 
       - name: Check URLs
         uses: paramt/url-checker@master
+        run: steps.get_rmds.outputs.rmd_files
         with:
-          files: "README.md,CONTRIBUTING.md, $rmd_files"
+          files: "README.md,CONTRIBUTING.md, steps.get_rmds.outputs.rmd_files"
