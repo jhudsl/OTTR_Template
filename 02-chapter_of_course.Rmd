@@ -28,9 +28,9 @@ if (!dir.exists(output_dir)) {
 ```
 
 ```{r}
-iris %>% 
-  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) + 
-  geom_point() + 
+iris %>%
+  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) +
+  geom_point() +
   theme_bw()
 ```
 
