@@ -14,6 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get Rmd file names
+      - uses: actions/checkout@v2
+          # What branch to commit to: the one from the pull request
+            with:
+            ref: ${{ github.event.pull_request.head.ref }}
+
         id: get_rmds
         run: |
           rmd_files=$(find . -type f -name '*.Rmd' -exec basename {} \;)
@@ -24,7 +29,7 @@ jobs:
 
       - name: Test what this looks like
         run: echo ${{ steps.get_rmds.outputs.all_files }}
-        
+
       - name: Check URLs
         uses: paramt/url-checker@master
         with:
