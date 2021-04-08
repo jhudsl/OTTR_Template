@@ -16,10 +16,10 @@ jobs:
       - name: Get Rmd file names
         id: get_rmds
         run: |
-          rmd_files=$(ls -d -- *.Rmd)
+          rmd_files=$(find . -type f -name '*.Rmd')
           echo "::set-output name=rmd_files::$rmd_files"
           cat rmd_files
-          
+
       - name: Check URLs
         uses: paramt/url-checker@master
         with:
