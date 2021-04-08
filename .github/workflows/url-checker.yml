@@ -10,7 +10,7 @@ on:
 
 # Here's the main action of checking URLs
 jobs:
-  build:
+  get_files:
     runs-on: ubuntu-latest
     steps:
       - name: Get Rmd file names
@@ -27,9 +27,9 @@ jobs:
           echo "::set-output name=all_files::$file_list"
           echo $file_list
 
-      - name: Test what this looks like
-        run: echo ${{ steps.get_rmds.outputs.all_files }}
-
+  do_checking:
+    runs-on: ubuntu-latest
+    steps:
       - name: Check URLs
         uses: paramt/url-checker@master
         with:
