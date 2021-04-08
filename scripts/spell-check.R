@@ -22,9 +22,6 @@ dictionary <- c(dictionary, spelling::spell_check_text("⬇️")$word)
 # Only declare `.Rmd` files
 files <- list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)
 
-# Remove the template from the spell check
-files <- grep('template_example.Rmd', files, invert = TRUE, value = TRUE)
-
 # Run spell check
 sp_errors <- spelling::spell_check_files(files, ignore = dictionary) %>%
   data.frame() %>%
