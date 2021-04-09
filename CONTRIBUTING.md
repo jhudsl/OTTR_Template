@@ -72,21 +72,22 @@ docker build -< docker/Dockerfile -t jhudsl/itcr_course_template
 
 To use the Docker image associated with the course template, first navigate to the the top of this GitHub repository.
 Now you can start up the Docker container using the command below.
-Replace `password` with something else of your choosing
+Replace all of `<CHOOSE_PASSWORD>` (including the `<` and `>`) with a password of your choosing.
 
 ```
-docker run -it -v $PWD:/home/rstudio -e PASSWORD=password -p 8787:8787 jhudsl/itcr_course_template
+docker run -it -v $PWD:/home/rstudio -e PASSWORD=<CHOOSE_PASSWORD> -p 8787:8787 jhudsl/itcr_course_template
 ```
 
 Do not close this window, but you can minimize it.
 Open up a new command line window and run the command: `docker ps`, you should see a container is up and running!
 
 In a web browser navigate to the following to get to an RStudio that is ran from your Docker container.
+
 ```
 localhost:8787
 ```
 
-You'll need to use `rstudio` as the username and whatever password you chose to log in.
+To log in, you'll need to use `rstudio` as the username and whatever password you put for `<CHOOSE_PASSWORD>` in the above command.
 
 _Couple other handy Docker commands:_  
 - To stop your Docker container, run `docker ps` to obtain the docker container ID.
