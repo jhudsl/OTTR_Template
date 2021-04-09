@@ -1,6 +1,6 @@
 # Contributing Guidelines for ITCR Course Template
 
-This template includes all of the files that you need to get started creating your course in [R Markdown](https://rmarkdown.rstudio.com/) using the [bookdown package](https://bookdown.org/) and/or Leanpub.
+This template includes all of the files that you need to get started creating your course in [R Markdown](https://rmarkdown.rstudio.com/) using the [bookdown package](https://bookdown.org/).
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -9,6 +9,9 @@ This template includes all of the files that you need to get started creating yo
 - [Creating your course](#creating-your-course)
 - [Setting up Docker image](#setting-up-docker-image)
   - [Starting a new Docker image](#starting-a-new-docker-image)
+  - [Adding packages to the Dockerfile](#adding-packages-to-the-dockerfile)
+    - [Template commands for adding packages to the Dockerfile](#template-commands-for-adding-packages-to-the-dockerfile)
+    - [Rebuilding the Docker image](#rebuilding-the-docker-image)
 - [Citations](#citations)
 - [Style guide](#style-guide)
 - [Spell check](#spell-check)
@@ -24,7 +27,27 @@ This template includes all of the files that you need to get started creating yo
 
 In the upper right of this screen, click `Use this template` and follow the steps to set up your course's GitHub repository.
 
-TODO: Add more details here about setting up repositories.
+Name your repository, starting with `ITCR_` and fill in a short description.
+
+Now start filling out the documents with the information for the course! Make sure that the existing Rmd template files are changed to fit your course, and delete the `code_output` folder if you do not expect to have any code_output (or if you wish to call the folder something else).
+There are `{}` in these files to get you started filling out information and should be deleted after you've filled them out.
+
+### Recommended repository settings:
+
+With your course repository set up, there are some settings recommended for development.
+
+Go to `Settings` > `Branches` and click `Add new rule`.
+For `Branch name pattern`, put `main`.
+
+_Protect the main branch_:  
+Then check the box that says `Require pull request reviews before merging`.
+
+_Make sure branches are updated_:  
+Underneath the checkbox of `Require status checks to pass before merging`, also choose `Require branches to be up to date before merging`.
+
+_Use automatic spell and URL checks_:  
+You will have to file on initial pull request before setting this.
+But then check the box that says `Require status checks to pass before merging` and choose `style-n-check` as well as `url-check`
 
 ## Setting up Docker image
 
