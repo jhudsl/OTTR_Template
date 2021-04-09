@@ -49,13 +49,17 @@ _Use automatic spell and URL checks_:
 You will have to file on initial pull request before setting this.
 But then check the box that says `Require status checks to pass before merging` and choose `style-n-check` as well as `url-check`
 
-## Setting up Docker image
+## Setting up the Docker image
 
 Particularly for courses that involve running example code, it's recommended that you use a Docker image for development to maintain software version consistency across course developers.
-If you haven't installed Docker, you can do [so here](https://docs.docker.com/get-docker/).
-You will need to create a Docker account if you don't have one.
+If you haven't installed Docker desktop (or need to update it), you can do [so here](https://docs.docker.com/get-docker/).
+You will need to [sign up with a Docker account](https://hub.docker.com/) if you don't have one.
 
-To pull the docker image associated with this template, you can run this command in your command line.
+If your Docker desktop is running, you should see a Docker whale in your tool bar.
+On Macs, this will be on the bar on the top of your screen; in Windows, on the bottom right.
+
+To pull the Docker image associated with this template, you can run this command in your command line.
+Pulling the image may take a minute or so.
 
 ```
 docker pull jhudsl/itcr_course_template
@@ -68,20 +72,31 @@ docker build -< docker/Dockerfile -t jhudsl/itcr_course_template
 
 To use the Docker image associated with the course template, first navigate to the the top of this GitHub repository.
 Now you can start up the Docker container using the command below.
-Replace `password` with something else of your choosing
+Replace all of `<CHOOSE_PASSWORD>` (including the `<` and `>`) with a password of your choosing.
 
 ```
-docker run -it -v $PWD:/home/rstudio -e PASSWORD=password -p 8787:8787 jhudsl/itcr_course_template
+docker run -it -v $PWD:/home/rstudio -e PASSWORD=<CHOOSE_PASSWORD> -p 8787:8787 jhudsl/itcr_course_template
 ```
 
-Now, if you run the command: `docker ps`, you should see a container is up and running!
+Do not close this window, but you can minimize it.
+Open up a new command line window and run the command: `docker ps`, you should see a container is up and running!
 
 In a web browser navigate to the following to get to an RStudio that is ran from your Docker container.
+
 ```
 localhost:8787
 ```
 
-You'll need to use `rstudio` as the username and whatever password you chose to log in.
+To log in, you'll need to use `rstudio` as the username and whatever password you put for `<CHOOSE_PASSWORD>` in the above command.
+
+_Couple other handy Docker commands:_  
+- To stop your Docker container, run `docker ps` to obtain the docker container ID.
+Then you can use that ID to run `docker stop <CONTAINER_ID>`.  
+- To remove a docker image (which you may need to do from time to time to clear out space), you can run `docker image ls` to see all your current images.
+Then you can run either `docker image rm <IMAGE_ID>`.  
+- If you really need to clear out space, you can follow this [StackOverflow post](https://stackoverflow.com/questions/44785585/docker-how-to-delete-all-local-docker-images) on how to remove all images and all containers.  
+
+For more info on how to use Docker, they have very [extensive documentation here](https://docs.docker.com/).
 
 ### Starting a new Docker image
 
@@ -213,7 +228,7 @@ If the URL checker is trying to check something that isn't really a URL or doesn
 
 To maintain style and attributions for graphics and images, as well as to enable easy updates in the future, please start a new Google Slide document for your course and import this the theme from this [template](https://docs.google.com/presentation/d/1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU/edit?usp=sharing).
 
-See [this video](https://youtu.be/pNbwF263yY8) for assistance on how to import themes. 
+See [this video](https://youtu.be/pNbwF263yY8) for assistance on how to import themes.
 
 
 For any major point, please select this layout:
@@ -266,5 +281,3 @@ You can do so by typing:
 `bookdown::serve_book()` in the RStudio Console.  
 
 You will then see a live version of your book in your RStudio viewer.
-
-
