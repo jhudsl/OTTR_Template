@@ -2,20 +2,21 @@
 
 This template includes all of the files that you need to get started creating your course in [R Markdown](https://rmarkdown.rstudio.com/) using the [bookdown package](https://bookdown.org/) and/or Leanpub.
 
-TODO: This will need to be revised if/when we split into separate bookdown Leanpub repositories. 
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-  - [Creating your course](#creating-your-course)
-  - [Setting up Docker image](#setting-up-docker-image)
-    - [Starting a new Docker image](#starting-a-new-docker-image)
-  - [Citations](#citations)
-  - [Spell check](#spell-check)
-  - [Style guide](#style-guide)
-  - [Bookdown Rendering](#bookdown-rendering)
-  - [Leanpub rendering](#leanpub-rendering)
-    - [Hosting your course on Leanpub](#hosting-your-course-on-leanpub)
+
+- [Creating your course](#creating-your-course)
+- [Setting up Docker image](#setting-up-docker-image)
+  - [Starting a new Docker image](#starting-a-new-docker-image)
+- [Citations](#citations)
+- [Style guide](#style-guide)
+- [Spell check](#spell-check)
+  - [Running spell check and styler manually](#running-spell-check-and-styler-manually)
+- [URL Checking](#url-checking)
+- [Bookdown Rendering](#bookdown-rendering)
+- [Leanpub rendering](#leanpub-rendering)
+  - [Hosting your course on Leanpub](#hosting-your-course-on-leanpub)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -61,19 +62,129 @@ You'll need to use `rstudio` as the username and whatever password you chose to 
 
 ### Starting a new Docker image
 
-TODO: Add more information about how to start a new image and add packages to existing ones.
+Should you find that your course needs additional packages beyond what's included in the template, you should probably start a new Docker image.
+
+To start up a new Docker image for your new course, you can start with the Dockerfile in this repository and add the additional packages you need using the tips in the next section, but you'll need to change the tag.
+
+### Adding packages to the Dockerfile
+
+If you find you need a new package to run the code you are adding, you'll need to add the package to the `docker/Dockerfile`.
+
+Try to keep things in alphabetical order where possible.
+
+#### Template commands for adding packages to the Dockerfile
+
+For R packages installed from CRAN, you can add to the running vector list of R packages.
+
+To add an R package from Bioconductor, you can follow this kind of format:
+
+```
+RUN Rscript -e "options(warn = 2); BiocManager::install( \
+  c('limma', \
+    'newpackagename')
+
+```
+
+To add an R package from GitHub you can add a line that follows this general format:
+
+```
+RUN Rscript -e "remotes::install_github('gitrepo_slug', ref = 'COMMIT_ID', dependencies = TRUE)"
+```
+
+To add a Python package, first you'll need to add Python and pip:
+```
+# Install pip3 and installation tools
+RUN apt-get -y --no-install-recommends install \
+    python3-pip  python3-dev
+```
+
+Then you will be able to use pip3 to install Python packages using this format:
+```  
+RUN pip3 install \
+    "somepackage==0.1.0"
+```
+
+#### Rebuilding the Docker image
+
+When you've added a package to the Dockerfile, you'll need to check that it builds successfully before including it in a pull request.
+You'll need to rebuild the docker image using this command:
+```
+docker build -< docker/Dockerfile -t jhudsl/itcr_<TAG_FOR_COURSE>
+```
+If it fails, often the issue is a missing dependency.
+Take a look at the error messages and see if you can determine the issue with some Googling.
+
+Once it builds successfully, you should file a PR with your Dockerfile changes.
+Once the changes are accepted and merged, we'll need to push the updated image to Dockerhub using:
+
+```
+docker push jhudsl/itcr_<TAG_FOR_COURSE>
+```
 
 ## Citations
 
-TODO: How to add and use citations
+You can generally follow the [Bookdown instructions about citations](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html), but you don't need to add the additional bibliography argument at the top of the Rmds.
 
-## Spell check
+To add a new reference source, add to the `book.bib` file, keeping your new entry in alphabetical order.
 
-TODO: Can have github actions run this for us.
+For articles (or anything with a DOI), go to [doi2bib.org](https://www.doi2bib.org/) to get a BibTex-formatted reference.
+Then copy and paste the reference to the `references.bib` file.
+
+Other sources can be added using this template:
+```
+@website{citekey,
+    author = {First Last},
+    title = {Title},
+    url  = {http://www.someurl.html},
+}
+```
+
+To reference the citations in your writing follow the [bookdown instructions](https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html):
+
+> Items can be cited directly within the documentation using the syntax @key where key is the citation key in the first line of the entry, e.g., @R-base. To put citations in parentheses, use [@key]. To cite multiple entries, separate the keys by semicolons, e.g., [@key-1; @key-2; @key-3]. To suppress the mention of the author, add a minus sign before @, e.g., [-@R-base].
+
 
 ## Style guide
 
-TODO: Are there any standards we wanna keep to
+Github actions will run the [`styler` package to all style R in all Rmds](https://github.com/jhudsl/ITCR_Course_Template_Bookdown/blob/main/.github/workflows/style-and-sp-check.yml) whenever a pull request to the `main` branch is filed.
+Style changes will automatically be committed back to your branch.
+
+## Spell check
+
+Github actions will automatically [run a spell check on all Rmds](https://github.com/jhudsl/ITCR_Course_Template_Bookdown/blob/main/.github/workflows/style-and-sp-check.yml) whenever a pull request to the `main` branch is filed.
+
+It will fail if there are more than 2 spelling errors and you'll need to resolve those before being able to merge your pull request.
+
+To resolve those spelling errors, go to this repository's `Actions` tab.
+Then, click on the GitHub action from the PR you just submitted.
+Scroll all the way down to `Artifacts` and click `spell-check-results`.
+This will download a zip file with a TSV that lists all the spelling errors.
+
+Some of these errors may be things that the spell check doesn't recognize for example: `ITCR`.
+If it's a 'word' the spell check should recognize, you'll need to add this to the dictionary.
+
+Go to the `resources/dictionary.txt` file.
+Open the file and add the new 'word' to its appropriate place (the words are in alphabetical order).
+Then commit the changes to `resources/dictionary.txt` to your branch and this should make the spell check status check pass.
+
+### Running spell check and styler manually
+
+If you are using the [Docker container](#setting-up-docker-image), or otherwise have the `spelling` and `styler` package installed, you can run spell check and styling locally on all Rmds by running this:
+
+```
+Rscript scripts/spell-check.R
+```
+
+The spell check results file will be saved to a file called `spell_check_results.tsv`.
+This file should not be pushed to the github repository (it is in the gitignore so this shouldn't happen).
+
+## URL Checking
+
+Github actions runs a check on all the URLs upon creating a pull request to the `main` branch.
+If it fails, you'll need to go the `Actions` tab of this repository, then find the Github `check_urls` job for the last commit you just pushed.
+Click on `check_urls` and the specific step of `Check URLs` to see a print out of the URLs tested.
+
+If the URL checker is trying to check something that isn't really a URL or doesn't need to be checked, open up the GitHub actions file: `.github/workflows/url-checker.yml` and add the imposter URL on to the end of the quote with a comma.
 
 ### Adding Images and Graphics
 
