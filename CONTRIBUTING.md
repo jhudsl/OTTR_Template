@@ -39,15 +39,15 @@ With your course repository set up, there are some settings recommended for deve
 Go to `Settings` > `Branches` and click `Add new rule`.
 For `Branch name pattern`, put `main`.
 
-_Protect the main branch_:
+_Protect the main branch_:  
 Then check the box that says `Require pull request reviews before merging`.
 
-_Use automatic spell and URL checks_
+_Make sure branches are updated_:  
+Underneath the checkbox of `Require status checks to pass before merging`, also choose `Require branches to be up to date before merging`.
+
+_Use automatic spell and URL checks_:  
 You will have to file on initial pull request before setting this.
 But then check the box that says `Require status checks to pass before merging` and choose `style-n-check` as well as `url-check`
-
-_Make sure branches are updated_
-Underneath the checkbox of `Require status checks to pass before merging`, also choose `Require branches to be up to date before merging`. 
 
 ## Setting up Docker image
 
