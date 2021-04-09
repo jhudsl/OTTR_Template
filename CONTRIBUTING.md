@@ -81,12 +81,6 @@ To maintain style and attributions for graphics and images, as well as to enable
 
 See [this video](https://youtu.be/pNbwF263yY8) for assistance on how to import themes. 
 
-Please select the layout that looks like this for any content from outside sources:
-
-![source_layout](https://docs.google.com/presentation/d/1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU/export/png?id=1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU&pageid=gcf0c1d8548_0_146)
-
-
-Please update the text at the bottom to describe the source.
 
 For any major point, please select this layout:
 
@@ -95,6 +89,13 @@ For any major point, please select this layout:
 For itemized lists, please select this layout:
 
 ![list_layout](https://docs.google.com/presentation/d/1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU/export/png?id=1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU&pageid=gcf0c1d8548_0_141)
+
+Please select the layout that looks like this for any images/content from outside sources:
+
+![source_layout](https://docs.google.com/presentation/d/1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU/export/png?id=1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU&pageid=gcf0c1d8548_0_146)
+
+
+Please update the text at the bottom to describe the source.
 
 
 Once complete, your slides can be downloaded and a static version can be added to your bookdown and or Leanpub repository to build your course. See [this link](https://www.howtogeek.com/509046/how-to-save-google-slides-objects-as-images/) for information on how to download slides from Google Slides.
