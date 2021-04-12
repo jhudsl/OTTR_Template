@@ -64,6 +64,8 @@ jobs:
 
       - name: Commit rendered bookdown files
         run: |
+          git config --global user.email "cansav09@gmail.com"
+          git config --global user.name "cansavvy"
           git add -A
           git commit -m 'Render bookdown' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
