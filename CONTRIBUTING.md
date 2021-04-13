@@ -7,19 +7,20 @@ This template includes all of the files that you need to get started creating yo
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Creating your course](#creating-your-course)
-- [Setting up Docker image](#setting-up-docker-image)
+  - [Recommended repository settings:](#recommended-repository-settings)
+- [Setting up the Docker image](#setting-up-the-docker-image)
   - [Starting a new Docker image](#starting-a-new-docker-image)
   - [Adding packages to the Dockerfile](#adding-packages-to-the-dockerfile)
     - [Template commands for adding packages to the Dockerfile](#template-commands-for-adding-packages-to-the-dockerfile)
     - [Rebuilding the Docker image](#rebuilding-the-docker-image)
 - [Citations](#citations)
-- [Style guide](#style-guide)
-- [Spell check](#spell-check)
+- [Github actions](#github-actions)
+  - [Style guide](#style-guide)
+  - [Spell check](#spell-check)
   - [Running spell check and styler manually](#running-spell-check-and-styler-manually)
-- [URL Checking](#url-checking)
+  - [URL Checking](#url-checking)
+  - [Adding Images and Graphics](#adding-images-and-graphics)
 - [Bookdown Rendering](#bookdown-rendering)
-- [Leanpub rendering](#leanpub-rendering)
-  - [Hosting your course on Leanpub](#hosting-your-course-on-leanpub)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -181,13 +182,18 @@ To reference the citations in your writing follow the [bookdown instructions](ht
 
 > Items can be cited directly within the documentation using the syntax @key where key is the citation key in the first line of the entry, e.g., @R-base. To put citations in parentheses, use [@key]. To cite multiple entries, separate the keys by semicolons, e.g., [@key-1; @key-2; @key-3]. To suppress the mention of the author, add a minus sign before @, e.g., [-@R-base].
 
+## Github actions
 
-## Style guide
+Here's a summary of the Github actions set up in this repository.
+
+![](https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=p)
+
+### Style guide
 
 Github actions will run the [`styler` package to all style R in all Rmds](https://github.com/jhudsl/ITCR_Course_Template_Bookdown/blob/main/.github/workflows/style-and-sp-check.yml) whenever a pull request to the `main` branch is filed.
 Style changes will automatically be committed back to your branch.
 
-## Spell check
+### Spell check
 
 Github actions will automatically [run a spell check on all Rmds](https://github.com/jhudsl/ITCR_Course_Template_Bookdown/blob/main/.github/workflows/style-and-sp-check.yml) whenever a pull request to the `main` branch is filed.
 
@@ -216,7 +222,7 @@ Rscript scripts/spell-check.R
 The spell check results file will be saved to a file called `spell_check_results.tsv`.
 This file should not be pushed to the github repository (it is in the gitignore so this shouldn't happen).
 
-## URL Checking
+### URL Checking
 
 Github actions runs a check on all the URLs upon creating a pull request to the `main` branch.
 If it fails, you'll need to go the `Actions` tab of this repository, then find the Github `check_urls` job for the last commit you just pushed.
@@ -229,7 +235,6 @@ If the URL checker is trying to check something that isn't really a URL or doesn
 To maintain style and attributions for graphics and images, as well as to enable easy updates in the future, please start a new Google Slide document for your course and import this the theme from this [template](https://docs.google.com/presentation/d/1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU/edit?usp=sharing).
 
 See [this video](https://youtu.be/pNbwF263yY8) for assistance on how to import themes.
-
 
 For any major point, please select this layout:
 
@@ -245,7 +250,6 @@ Please select the layout that looks like this for any images/content from outsid
 
 
 Please update the text at the bottom to describe the source.
-
 
 Once complete, your slides can be downloaded and a static version can be added to your bookdown and or Leanpub repository to build your course. See [this link](https://www.howtogeek.com/509046/how-to-save-google-slides-objects-as-images/) for information on how to download slides from Google Slides.
 
@@ -281,3 +285,5 @@ You can do so by typing:
 `bookdown::serve_book()` in the RStudio Console.  
 
 You will then see a live version of your book in your RStudio viewer.
+
+Note that When a pull request is merged to main, `bookdown::render_book()` will be re-run by the GitHub actions and the results added to `main`.
