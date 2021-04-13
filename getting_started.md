@@ -39,6 +39,16 @@ There are `{}` in these files to get you started filling out information and sho
 
 With your course repository set up, there are some settings recommended for development.
 
+#### Set up GitHub pages
+
+Go to `Settings` > `Pages`.
+
+- Under `Source`, pick the drop down menu and pick `main` and `/docs`.  
+- Then click `Save`.  
+- Lastly, check the box that says `Enforce HTTPS` at the bottom of this page.   
+
+##### Set up branches
+
 Go to `Settings` > `Branches` and click `Add new rule`.
 For `Branch name pattern`, put `main`.
 
