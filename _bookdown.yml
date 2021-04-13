@@ -1,10 +1,10 @@
 book_filename: "ITCR_Course_Name"
 chapter_name: "Chapter "
 repo: https://github.com/jhudsl/ITCR_Course_Template/
-rmd_files: ["index.Rmd", 
-            "01-intro.Rmd", 
-            "02-chapter_of_course.Rmd", 
-            "about.Rmd"]
+rmd_files: ["index.Rmd",
+            "01-intro.Rmd",
+            "02-chapter_of_course.Rmd",
+            "About.Rmd"]
 new_session: yes
 delete_merged_file: true
 language:
