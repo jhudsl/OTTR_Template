@@ -2,6 +2,8 @@
 
 This template includes all of the files that you need to get started creating your course in [R Markdown](https://rmarkdown.rstudio.com/) using the [bookdown package](https://bookdown.org/).
 
+Please take a look at the [code of conduct](./code_of_conduct.md).
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
@@ -36,6 +38,16 @@ There are `{}` in these files to get you started filling out information and sho
 ### Recommended repository settings:
 
 With your course repository set up, there are some settings recommended for development.
+
+#### Set up GitHub pages
+
+Go to `Settings` > `Pages`.
+
+- Under `Source`, pick the drop down menu and pick `main` and `/docs`.  
+- Then click `Save`.  
+- Lastly, check the box that says `Enforce HTTPS` at the bottom of this page.   
+
+##### Set up branches
 
 Go to `Settings` > `Branches` and click `Add new rule`.
 For `Branch name pattern`, put `main`.
@@ -130,14 +142,7 @@ To add an R package from GitHub you can add a line that follows this general for
 RUN Rscript -e "remotes::install_github('gitrepo_slug', ref = 'COMMIT_ID', dependencies = TRUE)"
 ```
 
-To add a Python package, first you'll need to add Python and pip:
-```
-# Install pip3 and installation tools
-RUN apt-get -y --no-install-recommends install \
-    python3-pip  python3-dev
-```
-
-Then you will be able to use pip3 to install Python packages using this format:
+To add a Python package, you will need to add pip3 to install Python packages using this format:
 ```  
 RUN pip3 install \
     "somepackage==0.1.0"
@@ -159,6 +164,8 @@ Once the changes are accepted and merged, we'll need to push the updated image t
 ```
 docker push jhudsl/itcr_<TAG_FOR_COURSE>
 ```
+
+When you file a pull request, the Dockerfile build will be tested automatically by the [GitHub actions](#github-actions).
 
 ## Citations
 
@@ -186,7 +193,7 @@ To reference the citations in your writing follow the [bookdown instructions](ht
 
 Here's a summary of the Github actions set up in this repository.
 
-![](https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=p)
+![](resources/GHASetUp.png)
 
 ### Style guide
 
@@ -220,12 +227,12 @@ Rscript scripts/spell-check.R
 ```
 
 The spell check results file will be saved to a file called `spell_check_results.tsv`.
-This file should not be pushed to the github repository (it is in the gitignore so this shouldn't happen).
+This file should not be pushed to the GitHub repository (it is in the gitignore so this shouldn't happen).
 
 ### URL Checking
 
-Github actions runs a check on all the URLs upon creating a pull request to the `main` branch.
-If it fails, you'll need to go the `Actions` tab of this repository, then find the Github `check_urls` job for the last commit you just pushed.
+[GitHub actions](#github-actions) runs a check on all the URLs upon creating a pull request to the `main` branch.
+If it fails, you'll need to go the `Actions` tab of this repository, then find the GitHub `check_urls` job for the last commit you just pushed.
 Click on `check_urls` and the specific step of `Check URLs` to see a print out of the URLs tested.
 
 If the URL checker is trying to check something that isn't really a URL or doesn't need to be checked, open up the GitHub actions file: `.github/workflows/url-checker.yml` and add the imposter URL on to the end of the quote with a comma.
@@ -286,4 +293,4 @@ You can do so by typing:
 
 You will then see a live version of your book in your RStudio viewer.
 
-Note that When a pull request is merged to main, `bookdown::render_book()` will be re-run by the GitHub actions and the results added to `main`.
+Note that When a pull request is merged to main, `bookdown::render_book()` will be re-run by the [GitHub actions](#github-actions) and the results added to `main`.
