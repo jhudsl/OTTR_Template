@@ -14,6 +14,10 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     bzip2 \
     curl 
 
+# Install pip3 and installation tools
+RUN apt-get -y --no-install-recommends install \
+    python3-pip  python3-dev
+
 ## R packages
 
 # Commonly used R packages
