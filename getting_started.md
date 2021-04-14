@@ -193,7 +193,7 @@ To reference the citations in your writing follow the [bookdown instructions](ht
 
 Here's a summary of the Github actions set up in this repository.
 
-![](https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=p)
+![](resources/GHASetUp.png)
 
 ### Style guide
 
