@@ -219,7 +219,7 @@ Here's a summary of the Github actions set up in this repository.
 
 ![](resources/GHASetUp.png)
 
-Note that `build-all` and `docker-build-test` are not something we recommend requiring for status checks because `docker-build-test` is only ran if there are changes to the Dockerfile and `build-all` is only run upon the acceptance and merging of a pull request. 
+Note that `build-all` and `docker-build-test` are not something we recommend requiring for status checks because `docker-build-test` is only ran if there are changes to the Dockerfile and `build-all` is only run upon the acceptance and merging of a pull request.
 
 ### Style guide
 
@@ -317,6 +317,8 @@ Once we do this we can preview the book!
 
 You can do so by typing:
 `bookdown::serve_book()` in the RStudio Console.  
+
+Note that when you run `bookdown` it will create an `.rds` file; you can generally ignore this file. s
 
 You will then see a live version of your book in your RStudio viewer.
 
