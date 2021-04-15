@@ -39,6 +39,8 @@ In the upper right of this screen, click `Use this template` and follow the step
 
 Name your repository, starting with `ITCR_` and fill in a short description.
 
+Trigger a workflow to set up the Github issues that you can use to guide your set up of this course. 
+
 Now start filling out the documents with the information for the course! Make sure that the existing Rmd template files are changed to fit your course, and delete the `code_output` folder if you do not expect to have any code_output (or if you wish to call the folder something else).
 There are `{}` in these files to get you started filling out information and should be deleted after you've filled them out.
 
