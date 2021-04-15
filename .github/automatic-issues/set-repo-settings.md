@@ -1,26 +1,22 @@
 ---
-name: New Course: set up repository settings
-about: Repository settings needed
-title: 'New Course: set up repository settings'
+name:
+about: Use this to describe an issue that needs to be addressed
+title: ''
 labels: ''
 assignees: ''
+
 ---
 
-For more information on these settings see instructions in the [getting_started.md](./getting_started.md#recommended-repository-settings).
+#### Background: What lead you to identify this problem
 
-### Needed settings:
 
-- [ ] Github pages is turned on.
-- [ ] `Enforce HTTPS`has been checked   
 
-- [ ] `main` branch has been set up:
-  - [ ] `Require pull request reviews before merging` box is checked.
-  - [ ] `Require status checks to pass before merging` box is checked.
-    - [ ] Underneath that `Require branches to be up to date before merging` box is checked.
+#### Problem: Describe what the main problem is
 
-_After the first pull request, a couple of checks will automatically happen and then appear here in settings:_
 
-- [ ] `url_check` is required status check.
-- [ ] `style-n-check` is a required status check
 
-- [ ] All these settings have been saved!
+#### Solution: Describe your proposed solution
+
+
+
+#### Outstanding questions: What needs to be explored before this issue can be tackled?

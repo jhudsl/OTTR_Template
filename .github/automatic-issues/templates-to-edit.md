@@ -1,7 +1,7 @@
 ---
-name: New Course: Files that need to be edited
-about: A list of file edits that need to happen
-title: 'New Course: Files that need to be edited'
+name:
+about: Use this to describe an issue that needs to be addressed
+title: ''
 labels: ''
 assignees: ''
 
@@ -16,7 +16,6 @@ The following files need to be edited to get this new course started!
 - [ ] `About.Rmd` - Replace information with your own author information.
 - [ ] `01-intro.Rmd` - replace the information there with information pertinent to this new course.
 - [ ] `02-chapter_of_course.Rmd` - This Rmd has examples of how to set things up, if you don't need it as a reference, it be deleted.
-- [ ] `code_output` can be deleted.
 
 ### Files that need to be edited upon adding each new chapter (including upon creating a new course):
 

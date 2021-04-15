@@ -1,11 +1,11 @@
 # .github/workflows/issue-on-push.yml
 
-name: Issue Filer
+name: Manually triggered workflow
 on:
   workflow_dispatch:
 
 jobs:
-  issue-filer:
+  stuff:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
