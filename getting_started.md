@@ -61,8 +61,8 @@ _Protect the main branch_:
 Then check the box that says `Require pull request reviews before merging`.
 
 _Make sure branches are updated_:  
-Underneath the checkbox of `Require status checks to pass before merging` choose:  
-`Require branches to be up to date before merging`.
+- Check the box that says `Require status checks to pass before merging`.
+- Underneath this also check the box that says `Require branches to be up to date before merging`.
 
 _Use automatic spell and URL checks_:  
 After the first pull request, a couple of checks will automatically happen and then appear here in settings.
@@ -219,7 +219,7 @@ Here's a summary of the Github actions set up in this repository.
 
 ![](resources/GHASetUp.png)
 
-Note that `build-all` and `docker-build-test` are not something we recommend requiring for status checks because `docker-build-test` is only ran if there are changes to the Dockerfile and `build-all` is only run upon the acceptance and merging of a pull request.
+Note that `build-all` and `docker-build-test` are not something we recommend requiring for status checks because `docker-build-test` is only run if there are changes to the Dockerfile and `build-all` is only run upon the acceptance and merging of a pull request.
 
 ### Style guide
 
