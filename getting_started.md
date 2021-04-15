@@ -4,6 +4,8 @@ This template includes all of the files that you need to get started creating yo
 
 Please take a look at the [code of conduct](./code_of_conduct.md).
 
+_Note all materials in this template are licensed [CC-BY](https://tldrlegal.com/license/creative-commons-attribution-(cc)) and can be repurposed freely with attribution._
+
 _Background information_:  
 - If you are not familiar with Git and Github, we recommend looking through [Happy Git and GitHub for the UseR by Jenny Bryan](https://happygitwithr.com/).  
 - If you aren't familiar with markdown files [this is a nice introduction](https://www.markdownguide.org/getting-started/).  
