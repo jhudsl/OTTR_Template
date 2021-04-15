@@ -219,7 +219,7 @@ Here's a summary of the Github actions set up in this repository.
 
 ![](resources/GHASetUp.png)
 
-Note that `build-all` and `docker`
+Note that `build-all` and `docker-build-test` are not something we recommend requiring for status checks because `docker-build-test` is only ran if there are changes to the Dockerfile and `build-all` is only run upon the acceptance and merging of a pull request. 
 
 ### Style guide
 
