@@ -4,6 +4,13 @@ This template includes all of the files that you need to get started creating yo
 
 Please take a look at the [code of conduct](./code_of_conduct.md).
 
+_Note all materials in this template are licensed [CC-BY](https://tldrlegal.com/license/creative-commons-attribution-(cc)) and can be repurposed freely with attribution._
+
+_Background information_:  
+- If you are not familiar with Git and Github, we recommend looking through [Happy Git and GitHub for the UseR by Jenny Bryan](https://happygitwithr.com/).  
+- If you aren't familiar with markdown files [this is a nice introduction](https://www.markdownguide.org/getting-started/).  
+- For information on RMarkdown files: [RStudio has their lessons here](https://rmarkdown.rstudio.com/lesson-1.html).  
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
@@ -32,6 +39,8 @@ In the upper right of this screen, click `Use this template` and follow the step
 
 Name your repository, starting with `ITCR_` and fill in a short description.
 
+Trigger a workflow to set up the Github issues that you can use to guide your set up of this course.
+
 Now start filling out the documents with the information for the course! Make sure that the existing Rmd template files are changed to fit your course, and delete the `code_output` folder if you do not expect to have any code_output (or if you wish to call the folder something else).
 There are `{}` in these files to get you started filling out information and should be deleted after you've filled them out.
 
@@ -49,35 +58,49 @@ Go to `Settings` > `Pages`.
 
 ##### Set up branches
 
-Go to `Settings` > `Branches` and click `Add new rule`.
+Go to `Settings` > `Branches` and click `Add rule`.
 For `Branch name pattern`, put `main`.
 
 _Protect the main branch_:  
 Then check the box that says `Require pull request reviews before merging`.
 
 _Make sure branches are updated_:  
-Underneath the checkbox of `Require status checks to pass before merging`, also choose `Require branches to be up to date before merging`.
+- Check the box that says `Require status checks to pass before merging`.
+- Underneath this also check the box that says `Require branches to be up to date before merging`.
 
 _Use automatic spell and URL checks_:  
-You will have to file on initial pull request before setting this.
-But then check the box that says `Require status checks to pass before merging` and choose `style-n-check` as well as `url-check`
+After the first pull request, a couple of checks will automatically happen and then appear here in settings.
+Then, you can require these checks to pass before merging pull requests by returning here and selecting them - they are `url_check` and `style-n-check` they will check that the urls work and that the code is styled using the `stylr` package and that the spelling is correct using the spelling package respectively.
+See the [Github Actions section](#github-actions) for more details on these.
+
+After setting up these new branch items, click `Create` and `Save changes`.
 
 ## Setting up the Docker image
 
 Particularly for courses that involve running example code, it's recommended that you use a Docker image for development to maintain software version consistency across course developers.
-If you haven't installed Docker desktop (or need to update it), you can do [so here](https://docs.docker.com/get-docker/).
-You will need to [sign up with a Docker account](https://hub.docker.com/) if you don't have one.
+
+If you are new to Docker, you may find it helpful to read [Carrie Wright's explanation about what Docker is for](https://carriewright11.github.io/covid_epi/#new-to-docker).
+- You will need to [sign up with a Docker account](https://hub.docker.com/) if you don't have one.  
+- If you haven't installed Docker desktop (or need to update it), you can do [so here](https://docs.docker.com/get-docker/).  
 
 If your Docker desktop is running, you should see a Docker whale in your tool bar.
 On Macs, this will be on the bar on the top of your screen; in Windows, on the bottom right.
 
-To pull the Docker image associated with this template, you can run this command in your command line.
-Pulling the image may take a minute or so.
+A Docker image is similar to a virtual machine - it contains preinstalled software in a preconfigured environment.
+Docker images can be downloaded from DockerHub, or you can create your own.
+
+We have created the `itcr_course_template` image as a starting point; you can download it from `jhudsl/itcr_course_template` on DockerHub using the docker pull command we have below.
+To pull the docker image associated with this template, you can run this command below in your command line.
+This may take a while.
 
 ```
 docker pull jhudsl/itcr_course_template
 ```
-Alternatively, if you'd prefer to build from the Dockerfile locally you can run:
+
+This pulls the itcr_course_template image from Docker Hub and copies it to your computer.
+It will be placed in your local collection of Docker images, managed by Docker (not in your pwd).
+
+Alternatively, if you'd prefer to re-build this image from the Dockerfile locally you can run:
 
 ```
 docker build -< docker/Dockerfile -t jhudsl/itcr_course_template
@@ -85,10 +108,19 @@ docker build -< docker/Dockerfile -t jhudsl/itcr_course_template
 
 To use the Docker image associated with the course template, first navigate to the the top of this GitHub repository.
 Now you can start up the Docker container using the command below.
+
+This runs your local copy of the itcr_course_template image (which you downloaded from DockerHub).
+The option `-v $PWD:/home/rstudio` mounts pwd (this repo) and makes it available at `/home/rstudio` within the container.
 Replace all of `<CHOOSE_PASSWORD>` (including the `<` and `>`) with a password of your choosing.
 
+_On a Mac_:  
 ```
 docker run -it -v $PWD:/home/rstudio -e PASSWORD=<CHOOSE_PASSWORD> -p 8787:8787 jhudsl/itcr_course_template
+```
+
+_On a Windows_:  
+```
+docker run -it -v %CD%:/home/rstudio -e PASSWORD=<CHOOSE_PASSWORD> -p 8787:8787 jhudsl/itcr_course_template
 ```
 
 Do not close this window, but you can minimize it.
@@ -174,7 +206,10 @@ You can generally follow the [Bookdown instructions about citations](https://boo
 To add a new reference source, add to the `book.bib` file, keeping your new entry in alphabetical order.
 
 For articles (or anything with a DOI), go to [doi2bib.org](https://www.doi2bib.org/) to get a BibTex-formatted reference.
-Then copy and paste the reference to the `references.bib` file.
+
+Then copy and paste the reference to the `book.bib` file.
+
+You can also use programs like Zotero or Endnote to export a .bib file and either combine with the `book.bib` or manage your references from there.
 
 Other sources can be added using this template:
 ```
@@ -194,6 +229,8 @@ To reference the citations in your writing follow the [bookdown instructions](ht
 Here's a summary of the Github actions set up in this repository.
 
 ![](resources/GHASetUp.png)
+
+Note that `build-all` and `docker-build-test` are not something we recommend requiring for status checks because `docker-build-test` is only run if there are changes to the Dockerfile and `build-all` is only run upon the acceptance and merging of a pull request.
 
 ### Style guide
 
@@ -235,7 +272,7 @@ This file should not be pushed to the GitHub repository (it is in the gitignore 
 If it fails, you'll need to go the `Actions` tab of this repository, then find the GitHub `check_urls` job for the last commit you just pushed.
 Click on `check_urls` and the specific step of `Check URLs` to see a print out of the URLs tested.
 
-If the URL checker is trying to check something that isn't really a URL or doesn't need to be checked, open up the GitHub actions file: `.github/workflows/url-checker.yml` and add the imposter URL on to the end of the quote with a comma.
+If the URL checker is trying to check something that isn't really a URL or doesn't need to be checked, open up the GitHub actions file: `.github/workflows/url-checker.yml` and add the imposter URL on to the `blacklist` argument, to the end of the quote with a comma in between.
 
 ### Adding Images and Graphics
 
@@ -255,10 +292,11 @@ Please select the layout that looks like this for any images/content from outsid
 
 ![source_layout](https://docs.google.com/presentation/d/1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU/export/png?id=1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU&pageid=gcf0c1d8548_0_146)
 
-
 Please update the text at the bottom to describe the source.
 
 Once complete, your slides can be downloaded and a static version can be added to your bookdown and or Leanpub repository to build your course. See [this link](https://www.howtogeek.com/509046/how-to-save-google-slides-objects-as-images/) for information on how to download slides from Google Slides.
+
+Images should be stored in `resources/images/` or you can link directly to your GoogleSlides following [the instructions here](https://www.evernote.com/shard/s425/client/snv?noteGuid=fd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d&noteKey=58951432cb4f6f996ad9a28df6852248&sn=https%3A%2F%2Fwww.evernote.com%2Fshard%2Fs425%2Fsh%2Ffd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d%2F58951432cb4f6f996ad9a28df6852248&title=Google%2Bslides).  
 
 ## Bookdown Rendering
 
@@ -290,6 +328,8 @@ Once we do this we can preview the book!
 
 You can do so by typing:
 `bookdown::serve_book()` in the RStudio Console.  
+
+Note that when you run `bookdown` it will create an `.rds` file; you can generally ignore this file. s
 
 You will then see a live version of your book in your RStudio viewer.
 
