@@ -39,7 +39,7 @@ In the upper right of this screen, click `Use this template` and follow the step
 
 Name your repository, starting with `ITCR_` and fill in a short description.
 
-Trigger a workflow to set up the Github issues that you can use to guide your set up of this course. 
+Trigger a workflow to set up the Github issues that you can use to guide your set up of this course.
 
 Now start filling out the documents with the information for the course! Make sure that the existing Rmd template files are changed to fit your course, and delete the `code_output` folder if you do not expect to have any code_output (or if you wish to call the folder something else).
 There are `{}` in these files to get you started filling out information and should be deleted after you've filled them out.
@@ -112,8 +112,14 @@ This runs your local copy of the itcr_course_template image (which you downloade
 The option `-v $PWD:/home/rstudio` mounts pwd (this repo) and makes it available at `/home/rstudio` within the container.
 Replace all of `<CHOOSE_PASSWORD>` (including the `<` and `>`) with a password of your choosing.
 
+_On a Mac_:  
 ```
 docker run -it -v $PWD:/home/rstudio -e PASSWORD=<CHOOSE_PASSWORD> -p 8787:8787 jhudsl/itcr_course_template
+```
+
+_On a Windows_:  
+```
+docker run -it -v %CD%:/home/rstudio -e PASSWORD=<CHOOSE_PASSWORD> -p 8787:8787 jhudsl/itcr_course_template
 ```
 
 Do not close this window, but you can minimize it.
