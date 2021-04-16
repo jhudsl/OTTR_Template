@@ -39,7 +39,7 @@ In the upper right of this screen, click `Use this template` and follow the step
 
 Name your repository, starting with `ITCR_` and fill in a short description.
 
-Trigger a workflow to set up the Github issues that you can use to guide your set up of this course. 
+Trigger a workflow to set up the Github issues that you can use to guide your set up of this course.
 
 Now start filling out the documents with the information for the course! Make sure that the existing Rmd template files are changed to fit your course, and delete the `code_output` folder if you do not expect to have any code_output (or if you wish to call the folder something else).
 There are `{}` in these files to get you started filling out information and should be deleted after you've filled them out.
@@ -77,6 +77,8 @@ After setting up these new branch items, click `Create` and `Save changes`.
 
 ## Setting up the Docker image
 
+Particularly for courses that involve running example code, it's recommended that you use a Docker image for development to maintain software version consistency across course developers.
+
 If you are new to Docker, you may find it helpful to read [Carrie Wright's explanation about what Docker is for](https://carriewright11.github.io/covid_epi/#new-to-docker).
 - You will need to [sign up with a Docker account](https://hub.docker.com/) if you don't have one.  
 - If you haven't installed Docker desktop (or need to update it), you can do [so here](https://docs.docker.com/get-docker/).  
@@ -84,7 +86,6 @@ If you are new to Docker, you may find it helpful to read [Carrie Wright's expla
 If your Docker desktop is running, you should see a Docker whale in your tool bar.
 On Macs, this will be on the bar on the top of your screen; in Windows, on the bottom right.
 
-Particularly for courses that involve running example code, it's recommended that you use a Docker image for development to maintain software version consistency across course developers.
 A Docker image is similar to a virtual machine - it contains preinstalled software in a preconfigured environment.
 Docker images can be downloaded from DockerHub, or you can create your own.
 
@@ -112,8 +113,14 @@ This runs your local copy of the itcr_course_template image (which you downloade
 The option `-v $PWD:/home/rstudio` mounts pwd (this repo) and makes it available at `/home/rstudio` within the container.
 Replace all of `<CHOOSE_PASSWORD>` (including the `<` and `>`) with a password of your choosing.
 
+_On a Mac_:  
 ```
 docker run -it -v $PWD:/home/rstudio -e PASSWORD=<CHOOSE_PASSWORD> -p 8787:8787 jhudsl/itcr_course_template
+```
+
+_On a Windows_:  
+```
+docker run -it -v %CD%:/home/rstudio -e PASSWORD=<CHOOSE_PASSWORD> -p 8787:8787 jhudsl/itcr_course_template
 ```
 
 Do not close this window, but you can minimize it.
