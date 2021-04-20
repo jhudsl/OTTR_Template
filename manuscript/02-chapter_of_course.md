@@ -1,7 +1,6 @@
 ---
 title: "Chapter of course"
-output: html_document
-
+output: md_document
 ---
 
 
