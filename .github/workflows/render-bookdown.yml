@@ -1,0 +1,70 @@
+
+# This code was originally written by Josh Shapiro and Candace Savonen
+# for the Childhood Cancer Data Lab, an initiative of Alexs Lemonade Stand Foundation.
+# https://github.com/AlexsLemonade/refinebio-examples/blob/33cdeff66d57f9fe8ee4fcb5156aea4ac2dce07f/.github/workflows/style-and-sp-check.yml#L1
+
+# Adapted for this jhudsl repository by Candace Savonen Apr 2021
+
+name: Build, Render, and Push
+
+# Controls when the action will run. Triggers the workflow on push
+# events only for the master branch
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  # This workflow contains a single job called "build-all"
+  build-all:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          # get the full repo
+          fetch-depth: 0
+          # use github PAT
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Login to Dockerhub
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Set up Docker build
+      - name: Set up Docker Build
+        uses: docker/setup-buildx-action@v1
+
+      # Build the Docker image
+      - name: Build and Load Docker image
+        uses: docker/build-push-action@v2
+        with:
+          push: false
+          load: true
+          context: docker
+          file: docker/Dockerfile
+          tags: jhudsl/itcr_course_template
+
+      # Run bookdown rendering
+      - name: Run bookdown render
+        run: |
+          docker run \
+          --mount type=bind,target=/home/rstudio,source=$PWD \
+          jhudsl/itcr_course_template \
+          Rscript -e "bookdown::render_book('index.Rmd')"
+
+      # Push the Docker image
+      - name: Push Docker image
+        run: docker push jhudsl/itcr_course_template
+
+      - name: Commit rendered bookdown files
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add -A
+          git commit -m 'Render bookdown' || echo "No changes to commit"

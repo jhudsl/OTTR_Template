@@ -1,4 +1,11 @@
+# ignore nonsense files
+.DS_Store
+.Rhistory
+.local
+.rstudio
+.bash_history
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+spell_check_results.tsv

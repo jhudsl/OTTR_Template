@@ -1,0 +1,35 @@
+# Adapted from https://github.com/marketplace/actions/url-checker by Candace Savonen
+
+# This github actions tests URLs in the Rmd files, README, and CONTRIBUTING.md
+name: Check URLs
+
+# This will be run upon PRs to main
+on:
+  pull_request:
+    branches: [ main ]
+
+# Here's the main action of checking URLs
+jobs:
+  check_urls:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        # What branch to commit to: the one from the pull request
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Get Rmd file names
+        id: get_rmds
+        run: |
+          rmd_files=$(find . -type f -name '*.Rmd' -exec basename {} \;)
+          rmd_files=$(echo "$rmd_files" | xargs | sed -e 's/ /,/g')
+          file_list="CONTRIBUTING.md,README.md,${rmd_files[@]}"
+          echo "::set-output name=all_files::$file_list"
+          echo $file_list
+
+      - name: Check URLs
+        uses: paramt/url-checker@master
+        with:
+          files: "${{ steps.get_rmds.outputs.all_files }}"
+          blacklist: "${{ steps.get_rmds.outputs.all_files }},01-intro.md,about.md,doi2bib.org"
