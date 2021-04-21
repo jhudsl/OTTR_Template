@@ -106,7 +106,9 @@ if (all(is.na(image_df$slide_id))) {
 
 
 # Wrapper to delete image and then re-add it
-refresh_image(image_url, image_id, slides_id) {
+refresh_image(image_url = image_df$base_images_urls[1], 
+              image_id = image_df$image_id[1], 
+              slides_id) {
   
   # Create delete request
   delete_request <- add_delete_object_request(object_id = image_id)
