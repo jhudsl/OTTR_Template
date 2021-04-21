@@ -1,14 +1,36 @@
 ---
-title: "Chapter of course"
+title: "Chapter title"
 output: html_document
-
 ---
 
+## Learning Objectives
+
+This chapter will cover:  
+
+- {You can use https://www.bu.edu/cme/forms/RSS_forms/tips_for_writing_objectives.pdf to define some learning objectives here}
+- {Another learning objective}
+
+## Libraries
+
+For this chapter, we'll need the following packages attached. 
 
 
-# Topic of Course
+```r
+library(here)
+```
 
-Text text
+```
+## here() starts at /Users/johnmuschelli/Dropbox/Projects/ITCR_Course_Template
+```
+
+```r
+library(ggplot2)
+library(magrittr)
+```
+
+# Topic of Section
+
+Text Text
 
 ## Subtopic
 
@@ -26,9 +48,9 @@ if (!dir.exists(output_dir)) {
 
 
 ```r
-iris %>% 
-  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) + 
-  geom_point() + 
+iris %>%
+  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) +
+  geom_point() +
   theme_bw()
 ```
 
@@ -69,75 +91,82 @@ devtools::session_info()
 ```
 ## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
-##  version  R version 4.0.2 (2020-06-22)
-##  os       Ubuntu 20.04 LTS            
-##  system   x86_64, linux-gnu           
+##  version  R version 4.0.5 (2021-03-31)
+##  os       macOS Catalina 10.15.7      
+##  system   x86_64, darwin17.0          
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
-##  tz       Etc/UTC                     
-##  date     2021-04-07                  
+##  tz       America/New_York            
+##  date     2021-04-20                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
-##  package     * version date       lib source        
-##  assertthat    0.2.1   2019-03-21 [1] RSPM (R 4.0.3)
-##  backports     1.1.10  2020-09-15 [1] RSPM (R 4.0.2)
-##  bookdown      0.20    2020-06-23 [1] RSPM (R 4.0.2)
-##  callr         3.4.4   2020-09-07 [1] RSPM (R 4.0.2)
-##  cli           2.0.2   2020-02-28 [1] RSPM (R 4.0.0)
-##  colorspace    1.4-1   2019-03-18 [1] RSPM (R 4.0.0)
-##  crayon        1.3.4   2017-09-16 [1] RSPM (R 4.0.0)
-##  desc          1.2.0   2018-05-01 [1] RSPM (R 4.0.3)
-##  devtools      2.3.2   2020-09-18 [1] RSPM (R 4.0.3)
-##  digest        0.6.25  2020-02-23 [1] RSPM (R 4.0.0)
-##  dplyr         1.0.2   2020-08-18 [1] RSPM (R 4.0.2)
-##  ellipsis      0.3.1   2020-05-15 [1] RSPM (R 4.0.3)
-##  evaluate      0.14    2019-05-28 [1] RSPM (R 4.0.3)
-##  fansi         0.4.1   2020-01-08 [1] RSPM (R 4.0.0)
-##  farver        2.0.3   2020-01-16 [1] RSPM (R 4.0.3)
-##  fs            1.5.0   2020-07-31 [1] RSPM (R 4.0.3)
-##  generics      0.0.2   2018-11-29 [1] RSPM (R 4.0.0)
-##  ggplot2     * 3.3.2   2020-06-19 [1] RSPM (R 4.0.1)
-##  glue          1.4.2   2020-08-27 [1] RSPM (R 4.0.3)
-##  gtable        0.3.0   2019-03-25 [1] RSPM (R 4.0.3)
-##  here        * 0.1     2017-05-28 [1] RSPM (R 4.0.0)
-##  htmltools     0.5.0   2020-06-16 [1] RSPM (R 4.0.1)
-##  knitr         1.30    2020-09-22 [1] RSPM (R 4.0.2)
-##  labeling      0.3     2014-08-23 [1] RSPM (R 4.0.0)
-##  lifecycle     0.2.0   2020-03-06 [1] RSPM (R 4.0.3)
-##  magrittr    * 1.5     2014-11-22 [1] RSPM (R 4.0.0)
-##  memoise       1.1.0   2017-04-21 [1] RSPM (R 4.0.0)
-##  munsell       0.5.0   2018-06-12 [1] RSPM (R 4.0.3)
-##  pillar        1.4.6   2020-07-10 [1] RSPM (R 4.0.2)
-##  pkgbuild      1.1.0   2020-07-13 [1] RSPM (R 4.0.2)
-##  pkgconfig     2.0.3   2019-09-22 [1] RSPM (R 4.0.3)
-##  pkgload       1.1.0   2020-05-29 [1] RSPM (R 4.0.3)
-##  prettyunits   1.1.1   2020-01-24 [1] RSPM (R 4.0.3)
-##  processx      3.4.4   2020-09-03 [1] RSPM (R 4.0.2)
-##  ps            1.3.4   2020-08-11 [1] RSPM (R 4.0.2)
-##  purrr         0.3.4   2020-04-17 [1] RSPM (R 4.0.3)
-##  R6            2.4.1   2019-11-12 [1] RSPM (R 4.0.0)
-##  remotes       2.2.0   2020-07-21 [1] RSPM (R 4.0.3)
-##  rlang         0.4.7   2020-07-09 [1] RSPM (R 4.0.2)
-##  rmarkdown     2.4     2020-09-30 [1] RSPM (R 4.0.2)
-##  rprojroot     1.3-2   2018-01-03 [1] RSPM (R 4.0.0)
-##  scales        1.1.1   2020-05-11 [1] RSPM (R 4.0.3)
-##  sessioninfo   1.1.1   2018-11-05 [1] RSPM (R 4.0.3)
-##  stringi       1.5.3   2020-09-09 [1] RSPM (R 4.0.3)
-##  stringr       1.4.0   2019-02-10 [1] RSPM (R 4.0.3)
-##  testthat      2.3.2   2020-03-02 [1] RSPM (R 4.0.0)
-##  tibble        3.0.3   2020-07-10 [1] RSPM (R 4.0.2)
-##  tidyselect    1.1.0   2020-05-11 [1] RSPM (R 4.0.3)
-##  usethis       1.6.3   2020-09-17 [1] RSPM (R 4.0.2)
-##  vctrs         0.3.4   2020-08-29 [1] RSPM (R 4.0.2)
-##  withr         2.3.0   2020-09-22 [1] RSPM (R 4.0.2)
-##  xfun          0.18    2020-09-29 [1] RSPM (R 4.0.2)
-##  yaml          2.2.1   2020-02-01 [1] RSPM (R 4.0.3)
+##  package     * version date       lib source                            
+##  assertthat    0.2.1   2019-03-21 [2] CRAN (R 4.0.0)                    
+##  bookdown      0.21    2020-10-13 [1] CRAN (R 4.0.2)                    
+##  bslib         0.2.4   2021-01-25 [1] CRAN (R 4.0.2)                    
+##  cachem        1.0.4   2021-02-13 [1] CRAN (R 4.0.2)                    
+##  callr         3.7.0   2021-04-20 [1] CRAN (R 4.0.5)                    
+##  cli           2.4.0   2021-04-05 [1] CRAN (R 4.0.2)                    
+##  colorout    * 1.2-2   2020-06-01 [2] Github (jalvesaq/colorout@726d681)
+##  colorspace    2.0-0   2020-11-11 [1] CRAN (R 4.0.2)                    
+##  crayon        1.4.1   2021-02-08 [1] CRAN (R 4.0.2)                    
+##  DBI           1.1.1   2021-01-15 [1] CRAN (R 4.0.2)                    
+##  desc          1.3.0   2021-03-05 [1] CRAN (R 4.0.2)                    
+##  devtools      2.4.0   2021-04-07 [1] CRAN (R 4.0.2)                    
+##  digest        0.6.27  2020-10-24 [1] CRAN (R 4.0.2)                    
+##  dplyr         1.0.5   2021-03-05 [1] CRAN (R 4.0.2)                    
+##  ellipsis      0.3.1   2020-05-15 [2] CRAN (R 4.0.0)                    
+##  evaluate      0.14    2019-05-28 [2] CRAN (R 4.0.0)                    
+##  fansi         0.4.2   2021-01-15 [1] CRAN (R 4.0.2)                    
+##  farver        2.1.0   2021-02-28 [1] CRAN (R 4.0.2)                    
+##  fastmap       1.1.0   2021-01-25 [1] CRAN (R 4.0.2)                    
+##  fs            1.5.0   2020-07-31 [2] CRAN (R 4.0.2)                    
+##  generics      0.1.0   2020-10-31 [1] CRAN (R 4.0.2)                    
+##  ggplot2     * 3.3.3   2020-12-30 [1] CRAN (R 4.0.2)                    
+##  glue          1.4.2   2020-08-27 [1] CRAN (R 4.0.2)                    
+##  gtable        0.3.0   2019-03-25 [2] CRAN (R 4.0.0)                    
+##  here        * 1.0.1   2020-12-13 [1] CRAN (R 4.0.2)                    
+##  highr         0.8     2019-03-20 [2] CRAN (R 4.0.0)                    
+##  htmltools     0.5.1.1 2021-01-22 [1] CRAN (R 4.0.2)                    
+##  jquerylib     0.1.3   2020-12-17 [1] CRAN (R 4.0.2)                    
+##  jsonlite      1.7.2   2020-12-09 [1] CRAN (R 4.0.2)                    
+##  knitr         1.32    2021-04-14 [1] CRAN (R 4.0.2)                    
+##  labeling      0.4.2   2020-10-20 [1] CRAN (R 4.0.2)                    
+##  lifecycle     1.0.0   2021-02-15 [1] CRAN (R 4.0.2)                    
+##  magrittr    * 2.0.1   2020-11-17 [1] CRAN (R 4.0.2)                    
+##  memoise       2.0.0   2021-01-26 [1] CRAN (R 4.0.2)                    
+##  munsell       0.5.0   2018-06-12 [2] CRAN (R 4.0.0)                    
+##  pillar        1.6.0   2021-04-13 [1] CRAN (R 4.0.2)                    
+##  pkgbuild      1.2.0   2020-12-15 [1] CRAN (R 4.0.2)                    
+##  pkgconfig     2.0.3   2019-09-22 [2] CRAN (R 4.0.0)                    
+##  pkgload       1.2.1   2021-04-06 [1] CRAN (R 4.0.2)                    
+##  prettyunits   1.1.1   2020-01-24 [2] CRAN (R 4.0.0)                    
+##  processx      3.5.1   2021-04-04 [1] CRAN (R 4.0.2)                    
+##  ps            1.6.0   2021-02-28 [1] CRAN (R 4.0.2)                    
+##  purrr         0.3.4   2020-04-17 [2] CRAN (R 4.0.0)                    
+##  R6            2.5.0   2020-10-28 [1] CRAN (R 4.0.2)                    
+##  remotes       2.3.0   2021-04-01 [1] CRAN (R 4.0.2)                    
+##  rlang         0.4.10  2020-12-30 [1] CRAN (R 4.0.2)                    
+##  rmarkdown     2.7     2021-02-19 [1] CRAN (R 4.0.2)                    
+##  rprojroot     2.0.2   2020-11-15 [1] CRAN (R 4.0.2)                    
+##  rstudioapi    0.13    2020-11-12 [1] CRAN (R 4.0.2)                    
+##  sass          0.3.1   2021-01-24 [1] CRAN (R 4.0.2)                    
+##  scales        1.1.1   2020-05-11 [2] CRAN (R 4.0.0)                    
+##  sessioninfo   1.1.1   2018-11-05 [2] CRAN (R 4.0.0)                    
+##  stringi       1.5.3   2020-09-09 [1] CRAN (R 4.0.2)                    
+##  stringr       1.4.0   2019-02-10 [2] CRAN (R 4.0.0)                    
+##  testthat      3.0.2   2021-02-14 [1] CRAN (R 4.0.2)                    
+##  tibble        3.1.1   2021-04-18 [1] CRAN (R 4.0.2)                    
+##  tidyselect    1.1.0   2020-05-11 [2] CRAN (R 4.0.0)                    
+##  usethis       2.0.1   2021-02-10 [1] CRAN (R 4.0.2)                    
+##  utf8          1.2.1   2021-03-12 [1] CRAN (R 4.0.2)                    
+##  vctrs         0.3.7   2021-03-29 [1] CRAN (R 4.0.2)                    
+##  withr         2.4.2   2021-04-18 [1] CRAN (R 4.0.2)                    
+##  xfun          0.22    2021-03-11 [1] CRAN (R 4.0.2)                    
+##  yaml          2.2.1   2020-02-01 [2] CRAN (R 4.0.0)                    
 ## 
-## [1] /usr/local/lib/R/site-library
-## [2] /usr/local/lib/R/library
+## [1] /Users/johnmuschelli/Library/R/4.0/library
+## [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library
 ```
-
-## References 
-
