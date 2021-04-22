@@ -11,15 +11,66 @@ root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 library(rgoogleslides)
 rgoogleslides::authorize()
 
+################################ Set up options ################################
+# Set up optparse options
+option_list <- list(
+  make_option(
+    opt_str = c("-s", "--slides_id"), type = "character",
+    default = "1KMPnRS7hOS9BHUzTPyt8cxwCHCK6E1bFRdxzU8BExiU", 
+    help = "Slide ID obtained from Google Slides URL",
+    metavar = "character"
+  ),
+  make_option(
+    opt_str = c("-i", "--image_loc"), type = "character",
+    default = "_bookdown_files", help = "Directory where images to be added to Google slides are stored",
+    metavar = "character"
+  ),
+  make_option(
+    opt_str = c("-k", "--image_key_dir"), type = "character",
+    default = "resources", help = "Directory to store 'image_to_slide_key.tsv'. Default is resources/",
+    metavar = "character"
+  ), 
+  make_option(
+    opt_str = c("-u", "--git_repo"), type = "character",
+    default = NULL, help = "Github repo where images are stored",
+    metavar = "character"
+  )
+)
+
+# Parse options
+opt <- parse_args(OptionParser(option_list = option_list))
+
 # Slide id refers the id of the entire slide deck
-slides_id <- "1KMPnRS7hOS9BHUzTPyt8cxwCHCK6E1bFRdxzU8BExiU"
+slides_id <- opt$slides_id
+
+# Test by getting slide properties
+get_slides_properties(slides_id)
+
+# Check if directory exists
+if (!dir.exists(image_key_dir)) {
+  stop(paste("The directory specified,", opt$image_key_dir, "does not exist in the root directory."))
+}
+
+# Put it relative to root directory
+image_key_dir <- file.path(root_dir, opt$image_key_dir)
+
+# Check if directory exists
+if (!dir.exists(image_key_dir)) {
+  stop(paste("The directory specified,", opt$image_key_dir, "does not exist in the root directory."))
+}
+
+# Declare file path    
+image_key_file <- file.path(opt$image_key_dir, "image_to_slide_key.tsv")
 
 # Declare local location of images
-local_image_loc <- file.path(root_dir, "_bookdown_files")
+local_image_loc <- file.path(root_dir, opt$image_loc)
 
-# Declare image key file path
-image_key_file <- file.path(root_dir, "resources", "image_to_slide_key.tsv")
+# Check if directory exists
+if (!dir.exists(local_image_loc)) {
+  stop(paste("The directory specified,", opt$image_loc, "does not exist in the root directory."))
+}
 
+######################### Get image file paths #################################
 # Get the list of all the code image files
 images <- list.files(local_image_loc, pattern = ".png", full.names = TRUE, recursive = TRUE)
 
@@ -27,12 +78,12 @@ images <- list.files(local_image_loc, pattern = ".png", full.names = TRUE, recur
 rel_image_paths <- gsub(paste0(root_dir, "/"), "", images)
 
 # Build github url based on the local image location
-base_images_urls <- paste0("https://raw.githubusercontent.com/jhudsl/ITCR_Course_Template_Bookdown/main/", rel_image_paths)
+images_urls <- paste0("https://raw.githubusercontent.com/", opt$git_repo, "main/", rel_image_paths)
 
 # If the image key file exists, read it in, otherwise create one
 if (!file.exists(image_key_file)) {
   # Set up data frame with images 
-  image_df <- data.frame(base_images_urls, 
+  image_df <- data.frame(images_urls, 
                          slide_id = as.character(NA), 
                          image_id = as.character(NA))
   
