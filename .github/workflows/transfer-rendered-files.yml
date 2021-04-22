@@ -34,7 +34,9 @@ jobs:
         run: |
           # the url from this repo where files will be downloaded from
           base_url=https://${GH_TOKEN}@raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/heads/}
-          # urls for
+          echo $base_url
+
+          # urls for the files in docs/
           list_url=(ls -R ${base_url}/docs/*)
           echo $list_url
 
@@ -42,7 +44,7 @@ jobs:
           file_paths=$(curl --fail -s ${list_url}) || echo "Error getting docs/ file at ${list_url}"
 
           # error if the docs/ is empty
-          [[ -z $exercise_paths ]] && echo "docs/ folder is empty." && exit 1
+          [[ -z $file_paths ]] && echo "docs/ folder is empty." && exit 1
 
           # remove old docs/ files
           rm docs/*
