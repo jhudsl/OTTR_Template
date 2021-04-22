@@ -25,12 +25,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: jhudsl/ITCR_Course_Template_Leanpub
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.TOKEN }}
 
       - name: Get docs/ from Bookdown repo
         shell: bash
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GIT_TOKEN }}
         run: |
           # the url from this repo where files will be downloaded from
           base_url=https://${GH_TOKEN}@raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/heads/}
