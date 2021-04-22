@@ -1,9 +1,11 @@
 # Create and update code output slides
+# Candace Savonen 2021
 
 ################################ Initial Set Up ################################
 # Establish base dir
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 
+# Magrittr pipe
 `%>%` <- dplyr::`%>%`
 
 library(rgoogleslides)
@@ -89,6 +91,7 @@ add_image_slide <- function(image_url, slides_id) {
   return(new_image_info)
 }
 
+# Add new slides for all images that don't have slides yet
 new_slide_images <- image_df %>% 
   dplyr::filter(is.na(slide_id)) %>% 
   dplyr::pull(base_images_urls) %>%
@@ -103,7 +106,6 @@ if (all(is.na(image_df$slide_id))) {
   image_df <- dplyr::bind_rows(dplyr::filter(image_df, !is.na(slide_id)), 
                                new_slide_images)
 }
-
 
 # Wrapper to delete image and then re-add it
 refresh_image(image_url = image_df$base_images_urls[1], 
