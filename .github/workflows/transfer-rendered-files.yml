@@ -32,31 +32,14 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GIT_TOKEN }}
         run: |
-          # the url from this repo where files will be downloaded from
-          base_url=https://${GH_TOKEN}@raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/heads/}
-          echo $base_url
+          apt-get install subversion
 
-          # urls for the files in docs/
-          list_url=(ls -R ${base_url}/docs/*)
-          echo $list_url
-
-          # get the file list
-          file_paths=$(curl --fail -s ${list_url}) || echo "Error getting docs/ file at ${list_url}"
-
-          # error if the docs/ is empty
-          [[ -z $file_paths ]] && echo "docs/ folder is empty." && exit 1
-
-          # remove old docs/ files
+          # remove old docs/ files and folder
           rm docs/*
+          rmdir docs
 
-          # get new exercise files and put them in the right place
-          for path in $file_paths
-          do
-            # test that the path is to an md file, error if not
-            [[ $path != *.md ]] && echo "'$path' is not an .md file." && exit 1
-            echo $path
-            curl --fail -s ${base_url}/${path} > ${path}
-          done
+          # Get list of files
+          svn export https://github.com/jhudsl/ITCR_Course_Template_Bookdown.git/branches/${GITHUB_REF}/docs
 
       - name: Create PR with rendered docs files
         uses: peter-evans/create-pull-request@v3
