@@ -35,8 +35,7 @@ jobs:
           sudo apt-get install subversion
 
           # remove old docs/ files and folder
-          rm docs/*
-          rmdir docs
+          rm -r docss
 
           # Get list of files
           svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF}/docs
