@@ -12,8 +12,8 @@ on:
   push:
     branches: [ master, cansavvy/transfer-docs-gha]
     # trigger on changes to exercise notebooks, but not `solved` notebooks
-    #paths:
-    # - 'docs/*'
+    paths:
+     - 'docs/*'
 
 jobs:
   file-bookdown-pr:
