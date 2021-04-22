@@ -1,0 +1,71 @@
+# This code was originally written by Josh Shapiro
+# for the Childhood Cancer Data Lab, an initiative of Alexs Lemonade Stand Foundation.
+# https://github.com/AlexsLemonade/exercise-notebook-answers
+
+# Adapted for this jhudsl repository by Candace Savonen Apr 2021
+
+name: Copy docs/* folder from Bookdown to Leanpub repo
+# Copy rendered notebooks to Leanpub repo
+
+# This workflow will run when there are changes to docs/ files in THIS repo
+on:
+  # Only run after the render finishes running
+  workflow_run:
+    workflows: [ "Build, Render, and Push" ]
+    branches: [ main ]
+    types:
+      - completed
+  # Only if docs files are changed
+  push:
+    branches: [ main ]
+    paths:
+     - 'docs/*'
+
+jobs:
+  file-bookdown-pr:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code from Leanpub repo
+        uses: actions/checkout@v2
+        with:
+          repository: jhudsl/ITCR_Course_Template_Leanpub
+          token: ${{ secrets.GIT_TOKEN }}
+
+      - name: Get docs/ from Bookdown repo
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GIT_TOKEN }}
+        run: |
+          sudo apt-get install subversion
+
+          # remove old docs/ files and folder
+          rm -r docs
+
+          # Get list of files
+          svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/docs
+
+      - name: Create PR with rendered docs files
+        uses: peter-evans/create-pull-request@v3
+        id: cpr
+        with:
+          token: ${{ secrets.GIT_TOKEN }}
+          commit-message: Copy docs/ files from Bookdown repository
+          signoff: false
+          branch: auto_copy_rendered_files
+          delete-branch: true
+          title: 'GHA: Automated transfer of docs/ from Bookdown repository'
+          body: |
+            ### Description:
+            This PR auto-generated from github actions
+              - Copy the bookdown rendered files in docs/ from Bookdown repository
+          labels: |
+            automated
+          reviewers: $GITHUB_ACTOR
+
+      # Write out PR info
+      - name: Check outputs
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
