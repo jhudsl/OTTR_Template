@@ -7,12 +7,10 @@
 name: Copy docs/* folder from Bookdown to Leanpub repo
 # Copy rendered notebooks to Leanpub repo
 
-# This workflow will run when there are changes to exercise notebooks in THIS repo
+# This workflow will run when there are changes to docs/ files in THIS repo
 on:
-  pull_request:
-    branches: [ master ]
   push:
-    branches: [ master ]
+    branches: [ master, cansavvy/transfer-docs-gha]
     # trigger on changes to exercise notebooks, but not `solved` notebooks
     paths:
      - 'docs/*'
@@ -36,8 +34,8 @@ jobs:
         run: |
           # the url from this repo where files will be downloaded from
           base_url=https://${GH_TOKEN}@raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/heads/}
-          # url for exercise-list.txt
-          list_url=ls ${base_url}/docs/
+          # urls for
+          list_url=(ls -R ${base_url}/docs/*)
           echo $list_url
 
           # get the file list
@@ -52,7 +50,7 @@ jobs:
           # get new exercise files and put them in the right place
           for path in $file_paths
           do
-            # test that the path is to an Rmd file, error if not
+            # test that the path is to an md file, error if not
             [[ $path != *.md ]] && echo "'$path' is not an .md file." && exit 1
             echo $path
             curl --fail -s ${base_url}/${path} > ${path}
