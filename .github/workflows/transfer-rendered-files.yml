@@ -9,7 +9,8 @@ name: Copy docs/ folder from Bookdown to Leanpub repo
 
 # This workflow will run when there are changes to exercise notebooks in THIS repo
 on:
-  pull_request: [ cansavvy/transfer-docs-gha ]
+  pull_request:
+    branches: [ cansavvy/transfer-docs-gha ]
   push:
     branches: [ master ]
     # trigger on changes to exercise notebooks, but not `solved` notebooks
