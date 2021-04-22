@@ -9,9 +9,15 @@ name: Copy docs/* folder from Bookdown to Leanpub repo
 
 # This workflow will run when there are changes to docs/ files in THIS repo
 on:
+  # Only run after the render finishes running
+  workflow_run:
+    workflows: [ "Build, Render, and Push" ]
+    branches: [ main ]
+    types:
+      - completed
+  # Only if docs files are changed
   push:
-    branches: [ master, cansavvy/transfer-docs-gha]
-    # trigger on changes to exercise notebooks, but not `solved` notebooks
+    branches: [ main ]
     paths:
      - 'docs/*'
 
