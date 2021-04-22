@@ -4,13 +4,13 @@
 
 # Adapted for this jhudsl repository by Candace Savonen Apr 2021
 
-name: Copy docs/ folder from Bookdown to Leanpub repo
+name: Copy docs/* folder from Bookdown to Leanpub repo
 # Copy rendered notebooks to Leanpub repo
 
 # This workflow will run when there are changes to exercise notebooks in THIS repo
 on:
   pull_request:
-    branches: [ cansavvy/transfer-docs-gha ]
+    branches: [ master ]
   push:
     branches: [ master ]
     # trigger on changes to exercise notebooks, but not `solved` notebooks
@@ -40,8 +40,9 @@ jobs:
           list_url=ls ${base_url}/docs/
           echo $list_url
 
-          # get the exercise file list
+          # get the file list
           file_paths=$(curl --fail -s ${list_url}) || echo "Error getting docs/ file at ${list_url}"
+
           # error if the docs/ is empty
           [[ -z $exercise_paths ]] && echo "docs/ folder is empty." && exit 1
 
@@ -61,7 +62,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         id: cpr
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.TOKEN }}
           commit-message: Copy docs/ files from Bookdown repository
           signoff: false
           branch: auto_copy_rendered_files
