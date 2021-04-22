@@ -14,4 +14,3 @@ The course is intended for
 **Curriculum:**  
 This course will feature 
 The curriculum will also cover 
-
