@@ -32,7 +32,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GIT_TOKEN }}
         run: |
-          apt-get install subversion
+          sudo apt-get install subversion
 
           # remove old docs/ files and folder
           rm docs/*
