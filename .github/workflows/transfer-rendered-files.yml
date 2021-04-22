@@ -38,7 +38,7 @@ jobs:
           rm -r docs
 
           # Get list of files
-          svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF##*/}/docs
+          svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/docs
 
       - name: Create PR with rendered docs files
         uses: peter-evans/create-pull-request@v3
