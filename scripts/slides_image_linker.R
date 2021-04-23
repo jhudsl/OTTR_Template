@@ -9,6 +9,8 @@ root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 `%>%` <- dplyr::`%>%`
 
 library(rgoogleslides)
+library(optparse)
+
 rgoogleslides::authorize()
 
 ################################ Set up options ################################
@@ -16,8 +18,13 @@ rgoogleslides::authorize()
 option_list <- list(
   make_option(
     opt_str = c("-s", "--slides_id"), type = "character",
-    default = "1KMPnRS7hOS9BHUzTPyt8cxwCHCK6E1bFRdxzU8BExiU", 
+    default = NULL, 
     help = "Slide ID obtained from Google Slides URL",
+    metavar = "character"
+  ),
+  make_option(
+    opt_str = c("-u", "--git_repo"), type = "character",
+    default = NULL, help = "Github repo name where images are stored. e.g. 'jhudsl/ITCR_Course_Template_Bookdown'",
     metavar = "character"
   ),
   make_option(
@@ -29,27 +36,22 @@ option_list <- list(
     opt_str = c("-k", "--image_key_dir"), type = "character",
     default = "resources", help = "Directory to store 'image_to_slide_key.tsv'. Default is resources/",
     metavar = "character"
-  ), 
-  make_option(
-    opt_str = c("-u", "--git_repo"), type = "character",
-    default = NULL, help = "Github repo where images are stored",
-    metavar = "character"
   )
 )
 
 # Parse options
 opt <- parse_args(OptionParser(option_list = option_list))
 
+opt$slides_id <- "1NS9yMPUolVyBIizb7DNxGBb0P-tR7DdThCBqCcPdltY"
+opt$image_loc <- "_bookdown_files"
+opt$image_key_dir <- "resources"
+opt$git_repo <- "jhudsl/ITCR_Course_Template_Bookdown"
+
 # Slide id refers the id of the entire slide deck
 slides_id <- opt$slides_id
 
-# Test by getting slide properties
-get_slides_properties(slides_id)
-
-# Check if directory exists
-if (!dir.exists(image_key_dir)) {
-  stop(paste("The directory specified,", opt$image_key_dir, "does not exist in the root directory."))
-}
+# Test by getting slide properties, but don't print it out
+tmp <- get_slides_properties(slides_id)
 
 # Put it relative to root directory
 image_key_dir <- file.path(root_dir, opt$image_key_dir)
@@ -70,6 +72,18 @@ if (!dir.exists(local_image_loc)) {
   stop(paste("The directory specified,", opt$image_loc, "does not exist in the root directory."))
 }
 
+# If git repo is not named, try to grab it from the git config file
+if (is.null(opt$git_repo)) {
+  # Read in git config file
+  git_config <- readLines(file.path(root_dir, ".git", "config"))
+  
+  # Extract git url from that file
+  git_url <- grep("url = ", git_config, value = TRUE)
+  
+  # Just get the git repo name
+  opt$git_repo <- gsub("\\turl = https://github.com/|\\.git", "", git_url)
+}
+
 ######################### Get image file paths #################################
 # Get the list of all the code image files
 images <- list.files(local_image_loc, pattern = ".png", full.names = TRUE, recursive = TRUE)
@@ -78,12 +92,12 @@ images <- list.files(local_image_loc, pattern = ".png", full.names = TRUE, recur
 rel_image_paths <- gsub(paste0(root_dir, "/"), "", images)
 
 # Build github url based on the local image location
-images_urls <- paste0("https://raw.githubusercontent.com/", opt$git_repo, "main/", rel_image_paths)
+image_urls <- paste0("https://raw.githubusercontent.com/", opt$git_repo, "/main/", rel_image_paths)
 
 # If the image key file exists, read it in, otherwise create one
 if (!file.exists(image_key_file)) {
   # Set up data frame with images 
-  image_df <- data.frame(images_urls, 
+  image_df <- data.frame(image_urls, 
                          slide_id = as.character(NA), 
                          image_id = as.character(NA))
   
@@ -94,47 +108,38 @@ if (!file.exists(image_key_file)) {
 # Read in the image key file
 image_df <- readr::read_tsv(image_key_file)
 
-create_new_slide <- function(slides_id) {
-  # Create a slide request
-  request <- add_create_slide_page_request() 
-
-  # Commit those changes
-  commit_to_slides(slides_id, request)
-
-  # Extract slide information
-  slide_data <- get_slides_properties(slides_id)
-
-  # Get the new slide info 
-  new_slide_id <- slide_data$slides$slideProperties$layoutObjectId[nrow(slide_data$slides)]
+make_new_slide <- function(slides_id) {
   
-  # Print out the new slide id
-  return(new_slide_id)
+  requests <- add_create_slide_page_request(predefined_layout = "BLANK") 
+  commit_to_slides(slides_id, requests)
 }
 
 # Add image to slide
-add_image_slide <- function(image_url, slides_id) {
+add_image_slide <- function(image_url = image_df$image_urls[1],
+                            slides_id) {
   
-  # Create a new slide
-  new_slide_id <- create_new_slide(slides_id)
+  make_new_slide(slides_id)
+  
+  # Get slide details
+  slide_details <- get_slides_properties(slides_id)
+  
+  # Get slide page id
+  slide_page_id <- slide_details$slides$objectId
 
-  # Set up image request
-  image_request <- add_create_image_request(google_slides_request = NULL, 
-                                            aligned_page_element_property(new_slide_id, 
-                                                                          align = "full"),
-                                            url = image_url)
+  # Get the position details of the element on the slide
+  page_element <- aligned_page_element_property(slide_page_id,
+                                                align = "center")
   
-  # Commit this image 
-  commit_to_slides(slides_id, image_request)
+  # Create request
+  request <- add_create_image_request(url = image_url,
+                                      page_element_property = page_element)
   
-  # Extract slide information
-  slide_data <- get_slides_properties(slides_id)
-
-  # Number of slides
-  n_slides <- nrow(slide_data$slides)
+  # Commit
+  response <- commit_to_slides(slides_id, request)
   
   # Get image info 
   new_image_info <- data.frame(
-    base_images_urls = image_url,
+    images_urls = image_url,
     slide_id = new_slide_id,
     image_id = slide_data$layouts$pageElements[[11]]$objectId[n_slides]
     )
@@ -145,8 +150,9 @@ add_image_slide <- function(image_url, slides_id) {
 # Add new slides for all images that don't have slides yet
 new_slide_images <- image_df %>% 
   dplyr::filter(is.na(slide_id)) %>% 
-  dplyr::pull(base_images_urls) %>%
-  purrr::map_df(add_image_slide, slides_id = slides_id)
+  dplyr::pull(images_urls) %>% 
+  purrr::map_dfr(add_image_slide, 
+                 slides_id = slides_id)
 
 # Combine old image slides with new ones only if they exist
 if (all(is.na(image_df$slide_id))) {
@@ -159,7 +165,7 @@ if (all(is.na(image_df$slide_id))) {
 }
 
 # Wrapper to delete image and then re-add it
-refresh_image(image_url = image_df$base_images_urls[1], 
+refresh_image(image_url = image_df$images_urls[1], 
               image_id = image_df$image_id[1], 
               slides_id) {
   
@@ -189,7 +195,7 @@ refresh_image(image_url = image_df$base_images_urls[1],
 }
 
 
-purrr::map2_dfc(image_df$base_images_urls, 
+purrr::map2_dfc(image_df$images_urls, 
                 image_df$image_id,  
                 refresh_image, 
                 slides_id = slides_id)
