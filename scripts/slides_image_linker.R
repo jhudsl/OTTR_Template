@@ -98,7 +98,7 @@ image_urls <- paste0("https://raw.githubusercontent.com/", opt$git_repo, "/main/
 if (!file.exists(image_key_file)) {
   # Set up data frame with images 
   image_df <- data.frame(image_urls, 
-                         slide_id = as.character(NA), 
+                         page_id = as.character(NA), 
                          image_id = as.character(NA))
   
   # Write TSV 
@@ -108,66 +108,103 @@ if (!file.exists(image_key_file)) {
 # Read in the image key file
 image_df <- readr::read_tsv(image_key_file)
 
-make_new_slide <- function(slides_id) {
-  
-  requests <- add_create_slide_page_request(predefined_layout = "BLANK") 
-  commit_to_slides(slides_id, requests)
-}
 
-# Add image to slide
-add_image_slide <- function(image_url = image_df$image_urls[1],
-                            slides_id) {
+# Make a function that makes a new slide
+make_new_slide <- function(slides_id) {
+  # Start up a request
+  requests <- add_create_slide_page_request(predefined_layout = "BLANK") 
   
-  make_new_slide(slides_id)
+  # Commit to the slides
+  commit_to_slides(slides_id, requests)
   
   # Get slide details
   slide_details <- get_slides_properties(slides_id)
   
-  # Get slide page id
-  slide_page_id <- slide_details$slides$objectId
+  # Get the newly made slide page id
+  slide_page <- tail(slide_details$slides$objectId, n = 1)
+  
+  return(slide_page)
+}
 
+add_image <- function(image_url,
+                      slide_page,
+                      slides_id){
+  
   # Get the position details of the element on the slide
-  page_element <- aligned_page_element_property(slide_page_id,
-                                                align = "center")
+  page_element <- suppressWarnings(
+    aligned_page_element_property(slide_page_id = slide_page,
+                                  align = "full")
+  )
   
   # Create request
   request <- add_create_image_request(url = image_url,
                                       page_element_property = page_element)
   
-  # Commit
+  # Commit image to slide
   response <- commit_to_slides(slides_id, request)
   
   # Get image info 
   new_image_info <- data.frame(
-    images_urls = image_url,
-    slide_id = new_slide_id,
-    image_id = slide_data$layouts$pageElements[[11]]$objectId[n_slides]
-    )
+    image_url = image_url,
+    page_id = slide_page,
+    image_id = response$replies[[1]][[1]]
+  )
+  
   # Return this
   return(new_image_info)
 }
 
-# Add new slides for all images that don't have slides yet
-new_slide_images <- image_df %>% 
-  dplyr::filter(is.na(slide_id)) %>% 
-  dplyr::pull(images_urls) %>% 
-  purrr::map_dfr(add_image_slide, 
-                 slides_id = slides_id)
 
-# Combine old image slides with new ones only if they exist
-if (all(is.na(image_df$slide_id))) {
-  # Otherwise, the new_slide_images is now our new data.frame
-  image_df <- new_slide_images
-} else {
-  # If there were images with slides before this, then bind the new to the old
-  image_df <- dplyr::bind_rows(dplyr::filter(image_df, !is.na(slide_id)), 
-                               new_slide_images)
+# Add image to slide
+add_image_slide <- function(image_url,
+                            slides_id) {
+  
+  # Make a new slide
+  slide_page <- make_new_slide(slides_id)
+  
+  
+  image_df <- add_image(image_url = image_url,
+                        slide_page = slide_page,
+                        slides_id = slides_id)
+  
+  return(image_df)
 }
 
+
+
+# Add new slides for all images that don't have slides yet
+images_without_slides <- image_df %>% 
+  dplyr::filter(is.na(page_id))
+
+# If there are images without slides, run them
+if (nrow(images_without_slides) > 0) {
+  new_slide_images <- 
+    images_without_slides %>% 
+    dplyr::pull(image_urls) %>% 
+    purrr::map_dfr(add_image_slide, 
+                   slides_id = slides_id)
+
+  # Combine old image slides with new ones only if they exist
+  if (all(is.na(image_df$page_id))) {
+    # Otherwise, the new_slide_images is now our new data.frame
+    image_df <- new_slide_images
+  } else {
+    # If there were images with slides before this, then bind the new to the old
+    image_df <- dplyr::bind_rows(dplyr::filter(image_df, !is.na(page_id)), 
+                                 new_slide_images)
+  }
+
+  # Write this to the file
+  readr::write_tsv(image_df, image_key_file)
+
+}
+
+
 # Wrapper to delete image and then re-add it
-refresh_image(image_url = image_df$images_urls[1], 
-              image_id = image_df$image_id[1], 
-              slides_id) {
+refresh_image <- function(image_url,
+                          slide_page,
+                          image_id, 
+                          slides_id) {
   
   # Create delete request
   delete_request <- add_delete_object_request(object_id = image_id)
@@ -175,30 +212,24 @@ refresh_image(image_url = image_df$images_urls[1],
   # Commit this image 
   commit_to_slides(slides_id, delete_request)
   
-  # Set up image request
-  image_request <- add_create_image_request(google_slides_request = NULL, 
-                                            aligned_page_element_property(slide_id, 
-                                                                          align = "full"),
-                                            url = image_url)
+  # Add back images
+  image_df <- add_image(image_url = image_url,
+                        slide_page = slide_page,
+                        slides_id = slides_id)
   
-  # Commit this image 
-  commit_to_slides(slides_id, image_request)
-  
-  # Extract slide information
-  slide_data <- get_slides_properties(slides_id)
-  
-  # Number of slides
-  n_slides <- nrow(slide_data$slides)
-  
-  # Get new image id
-  new_image_id <- slide_data$layouts$pageElements[[11]]$objectId[n_slides]
+  return(image_df)
 }
 
 
-purrr::map2_dfc(image_df$images_urls, 
-                image_df$image_id,  
-                refresh_image, 
-                slides_id = slides_id)
+# Run this for each row (each image of data)
+apply(image_df, 1, 
+      function(file) {
+        image_df <- refresh_image(image_url = image_df['image_url'],
+                                  slide_page = image_df['page_id'],
+                                  image_id = image_df['image_id'], 
+                                  slides_id = slides_id)
+        return(image_df)
+      })
 
 
-
+image_df['image_id'][1]
