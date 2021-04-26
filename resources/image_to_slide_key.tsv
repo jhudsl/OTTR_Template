@@ -1,3 +1,3 @@
-image_urls	slide_id	image_id
-https://raw.githubusercontent.com/jhudsl/ITCR_Course_Template_Bookdown/main/_bookdown_files/02-chapter_of_course_files/figure-html/unnamed-chunk-2-1.png	NA	NA
-https://raw.githubusercontent.com/jhudsl/ITCR_Course_Template_Bookdown/main/_bookdown_files/02-chapter_of_course_files/figure-html/unnamed-chunk-3-1.png	NA	NA
+image_url	page_id	image_id
+https://raw.githubusercontent.com/jhudsl/ITCR_Course_Template_Bookdown/main/_bookdown_files/02-chapter_of_course_files/figure-html/unnamed-chunk-2-1.png	SLIDES_API647731787_0	SLIDES_API1838179214_0
+https://raw.githubusercontent.com/jhudsl/ITCR_Course_Template_Bookdown/main/_bookdown_files/02-chapter_of_course_files/figure-html/unnamed-chunk-3-1.png	SLIDES_API1181843720_0	SLIDES_API165133783_0
