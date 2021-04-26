@@ -32,4 +32,4 @@ jobs:
         uses: paramt/url-checker@master
         with:
           files: "${{ steps.get_rmds.outputs.all_files }}"
-          blacklist: "${{ steps.get_rmds.outputs.all_files }},01-intro.md,about.md,doi2bib.org"
+          blacklist: "${{ steps.get_rmds.outputs.all_files }},01-intro.md,about.md,doi2bib.org,https://jhudatascience.org/ITCR_{Course_Name}}"
