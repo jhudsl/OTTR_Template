@@ -1,6 +1,6 @@
 ---
-name: New Course: set up repository settings
-about: Repository settings needed
+name: 'New Course: set up repository settings'
+about: 'Repository settings needed'
 title: 'New Course: set up repository settings'
 labels: ''
 assignees: ''

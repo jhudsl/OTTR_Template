@@ -1,6 +1,6 @@
 ---
-name: New Course: Files that need to be edited
-about: A list of file edits that need to happen
+name: 'New Course: Files that need to be edited'
+about: 'A list of file edits that need to happen'
 title: 'New Course: Files that need to be edited'
 labels: ''
 assignees: ''
