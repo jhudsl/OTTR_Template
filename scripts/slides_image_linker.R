@@ -84,31 +84,7 @@ if (is.null(opt$git_repo)) {
   opt$git_repo <- gsub("\\turl = https://github.com/|\\.git", "", git_url)
 }
 
-######################### Get image file paths #################################
-# Get the list of all the code image files
-images <- list.files(local_image_loc, pattern = ".png", full.names = TRUE, recursive = TRUE)
-
-# Get relative image paths
-rel_image_paths <- gsub(paste0(root_dir, "/"), "", images)
-
-# Build github url based on the local image location
-image_urls <- paste0("https://raw.githubusercontent.com/", opt$git_repo, "/main/", rel_image_paths)
-
-# If the image key file exists, read it in, otherwise create one
-if (!file.exists(image_key_file)) {
-  # Set up data frame with images 
-  image_df <- data.frame(image_urls, 
-                         page_id = as.character(NA), 
-                         image_id = as.character(NA))
-  
-  # Write TSV 
-  readr::write_tsv(image_df, image_key_file)
-} 
-
-# Read in the image key file
-image_df <- readr::read_tsv(image_key_file)
-
-
+############################## Set up Functions ################################
 # Make a function that makes a new slide
 make_new_slide <- function(slides_id) {
   # Start up a request
@@ -154,7 +130,6 @@ add_image <- function(image_url,
   return(new_image_info)
 }
 
-
 # Add image to slide
 add_image_slide <- function(image_url,
                             slides_id) {
@@ -170,7 +145,49 @@ add_image_slide <- function(image_url,
   return(image_df)
 }
 
+# Wrapper to delete image and then re-add it
+refresh_image <- function(image_url,
+                          slide_page,
+                          image_id, 
+                          slides_id) {
+  
+  # Create delete request
+  delete_request <- add_delete_object_request(object_id = as.character(image_id))
+  
+  # Commit this image 
+  commit_to_slides(slides_id, delete_request)
+  
+  # Add back images
+  image_df <- add_image(image_url = image_url,
+                        slide_page = slide_page,
+                        slides_id = slides_id)
+  
+  return(image_df)
+}
 
+######################### Get image file paths #################################
+# Get the list of all the code image files
+images <- list.files(local_image_loc, pattern = ".png", full.names = TRUE, recursive = TRUE)
+
+# Get relative image paths
+rel_image_paths <- gsub(paste0(root_dir, "/"), "", images)
+
+# Build github url based on the local image location
+image_urls <- paste0("https://raw.githubusercontent.com/", opt$git_repo, "/main/", rel_image_paths)
+
+# If the image key file exists, read it in, otherwise create one
+if (!file.exists(image_key_file)) {
+  # Set up data frame with images 
+  image_df <- data.frame(image_urls, 
+                         page_id = as.character(NA), 
+                         image_id = as.character(NA))
+  
+  # Write TSV 
+  readr::write_tsv(image_df, image_key_file)
+} 
+
+# Read in the image key file
+image_df <- readr::read_tsv(image_key_file)
 
 # Add new slides for all images that don't have slides yet
 images_without_slides <- image_df %>% 
@@ -199,37 +216,16 @@ if (nrow(images_without_slides) > 0) {
 
 }
 
-
-# Wrapper to delete image and then re-add it
-refresh_image <- function(image_url,
-                          slide_page,
-                          image_id, 
-                          slides_id) {
-  
-  # Create delete request
-  delete_request <- add_delete_object_request(object_id = image_id)
-  
-  # Commit this image 
-  commit_to_slides(slides_id, delete_request)
-  
-  # Add back images
-  image_df <- add_image(image_url = image_url,
-                        slide_page = slide_page,
-                        slides_id = slides_id)
-  
-  return(image_df)
-}
-
-
 # Run this for each row (each image of data)
-apply(image_df, 1, 
-      function(file) {
-        image_df <- refresh_image(image_url = image_df['image_url'],
-                                  slide_page = image_df['page_id'],
-                                  image_id = image_df['image_id'], 
-                                  slides_id = slides_id)
-        return(image_df)
+refreshed_image_df <- apply(image_df, 1, 
+                            function(image_df) {
+                              refreshed_image_df <- 
+                                refresh_image(image_url = image_df['image_url'],
+                                              slide_page = image_df['page_id'],
+                                              image_id = image_df['image_id'], 
+                                              slides_id = slides_id)
+                              return(refreshed_image_df)
       })
 
-
-image_df['image_id'][1]
+# Write refreshed image info to TSV 
+readr::write_tsv(refreshed_image_df, image_key_file)
