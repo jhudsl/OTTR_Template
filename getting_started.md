@@ -78,6 +78,37 @@ See the [Github Actions section](#github-actions) for more details on these.
 
 After setting up these new branch items, click `Create` and `Save changes`.
 
+### Set up Github secrets
+
+The Github actions that this repository uses needs four Github secrets set up.
+
+It's important that these are set up and named exactly what they are below in order for Github actions to work correctly.
+
+![Github secrets](resources/git-secret.png)
+
+
+To set up these repository secrets, on your repository's main Github page, go to `Settings` and scroll down to see `Secrets` on the left side menu bar.
+
+For each new secret, click the `New repository secret` button and set each as follows, clicking `Add secret` as you fill each in appropriately:  
+
+_Name: `DOCKERHUB_USERNAME`_:  
+For `value`: put your login username for https://hub.docker.com/
+
+_Name: `DOCKERHUB_PASSWORD`_:   
+For `value`: put your login password for https://hub.docker.com/
+
+_Name: `GIT_TOKEN`_:  
+For `value`: Create a personal access token [following these instructions](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token#creating-a-token). Underneath `Select scopes`, check both `repo` and `workflow`.
+Then copy the PAT and save as the value.
+
+_Name: `GOOGLE_SLIDE_ID`_:  
+For `value`: set the presentation ID of your main Google Slides for this course.
+Set up the Google slides following the [instructions here](#adding-images-and-graphics).
+The [<presentationID> is in the URL](https://developers.google.com/slides/how-tos/overview#the_structure_of_a_presentation) of your Google Slide:
+```
+https://docs.google.com/presentation/d/<presentationId>/edit
+```
+
 ## Setting up the Docker image
 
 Particularly for courses that involve running example code, it's recommended that you use a Docker image for development to maintain software version consistency across course developers.
