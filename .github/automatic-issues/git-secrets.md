@@ -31,3 +31,5 @@ The [<presentationID> is in the URL](https://developers.google.com/slides/how-to
 ```
 https://docs.google.com/presentation/d/<presentationId>/edit
 ```
+
+- [ ] (Optionally) Set the link to the [Leanpub repository](./getting_started/#linking-to-leanpub-repository)
