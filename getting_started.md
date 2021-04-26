@@ -17,6 +17,9 @@ _Background information_:
 
 - [Creating your course](#creating-your-course)
   - [Recommended repository settings:](#recommended-repository-settings)
+    - [Set up GitHub pages](#set-up-github-pages)
+      - [Set up branches](#set-up-branches)
+  - [Set up Github secrets](#set-up-github-secrets)
 - [Setting up the Docker image](#setting-up-the-docker-image)
   - [Starting a new Docker image](#starting-a-new-docker-image)
   - [Adding packages to the Dockerfile](#adding-packages-to-the-dockerfile)
@@ -24,11 +27,13 @@ _Background information_:
     - [Rebuilding the Docker image](#rebuilding-the-docker-image)
 - [Citations](#citations)
 - [Github actions](#github-actions)
+  - [Linking to Leanpub repository](#linking-to-leanpub-repository)
   - [Style guide](#style-guide)
   - [Spell check](#spell-check)
   - [Running spell check and styler manually](#running-spell-check-and-styler-manually)
   - [URL Checking](#url-checking)
   - [Adding Images and Graphics](#adding-images-and-graphics)
+- [Learning Objectives Formatting](#learning-objectives-formatting)
 - [Bookdown Rendering](#bookdown-rendering)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -85,7 +90,6 @@ The Github actions that this repository uses needs four Github secrets set up.
 It's important that these are set up and named exactly what they are below in order for Github actions to work correctly.
 
 ![Github secrets](resources/git-secret.png)
-
 
 To set up these repository secrets, on your repository's main Github page, go to `Settings` and scroll down to see `Secrets` on the left side menu bar.
 
@@ -267,6 +271,17 @@ Here's a summary of the Github actions set up in this repository.
 Note that `build-all` and `docker-build-test` are not something we recommend requiring for status checks because `docker-build-test` is only run if there are changes to the Dockerfile and `build-all` is only run upon the acceptance and merging of a pull request.
 
 Once `build-all` is run, the `docs/` folder where the rendered files are place are copied over to the Leanpub repository and filed as a pull request.
+
+### Linking to Leanpub repository
+
+`transfer-rendered-files.yml` is a Github action that will copy over the output `docs/` files rendered by Bookdown to a parallel `Leanpub` repository.
+
+If/when you have a Leanpub repository file a PR to change line 28 of `.github/workflow/transfer-rendered-files.yml`:   
+
+```
+repository: jhudsl/ITCR_Course_Template_Leanpub
+```
+It will need to be the repository name you would like the `docs/` files to be transferred to.
 
 ### Style guide
 
