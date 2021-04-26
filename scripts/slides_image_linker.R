@@ -47,11 +47,6 @@ option_list <- list(
 # Parse options
 opt <- parse_args(OptionParser(option_list = option_list))
 
-opt$slides_id <- "1NS9yMPUolVyBIizb7DNxGBb0P-tR7DdThCBqCcPdltY"
-opt$image_loc <- "_bookdown_files"
-opt$image_key_dir <- "resources"
-opt$git_repo <- "jhudsl/ITCR_Course_Template_Bookdown"
-
 # Slide id refers the id of the entire slide deck
 slides_id <- opt$slides_id
 
@@ -88,6 +83,17 @@ if (is.null(opt$git_repo)) {
   # Just get the git repo name
   opt$git_repo <- gsub("\\turl = https://github.com/|\\.git", "", git_url)
 }
+
+# Check if we can find the branch if we aren't using main
+if (opt$git_branch != "main") {
+  test_url <- paste0("https://github.com/", opt$git_repo, "/tr4ee/", opt$git_branch)
+
+  output <- try(readLines(test_url, n = 1))
+  
+  if (class(output) == "try-error")
+  stop(paste("Double check your --git_branch and --git_repo options, could not find anything at those specifications", output))
+}
+
 
 ############################## Set up Functions ################################
 # Make a function that makes a new slide
@@ -178,7 +184,7 @@ images <- list.files(local_image_loc, pattern = ".png", full.names = TRUE, recur
 rel_image_paths <- gsub(paste0(root_dir, "/"), "", images)
 
 # Build github url based on the local image location
-image_urls <- paste0("https://raw.githubusercontent.com/", opt$git_repo, "/", opt$branch, "/", rel_image_paths)
+image_urls <- paste0("https://raw.githubusercontent.com/", opt$git_repo, "/", opt$git_branch, "/", rel_image_paths)
 
 # If the image key file exists, read it in, otherwise create one
 if (!file.exists(image_key_file)) {
