@@ -23,8 +23,13 @@ option_list <- list(
     metavar = "character"
   ),
   make_option(
-    opt_str = c("-u", "--git_repo"), type = "character",
+    opt_str = c("-g", "--git_repo"), type = "character",
     default = NULL, help = "Github repo name where images are stored. e.g. 'jhudsl/ITCR_Course_Template_Bookdown'",
+    metavar = "character"
+  ),
+  make_option(
+    opt_str = c("-b", "--git_branch"), type = "character",
+    default = "main", help = "Github branch where we should uses images for storing. e.g. 'dev'",
     metavar = "character"
   ),
   make_option(
@@ -173,7 +178,7 @@ images <- list.files(local_image_loc, pattern = ".png", full.names = TRUE, recur
 rel_image_paths <- gsub(paste0(root_dir, "/"), "", images)
 
 # Build github url based on the local image location
-image_urls <- paste0("https://raw.githubusercontent.com/", opt$git_repo, "/main/", rel_image_paths)
+image_urls <- paste0("https://raw.githubusercontent.com/", opt$git_repo, "/", opt$branch, "/", rel_image_paths)
 
 # If the image key file exists, read it in, otherwise create one
 if (!file.exists(image_key_file)) {
