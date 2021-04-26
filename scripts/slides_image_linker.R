@@ -11,6 +11,7 @@ root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 library(rgoogleslides)
 library(optparse)
 
+# Run this authorization here
 rgoogleslides::authorize()
 
 ################################ Set up options ################################

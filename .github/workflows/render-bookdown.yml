@@ -62,10 +62,10 @@ jobs:
       - name: Run google slide refresh script
         run: |
         Rscript scripts/slides_image_linker.R \
-          --slides_id "1NS9yMPUolVyBIizb7DNxGBb0P-tR7DdThCBqCcPdltY"
+          --slides_id ${{ secrets.GOOGLE_SLIDE_ID }}
           --image_loc "_bookdown_files" \
           --image_key_dir "resources" \
-          --git_repo ${{GITHUB_REPOSITORY}}
+          --git_repo ${GITHUB_REPOSITORY}
           --git_branch ${GITHUB_REF#refs/heads/}
 
       # Push the Docker image
