@@ -1,10 +1,3 @@
----
-name: 'New Course: set up repository settings'
-about: 'Repository settings needed'
-title: 'New Course: set up repository settings'
-labels: ''
-assignees: ''
----
 
 For more information on these settings see instructions in the [getting_started.md](./getting_started.md#recommended-repository-settings).
 

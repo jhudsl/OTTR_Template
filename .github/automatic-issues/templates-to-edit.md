@@ -1,11 +1,3 @@
----
-name: 'New Course: Files that need to be edited'
-about: 'A list of file edits that need to happen'
-title: 'New Course: Files that need to be edited'
-labels: ''
-assignees: ''
-
----
 
 The following files need to be edited to get this new course started!
 
