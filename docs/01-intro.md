@@ -8,9 +8,9 @@ output: html_document
 ## Motivation
 This course will cover 
 
-**Target Audience:**  
+## Target Audience:
 The course is intended for 
 
-**Curriculum:**  
+## Curriculum: 
 This course will feature 
 The curriculum will also cover 
