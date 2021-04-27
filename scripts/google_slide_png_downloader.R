@@ -41,9 +41,6 @@ option_list <- list(
 # Parse options
 opt <- parse_args(OptionParser(option_list = option_list))
 
-opt$slides_id <- "1NS9yMPUolVyBIizb7DNxGBb0P-tR7DdThCBqCcPdltY"
-opt$gs_loc <- "resources/gs_slides"
-
 # Slide id refers the id of the entire slide deck
 slides_id <- opt$slides_id
 
@@ -54,14 +51,14 @@ slide_properties <- get_slides_properties(slides_id)
 slide_pages <- slide_properties$slides$objectId
 
 ######################### Download each slide as a PNG #########################
+# If the directory exists, clear it out for now
+if (dir.exists(opt$gs_loc)) {
+  # Remove all pngs for now
+  file.remove(dir(opt$gs_loc, full.names = TRUE))
+}
+
 lapply(slide_pages, 
       function(slide_page) {
-        
-        # If the directory exists, clear it out for now
-        if (dir.exists(opt$gs_loc)) {
-          # Remove all pngs for now
-          file.remove(dir(opt$gs_loc, full.names = TRUE))
-        }
         
         # Download slides again
         download_gs_png(slides_id = slides_id,
