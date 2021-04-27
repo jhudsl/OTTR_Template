@@ -174,4 +174,6 @@ download_gs_png <- function(slides_id,
   download.file(url, 
                 destfile = file.path(slide_folder, slide_file_name))
   
+  message(paste(slide_file_name, "downloaded to", slide_folder))
+  
 }
