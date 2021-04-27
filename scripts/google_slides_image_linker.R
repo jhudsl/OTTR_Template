@@ -1,7 +1,6 @@
 # Create and update code output slides
 # Candace Savonen 2021
 
-
 # Example command line usage:
 
 # Rscript scripts/google_slides_image_linker.R \

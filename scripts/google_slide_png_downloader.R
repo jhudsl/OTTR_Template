@@ -3,7 +3,7 @@
 
 # Example command line usage:
 
-# Rscript scripts/slides_image_linker.R \
+# Rscript scripts/google_slide_png_downloader.R \
 # --slides_id <SLIDE_ID FROM URL> \
 # --gs_loc "resources/gs_slides" \
 
