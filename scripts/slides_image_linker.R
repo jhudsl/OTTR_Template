@@ -193,11 +193,16 @@ dplyr::bind_rows(refreshed_image_df) %>%
 ######################### Download each slide as a PNG #########################
 apply(image_df, 1, 
       function(image_df) {
+        
+        # Remove all pngs for now
+        file.remove(dir(opt$gs_loc, full.names = TRUE))
+        
+        # Download slides again
         download_gs_png(slides_id = slides_id,
                         slide_page = image_df['page_id'],
                         output_dir = opt$gs_loc, 
                         slide_file_name = image_df['page_id'])
-                            })
+        })
 
 # Print out message
 message(paste0("Slides should be updated; go to https://docs.google.com/presentation/d/", slides_id))
