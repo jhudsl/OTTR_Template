@@ -1,47 +1,76 @@
 # Uses cases for Bookdown to Leanpub
 
 Including a figure from the resources.  This shouldn't be an issue in the future 
-```{r, out.width="100%"}
+
+```r
 knitr::include_graphics("resources/images/itcr_training_network.png")
 ```
 
-```{r cool_stuff, out.width="100%", fig.alt = "it's a training network", fig.align='center'}
+<img src="resources/images/itcr_training_network.png" width="100%" />
+
+
+```r
 knitr::include_graphics("resources/images/itcr_training_network.png")
 ```
 
-```{r tools, out.width="100%", fig.alt = "it's a tool", fig.align='left'}
+<img src="resources/images/itcr_training_network.png" title="it's a training network" alt="it's a training network" width="100%" style="display: block; margin: auto;" />
+
+
+```r
 knitr::include_graphics("resources/images/tools.png")
 ```
 
-```{r right_tools, out.width="100%", fig.alt = "it's a tool", fig.align='right', fig.cap="caption for local png"}
+<img src="resources/images/tools.png" title="it's a tool" alt="it's a tool" width="100%" style="display: block; margin: auto auto auto 0;" />
+
+
+```r
 knitr::include_graphics("resources/images/tools.png")
 ```
 
-```{r, fig.cap="caption for url png"}
+<div class="figure" style="text-align: right">
+<img src="resources/images/tools.png" alt="it's a tool" width="100%" />
+<p class="caption">caption for local png</p>
+</div>
+
+
+```r
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/e/e9/Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png")
 ```
 
+![caption for url png](https://upload.wikimedia.org/wikipedia/commons/e/e9/Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png)
+
 
 Including a figure from the resources.  This shouldn't be an issue in the future 
-```{r}
+
+```r
 knitr::include_url("http://www.youtube.com/embed/9bZkp7q19f0?rel=0")
 ```
+
+<iframe src="http://www.youtube.com/embed/9bZkp7q19f0?rel=0" width="672" height="400px"></iframe>
 
 ![Introducing Markua](https://www.youtube.com/watch?t=105&v=VOCYL-FNbr0)
 
 
-```{r, fig.cap="caption for url"}
+
+```r
 knitr::include_url("https://www.youtube.com/watch?v=9bZkp7q19f0?rel=0")
 ```
 
-```{r, eval = FALSE}
+<div class="figure">
+<iframe src="https://www.youtube.com/watch?v=9bZkp7q19f0?rel=0" width="672" height="400px"></iframe>
+<p class="caption">caption for url</p>
+</div>
+
+
+```r
 # define GS_ID
 leanbuild::include_slide("https://docs.google.com/presentation/d/1EYqqNV52cEaklZoYy8NTePiE9eJU61f8xunATYghKKg/edit#slide=id.gd06f979a42_0_107")
 ```
 
 
 
-```{r, eval = FALSE}
+
+```r
 knitr::include_url("https://docs.google.com/presentation/d/1cd434bkLer_CJ04GzpsZwzeEA9gjc5Ho6QimiHPbyEg/export/png?id=1cd434bkLer_CJ04GzpsZwzeEA9gjc5Ho6QimiHPbyEg&pageid=p")
 ```
 

@@ -12,8 +12,18 @@ This chapter will cover:
 For this chapter, we’ll need the following packages attached.
 
     library(here)
+
+    ## here() starts at /Users/johnmuschelli/Dropbox/Projects/ITCR_Course_Template
+
     library(ggplot2)
     library(magrittr)
+
+    ## 
+    ## Attaching package: 'magrittr'
+
+    ## The following objects are masked from 'package:testthat':
+    ## 
+    ##     equals, is_less_than, not
 
 # Topic of Section
 
@@ -61,7 +71,7 @@ In text, we can put citations like this Xie (2016).
 
     devtools::session_info()
 
-    ## ─ Session info ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+    ## ─ Session info ────────────────────────────────────────────────────────────────────────────────────────────────────────────
     ##  setting  value                       
     ##  version  R version 4.0.5 (2021-03-31)
     ##  os       macOS Catalina 10.15.7      
@@ -71,80 +81,103 @@ In text, we can put citations like this Xie (2016).
     ##  collate  en_US.UTF-8                 
     ##  ctype    en_US.UTF-8                 
     ##  tz       America/New_York            
-    ##  date     2021-04-21                  
+    ##  date     2021-04-27                  
     ## 
-    ## ─ Packages ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-    ##  package     * version date       lib source                            
-    ##  assertthat    0.2.1   2019-03-21 [2] CRAN (R 4.0.0)                    
-    ##  cachem        1.0.4   2021-02-13 [1] CRAN (R 4.0.2)                    
-    ##  callr         3.7.0   2021-04-20 [1] CRAN (R 4.0.5)                    
-    ##  cli           2.4.0   2021-04-05 [1] CRAN (R 4.0.2)                    
-    ##  colorout    * 1.2-2   2020-06-01 [2] Github (jalvesaq/colorout@726d681)
-    ##  colorspace    2.0-0   2020-11-11 [1] CRAN (R 4.0.2)                    
-    ##  crayon        1.4.1   2021-02-08 [1] CRAN (R 4.0.2)                    
-    ##  DBI           1.1.1   2021-01-15 [1] CRAN (R 4.0.2)                    
-    ##  desc          1.3.0   2021-03-05 [1] CRAN (R 4.0.2)                    
-    ##  devtools      2.4.0   2021-04-07 [1] CRAN (R 4.0.2)                    
-    ##  digest        0.6.27  2020-10-24 [1] CRAN (R 4.0.2)                    
-    ##  dplyr         1.0.5   2021-03-05 [1] CRAN (R 4.0.2)                    
-    ##  ellipsis      0.3.1   2020-05-15 [2] CRAN (R 4.0.0)                    
-    ##  evaluate      0.14    2019-05-28 [2] CRAN (R 4.0.0)                    
-    ##  fansi         0.4.2   2021-01-15 [1] CRAN (R 4.0.2)                    
-    ##  farver        2.1.0   2021-02-28 [1] CRAN (R 4.0.2)                    
-    ##  fastmap       1.1.0   2021-01-25 [1] CRAN (R 4.0.2)                    
-    ##  fs            1.5.0   2020-07-31 [2] CRAN (R 4.0.2)                    
-    ##  generics      0.1.0   2020-10-31 [1] CRAN (R 4.0.2)                    
-    ##  ggplot2     * 3.3.3   2020-12-30 [1] CRAN (R 4.0.2)                    
-    ##  glue          1.4.2   2020-08-27 [1] CRAN (R 4.0.2)                    
-    ##  googledrive   1.0.1   2020-05-05 [2] CRAN (R 4.0.0)                    
-    ##  gtable        0.3.0   2019-03-25 [2] CRAN (R 4.0.0)                    
-    ##  here        * 1.0.1   2020-12-13 [1] CRAN (R 4.0.2)                    
-    ##  highr         0.8     2019-03-20 [2] CRAN (R 4.0.0)                    
-    ##  htmltools     0.5.1.1 2021-01-22 [1] CRAN (R 4.0.2)                    
-    ##  httr          1.4.2   2020-07-20 [2] CRAN (R 4.0.2)                    
-    ##  jsonlite      1.7.2   2020-12-09 [1] CRAN (R 4.0.2)                    
-    ##  knitr         1.32    2021-04-14 [1] CRAN (R 4.0.2)                    
-    ##  labeling      0.4.2   2020-10-20 [1] CRAN (R 4.0.2)                    
-    ##  leanbuild   * 0.1.0   2021-04-20 [1] local                             
-    ##  lifecycle     1.0.0   2021-02-15 [1] CRAN (R 4.0.2)                    
-    ##  lubridate     1.7.10  2021-02-26 [1] CRAN (R 4.0.2)                    
-    ##  magrittr    * 2.0.1   2020-11-17 [1] CRAN (R 4.0.2)                    
-    ##  memoise       2.0.0   2021-01-26 [1] CRAN (R 4.0.2)                    
-    ##  munsell       0.5.0   2018-06-12 [2] CRAN (R 4.0.0)                    
-    ##  pillar        1.6.0   2021-04-13 [1] CRAN (R 4.0.2)                    
-    ##  pkgbuild      1.2.0   2020-12-15 [1] CRAN (R 4.0.2)                    
-    ##  pkgconfig     2.0.3   2019-09-22 [2] CRAN (R 4.0.0)                    
-    ##  pkgload       1.2.1   2021-04-06 [1] CRAN (R 4.0.2)                    
-    ##  png           0.1-7   2013-12-03 [2] CRAN (R 4.0.0)                    
-    ##  prettyunits   1.1.1   2020-01-24 [2] CRAN (R 4.0.0)                    
-    ##  processx      3.5.1   2021-04-04 [1] CRAN (R 4.0.2)                    
-    ##  ps            1.6.0   2021-02-28 [1] CRAN (R 4.0.2)                    
-    ##  purrr         0.3.4   2020-04-17 [2] CRAN (R 4.0.0)                    
-    ##  R6            2.5.0   2020-10-28 [1] CRAN (R 4.0.2)                    
-    ##  Rcpp          1.0.6   2021-01-15 [1] CRAN (R 4.0.2)                    
-    ##  remotes       2.3.0   2021-04-01 [1] CRAN (R 4.0.2)                    
-    ##  rlang         0.4.10  2020-12-30 [1] CRAN (R 4.0.2)                    
-    ##  rmarkdown     2.7     2021-02-19 [1] CRAN (R 4.0.2)                    
-    ##  rprojroot     2.0.2   2020-11-15 [1] CRAN (R 4.0.2)                    
-    ##  rstudioapi    0.13    2020-11-12 [1] CRAN (R 4.0.2)                    
-    ##  scales        1.1.1   2020-05-11 [2] CRAN (R 4.0.0)                    
-    ##  sessioninfo   1.1.1   2018-11-05 [2] CRAN (R 4.0.0)                    
-    ##  stringi       1.5.3   2020-09-09 [1] CRAN (R 4.0.2)                    
-    ##  stringr       1.4.0   2019-02-10 [2] CRAN (R 4.0.0)                    
-    ##  testthat      3.0.2   2021-02-14 [1] CRAN (R 4.0.2)                    
-    ##  tibble        3.1.1   2021-04-18 [1] CRAN (R 4.0.2)                    
-    ##  tidyr         1.1.3   2021-03-03 [1] CRAN (R 4.0.2)                    
-    ##  tidyselect    1.1.0   2020-05-11 [2] CRAN (R 4.0.0)                    
-    ##  usethis       2.0.1   2021-02-10 [1] CRAN (R 4.0.2)                    
-    ##  utf8          1.2.1   2021-03-12 [1] CRAN (R 4.0.2)                    
-    ##  vctrs         0.3.7   2021-03-29 [1] CRAN (R 4.0.2)                    
-    ##  webshot       0.5.2   2019-11-22 [2] CRAN (R 4.0.0)                    
-    ##  withr         2.4.2   2021-04-18 [1] CRAN (R 4.0.2)                    
-    ##  xfun          0.22    2021-03-11 [1] CRAN (R 4.0.2)                    
-    ##  yaml          2.2.1   2020-02-01 [2] CRAN (R 4.0.0)                    
+    ## ─ Packages ────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+    ##  ! package       * version  date       lib source                                              
+    ##    ari             0.4.1    2020-12-09 [1] Github (jhudsl/ari@2638775)                         
+    ##    ariExtra        0.3.0    2021-03-31 [1] Github (muschellij2/ariExtra@0049742)               
+    ##    askpass         1.1      2019-01-13 [2] CRAN (R 4.0.0)                                      
+    ##    assertthat      0.2.1    2019-03-21 [2] CRAN (R 4.0.0)                                      
+    ##    cachem          1.0.4    2021-02-13 [1] CRAN (R 4.0.2)                                      
+    ##    callr           3.7.0    2021-04-20 [1] CRAN (R 4.0.5)                                      
+    ##    cli             2.4.0    2021-04-05 [1] CRAN (R 4.0.2)                                      
+    ##    colorout      * 1.2-2    2020-06-01 [2] Github (jalvesaq/colorout@726d681)                  
+    ##    colorspace      2.0-0    2020-11-11 [1] CRAN (R 4.0.2)                                      
+    ##    crayon          1.4.1    2021-02-08 [1] CRAN (R 4.0.2)                                      
+    ##    DBI             1.1.1    2021-01-15 [1] CRAN (R 4.0.2)                                      
+    ##    desc            1.3.0    2021-03-05 [1] CRAN (R 4.0.2)                                      
+    ##    devtools        2.4.0    2021-04-07 [1] CRAN (R 4.0.2)                                      
+    ##    digest          0.6.27   2020-10-24 [1] CRAN (R 4.0.2)                                      
+    ##    docxtractr      0.6.5    2020-07-05 [2] CRAN (R 4.0.0)                                      
+    ##    dplyr           1.0.5    2021-03-05 [1] CRAN (R 4.0.2)                                      
+    ##    ellipsis        0.3.1    2020-05-15 [2] CRAN (R 4.0.0)                                      
+    ##    evaluate        0.14     2019-05-28 [2] CRAN (R 4.0.0)                                      
+    ##    fansi           0.4.2    2021-01-15 [1] CRAN (R 4.0.2)                                      
+    ##    farver          2.1.0    2021-02-28 [1] CRAN (R 4.0.2)                                      
+    ##    fastmap         1.1.0    2021-01-25 [1] CRAN (R 4.0.2)                                      
+    ##    fs              1.5.0    2020-07-31 [2] CRAN (R 4.0.2)                                      
+    ##    gargle          1.1.0    2021-04-02 [1] CRAN (R 4.0.2)                                      
+    ##    generics        0.1.0    2020-10-31 [1] CRAN (R 4.0.2)                                      
+    ##    ggplot2       * 3.3.3    2020-12-30 [1] CRAN (R 4.0.2)                                      
+    ##    glue            1.4.2    2020-08-27 [1] CRAN (R 4.0.2)                                      
+    ##    googleAuthR     1.4.0    2021-04-02 [1] CRAN (R 4.0.2)                                      
+    ##    googledrive     1.0.1    2020-05-05 [2] CRAN (R 4.0.0)                                      
+    ##    gtable          0.3.0    2019-03-25 [2] CRAN (R 4.0.0)                                      
+    ##    here          * 1.0.1    2020-12-13 [1] CRAN (R 4.0.2)                                      
+    ##    highr           0.8      2019-03-20 [2] CRAN (R 4.0.0)                                      
+    ##    hms             1.0.0    2021-01-13 [1] CRAN (R 4.0.2)                                      
+    ##    htmltools       0.5.1.1  2021-01-22 [1] CRAN (R 4.0.2)                                      
+    ##    httpuv          1.5.5    2021-01-13 [1] CRAN (R 4.0.2)                                      
+    ##    httr            1.4.2    2020-07-20 [2] CRAN (R 4.0.2)                                      
+    ##    jsonlite        1.7.2    2020-12-09 [1] CRAN (R 4.0.2)                                      
+    ##    knitr           1.32     2021-04-14 [1] CRAN (R 4.0.2)                                      
+    ##    labeling        0.4.2    2020-10-20 [1] CRAN (R 4.0.2)                                      
+    ##    later           1.1.0.1  2020-06-05 [2] CRAN (R 4.0.0)                                      
+    ##  P leanbuild     * 0.1.0    2021-04-27 [?] local                                               
+    ##    lifecycle       1.0.0    2021-02-15 [1] CRAN (R 4.0.2)                                      
+    ##    lubridate       1.7.10   2021-02-26 [1] CRAN (R 4.0.2)                                      
+    ##    magrittr      * 2.0.1    2020-11-17 [1] CRAN (R 4.0.2)                                      
+    ##    MASS            7.3-53.1 2021-02-12 [1] CRAN (R 4.0.2)                                      
+    ##    memoise         2.0.0    2021-01-26 [1] CRAN (R 4.0.2)                                      
+    ##    munsell         0.5.0    2018-06-12 [2] CRAN (R 4.0.0)                                      
+    ##    pdftools        2.3.1    2020-05-22 [2] CRAN (R 4.0.0)                                      
+    ##    pillar          1.6.0    2021-04-13 [1] CRAN (R 4.0.2)                                      
+    ##    pkgbuild        1.2.0    2020-12-15 [1] CRAN (R 4.0.2)                                      
+    ##    pkgconfig       2.0.3    2019-09-22 [2] CRAN (R 4.0.0)                                      
+    ##    pkgload         1.2.1    2021-04-06 [1] CRAN (R 4.0.2)                                      
+    ##    plyr            1.8.6    2020-03-03 [2] CRAN (R 4.0.0)                                      
+    ##    prettyunits     1.1.1    2020-01-24 [2] CRAN (R 4.0.0)                                      
+    ##    processx        3.5.1    2021-04-04 [1] CRAN (R 4.0.2)                                      
+    ##    progress        1.2.2    2019-05-16 [2] CRAN (R 4.0.0)                                      
+    ##    promises        1.2.0.1  2021-02-11 [1] CRAN (R 4.0.2)                                      
+    ##    ps              1.6.0    2021-02-28 [1] CRAN (R 4.0.2)                                      
+    ##    purrr           0.3.4    2020-04-17 [2] CRAN (R 4.0.0)                                      
+    ##    qpdf            1.1      2019-03-07 [2] CRAN (R 4.0.0)                                      
+    ##    R6              2.5.0    2020-10-28 [1] CRAN (R 4.0.2)                                      
+    ##    Rcpp            1.0.6    2021-01-15 [1] CRAN (R 4.0.2)                                      
+    ##    remotes         2.3.0    2021-04-01 [1] CRAN (R 4.0.2)                                      
+    ##    rgoogleslides   0.3.2    2020-06-01 [2] Github (hairizuanbinnoorazman/rgoogleslides@c7ba4d7)
+    ##    rlang           0.4.10   2020-12-30 [1] CRAN (R 4.0.2)                                      
+    ##    rmarkdown       2.7      2021-02-19 [1] CRAN (R 4.0.2)                                      
+    ##    rprojroot       2.0.2    2020-11-15 [1] CRAN (R 4.0.2)                                      
+    ##    rstudioapi      0.13     2020-11-12 [1] CRAN (R 4.0.2)                                      
+    ##    rvest           1.0.0    2021-03-09 [1] CRAN (R 4.0.2)                                      
+    ##    scales          1.1.1    2020-05-11 [2] CRAN (R 4.0.0)                                      
+    ##    sessioninfo     1.1.1    2018-11-05 [2] CRAN (R 4.0.0)                                      
+    ##    signal          0.7-6    2015-07-30 [2] CRAN (R 4.0.0)                                      
+    ##    stringi         1.5.3    2020-09-09 [1] CRAN (R 4.0.2)                                      
+    ##    stringr         1.4.0    2019-02-10 [2] CRAN (R 4.0.0)                                      
+    ##    testthat      * 3.0.2    2021-02-14 [1] CRAN (R 4.0.2)                                      
+    ##    text2speech     0.3.0    2020-12-09 [1] Github (muschellij2/text2speech@a0c9f86)            
+    ##    tibble          3.1.1    2021-04-18 [1] CRAN (R 4.0.2)                                      
+    ##    tidyr           1.1.3    2021-03-03 [1] CRAN (R 4.0.2)                                      
+    ##    tidyselect      1.1.0    2020-05-11 [2] CRAN (R 4.0.0)                                      
+    ##    tuber           0.9.9    2021-03-02 [1] local                                               
+    ##    tuneR           1.3.3    2018-07-08 [1] CRAN (R 4.0.2)                                      
+    ##    usethis         2.0.1    2021-02-10 [1] CRAN (R 4.0.2)                                      
+    ##    utf8            1.2.1    2021-03-12 [1] CRAN (R 4.0.2)                                      
+    ##    vctrs           0.3.7    2021-03-29 [1] CRAN (R 4.0.2)                                      
+    ##    webshot         0.5.2    2019-11-22 [2] CRAN (R 4.0.0)                                      
+    ##    withr           2.4.2    2021-04-18 [1] CRAN (R 4.0.2)                                      
+    ##    xfun            0.22     2021-03-11 [1] CRAN (R 4.0.2)                                      
+    ##    xml2            1.3.2    2020-04-23 [2] CRAN (R 4.0.0)                                      
+    ##    yaml            2.2.1    2020-02-01 [2] CRAN (R 4.0.0)                                      
     ## 
     ## [1] /Users/johnmuschelli/Library/R/4.0/library
     ## [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library
+    ## 
+    ##  P ── Loaded and on-disk path mismatch.
 
 Xie, Yihui. 2016. *Bookdown: Authoring Books and Technical Documents
 with R Markdown*. Boca Raton, Florida: Chapman; Hall/CRC.
