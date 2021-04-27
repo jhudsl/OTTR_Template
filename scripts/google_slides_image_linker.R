@@ -20,9 +20,6 @@ root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 library(rgoogleslides)
 library(optparse)
 
-# Authorize using that token
-rgoogleslides::authorize()
-
 # Import special functions
 source(file.path(root_dir, "scripts", "util", "google-slides.R"))
 
@@ -54,11 +51,19 @@ option_list <- list(
     opt_str = c("-k", "--image_key_dir"), type = "character",
     default = "resources", help = "Directory to store 'image_to_slide_key.tsv'. Default is resources/",
     metavar = "character"
+  ),
+  make_option(
+    opt_str = c("-t", "--token"), type = "character",
+    default = NULL, help = "Token obtained from rgoogleslides::authorize() interactive steps.",
+    metavar = "character"
   )
 )
 
 # Parse options
 opt <- parse_args(OptionParser(option_list = option_list))
+
+# Authorize using that token
+rgoogleslides::authorize(token = opt$token)
 
 # Slide id refers the id of the entire slide deck
 slides_id <- opt$slides_id
