@@ -56,12 +56,6 @@ option_list <- list(
 # Parse options
 opt <- parse_args(OptionParser(option_list = option_list))
 
-opt$slides_id <- "1NS9yMPUolVyBIizb7DNxGBb0P-tR7DdThCBqCcPdltY"
-opt$image_loc <- "_bookdown_files"
-opt$image_key_dir <- "resources"
-opt$git_repo <- "jhudsl/ITCR_Course_Template_Bookdown"
-opt$git_branch <- "cansavvy/add-rgoogleslides"
-
 # Slide id refers the id of the entire slide deck
 slides_id <- opt$slides_id
 
@@ -117,7 +111,7 @@ images <- list.files(local_image_loc, pattern = ".png", full.names = TRUE, recur
 rel_image_paths <- gsub(paste0(root_dir, "/"), "", images)
 
 # Build github url based on the local image location
-image_urls <- paste0("https://raw.githubusercontent.com/", 
+image_url <- paste0("https://raw.githubusercontent.com/", 
                      opt$git_repo, 
                      "/", 
                      opt$git_branch, 
@@ -131,7 +125,7 @@ if (file.exists(image_key_file)) {
 } else {
   # If image key file doesn't exist, create it
   # Set up data frame with images 
-  image_df <- data.frame(image_urls, 
+  image_df <- data.frame(image_url, 
                          page_id = as.character(NA), 
                          image_id = as.character(NA))
   
@@ -141,7 +135,7 @@ if (file.exists(image_key_file)) {
 
 
 # We only want to keep images we have currently in the folder
-image_df <- data.frame(image_urls) %>% 
+image_df <- data.frame(image_url) %>% 
   dplyr::inner_join(image_df) %>% 
   # Erase the page_id if it no longer exists in the slide set
   dplyr::mutate(page_id = dplyr::case_when(
@@ -161,7 +155,7 @@ if (nrow(images_without_slides) > 0) {
   # Get image urls for images that don't have slides
   new_slide_images <- 
     images_without_slides %>% 
-    dplyr::pull(image_urls) %>% 
+    dplyr::pull(image_url) %>% 
     # Add new slides for each image that doesn't have a slide
     purrr::map_dfr(add_image_slide, 
                    slides_id = slides_id)
@@ -193,7 +187,8 @@ refreshed_image_df <- apply(image_df, 1,
       })
 
 # Write refreshed image info to TSV 
-readr::write_tsv(refreshed_image_df, image_key_file)
+dplyr::bind_rows(refreshed_image_df) %>% 
+  readr::write_tsv(image_key_file)
 
 ######################### Download each slide as a PNG #########################
 apply(image_df, 1, 
@@ -203,3 +198,6 @@ apply(image_df, 1,
                         output_dir = opt$gs_loc, 
                         slide_file_name = image_df['page_id'])
                             })
+
+# Print out message
+message(paste0("Slides should be updated; go to https://docs.google.com/presentation/d/", slides_id))

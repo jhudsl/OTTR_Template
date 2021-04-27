@@ -24,8 +24,6 @@ add_image <- function(image_url,
                       slide_page,
                       slides_id){
   
-  print(paste("Adding image: ", image_url))
-  
   # Get the position details of the element on the slide
   page_element <- suppressWarnings(
     aligned_page_element_property(slide_page_id = slide_page,
@@ -54,6 +52,9 @@ add_image <- function(image_url,
 add_image_slide <- function(image_url,
                             slides_id) {
   
+  # Print progress message
+  print(paste("Adding new slide for image: ", image_url))
+  
   # Make a new slide
   slide_page <- make_new_slide(slides_id)
   
@@ -70,6 +71,8 @@ refresh_image <- function(image_url,
                           slide_page,
                           image_id, 
                           slides_id) {
+  # Print progress message
+  print(paste("Refreshing image: ", image_url))
   
   # Create delete request
   delete_request <- add_delete_object_request(object_id = as.character(image_id))
@@ -92,12 +95,17 @@ download_gs_png <- function(slides_id,
   
   # Piece together URL 
   url <- paste0("https://docs.google.com/presentation/d/",
-                slide_id, 
+                slides_id, 
                 "/export/png?id=", 
-                slide_id, 
+                slides_id, 
                 "&pageid=", 
-                page_id
+                slide_page
   )
+  
+  # Use the slide_page ID if no slide name was given
+  if (is.null(slide_file_name)) {
+    slide_file_name <- slide_page
+  }
   
   # Set output folder
   slide_folder <- file.path(output_dir)
