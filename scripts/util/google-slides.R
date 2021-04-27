@@ -81,3 +81,36 @@ refresh_image <- function(image_url,
   
   return(image_df)
 }
+
+download_gs_png <- function(slides_id, 
+                            slide_page, 
+                            output_dir, 
+                            slide_file_name = NULL) {
+  
+  # Piece together URL 
+  url <- paste0("https://docs.google.com/presentation/d/",
+                slide_id, 
+                "/export/png?id=", 
+                slide_id, 
+                "&pageid=", 
+                page_id
+  )
+  
+  # Set output folder
+  slide_folder <- file.path(output_dir)
+  
+  # Create directory if it doesn't exist
+  if (!dir.exists(slide_folder)) {
+    dir.create(slide_folder)
+  }
+  
+  # Add png extension to slide file name if its not there 
+  if (!grepl(slide_file_name, "\\.png")) {
+    slide_file_name <- paste0(slide_file_name, ".png")
+  }
+  
+  # Download the file
+  download.file(url, 
+                destfile = file.path(slide_folder, slide_file_name))
+  
+}

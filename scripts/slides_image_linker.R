@@ -12,8 +12,13 @@ library(googledrive)
 library(rgoogleslides)
 library(optparse)
 
-# Run this authorization here
-rgoogleslides::authorize()
+# Authorize using that token
+token <- rgoogleslides::authorize(token = readRDS(".httr-oauth"))
+
+if (!file.exists("auth-place.rds")) {
+  # Save this file 
+  saveRDS(token, file = "auth-place.rds")
+}
 
 # Import special functions
 source(file.path(root_dir, "scripts", "util", "google-slides.R"))
@@ -39,7 +44,12 @@ option_list <- list(
   ),
   make_option(
     opt_str = c("-i", "--image_loc"), type = "character",
-    default = "_bookdown_files", help = "Directory where images to be added to Google slides are stored",
+    default = "_bookdown_files", help = "Directory where code output images to be added to Google slides are stored",
+    metavar = "character"
+  ),
+  make_option(
+    opt_str = c("--gs_loc"), type = "character",
+    default = "resources/gs_slides", help = "Directory where Google Slide images are to be downloaded. Directory will be created if it doesn't exist",
     metavar = "character"
   ),
   make_option(
@@ -99,7 +109,7 @@ if (opt$git_branch != "main") {
   stop(paste("Double check your --git_branch and --git_repo options, could not find anything at those specifications", output))
 }
 
-######################### Get image file paths #################################
+######################### Set up image key file ################################
 # Get the list of all the code image files
 images <- list.files(local_image_loc, pattern = ".png", full.names = TRUE, recursive = TRUE)
 
@@ -107,10 +117,18 @@ images <- list.files(local_image_loc, pattern = ".png", full.names = TRUE, recur
 rel_image_paths <- gsub(paste0(root_dir, "/"), "", images)
 
 # Build github url based on the local image location
-image_urls <- paste0("https://raw.githubusercontent.com/", opt$git_repo, "/", opt$git_branch, "/", rel_image_paths)
+image_urls <- paste0("https://raw.githubusercontent.com/", 
+                     opt$git_repo, 
+                     "/", 
+                     opt$git_branch, 
+                     "/", 
+                     rel_image_paths)
 
-# If the image key file exists, read it in, otherwise create one
-if (!file.exists(image_key_file)) {
+if (file.exists(image_key_file)) {
+  # If image key file exists, read in the image key file
+  image_df <- readr::read_tsv(image_key_file)
+} else {
+  # If image key file doesn't exist, create it
   # Set up data frame with images 
   image_df <- data.frame(image_urls, 
                          page_id = as.character(NA), 
@@ -120,18 +138,19 @@ if (!file.exists(image_key_file)) {
   readr::write_tsv(image_df, image_key_file)
 } 
 
-# Read in the image key file
-image_df <- readr::read_tsv(image_key_file)
+####################### Add new code output images #############################
 
 # Add new slides for all images that don't have slides yet
 images_without_slides <- image_df %>% 
   dplyr::filter(is.na(page_id))
 
-# If there are images without slides, run them
+# If there are images without slides, run this chunk
 if (nrow(images_without_slides) > 0) {
+  # Get image urls for images that don't have slides
   new_slide_images <- 
     images_without_slides %>% 
     dplyr::pull(image_urls) %>% 
+    # Add new slides for each image that doesn't have a slide
     purrr::map_dfr(add_image_slide, 
                    slides_id = slides_id)
 
@@ -144,15 +163,15 @@ if (nrow(images_without_slides) > 0) {
     image_df <- dplyr::bind_rows(dplyr::filter(image_df, !is.na(page_id)), 
                                  new_slide_images)
   }
-
   # Write this to the file
   readr::write_tsv(image_df, image_key_file)
-
 }
 
+########################### Refresh images on slide ############################
 # Run this for each row (each image of data)
 refreshed_image_df <- apply(image_df, 1, 
                             function(image_df) {
+                              # Save new data frame of the refreshed output
                               refreshed_image_df <- 
                                 refresh_image(image_url = image_df['image_url'],
                                               slide_page = image_df['page_id'],
@@ -164,39 +183,11 @@ refreshed_image_df <- apply(image_df, 1,
 # Write refreshed image info to TSV 
 readr::write_tsv(refreshed_image_df, image_key_file)
 
-
-# Run this for each row (each image of data)
+######################### Download each slide as a PNG #########################
 apply(image_df, 1, 
       function(image_df) {
         download_gs_png(slides_id = slides_id,
                         slide_page = image_df['page_id'],
-                        output_dir = file.path("resources", "gs_slides"), 
+                        output_dir = opt$gs_loc, 
                         slide_file_name = image_df['page_id'])
                             })
-
-download_gs_png <- function(slides_id, 
-                            slide_page, 
-                            output_dir, 
-                            slide_file_name = NULL) {
-  url <- paste0("https://docs.google.com/presentation/d/",
-                slide_id, 
-                "/export/png?id=", 
-                slide_id, 
-                "&pageid=", 
-                page_id
-                )
-
-  slide_folder <- file.path(root_dir, output_dir)
-
-  if (!dir.exists(slide_folder)) {
-    dir.create(slide_folder)
-  }
-  
-  if (!grepl(slide_file_name, "\\.png")) {
-    slide_file_name <- paste0(slide_file_name, ".png")
-  }
-
-  download.file(url, 
-                destfile = file.path(slide_folder, slide_file_name))
-  
-}
