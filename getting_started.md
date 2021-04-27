@@ -325,6 +325,12 @@ Click on `check_urls` and the specific step of `Check URLs` to see a print out o
 
 If the URL checker is trying to check something that isn't really a URL or doesn't need to be checked, open up the GitHub actions file: `.github/workflows/url-checker.yml` and add the imposter URL on to the `blacklist` argument, to the end of the quote with a comma in between.
 
+### Adding logo
+
+Currently the ITN logo is saved within the images directory of the resources directory. The `_output.yml` file adds this as image above the table of contents when the content is rendered with `bookdown`. 
+
+**Please replace the URL in the last line of code for the `_output.yml` file with the URL for the GitHub repo for your course.** This will allow people to more easily find how out how you created your course. Otherwise, they will be directed to this template.
+
 ### Adding Images and Graphics
 
 To maintain style and attributions for graphics and images, as well as to enable easy updates in the future, please start a new Google Slide document for your course. This also allows you to make videos of your slides that can be added to your course.
