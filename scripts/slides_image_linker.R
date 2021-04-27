@@ -8,17 +8,11 @@ root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 # Magrittr pipe
 `%>%` <- dplyr::`%>%`
 
-library(googledrive)
 library(rgoogleslides)
 library(optparse)
 
 # Authorize using that token
-token <- rgoogleslides::authorize(token = readRDS(".httr-oauth"))
-
-if (!file.exists("auth-place.rds")) {
-  # Save this file 
-  saveRDS(token, file = "auth-place.rds")
-}
+rgoogleslides::authorize()
 
 # Import special functions
 source(file.path(root_dir, "scripts", "util", "google-slides.R"))
@@ -62,11 +56,17 @@ option_list <- list(
 # Parse options
 opt <- parse_args(OptionParser(option_list = option_list))
 
+opt$slides_id <- "1NS9yMPUolVyBIizb7DNxGBb0P-tR7DdThCBqCcPdltY"
+opt$image_loc <- "_bookdown_files"
+opt$image_key_dir <- "resources"
+opt$git_repo <- "jhudsl/ITCR_Course_Template_Bookdown"
+opt$git_branch <- "cansavvy/add-rgoogleslides"
+
 # Slide id refers the id of the entire slide deck
 slides_id <- opt$slides_id
 
 # Test by getting slide properties, but don't print it out
-tmp <- get_slides_properties(slides_id)
+slide_properties <- get_slides_properties(slides_id)
 
 # Put it relative to root directory
 image_key_dir <- file.path(root_dir, opt$image_key_dir)
@@ -101,7 +101,7 @@ if (is.null(opt$git_repo)) {
 
 # Check if we can find the branch if we aren't using main
 if (opt$git_branch != "main") {
-  test_url <- paste0("https://github.com/", opt$git_repo, "/tr4ee/", opt$git_branch)
+  test_url <- paste0("https://github.com/", opt$git_repo, "/tree/", opt$git_branch)
 
   output <- try(readLines(test_url, n = 1))
   
@@ -126,7 +126,8 @@ image_urls <- paste0("https://raw.githubusercontent.com/",
 
 if (file.exists(image_key_file)) {
   # If image key file exists, read in the image key file
-  image_df <- readr::read_tsv(image_key_file)
+  image_df <- readr::read_tsv(image_key_file, 
+                              col_types = readr::cols(.default = "c"))
 } else {
   # If image key file doesn't exist, create it
   # Set up data frame with images 
@@ -138,11 +139,22 @@ if (file.exists(image_key_file)) {
   readr::write_tsv(image_df, image_key_file)
 } 
 
+
+# We only want to keep images we have currently in the folder
+image_df <- data.frame(image_urls) %>% 
+  dplyr::inner_join(image_df) %>% 
+  # Erase the page_id if it no longer exists in the slide set
+  dplyr::mutate(page_id = dplyr::case_when(
+    is.na(page_id) ~ "no_slide",
+    page_id %in% slide_properties$slides$objectId ~ page_id,
+    TRUE ~ "no_slide"
+  ))
+
 ####################### Add new code output images #############################
 
 # Add new slides for all images that don't have slides yet
 images_without_slides <- image_df %>% 
-  dplyr::filter(is.na(page_id))
+  dplyr::filter(page_id == "no_slide")
 
 # If there are images without slides, run this chunk
 if (nrow(images_without_slides) > 0) {
@@ -160,7 +172,7 @@ if (nrow(images_without_slides) > 0) {
     image_df <- new_slide_images
   } else {
     # If there were images with slides before this, then bind the new to the old
-    image_df <- dplyr::bind_rows(dplyr::filter(image_df, !is.na(page_id)), 
+    image_df <- dplyr::bind_rows(dplyr::filter(image_df, page_id != "no_slide"), 
                                  new_slide_images)
   }
   # Write this to the file

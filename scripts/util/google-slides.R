@@ -4,6 +4,7 @@
 ############################## Set up Functions ################################
 # Make a function that makes a new slide
 make_new_slide <- function(slides_id) {
+
   # Start up a request
   requests <- add_create_slide_page_request(predefined_layout = "BLANK") 
   
@@ -22,6 +23,8 @@ make_new_slide <- function(slides_id) {
 add_image <- function(image_url,
                       slide_page,
                       slides_id){
+  
+  print(paste("Adding image: ", image_url))
   
   # Get the position details of the element on the slide
   page_element <- suppressWarnings(
