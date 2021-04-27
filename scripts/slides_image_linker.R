@@ -1,6 +1,16 @@
 # Create and update code output slides
 # Candace Savonen 2021
 
+
+# Example command line usage:
+
+# Rscript scripts/slides_image_linker.R \
+# --slides_id <SLIDE_ID FROM URL> \
+# --image_loc "_bookdown_files" \
+# --image_key_dir "resources" \
+# --git_repo  "jhudsl/ITCR_Course_Template_Bookdown" \
+# --git_branch "cansavvy/add-rgoogleslides"
+
 ################################ Initial Set Up ################################
 # Establish base dir
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
