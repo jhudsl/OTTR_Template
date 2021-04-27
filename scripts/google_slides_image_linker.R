@@ -4,7 +4,7 @@
 
 # Example command line usage:
 
-# Rscript scripts/slides_image_linker.R \
+# Rscript scripts/google_slides_image_linker.R \
 # --slides_id <SLIDE_ID FROM URL> \
 # --image_loc "_bookdown_files" \
 # --image_key_dir "resources" \
@@ -49,11 +49,6 @@ option_list <- list(
   make_option(
     opt_str = c("-i", "--image_loc"), type = "character",
     default = "_bookdown_files", help = "Directory where code output images to be added to Google slides are stored",
-    metavar = "character"
-  ),
-  make_option(
-    opt_str = c("--gs_loc"), type = "character",
-    default = "resources/gs_slides", help = "Directory where Google Slide images are to be downloaded. Directory will be created if it doesn't exist",
     metavar = "character"
   ),
   make_option(
@@ -199,20 +194,6 @@ refreshed_image_df <- apply(image_df, 1,
 # Write refreshed image info to TSV 
 dplyr::bind_rows(refreshed_image_df) %>% 
   readr::write_tsv(image_key_file)
-
-######################### Download each slide as a PNG #########################
-apply(image_df, 1, 
-      function(image_df) {
-        
-        # Remove all pngs for now
-        file.remove(dir(opt$gs_loc, full.names = TRUE))
-        
-        # Download slides again
-        download_gs_png(slides_id = slides_id,
-                        slide_page = image_df['page_id'],
-                        output_dir = opt$gs_loc, 
-                        slide_file_name = image_df['page_id'])
-        })
 
 # Print out message
 message(paste0("Slides should be updated; go to https://docs.google.com/presentation/d/", slides_id))
