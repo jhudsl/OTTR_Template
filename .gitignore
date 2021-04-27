@@ -5,4 +5,4 @@
 .rstudio
 .bash_history
 spell_check_results.tsv
-.httr-oauth
+.RData
