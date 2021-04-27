@@ -1,10 +1,19 @@
 # Google slide functions
 # Candace Savonen 2021
 
+library(rgoogleslides)
+
 ############################## Set up Functions ################################
 # Make a function that makes a new slide
 make_new_slide <- function(slides_id) {
-
+  # Make a new slide in the slide deck provided by the slide_id
+  #
+  # Args:
+  #   slides_id: the slide ID of the google Slide set you are making a new slide page in.
+  #
+  # Returns:
+  #   Uses rgoogleslides to create a new slide
+  
   # Start up a request
   requests <- add_create_slide_page_request(predefined_layout = "BLANK") 
   
@@ -23,6 +32,16 @@ make_new_slide <- function(slides_id) {
 add_image <- function(image_url,
                       slide_page,
                       slides_id){
+  # Add an image to a given slide in a given slide set.
+  #
+  # Args:
+  #   image_url: The url to an image you would like to add to a slide
+  #   slide_page: the slide ID you want to add an image to
+  #   slides_id: The ID of slide set that contains the slide you are adding an image to
+  #
+  # Returns:
+  #   Uses rgoogleslides to add an image to the given slide. Also returns a data.frame 
+  #   with the image url, slide page id, and image id. 
   
   # Get the position details of the element on the slide
   page_element <- suppressWarnings(
@@ -51,6 +70,15 @@ add_image <- function(image_url,
 # Add image to slide
 add_image_slide <- function(image_url,
                             slides_id) {
+  # Wrapper to make a new slide and add an image to it all at once. 
+  #
+  # Args:
+  #   image_url: The url to an image you would like to add to a slide
+  #   slides_id: The ID of slide set that contains the slide you are adding an image to
+  #
+  # Returns:
+  #   Uses rgoogleslides to add a new slide with a new image. Also returns a data.frame 
+  #   with the image url, slide page id, and image id. 
   
   # Print progress message
   print(paste("Adding new slide for image: ", image_url))
@@ -58,7 +86,7 @@ add_image_slide <- function(image_url,
   # Make a new slide
   slide_page <- make_new_slide(slides_id)
   
-  
+  # Add a new image to that slide
   image_df <- add_image(image_url = image_url,
                         slide_page = slide_page,
                         slides_id = slides_id)
@@ -71,6 +99,18 @@ refresh_image <- function(image_url,
                           slide_page,
                           image_id, 
                           slides_id) {
+  # Deletes an image and then re-adds it back with the most up-to-date image.  
+  #
+  # Args:
+  #   image_url: The url to an image you would like to add to a slide
+  #   slide_page: the slide ID you want to add an image to
+  #   image_id: the image id to refresh
+  #   slides_id: The ID of slide set that contains the slide you are adding an image to
+  #
+  # Returns:
+  #   Uses rgoogleslides to refresh existing images' on the slides. 
+  #   Also returns a refreshed data.frame with the image url, slide page id, and image id. 
+  
   # Print progress message
   print(paste("Refreshing image: ", image_url))
   
@@ -92,6 +132,16 @@ download_gs_png <- function(slides_id,
                             slide_page, 
                             output_dir, 
                             slide_file_name = NULL) {
+  # Downloads a google slide PNG locally based on the provided info 
+  #
+  # Args:
+  #   slides_id: The ID of slide set that contains the slide you are adding an image to
+  #   slide_page: the slide ID you want to add an image to
+  #   output_dir: Where the output PNGs should be stored
+  #   slide_file_name: What should the resulting PNG be called? By default will be called the slide_page ID.
+  #
+  # Returns:
+  #   Downloads the PNG to local folder
   
   # Piece together URL 
   url <- paste0("https://docs.google.com/presentation/d/",
