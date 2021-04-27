@@ -17,6 +17,9 @@ _Background information_:
 
 - [Creating your course](#creating-your-course)
   - [Recommended repository settings:](#recommended-repository-settings)
+    - [Set up GitHub pages](#set-up-github-pages)
+      - [Set up branches](#set-up-branches)
+  - [Set up Github secrets](#set-up-github-secrets)
 - [Setting up the Docker image](#setting-up-the-docker-image)
   - [Starting a new Docker image](#starting-a-new-docker-image)
   - [Adding packages to the Dockerfile](#adding-packages-to-the-dockerfile)
@@ -24,11 +27,13 @@ _Background information_:
     - [Rebuilding the Docker image](#rebuilding-the-docker-image)
 - [Citations](#citations)
 - [Github actions](#github-actions)
+  - [Linking to Leanpub repository](#linking-to-leanpub-repository)
   - [Style guide](#style-guide)
   - [Spell check](#spell-check)
   - [Running spell check and styler manually](#running-spell-check-and-styler-manually)
   - [URL Checking](#url-checking)
   - [Adding Images and Graphics](#adding-images-and-graphics)
+- [Learning Objectives Formatting](#learning-objectives-formatting)
 - [Bookdown Rendering](#bookdown-rendering)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -39,7 +44,10 @@ In the upper right of this screen, click `Use this template` and follow the step
 
 Name your repository, starting with `ITCR_` and fill in a short description.
 
-Trigger a workflow to set up the Github issues that you can use to guide your set up of this course.
+_Trigger the workflow to set up the Github issues that you can use to guide your set up of this course_:   
+- Go to `Actions` > under `Workflows` click on `Issue Filer`.
+- Where it says `This workflow has a workflow_dispatch event trigger.` click `Run workflow` and then click the green button that says `Run workflow`.
+- Now if you go to `Issues` you will see issues filed that you can follow to set up the new course!
 
 Now start filling out the documents with the information for the course! Make sure that the existing Rmd template files are changed to fit your course, and delete the `code_output` folder if you do not expect to have any code_output (or if you wish to call the folder something else).
 There are `{}` in these files to get you started filling out information and should be deleted after you've filled them out.
@@ -74,6 +82,36 @@ Then, you can require these checks to pass before merging pull requests by retur
 See the [Github Actions section](#github-actions) for more details on these.
 
 After setting up these new branch items, click `Create` and `Save changes`.
+
+### Set up Github secrets
+
+The Github actions that this repository uses needs four Github secrets set up.
+
+It's important that these are set up and named exactly what they are below in order for Github actions to work correctly.
+
+![Github secrets](resources/git-secret.png)
+
+To set up these repository secrets, on your repository's main Github page, go to `Settings` and scroll down to see `Secrets` on the left side menu bar.
+
+For each new secret, click the `New repository secret` button and set each as follows, clicking `Add secret` as you fill each in appropriately:  
+
+_Name: `DOCKERHUB_USERNAME`_:  
+For `value`: put your login username for https://hub.docker.com/
+
+_Name: `DOCKERHUB_PASSWORD`_:   
+For `value`: put your login password for https://hub.docker.com/
+
+_Name: `GIT_TOKEN`_:  
+For `value`: Create a personal access token [following these instructions](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token#creating-a-token). Underneath `Select scopes`, check both `repo` and `workflow`.
+Then copy the PAT and save as the value.
+
+_Name: `GOOGLE_SLIDE_ID`_:  
+For `value`: set the presentation ID of your main Google Slides for this course.
+Set up the Google slides following the [instructions here](#adding-images-and-graphics).
+The [<presentationID> is in the URL](https://developers.google.com/slides/how-tos/overview#the_structure_of_a_presentation) of your Google Slide:
+```
+https://docs.google.com/presentation/d/<presentationId>/edit
+```
 
 ## Setting up the Docker image
 
@@ -234,6 +272,17 @@ Note that `build-all` and `docker-build-test` are not something we recommend req
 
 Once `build-all` is run, the `docs/` folder where the rendered files are place are copied over to the Leanpub repository and filed as a pull request.
 
+### Linking to Leanpub repository
+
+`transfer-rendered-files.yml` is a Github action that will copy over the output `docs/` files rendered by Bookdown to a parallel `Leanpub` repository.
+
+If/when you have a Leanpub repository file a PR to change line 28 of `.github/workflow/transfer-rendered-files.yml`:   
+
+```
+repository: jhudsl/ITCR_Course_Template_Leanpub
+```
+It will need to be the repository name you would like the `docs/` files to be transferred to.
+
 ### Style guide
 
 Github actions will run the [`styler` package to all style R in all Rmds](https://github.com/jhudsl/ITCR_Course_Template_Bookdown/blob/main/.github/workflows/style-and-sp-check.yml) whenever a pull request to the `main` branch is filed.
@@ -283,9 +332,9 @@ To maintain style and attributions for graphics and images, as well as to enable
 Next, import the appropriate theme (see [this video](https://youtu.be/pNbwF263yY8) for assistance):
 
  - If you are not part of the [Johns Hopkins Data Science Lab](http://jhudatascience.org/), import the theme from this [template](https://docs.google.com/presentation/d/1lMNTlY8S21cNG4hL6NoOmXYZBQ30BtCQ4UdUJ7J_Wvs/edit?usp=sharing). Once you have done this add a slide with the ITN2 layout - and add your course title and any logos for your organization(s) that may be appropriate like so:
- 
+
  ![](https://docs.google.com/presentation/d/1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU/export/png?id=1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU&pageid=p)
- 
+
 Also be sure to add a terms of use slide to let people know what licensing that you have chosen. You can use ours (that looks like the slide below) if you like or create your own with a different license.
 
 ![](https://docs.google.com/presentation/d/1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU/export/png?id=1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU&pageid=gcf0c1d8548_0_157)
@@ -317,15 +366,15 @@ Once complete, your slides can be downloaded and a static version can be added t
 
 Images should be stored in `resources/images/` or you can link directly to your GoogleSlides following [the instructions here](https://www.evernote.com/shard/s425/client/snv?noteGuid=fd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d&noteKey=58951432cb4f6f996ad9a28df6852248&sn=https%3A%2F%2Fwww.evernote.com%2Fshard%2Fs425%2Fsh%2Ffd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d%2F58951432cb4f6f996ad9a28df6852248&title=Google%2Bslides).  
 
-Also add notes to each slide describing the text or images of the slide to allow for the content to be accessible to vision impaired individuals, as this can be converted to audio when creating videos. 
+Also add notes to each slide describing the text or images of the slide to allow for the content to be accessible to vision impaired individuals, as this can be converted to audio when creating videos.
 
 ## Learning Objectives Formatting
 
 Each chapter should start with Learning objectives!
-You can use [this handout](https://www.bu.edu/cme/forms/RSS_forms/tips_for_writing_objectives.pdf) to help you craft learning objectives. 
+You can use [this handout](https://www.bu.edu/cme/forms/RSS_forms/tips_for_writing_objectives.pdf) to help you craft learning objectives.
 
-Learning objectives should be stated both in the slides and in the beginning of each bookdown chapter. 
-Because of this, you may find it most handy to use the [`List layout`](https://docs.google.com/presentation/d/1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU/export/png?id=1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU&pageid=gcf0c1d8548_0_141) slide for stating your Learning objectives and then embed that in the book from your GoogleSlides [the instructions here](https://www.evernote.com/shard/s425/client/snv?noteGuid=fd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d&noteKey=58951432cb4f6f996ad9a28df6852248&sn=https%3A%2F%2Fwww.evernote.com%2Fshard%2Fs425%2Fsh%2Ffd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d%2F58951432cb4f6f996ad9a28df6852248&title=Google%2Bslides). 
+Learning objectives should be stated both in the slides and in the beginning of each bookdown chapter.
+Because of this, you may find it most handy to use the [`List layout`](https://docs.google.com/presentation/d/1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU/export/png?id=1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU&pageid=gcf0c1d8548_0_141) slide for stating your Learning objectives and then embed that in the book from your GoogleSlides [the instructions here](https://www.evernote.com/shard/s425/client/snv?noteGuid=fd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d&noteKey=58951432cb4f6f996ad9a28df6852248&sn=https%3A%2F%2Fwww.evernote.com%2Fshard%2Fs425%2Fsh%2Ffd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d%2F58951432cb4f6f996ad9a28df6852248&title=Google%2Bslides).
 
 ## Bookdown Rendering
 
