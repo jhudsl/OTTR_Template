@@ -6,3 +6,4 @@
 .bash_history
 spell_check_results.tsv
 .RData
+.httr-oauth
