@@ -42,8 +42,9 @@ jobs:
           svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/docs
 
           # Copy over any .bib files too!
-          svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/*.bib
-
+          svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/book.bib
+          svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/packages.bib
+                    
       - name: Create PR with rendered docs files
         uses: peter-evans/create-pull-request@v3
         id: cpr
