@@ -1,0 +1,75 @@
+---
+title: "Chapter title"
+output: html_document
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+citeproc: yes
+---
+
+## Learning Objectives
+
+This chapter will cover:  
+
+- {You can use https://www.bu.edu/cme/forms/RSS_forms/tips_for_writing_objectives.pdf to define some learning objectives here}
+- {Another learning objective}
+
+## Libraries
+
+For this chapter, we'll need the following packages attached. 
+
+```{r}
+library(here)
+library(ggplot2)
+library(magrittr)
+```
+
+# Topic of Section
+
+Text Text
+
+## Subtopic
+
+Text Text 
+
+### Code examples
+
+```{r}
+output_dir <- "code_output"
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir)
+}
+```
+
+```{r}
+iris %>%
+  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) +
+  geom_point() +
+  theme_bw()
+```
+
+```{r}
+ggsave(file.path(output_dir, "test_ggplot2.png"))
+```
+
+### Image examples
+
+![](resources/images/itcr_training_network.png)
+
+![](resources/images/tools.png)
+
+### Video example
+
+![Introducing Markua](https://www.youtube.com/watch?t=105&v=VOCYL-FNbr0)
+
+### Citation examples
+
+We can put citations at the end of a sentence like this [@bookdown2016]. 
+
+In text, we can put citations like this @bookdown2016. 
+
+## Print out session info
+
+```{r}
+devtools::session_info()
+```

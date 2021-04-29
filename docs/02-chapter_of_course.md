@@ -1,6 +1,10 @@
 ---
 title: "Chapter title"
 output: html_document
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+citeproc: yes
 ---
 
 ## Learning Objectives
@@ -78,8 +82,36 @@ ggsave(file.path(output_dir, "test_ggplot2.png"))
 ### Citation examples
 
 We can put citations at the end of a sentence like this [@bookdown2016]. 
+Or multiple citations [@bookdown2016,@rmarkdown2018]. 
+
+but they need a ; separator [@bookdown2016; @rmarkdown2018]. 
+
+but they need a ; separator [ \[@bookdown2016\](#bookdown2016); \[@rmarkdown2018\](#rmarkdown2018)]. 
 
 In text, we can put citations like this @bookdown2016. 
+
+
+Here's a silly example which may mess up references.
+
+```r
+library(oro.nifti)
+```
+
+```
+## oro.nifti 0.11.0
+```
+
+```r
+img = oro.nifti::nifti()
+img@.Data
+```
+
+```
+## , , 1, 1
+## 
+##      [,1]
+## [1,]    0
+```
 
 ## Print out session info
 
@@ -99,16 +131,18 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       America/New_York            
-##  date     2021-04-27                  
+##  date     2021-04-28                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version date       lib source                            
+##  abind         1.4-5   2016-07-21 [2] CRAN (R 4.0.0)                    
 ##  assertthat    0.2.1   2019-03-21 [2] CRAN (R 4.0.0)                    
+##  bitops        1.0-6   2013-08-17 [2] CRAN (R 4.0.0)                    
 ##  bookdown      0.21    2020-10-13 [1] CRAN (R 4.0.2)                    
 ##  bslib         0.2.4   2021-01-25 [1] CRAN (R 4.0.2)                    
 ##  cachem        1.0.4   2021-02-13 [1] CRAN (R 4.0.2)                    
 ##  callr         3.7.0   2021-04-20 [1] CRAN (R 4.0.5)                    
-##  cli           2.4.0   2021-04-05 [1] CRAN (R 4.0.2)                    
+##  cli           2.5.0   2021-04-26 [1] CRAN (R 4.0.2)                    
 ##  colorout    * 1.2-2   2020-06-01 [2] Github (jalvesaq/colorout@726d681)
 ##  colorspace    2.0-0   2020-11-11 [1] CRAN (R 4.0.2)                    
 ##  crayon        1.4.1   2021-02-08 [1] CRAN (R 4.0.2)                    
@@ -126,18 +160,23 @@ devtools::session_info()
 ##  generics      0.1.0   2020-10-31 [1] CRAN (R 4.0.2)                    
 ##  ggplot2     * 3.3.3   2020-12-30 [1] CRAN (R 4.0.2)                    
 ##  glue          1.4.2   2020-08-27 [1] CRAN (R 4.0.2)                    
+##  googledrive   1.0.1   2020-05-05 [2] CRAN (R 4.0.0)                    
 ##  gtable        0.3.0   2019-03-25 [2] CRAN (R 4.0.0)                    
 ##  here        * 1.0.1   2020-12-13 [1] CRAN (R 4.0.2)                    
-##  highr         0.8     2019-03-20 [2] CRAN (R 4.0.0)                    
+##  highr         0.9     2021-04-16 [1] CRAN (R 4.0.2)                    
 ##  htmltools     0.5.1.1 2021-01-22 [1] CRAN (R 4.0.2)                    
+##  httr          1.4.2   2020-07-20 [2] CRAN (R 4.0.2)                    
 ##  jquerylib     0.1.3   2020-12-17 [1] CRAN (R 4.0.2)                    
 ##  jsonlite      1.7.2   2020-12-09 [1] CRAN (R 4.0.2)                    
-##  knitr         1.32    2021-04-14 [1] CRAN (R 4.0.2)                    
+##  knitr         1.33    2021-04-24 [1] CRAN (R 4.0.2)                    
 ##  labeling      0.4.2   2020-10-20 [1] CRAN (R 4.0.2)                    
+##  leanbuild     0.1.0   2021-04-27 [1] local                             
 ##  lifecycle     1.0.0   2021-02-15 [1] CRAN (R 4.0.2)                    
+##  lubridate     1.7.10  2021-02-26 [1] CRAN (R 4.0.2)                    
 ##  magrittr    * 2.0.1   2020-11-17 [1] CRAN (R 4.0.2)                    
 ##  memoise       2.0.0   2021-01-26 [1] CRAN (R 4.0.2)                    
 ##  munsell       0.5.0   2018-06-12 [2] CRAN (R 4.0.0)                    
+##  oro.nifti   * 0.11.0  2020-09-04 [2] local                             
 ##  pillar        1.6.0   2021-04-13 [1] CRAN (R 4.0.2)                    
 ##  pkgbuild      1.2.0   2020-12-15 [1] CRAN (R 4.0.2)                    
 ##  pkgconfig     2.0.3   2019-09-22 [2] CRAN (R 4.0.0)                    
@@ -147,9 +186,11 @@ devtools::session_info()
 ##  ps            1.6.0   2021-02-28 [1] CRAN (R 4.0.2)                    
 ##  purrr         0.3.4   2020-04-17 [2] CRAN (R 4.0.0)                    
 ##  R6            2.5.0   2020-10-28 [1] CRAN (R 4.0.2)                    
+##  Rcpp          1.0.6   2021-01-15 [1] CRAN (R 4.0.2)                    
 ##  remotes       2.3.0   2021-04-01 [1] CRAN (R 4.0.2)                    
 ##  rlang         0.4.10  2020-12-30 [1] CRAN (R 4.0.2)                    
 ##  rmarkdown     2.7     2021-02-19 [1] CRAN (R 4.0.2)                    
+##  RNifti        1.3.0   2020-12-04 [1] CRAN (R 4.0.2)                    
 ##  rprojroot     2.0.2   2020-11-15 [1] CRAN (R 4.0.2)                    
 ##  rstudioapi    0.13    2020-11-12 [1] CRAN (R 4.0.2)                    
 ##  sass          0.3.1   2021-01-24 [1] CRAN (R 4.0.2)                    
@@ -159,6 +200,7 @@ devtools::session_info()
 ##  stringr       1.4.0   2019-02-10 [2] CRAN (R 4.0.0)                    
 ##  testthat      3.0.2   2021-02-14 [1] CRAN (R 4.0.2)                    
 ##  tibble        3.1.1   2021-04-18 [1] CRAN (R 4.0.2)                    
+##  tidyr         1.1.3   2021-03-03 [1] CRAN (R 4.0.2)                    
 ##  tidyselect    1.1.0   2020-05-11 [2] CRAN (R 4.0.0)                    
 ##  usethis       2.0.1   2021-02-10 [1] CRAN (R 4.0.2)                    
 ##  utf8          1.2.1   2021-03-12 [1] CRAN (R 4.0.2)                    

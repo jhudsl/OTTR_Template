@@ -1,6 +1,10 @@
 ---
 title: "Chapter title"
 output: html_document
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+citeproc: yes
 ---
 
 ## Learning Objectives
@@ -61,8 +65,21 @@ ggsave(file.path(output_dir, "test_ggplot2.png"))
 ### Citation examples
 
 We can put citations at the end of a sentence like this [@bookdown2016]. 
+Or multiple citations [@bookdown2016,@rmarkdown2018]. 
+
+but they need a ; separator [@bookdown2016; @rmarkdown2018]. 
+
+but they need a ; separator [ \[@bookdown2016\](#bookdown2016); \[@rmarkdown2018\](#rmarkdown2018)]. 
 
 In text, we can put citations like this @bookdown2016. 
+
+
+Here's a silly example which may mess up references.
+```{r}
+library(oro.nifti)
+img = oro.nifti::nifti()
+img@.Data
+```
 
 ## Print out session info
 

@@ -1,19 +1,30 @@
 # Uses cases for Bookdown to Leanpub
 
 Including a figure from the resources.  This shouldn't be an issue in the future 
-```{r, out.width="100%"}
+```{r, out.width="100%", fig.cap = "caption for first figure, we need multiple so make sure it works"}
 knitr::include_graphics("resources/images/itcr_training_network.png")
 ```
 
-```{r cool_stuff, out.width="100%", fig.alt = "it's a training network", fig.align='center'}
+
+```{r empty_cap, out.width="100%", fig.alt = "THIS IS AN ALT center align it's a training network", fig.align='center', fig.cap=""}
 knitr::include_graphics("resources/images/itcr_training_network.png")
 ```
 
-```{r tools, out.width="100%", fig.alt = "it's a tool", fig.align='left'}
+
+```{r space_caption, out.width="100%", fig.alt = "THIS IS AN ALT center align it's a training network", fig.align='center', fig.cap=" "}
+knitr::include_graphics("resources/images/itcr_training_network.png")
+```
+
+
+```{r cool_stuff, out.width="100%", fig.alt = "center align it's a training network", fig.align='center'}
+knitr::include_graphics("resources/images/itcr_training_network.png")
+```
+
+```{r tools, out.width="100%", fig.alt = "left align it's a tool", fig.align='left'}
 knitr::include_graphics("resources/images/tools.png")
 ```
 
-```{r right_tools, out.width="100%", fig.alt = "it's a tool", fig.align='right', fig.cap="caption for local png"}
+```{r right_tools, out.width="100%", fig.cap="caption for local png", fig.alt = "right align it's a tool", fig.align='right'}
 knitr::include_graphics("resources/images/tools.png")
 ```
 
@@ -23,7 +34,7 @@ knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/e/e9/Fel
 
 
 Including a figure from the resources.  This shouldn't be an issue in the future 
-```{r}
+```{r, fig.cap="url cap"}
 knitr::include_url("http://www.youtube.com/embed/9bZkp7q19f0?rel=0")
 ```
 
