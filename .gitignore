@@ -6,6 +6,7 @@
 .bash_history
 .Rproj.user
 .Rhistory
-.RData
 .Ruserdata
 spell_check_results.tsv
+.RData
+.httr-oauth
