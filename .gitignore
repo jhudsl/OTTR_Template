@@ -1,11 +1,9 @@
-
 # ignore nonsense files
 .DS_Store
 .Rhistory
 .local
 .rstudio
 .bash_history
-
 spell_check_results.tsv
-
-
+.RData
+.httr-oauth
