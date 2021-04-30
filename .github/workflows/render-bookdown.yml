@@ -62,9 +62,9 @@ jobs:
 
       - name: test keys
         run: |
-        echo ${{ secrets.GOOGLE_SLIDE_ID }}
-        echo ${ GITHUB_REPOSITORY }
-        
+          echo ${{ secrets.GOOGLE_SLIDE_ID }}
+          echo ${ GITHUB_REPOSITORY }
+
       # Refresh google slide code images
       - name: Run google slide refresh script
         run: |
