@@ -52,4 +52,6 @@ iris %>%
   theme_bw()
 ```
 
-<img src="images/04-figures_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+{width: "672", align: "middle"}
+![](images/04-figures_files/figure-html/unnamed-chunk-3-1.png)
+

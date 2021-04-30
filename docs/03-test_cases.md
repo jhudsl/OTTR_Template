@@ -93,10 +93,10 @@ knitr::include_url("https://www.youtube.com/watch?v=9bZkp7q19f0?rel=0")
 
 ```r
 # define GS_ID
-leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo/edit#slide=id.gc87451c247_0_17", output_dir = knitr::fig_path(), overwrite = FALSE)
+leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo/edit#slide=id.gc87451c247_0_17", overwrite = FALSE)
 ```
 
-<img src="03-test_cases_files/figure-html/unnamed-chunk-5-1/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo_gc87451c247_0_17.png" width="480" />
+<img src="03-test_cases_files/figure-html//12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo_gc87451c247_0_17.png" width="480" />
 
 
 
