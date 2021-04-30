@@ -95,6 +95,7 @@ jobs:
             --slides_id ${{ secrets.GOOGLE_SLIDE_ID }} \
             --token ${{ secrets.GOOGLE_SLIDE_TOKEN }}
 
+
       # Commit the google slide images just downloaded
       - name: Commit slide images
         run: |

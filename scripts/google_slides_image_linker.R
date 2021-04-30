@@ -149,6 +149,8 @@ image_df <- data.frame(image_url) %>%
     TRUE ~ "no_slide"
   ))
 
+image_df$page_id %in% slide_properties$slides$objectId
+
 ####################### Add new code output images #############################
 
 # Add new slides for all images that don't have slides yet
