@@ -1,5 +1,5 @@
 ---
-title: "Chapter title"
+title: "Chapter of course"
 output: html_document
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
@@ -82,7 +82,7 @@ ggsave(file.path(output_dir, "test_ggplot2.png"))
 ### Citation examples
 
 We can put citations at the end of a sentence like this [@bookdown2016]. 
-Or multiple citations [@bookdown2016,@rmarkdown2018]. 
+Or multiple citations [@bookdown2016, @rmarkdown2018]. 
 
 but they need a ; separator [@bookdown2016; @rmarkdown2018]. 
 
@@ -131,7 +131,7 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       America/New_York            
-##  date     2021-04-28                  
+##  date     2021-04-29                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version date       lib source                            
@@ -160,19 +160,16 @@ devtools::session_info()
 ##  generics      0.1.0   2020-10-31 [1] CRAN (R 4.0.2)                    
 ##  ggplot2     * 3.3.3   2020-12-30 [1] CRAN (R 4.0.2)                    
 ##  glue          1.4.2   2020-08-27 [1] CRAN (R 4.0.2)                    
-##  googledrive   1.0.1   2020-05-05 [2] CRAN (R 4.0.0)                    
 ##  gtable        0.3.0   2019-03-25 [2] CRAN (R 4.0.0)                    
 ##  here        * 1.0.1   2020-12-13 [1] CRAN (R 4.0.2)                    
 ##  highr         0.9     2021-04-16 [1] CRAN (R 4.0.2)                    
 ##  htmltools     0.5.1.1 2021-01-22 [1] CRAN (R 4.0.2)                    
-##  httr          1.4.2   2020-07-20 [2] CRAN (R 4.0.2)                    
 ##  jquerylib     0.1.3   2020-12-17 [1] CRAN (R 4.0.2)                    
 ##  jsonlite      1.7.2   2020-12-09 [1] CRAN (R 4.0.2)                    
 ##  knitr         1.33    2021-04-24 [1] CRAN (R 4.0.2)                    
 ##  labeling      0.4.2   2020-10-20 [1] CRAN (R 4.0.2)                    
-##  leanbuild     0.1.0   2021-04-27 [1] local                             
+##  leanbuild     0.1.1   2021-04-29 [1] local                             
 ##  lifecycle     1.0.0   2021-02-15 [1] CRAN (R 4.0.2)                    
-##  lubridate     1.7.10  2021-02-26 [1] CRAN (R 4.0.2)                    
 ##  magrittr    * 2.0.1   2020-11-17 [1] CRAN (R 4.0.2)                    
 ##  memoise       2.0.0   2021-01-26 [1] CRAN (R 4.0.2)                    
 ##  munsell       0.5.0   2018-06-12 [2] CRAN (R 4.0.0)                    
@@ -200,7 +197,6 @@ devtools::session_info()
 ##  stringr       1.4.0   2019-02-10 [2] CRAN (R 4.0.0)                    
 ##  testthat      3.0.2   2021-02-14 [1] CRAN (R 4.0.2)                    
 ##  tibble        3.1.1   2021-04-18 [1] CRAN (R 4.0.2)                    
-##  tidyr         1.1.3   2021-03-03 [1] CRAN (R 4.0.2)                    
 ##  tidyselect    1.1.0   2020-05-11 [2] CRAN (R 4.0.0)                    
 ##  usethis       2.0.1   2021-02-10 [1] CRAN (R 4.0.2)                    
 ##  utf8          1.2.1   2021-03-12 [1] CRAN (R 4.0.2)                    

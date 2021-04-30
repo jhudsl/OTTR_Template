@@ -14,3 +14,5 @@ video-example
 citation-examples
 print-out-session-info
 uses-cases-for-bookdown-to-leanpub
+figures
+make-a-plot

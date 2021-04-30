@@ -1,5 +1,5 @@
 ---
-title: "Chapter title"
+title: "Chapter of course"
 output: html_document
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
@@ -58,7 +58,8 @@ iris %>%
   theme_bw()
 ```
 
-<img src="02-chapter_of_course_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+{width: "672", align: "middle"}
+![](02-chapter_of_course_files/figure-html/unnamed-chunk-3-1.png)
 
 
 ```r
@@ -81,14 +82,14 @@ ggsave(file.path(output_dir, "test_ggplot2.png"))
 
 ### Citation examples
 
-We can put citations at the end of a sentence like this [@bookdown2016]. 
-Or multiple citations [@bookdown2016,@rmarkdown2018]. 
+We can put citations at the end of a sentence like this (Xie 2016).
+Or multiple citations Xie, Allaire, and Grolemund (2018).
 
-but they need a ; separator [@bookdown2016; @rmarkdown2018]. 
+but they need a ; separator (Xie 2016; Xie, Allaire, and Grolemund 2018).
 
-but they need a ; separator [ \[@bookdown2016\](#bookdown2016); \[@rmarkdown2018\](#rmarkdown2018)]. 
+but they need a ; separator (\[ Xie 2016\](\#bookdown2016); \[ Xie, Allaire, and Grolemund 2018\](\#rmarkdown2018)).
 
-In text, we can put citations like this @bookdown2016. 
+In text, we can put citations like this Xie (2016).
 
 
 Here's a silly example which may mess up references.
@@ -131,7 +132,7 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       America/New_York            
-##  date     2021-04-28                  
+##  date     2021-04-29                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version date       lib source                            
@@ -170,7 +171,7 @@ devtools::session_info()
 ##  jsonlite      1.7.2   2020-12-09 [1] CRAN (R 4.0.2)                    
 ##  knitr         1.33    2021-04-24 [1] CRAN (R 4.0.2)                    
 ##  labeling      0.4.2   2020-10-20 [1] CRAN (R 4.0.2)                    
-##  leanbuild     0.1.0   2021-04-27 [1] local                             
+##  leanbuild     0.1.0   2021-04-29 [1] local                             
 ##  lifecycle     1.0.0   2021-02-15 [1] CRAN (R 4.0.2)                    
 ##  lubridate     1.7.10  2021-02-26 [1] CRAN (R 4.0.2)                    
 ##  magrittr    * 2.0.1   2020-11-17 [1] CRAN (R 4.0.2)                    
@@ -212,3 +213,9 @@ devtools::session_info()
 ## [1] /Users/johnmuschelli/Library/R/4.0/library
 ## [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library
 ```
+
+## References
+Xie, Yihui. 2016. *Bookdown: Authoring Books and Technical Documents with R Markdown*. Boca Raton, Florida: Chapman; Hall/CRC. <https://github.com/rstudio/bookdown>.
+Xie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. *R Markdown: The Definitive Guide*. Boca Raton, Florida: Chapman; Hall/CRC. <https://bookdown.org/yihui/rmarkdown>.
+
+
