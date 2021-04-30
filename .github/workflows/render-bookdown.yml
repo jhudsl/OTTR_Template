@@ -63,6 +63,14 @@ jobs:
           jhudsl/course_template \
           Rscript -e "bookdown::render_book('index.Rmd')"
 
+      # Commit the rendered bookdown files
+      - name: Commit rendered bookdown files
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add -A
+          git commit -m 'Render bookdown' || echo "No changes to commit"
+
       # Refresh google slide code images
       - name: Run google slide refresh script
         run: |
@@ -87,13 +95,14 @@ jobs:
             --slides_id ${{ secrets.GOOGLE_SLIDE_ID }} \
             --token ${{ secrets.GOOGLE_SLIDE_TOKEN }}"
 
-      # Push the Docker image
-      - name: Push Docker image
-        run: docker push jhudsl/course_template
-
-      - name: Commit rendered bookdown files
+      # Commit the google slide images just downloaded
+      - name: Commit slide images
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add -A
-          git commit -m 'Render bookdown' || echo "No changes to commit"
+          git commit -m 'Downloaded Google Slide Images' || echo "No changes to commit"
+
+      # Push the Docker image
+      - name: Push Docker image
+        run: docker push jhudsl/course_template

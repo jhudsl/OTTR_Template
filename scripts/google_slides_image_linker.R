@@ -63,7 +63,7 @@ option_list <- list(
 opt <- parse_args(OptionParser(option_list = option_list))
 
 # Authorize using that token
-rgoogleslides::authorize(token = opt$token)
+rgoogleslides::authorize(token = authorize_from_secret(opt$token))
 
 # Slide id refers the id of the entire slide deck
 slides_id <- opt$slides_id
@@ -152,6 +152,8 @@ image_df <- data.frame(image_url) %>%
     page_id %in% slide_properties$slides$objectId ~ page_id,
     TRUE ~ "no_slide"
   ))
+
+image_df$page_id %in% slide_properties$slides$objectId
 
 ####################### Add new code output images #############################
 
