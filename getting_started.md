@@ -98,8 +98,9 @@ For each new secret, click the `New repository secret` button and set each as fo
 _Name: `DOCKERHUB_USERNAME`_:  
 For `value`: put your login username for https://hub.docker.com/
 
-_Name: `DOCKERHUB_PASSWORD`_:   
-For `value`: put your login password for https://hub.docker.com/
+_Name: `DOCKERHUB_TOKEN`_:   
+For `value`: put a access token for Dockerhub.
+You can create this by following [these instructions](https://docs.docker.com/docker-hub/access-tokens/#create-an-access-token).
 
 _Name: `GIT_TOKEN`_:  
 For `value`: Create a personal access token [following these instructions](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token#creating-a-token). Underneath `Select scopes`, check both `repo` and `workflow`.
@@ -276,12 +277,22 @@ Once `build-all` is run, the `docs/` folder where the rendered files are place a
 
 `transfer-rendered-files.yml` is a Github action that will copy over the output `docs/` files rendered by Bookdown to a parallel `Leanpub` repository.
 
-If/when you have a Leanpub repository file a PR to change line 28 of `.github/workflow/transfer-rendered-files.yml`:   
+There are two edits to `.github/workflow/transfer-rendered-files.yml` that need to be done to turn on the automatic copying of files between these repos:  
 
+1) Change line 28 to the repository name you would like the `docs/` files to be transferred to.
 ```
 repository: jhudsl/ITCR_Course_Template_Leanpub
 ```
-It will need to be the repository name you would like the `docs/` files to be transferred to.
+
+2) Uncomment lines 13-18 in this file:
+```
+# Only run after the render finishes running
+#workflow_run:
+#  workflows: [ "Build, Render, and Push" ]
+#  branches: [ main ]
+#  types:
+#    - completed
+```
 
 ### Style guide
 
@@ -327,7 +338,7 @@ If the URL checker is trying to check something that isn't really a URL or doesn
 
 ### Adding logo
 
-Currently the ITN logo is saved within the images directory of the resources directory. The `_output.yml` file adds this as image above the table of contents when the content is rendered with `bookdown`. 
+Currently the ITN logo is saved within the images directory of the resources directory. The `_output.yml` file adds this as image above the table of contents when the content is rendered with `bookdown`.
 
 **Please replace the URL in the last line of code for the `_output.yml` file with the URL for the GitHub repo for your course.** This will allow people to more easily find how out how you created your course. Otherwise, they will be directed to this template.
 
