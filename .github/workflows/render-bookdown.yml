@@ -60,6 +60,11 @@ jobs:
           jhudsl/itcr_course_template \
           Rscript -e "bookdown::render_book('index.Rmd')"
 
+      - name: test keys
+        run: |
+        echo ${{ secrets.GOOGLE_SLIDE_ID }}
+        echo ${ GITHUB_REPOSITORY }
+        
       # Refresh google slide code images
       - name: Run google slide refresh script
         run: |
