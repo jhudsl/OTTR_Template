@@ -102,15 +102,12 @@ if (is.null(opt$git_repo)) {
   opt$git_repo <- gsub("\\turl = https://github.com/|\\.git", "", git_url)
 }
 
-# Check if we can find the branch if we aren't using main
-if (opt$git_branch != "main") {
-  test_url <- paste0("https://github.com/", opt$git_repo, "/tree/", opt$git_branch)
-
-  output <- try(readLines(test_url, n = 1))
+# Check if we can find the branch 
+test_url <- paste0("https://github.com/", opt$git_repo, "/tree/", opt$git_branch)
   
-  if (class(output) == "try-error")
-  stop(paste("Double check your --git_branch and --git_repo options, could not find anything at those specifications", output))
-}
+output <- try(readLines(test_url, n = 1))
+  
+if (class(output) == "try-error") stop(paste("Double check your --git_branch and --git_repo options, could not find anything at those specifications", output))
 
 ######################### Set up image key file ################################
 # Get the list of all the code image files
@@ -118,7 +115,7 @@ images <- list.files(local_image_loc, pattern = ".png", full.names = TRUE, recur
 
 # Get relative image paths
 rel_image_paths <- gsub(paste0(root_dir, "/"), "", images)
-
+  
 # Build github url based on the local image location
 image_url <- paste0("https://raw.githubusercontent.com/", 
                      opt$git_repo, 
@@ -142,10 +139,9 @@ if (file.exists(image_key_file)) {
   readr::write_tsv(image_df, image_key_file)
 } 
 
-
 # We only want to keep images we have currently in the folder
 image_df <- data.frame(image_url) %>% 
-  dplyr::inner_join(image_df) %>% 
+  dplyr::left_join(image_df) %>% 
   # Erase the page_id if it no longer exists in the slide set
   dplyr::mutate(page_id = dplyr::case_when(
     is.na(page_id) ~ "no_slide",
