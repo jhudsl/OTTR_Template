@@ -63,7 +63,7 @@ jobs:
       # Refresh google slide code images
 #      - name: Run google slide refresh script
 #        run: |
-#        Rscript scripts/google_slides_image_linker.R \
+#          Rscript scripts/google_slides_image_linker.R \
 #          --slides_id ${{ secrets.GOOGLE_SLIDE_ID }} \
 #          --image_loc "_bookdown_files" \
 #          --image_key_dir "resources" \
@@ -72,11 +72,11 @@ jobs:
 #          --token ${{ secrets.GOOGLE_SLIDE_TOKEN }}
 
       # Refresh google slide code images
-#      - name: Download slides
-#        run: |
-#        Rscript scripts/google_slide_png_downloader.R \
-#          --slides_id ${{ secrets.GOOGLE_SLIDE_ID }} \
-#          --token ${{ secrets.GOOGLE_SLIDE_TOKEN }}
+      - name: Download slides
+        run: |
+          Rscript scripts/google_slide_png_downloader.R \
+            --slides_id ${{ secrets.GOOGLE_SLIDE_ID }} \
+            --token ${{ secrets.GOOGLE_SLIDE_TOKEN }}
 
       # Push the Docker image
       - name: Push Docker image
