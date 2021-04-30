@@ -12,6 +12,8 @@ name: Build, Render, and Push
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   # This workflow contains a single job called "build-all"
@@ -59,15 +61,15 @@ jobs:
           Rscript -e "bookdown::render_book('index.Rmd')"
 
       # Refresh google slide code images
-      - name: Run google slide refresh script
-        run: |
-        Rscript scripts/google_slides_image_linker.R \
-          --slides_id ${{ secrets.GOOGLE_SLIDE_ID }} \
-          --image_loc "_bookdown_files" \
-          --image_key_dir "resources" \
-          --git_repo ${ GITHUB_REPOSITORY } \
-          --git_branch ${ GITHUB_REF#refs/heads/ } \
-          --token ${{ secrets.GOOGLE_SLIDE_TOKEN }}
+#      - name: Run google slide refresh script
+#        run: |
+#        Rscript scripts/google_slides_image_linker.R \
+#          --slides_id ${{ secrets.GOOGLE_SLIDE_ID }} \
+#          --image_loc "_bookdown_files" \
+#          --image_key_dir "resources" \
+#          --git_repo ${ GITHUB_REPOSITORY } \
+#          --git_branch ${ GITHUB_REF#refs/heads/ } \
+#          --token ${{ secrets.GOOGLE_SLIDE_TOKEN }}
 
       # Refresh google slide code images
       - name: Download slides
