@@ -61,22 +61,28 @@ jobs:
           Rscript -e "bookdown::render_book('index.Rmd')"
 
       # Refresh google slide code images
-#      - name: Run google slide refresh script
-#        run: |
-#          Rscript scripts/google_slides_image_linker.R \
-#          --slides_id ${{ secrets.GOOGLE_SLIDE_ID }} \
-#          --image_loc "_bookdown_files" \
-#          --image_key_dir "resources" \
-#          --git_repo ${ GITHUB_REPOSITORY } \
-#          --git_branch ${ GITHUB_REF#refs/heads/ } \
-#          --token ${{ secrets.GOOGLE_SLIDE_TOKEN }}
+      - name: Run google slide refresh script
+        run: |
+          docker run \
+          --mount type=bind,target=/home/rstudio,source=$PWD \
+          jhudsl/itcr_course_template \
+          "Rscript scripts/google_slides_image_linker.R \
+            --slides_id ${{ secrets.GOOGLE_SLIDE_ID }} \
+            --image_loc '_bookdown_files' \
+            --image_key_dir 'resources' \
+            --git_repo ${ GITHUB_REPOSITORY } \
+            --git_branch ${ GITHUB_REF#refs/heads/ } \
+            --token ${{ secrets.GOOGLE_SLIDE_TOKEN }}"
 
       # Refresh google slide code images
       - name: Download slides
         run: |
-          Rscript scripts/google_slide_png_downloader.R \
+          docker run \
+          --mount type=bind,target=/home/rstudio,source=$PWD \
+          jhudsl/itcr_course_template \
+          "Rscript -e scripts/google_slide_png_downloader.R \
             --slides_id ${{ secrets.GOOGLE_SLIDE_ID }} \
-            --token ${{ secrets.GOOGLE_SLIDE_TOKEN }}
+            --token ${{ secrets.GOOGLE_SLIDE_TOKEN }}"
 
       # Push the Docker image
       - name: Push Docker image
