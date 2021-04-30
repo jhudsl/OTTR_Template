@@ -32,7 +32,10 @@ _Background information_:
   - [Spell check](#spell-check)
   - [Running spell check and styler manually](#running-spell-check-and-styler-manually)
   - [URL Checking](#url-checking)
+  - [Adding logo](#adding-logo)
   - [Adding Images and Graphics](#adding-images-and-graphics)
+    - [Themes for non-ITCR projects:](#themes-for-non-itcr-projects)
+    - [Themes for ITCR project:](#themes-for-itcr-project)
 - [Learning Objectives Formatting](#learning-objectives-formatting)
 - [Bookdown Rendering](#bookdown-rendering)
 
