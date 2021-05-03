@@ -228,7 +228,6 @@ To add an R package from GitHub you can add a line that follows this general for
 ```
 RUN Rscript --vanilla install_github.R \
   --packages "jhudsl/didactr, jhudsl/leanbuild, <NEW_PACKAGE>" \
-  --token $GITHUB_TOKEN
 ```
 
 To add a Python package, you will need to add pip3 to install Python packages using this format:

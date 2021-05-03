@@ -31,4 +31,4 @@ remotes::install_github(opt$packages,
                         auth_token = readLines(opt$token))
 
 # Remove the file after we are done
-remove.file(opt$token)
+file.remove(opt$token)
