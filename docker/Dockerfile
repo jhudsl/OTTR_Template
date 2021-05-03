@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:4.0.2
+FROM rocker/tidyverse:3.6.0
 LABEL maintainer="cansav09@gmail.com"
 WORKDIR /rocker-build/
 
@@ -26,6 +26,7 @@ RUN Rscript -e  "install.packages( \
     c('bookdown', \
       'here', \
       'leanpubr', \
+      'littler', \
       'optparse', \
       'R.utils', \
       'rprojroot', \
@@ -34,11 +35,8 @@ RUN Rscript -e  "install.packages( \
       'spelling', \
       'styler'))"
 
-# Install leanbuild from github
-RUN Rscript -e "remotes::install_github('jhudsl/didactr')"
-
-# Install leanbuild from github
-RUN Rscript -e "remotes::install_github('jhudsl/leanbuild')"
+# Install didactr from github
+RUN installGithub.r jhudsl/didactr jhudsl/leanbuild
 
 # set final workdir for commands
 WORKDIR /home/rstudio
