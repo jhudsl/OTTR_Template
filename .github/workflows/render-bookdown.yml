@@ -27,7 +27,7 @@ jobs:
           # get the full repo
           fetch-depth: 0
           # use github PAT
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GIT_TOKEN }}
 
       - name: test keys
         run: |
@@ -54,7 +54,7 @@ jobs:
           context: docker
           file: docker/Dockerfile
           tags: jhudsl/course_template
-          secrets: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+          secrets: GIT_TOKEN=${{ secrets.GIT_TOKEN }}
 
       # Run bookdown rendering
       - name: Run bookdown render
