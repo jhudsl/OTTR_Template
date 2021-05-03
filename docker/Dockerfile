@@ -39,9 +39,9 @@ RUN Rscript -e  "install.packages( \
       'styler'))"
 
 # Install packages from github
-RUN Rscript --vanilla install_github.R \
-  --packages "jhudsl/didactr, jhudsl/leanbuild" \
-  --token ${GITHUB_TOKEN}
+#RUN Rscript --vanilla install_github.R \
+#  --packages "jhudsl/didactr, jhudsl/leanbuild" \
+#  --token ${GITHUB_TOKEN}
 
 # set final workdir for commands
 WORKDIR /home/rstudio
