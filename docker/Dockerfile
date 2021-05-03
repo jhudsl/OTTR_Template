@@ -7,7 +7,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends apt-utils dialo
 
 # These packages are dependencies
 RUN apt-get install -y --no-install-recommends \
-    libxt6
+    libxt6 \
+    libpoppler-cpp-dev
 
 # Add curl, bzip2
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
@@ -32,6 +33,9 @@ RUN Rscript -e  "install.packages( \
       'servr', \
       'spelling', \
       'styler'))"
+
+# Install leanbuild from github
+RUN Rscript -e "remotes::install_github('jhudsl/leanbuild')"
 
 # set final workdir for commands
 WORKDIR /home/rstudio

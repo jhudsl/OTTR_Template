@@ -32,7 +32,9 @@ _Background information_:
   - [Spell check](#spell-check)
   - [Running spell check and styler manually](#running-spell-check-and-styler-manually)
   - [URL Checking](#url-checking)
-  - [Adding Images and Graphics](#adding-images-and-graphics)
+  - [Adding logo](#adding-logo)
+- [Setting Up Images and Graphics](#setting-up-images-and-graphics)
+- [Adding images and graphics in text](#adding-images-and-graphics-in-text)
 - [Learning Objectives Formatting](#learning-objectives-formatting)
 - [Bookdown Rendering](#bookdown-rendering)
 
