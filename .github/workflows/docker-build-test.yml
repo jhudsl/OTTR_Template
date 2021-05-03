@@ -41,5 +41,5 @@ jobs:
       # Build docker image
       - name: Build Docker image
         run: |
-        echo ${{ secrets.GIT_TOKEN }} > git_token.txt
-        docker build docker/Dockerfile -t jhudsl/course_template
+          echo ${{ secrets.GIT_TOKEN }} > git_token.txt
+          docker build docker/Dockerfile -t jhudsl/course_template
