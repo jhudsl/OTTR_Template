@@ -37,8 +37,8 @@ RUN Rscript -e  "install.packages( \
       'spelling', \
       'styler'))"
 
-# Install didactr and leanbuild from github
-RUN Rscript --vanilla scripts/install_github.R \
+# Install packages from github
+RUN Rscript --vanilla install_github.R \
   --packages "jhudsl/didactr, jhudsl/leanbuild" \
   --token $GITHUB_TOKEN
 

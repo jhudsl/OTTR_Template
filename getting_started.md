@@ -223,10 +223,12 @@ RUN Rscript -e "options(warn = 2); BiocManager::install( \
 
 ```
 
-To add an R package from GitHub you can add a line that follows this general format:
+To add an R package from GitHub you can add a line that follows this general format (need a comma and space):
 
 ```
-RUN Rscript -e "remotes::install_github('gitrepo_slug', ref = 'COMMIT_ID', dependencies = TRUE)"
+RUN Rscript --vanilla install_github.R \
+  --packages "jhudsl/didactr, jhudsl/leanbuild, <NEW_PACKAGE>" \
+  --token $GITHUB_TOKEN
 ```
 
 To add a Python package, you will need to add pip3 to install Python packages using this format:
@@ -419,7 +421,7 @@ Images should be stored in `resources/images/` or you can link directly to your 
 
 Also add notes to each slide describing the text or images of the slide to allow for the content to be accessible to vision impaired individuals, as this can be converted to audio when creating videos.
 
-#### Themes for ITCR project: 
+#### Themes for ITCR project:
 
  - If you are not part of the [Johns Hopkins Data Science Lab](http://jhudatascience.org/), import the theme from this [template](https://docs.google.com/presentation/d/1lMNTlY8S21cNG4hL6NoOmXYZBQ30BtCQ4UdUJ7J_Wvs/edit?usp=sharing). Once you have done this add a slide with the ITN2 layout - and add your course title and any logos for your organization(s) that may be appropriate like so:
 
