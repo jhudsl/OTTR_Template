@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:3.6.0
+FROM rocker/tidyverse:4.0.2
 LABEL maintainer="cansav09@gmail.com"
 WORKDIR /rocker-build/
 
@@ -28,6 +28,7 @@ RUN Rscript -e  "install.packages( \
       'leanpubr', \
       'littler', \
       'optparse', \
+      'qpdf', \
       'R.utils', \
       'rprojroot', \
       'rgoogleslides', \
