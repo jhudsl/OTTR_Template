@@ -1,6 +1,10 @@
 # Uses cases for Bookdown to Leanpub
 
-Including a figure from the resources.  This shouldn't be an issue in the future 
+```{r include=FALSE}
+knitr::opts_chunk$set(fig.path = "resources/images/<COURSE_TAG>")
+```
+
+Including a figure from the resources.  This shouldn't be an issue in the future
 ```{r}
 knitr::include_graphics("resources/images/itcr_training_network.png")
 ```
@@ -10,10 +14,9 @@ knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/e/e9/Fel
 ```
 
 
-Including a figure from the resources.  This shouldn't be an issue in the future 
+Including a figure from the resources.  This shouldn't be an issue in the future
 ```{r}
 knitr::include_url("http://www.youtube.com/embed/9bZkp7q19f0?rel=0")
 ```
 
 ![Introducing Markua](https://www.youtube.com/watch?t=105&v=VOCYL-FNbr0)
-

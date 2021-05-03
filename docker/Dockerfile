@@ -35,6 +35,9 @@ RUN Rscript -e  "install.packages( \
       'styler'))"
 
 # Install leanbuild from github
+RUN Rscript -e "remotes::install_github('jhudsl/didactr')"
+
+# Install leanbuild from github
 RUN Rscript -e "remotes::install_github('jhudsl/leanbuild')"
 
 # set final workdir for commands
