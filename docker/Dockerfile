@@ -37,10 +37,13 @@ RUN Rscript -e  "install.packages( \
       'spelling', \
       'styler'))"
 
+# Copy over git token
+COPY git_token.txt .
+
 # Install packages from github
 RUN Rscript --vanilla install_github.R \
   --packages "jhudsl/didactr, jhudsl/leanbuild" \
-  --token ${GIT_TOKEN}
+  --token git_token.txt
 
 # set final workdir for commands
 WORKDIR /home/rstudio

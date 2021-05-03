@@ -15,7 +15,7 @@ option_list <- list(
   make_option(
     opt_str = c("--token"), type = "character",
     default = NULL,
-    help = "GITHUB PAT",
+    help = "GITHUB PAT file",
     metavar = "character"
   )
 )
@@ -28,4 +28,7 @@ opt$packages <- unlist(strsplit(opt$packages, ", "))
 
 # We want errors not just warnings
 remotes::install_github(opt$packages,
-                        auth_token = opt$token)
+                        auth_token = readLines(opt$token))
+
+# Remove the file after we are done
+remove.file(opt$token)
