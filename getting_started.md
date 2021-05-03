@@ -1,4 +1,4 @@
-# Contributing Guidelines for ITCR Course Template
+# Contributing Guidelines for this Course Template
 
 This template includes all of the files that you need to get started creating your course in [R Markdown](https://rmarkdown.rstudio.com/) using the [bookdown package](https://bookdown.org/).
 
@@ -32,7 +32,10 @@ _Background information_:
   - [Spell check](#spell-check)
   - [Running spell check and styler manually](#running-spell-check-and-styler-manually)
   - [URL Checking](#url-checking)
+  - [Adding logo](#adding-logo)
   - [Adding Images and Graphics](#adding-images-and-graphics)
+    - [Themes for non-ITCR projects:](#themes-for-non-itcr-projects)
+    - [Themes for ITCR project:](#themes-for-itcr-project)
 - [Learning Objectives Formatting](#learning-objectives-formatting)
 - [Bookdown Rendering](#bookdown-rendering)
 
@@ -42,14 +45,25 @@ _Background information_:
 
 In the upper right of this screen, click `Use this template` and follow the steps to set up your course's GitHub repository.
 
-Name your repository, starting with `ITCR_` and fill in a short description.
+Name your repository fill in a short description (If this is an ITCR course, start the repo name with `ITCR_`).
 
 _Trigger the workflow to set up the Github issues that you can use to guide your set up of this course_:   
 - Go to `Actions` > under `Workflows` click on `Issue Filer`.
 - Where it says `This workflow has a workflow_dispatch event trigger.` click `Run workflow` and then click the green button that says `Run workflow`.
 - Now if you go to `Issues` you will see issues filed that you can follow to set up the new course!
 
-Now start filling out the documents with the information for the course! Make sure that the existing Rmd template files are changed to fit your course, and delete the `code_output` folder if you do not expect to have any code_output (or if you wish to call the folder something else).
+Now start filling out the documents with the information for the course!
+
+_If you are creating an ITCR course:_
+
+- Delete `_output.yml` and `index.Rmd` files
+- Keep the `_output-itcr.yml` and `index-itcr.Rmd` files but delete the `-itcr` parts of those file names.
+
+_If you are creating any other courses:_
+
+- Delete the `_output-itcr.yml` and `index-itcr.Rmd` files.
+
+Now, you can go through each file (the issues have checklists to guide you) and make sure the existing Rmd template files are changed to fit your course, and delete the `code_output` folder if you do not expect to have any code output (or if you wish to call the folder something else).
 There are `{}` in these files to get you started filling out information and should be deleted after you've filled them out.
 
 ### Recommended repository settings:
@@ -128,38 +142,38 @@ On Macs, this will be on the bar on the top of your screen; in Windows, on the b
 A Docker image is similar to a virtual machine - it contains preinstalled software in a preconfigured environment.
 Docker images can be downloaded from DockerHub, or you can create your own.
 
-We have created the `itcr_course_template` image as a starting point; you can download it from `jhudsl/itcr_course_template` on DockerHub using the docker pull command we have below.
+We have created the `course_template` image as a starting point; you can download it from `jhudsl/course_template` on DockerHub using the docker pull command we have below.
 To pull the docker image associated with this template, you can run this command below in your command line.
 This may take a while.
 
 ```
-docker pull jhudsl/itcr_course_template
+docker pull jhudsl/course_template
 ```
 
-This pulls the itcr_course_template image from Docker Hub and copies it to your computer.
+This pulls the course_template image from Docker Hub and copies it to your computer.
 It will be placed in your local collection of Docker images, managed by Docker (not in your pwd).
 
 Alternatively, if you'd prefer to re-build this image from the Dockerfile locally you can run:
 
 ```
-docker build -< docker/Dockerfile -t jhudsl/itcr_course_template
+docker build -< docker/Dockerfile -t jhudsl/course_template
 ```
 
 To use the Docker image associated with the course template, first navigate to the the top of this GitHub repository.
 Now you can start up the Docker container using the command below.
 
-This runs your local copy of the itcr_course_template image (which you downloaded from DockerHub).
+This runs your local copy of the course_template image (which you downloaded from DockerHub).
 The option `-v $PWD:/home/rstudio` mounts pwd (this repo) and makes it available at `/home/rstudio` within the container.
 Replace all of `<CHOOSE_PASSWORD>` (including the `<` and `>`) with a password of your choosing.
 
 _On a Mac_:  
 ```
-docker run -it -v $PWD:/home/rstudio -e PASSWORD=<CHOOSE_PASSWORD> -p 8787:8787 jhudsl/itcr_course_template
+docker run -it -v $PWD:/home/rstudio -e PASSWORD=<CHOOSE_PASSWORD> -p 8787:8787 jhudsl/course_template
 ```
 
 _On a Windows_:  
 ```
-docker run -it -v %CD%:/home/rstudio -e PASSWORD=<CHOOSE_PASSWORD> -p 8787:8787 jhudsl/itcr_course_template
+docker run -it -v %CD%:/home/rstudio -e PASSWORD=<CHOOSE_PASSWORD> -p 8787:8787 jhudsl/course_template
 ```
 
 Do not close this window, but you can minimize it.
@@ -173,7 +187,8 @@ localhost:8787
 
 To log in, you'll need to use `rstudio` as the username and whatever password you put for `<CHOOSE_PASSWORD>` in the above command.
 
-_Couple other handy Docker commands:_  
+_Couple other handy Docker commands:_
+
 - To stop your Docker container, run `docker ps` to obtain the docker container ID.
 Then you can use that ID to run `docker stop <CONTAINER_ID>`.  
 - To remove a docker image (which you may need to do from time to time to clear out space), you can run `docker image ls` to see all your current images.
@@ -224,7 +239,7 @@ RUN pip3 install \
 When you've added a package to the Dockerfile, you'll need to check that it builds successfully before including it in a pull request.
 You'll need to rebuild the docker image using this command:
 ```
-docker build -< docker/Dockerfile -t jhudsl/itcr_<TAG_FOR_COURSE>
+docker build -< docker/Dockerfile -t jhudsl/<TAG_FOR_COURSE>
 ```
 If it fails, often the issue is a missing dependency.
 Take a look at the error messages and see if you can determine the issue with some Googling.
@@ -233,7 +248,7 @@ Once it builds successfully, you should file a PR with your Dockerfile changes.
 Once the changes are accepted and merged, we'll need to push the updated image to Dockerhub using:
 
 ```
-docker push jhudsl/itcr_<TAG_FOR_COURSE>
+docker push jhudsl/<TAG_FOR_COURSE>
 ```
 
 When you file a pull request, the Dockerfile build will be tested automatically by the [GitHub actions](#github-actions).
@@ -281,7 +296,7 @@ There are two edits to `.github/workflow/transfer-rendered-files.yml` that need 
 
 1) Change line 28 to the repository name you would like the `docs/` files to be transferred to.
 ```
-repository: jhudsl/ITCR_Course_Template_Leanpub
+repository: jhudsl/Course_Template_Leanpub
 ```
 
 2) Uncomment lines 13-18 in this file:
@@ -296,12 +311,12 @@ repository: jhudsl/ITCR_Course_Template_Leanpub
 
 ### Style guide
 
-Github actions will run the [`styler` package to all style R in all Rmds](https://github.com/jhudsl/ITCR_Course_Template_Bookdown/blob/main/.github/workflows/style-and-sp-check.yml) whenever a pull request to the `main` branch is filed.
+Github actions will run the [`styler` package to all style R in all Rmds](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/style-and-sp-check.yml) whenever a pull request to the `main` branch is filed.
 Style changes will automatically be committed back to your branch.
 
 ### Spell check
 
-Github actions will automatically [run a spell check on all Rmds](https://github.com/jhudsl/ITCR_Course_Template_Bookdown/blob/main/.github/workflows/style-and-sp-check.yml) whenever a pull request to the `main` branch is filed.
+Github actions will automatically [run a spell check on all Rmds](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/style-and-sp-check.yml) whenever a pull request to the `main` branch is filed.
 
 It will fail if there are more than 2 spelling errors and you'll need to resolve those before being able to merge your pull request.
 
@@ -310,7 +325,7 @@ Then, click on the GitHub action from the PR you just submitted.
 Scroll all the way down to `Artifacts` and click `spell-check-results`.
 This will download a zip file with a TSV that lists all the spelling errors.
 
-Some of these errors may be things that the spell check doesn't recognize for example: `ITCR`.
+Some of these errors may be things that the spell check doesn't recognize for example: `ITCR` or `DaSL`.
 If it's a 'word' the spell check should recognize, you'll need to add this to the dictionary.
 
 Go to the `resources/dictionary.txt` file.
@@ -338,9 +353,13 @@ If the URL checker is trying to check something that isn't really a URL or doesn
 
 ### Adding logo
 
-Currently the ITN logo is saved within the images directory of the resources directory. The `_output.yml` file adds this as image above the table of contents when the content is rendered with `bookdown`.
+Currently the logos are saved within the images directory of the resources directory.
+The `_output.yml` file adds this as image above the table of contents when the content is rendered with `bookdown`.
 
 **Please replace the URL in the last line of code for the `_output.yml` file with the URL for the GitHub repo for your course.** This will allow people to more easily find how out how you created your course. Otherwise, they will be directed to this template.
+
+Also replace the logo link which is currently: `"https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/images/logo.png"` if you are working on a project with the DaSL that has its own project logo.
+Create an image file with both the project logo on the left and a [black and white version of the DaSL logo](https://public.3.basecamp.com/p/gDNxkEZuMRVEkvXukGY96pLe) on the right and host this online on GitHub so that others working on your project can use the link so that the logo will get updated if need be.
 
 ### Adding Images and Graphics
 
@@ -348,11 +367,56 @@ To maintain style and attributions for graphics and images, as well as to enable
 
 Next, import the appropriate theme (see [this video](https://youtu.be/pNbwF263yY8) for assistance):
 
+#### Themes for non-ITCR projects:
+
+ - If you are not creating a course as part of a larger collaboration but simply just as a DaSL course, import the theme from this [template](https://docs.google.com/presentation/d/1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ/edit?usp=sharing). Once you have done this add a slide with the "Title slide" layout under layouts - and add your course title.
+
+ ![](https://docs.google.com/presentation/d/1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ/export/png?id=1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ&pageid=p)
+
+
+ - If you are working on a project (more likely) with the [Johns Hopkins Data Science Lab](http://jhudatascience.org/) than import the theme from this [template](https://docs.google.com/presentation/d/1qa3v_zlNedCKHQ6IYF5MM1ZLZLgHUs0U4usgDRRe3W8/edit?usp=sharing).
+
+Add a title slide and update it with your project's logo.
+
+
+![](https://docs.google.com/presentation/d/1qa3v_zlNedCKHQ6IYF5MM1ZLZLgHUs0U4usgDRRe3W8/export/png?id=1qa3v_zlNedCKHQ6IYF5MM1ZLZLgHUs0U4usgDRRe3W8&pageid=p)
+
+
+In either case:
+
+Be sure to add a terms of use slide to let people know about our licensing.
+
+![](https://docs.google.com/presentation/d/1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ/export/png?id=1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ&pageid=gcc4fbee202_0_153)
+
+
+For any major point, please select this layout:
+
+![Major_point_layout](https://docs.google.com/presentation/d/1qa3v_zlNedCKHQ6IYF5MM1ZLZLgHUs0U4usgDRRe3W8/export/png?id=1qa3v_zlNedCKHQ6IYF5MM1ZLZLgHUs0U4usgDRRe3W8&pageid=gcf1264c749_0_130)
+
+For itemized lists, please select this layout:
+
+![list_layout](https://docs.google.com/presentation/d/1qa3v_zlNedCKHQ6IYF5MM1ZLZLgHUs0U4usgDRRe3W8/export/png?id=1qa3v_zlNedCKHQ6IYF5MM1ZLZLgHUs0U4usgDRRe3W8&pageid=gcf1264c749_0_135)
+
+Please select the layout that looks like this for any images/content from outside sources:
+
+![source_layout](https://docs.google.com/presentation/d/1qa3v_zlNedCKHQ6IYF5MM1ZLZLgHUs0U4usgDRRe3W8/export/png?id=1qa3v_zlNedCKHQ6IYF5MM1ZLZLgHUs0U4usgDRRe3W8&pageid=gcf1264c749_0_140)
+
+Please update the text at the bottom to describe the source.
+
+Once complete, your slides can be downloaded and a static version can be added to your bookdown and or Leanpub repository to build your course. See [this link](https://www.howtogeek.com/509046/how-to-save-google-slides-objects-as-images/) for information on how to download slides from Google Slides.
+
+Images should be stored in `resources/images/` or you can link directly to your GoogleSlides following [the instructions here](https://www.evernote.com/shard/s425/client/snv?noteGuid=fd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d&noteKey=58951432cb4f6f996ad9a28df6852248&sn=https%3A%2F%2Fwww.evernote.com%2Fshard%2Fs425%2Fsh%2Ffd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d%2F58951432cb4f6f996ad9a28df6852248&title=Google%2Bslides).  
+
+Also add notes to each slide describing the text or images of the slide to allow for the content to be accessible to vision impaired individuals, as this can be converted to audio when creating videos.
+
+#### Themes for ITCR project: 
+
  - If you are not part of the [Johns Hopkins Data Science Lab](http://jhudatascience.org/), import the theme from this [template](https://docs.google.com/presentation/d/1lMNTlY8S21cNG4hL6NoOmXYZBQ30BtCQ4UdUJ7J_Wvs/edit?usp=sharing). Once you have done this add a slide with the ITN2 layout - and add your course title and any logos for your organization(s) that may be appropriate like so:
 
  ![](https://docs.google.com/presentation/d/1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU/export/png?id=1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU&pageid=p)
 
-Also be sure to add a terms of use slide to let people know what licensing that you have chosen. You can use ours (that looks like the slide below) if you like or create your own with a different license.
+Also be sure to add a terms of use slide to let people know what licensing that you have chosen.
+You can use ours (that looks like the slide below) if you like or create your own with a different license.
 
 ![](https://docs.google.com/presentation/d/1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU/export/png?id=1-7UvgVq5tP1pasTEErUM3bJFH2fU_pilH6i6_81CCXU&pageid=gcf0c1d8548_0_157)
 
@@ -397,12 +461,13 @@ Because of this, you may find it most handy to use the [`List layout`](https://d
 
 As you modify the names of the chapters of your course and add more chapters (using the `.Rmd` files), you need to update the `_bookdown.yml` file accordingly.
 
-For example let's say that we added another chapter and named the file `03-chapter_of_course.Rmd`. We would update our `_bookdown.yml` to look like this:
+For example let's say that we added another chapter and named the file `03-chapter_of_course.Rmd`.
+We would update our `_bookdown.yml` to look like this:
 
 ```yaml
-book_filename: "ITCR_Course_Name"  
+book_filename: "Course_Name"  
 chapter_name: "Chapter "  
-repo: https://github.com/jhudsl/ITCR_Course_Template/ ##Make sure you update this for your GitHub Repo!!  
+repo: https://github.com/jhudsl/DaSL_Course_Template_Bookdown/ ##Make sure you update this for your GitHub Repo!!  
 rmd_files: ["index.Rmd",  
             "01-intro.Rmd",   
             "02-chapter_of_course.Rmd",   
@@ -424,7 +489,7 @@ Once we do this we can preview the book!
 You can do so by typing:
 `bookdown::serve_book()` in the RStudio Console.  
 
-Note that when you run `bookdown` it will create an `.rds` file; you can generally ignore this file. s
+Note that when you run `bookdown` it will create an `.rds` file; you can generally ignore this file.
 
 You will then see a live version of your book in your RStudio viewer.
 

@@ -38,6 +38,10 @@ Including a figure from the resources.  This shouldn't be an issue in the future
 knitr::include_url("http://www.youtube.com/embed/9bZkp7q19f0?rel=0")
 ```
 
+```{r url_nocap}
+knitr::include_url("http://www.youtube.com/embed/9bZkp7q19f0?rel=0")
+```
+
 ![Introducing Markua](https://www.youtube.com/watch?t=105&v=VOCYL-FNbr0)
 
 
