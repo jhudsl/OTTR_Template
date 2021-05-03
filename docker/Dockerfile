@@ -2,7 +2,7 @@ FROM rocker/tidyverse:4.0.2
 LABEL maintainer="cansav09@gmail.com"
 WORKDIR /rocker-build/
 
-COPY install_github.R .
+COPY docker/install_github.R .
 
 # Install apt-getable packages to start
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils dialog
@@ -43,7 +43,7 @@ COPY git_token.txt .
 # Install packages from github
 RUN Rscript --vanilla install_github.R \
   --packages "jhudsl/didactr, jhudsl/leanbuild" \
-  --token git_token.txt
+  --token docker/git_token.txt
 
 # set final workdir for commands
 WORKDIR /home/rstudio
