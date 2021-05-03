@@ -1,6 +1,16 @@
 
 The following files need to be edited to get this new course started!
 
+
+_If you are creating an ITCR course:_
+
+- [ ] Delete `_output.yml` and `index.Rmd` files
+- [ ] Keep the `_output-itcr.yml` and `index-itcr.Rmd` files but delete the `-itcr` parts of those file names.
+
+_If you are creating any other courses:_
+
+- [ ] Delete the `_output-itcr.yml` and `index-itcr.Rmd` files.
+
 ### Files that need edited upon creating a new course.
 
 - [ ] `README.md` - Fill in all the `{ }`.
