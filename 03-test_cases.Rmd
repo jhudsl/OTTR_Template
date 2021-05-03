@@ -1,5 +1,12 @@
 # Uses cases for Bookdown to Leanpub
 
+```{r}
+fp = knitr::fig_path()
+fp = dirname(fp)
+fp = paste0("images/", fp, "/")
+knitr::opts_chunk$set(fig.path = fp)
+```
+
 Including a figure from the resources.  This shouldn't be an issue in the future 
 ```{r, out.width="100%", fig.cap = "caption for first figure, we need multiple so make sure it works"}
 knitr::include_graphics("resources/images/itcr_training_network.png")
@@ -53,6 +60,12 @@ knitr::include_url("https://www.youtube.com/watch?v=9bZkp7q19f0?rel=0")
 # define GS_ID
 leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo/edit#slide=id.gc87451c247_0_17", overwrite = FALSE)
 ```
+
+```{r, fig.alt = "picture of stuff"}
+# define GS_ID
+leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo/edit#slide=id.gc87451c247_0_17", overwrite = FALSE)
+```
+
 
 
 

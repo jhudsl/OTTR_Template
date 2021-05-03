@@ -35,7 +35,7 @@ library(here)
 ```
 
 ```
-## here() starts at /Users/johnmuschelli/Dropbox/Projects/ITCR_Course_Template
+## here() starts at /Users/johnmuschelli/Dropbox/Projects/DaSL_Course_Template_Bookdown
 ```
 
 ```r
