@@ -342,9 +342,11 @@ Currently the ITN logo is saved within the images directory of the resources dir
 
 **Please replace the URL in the last line of code for the `_output.yml` file with the URL for the GitHub repo for your course.** This will allow people to more easily find how out how you created your course. Otherwise, they will be directed to this template.
 
-### Adding Images and Graphics
+## Setting Up Images and Graphics
 
-To maintain style and attributions for graphics and images, as well as to enable easy updates in the future, please start a new Google Slide document for your course. This also allows you to make videos of your slides that can be added to your course.
+To maintain style and attributions for graphics and images, as well as to enable easy updates in the future, please start a new Google Slide document for your course.
+This also allows you to make videos of your slides that can be added to your course.
+
 
 Next, import the appropriate theme (see [this video](https://youtu.be/pNbwF263yY8) for assistance):
 
@@ -384,6 +386,22 @@ Once complete, your slides can be downloaded and a static version can be added t
 Images should be stored in `resources/images/` or you can link directly to your GoogleSlides following [the instructions here](https://www.evernote.com/shard/s425/client/snv?noteGuid=fd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d&noteKey=58951432cb4f6f996ad9a28df6852248&sn=https%3A%2F%2Fwww.evernote.com%2Fshard%2Fs425%2Fsh%2Ffd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d%2F58951432cb4f6f996ad9a28df6852248&title=Google%2Bslides).  
 
 Also add notes to each slide describing the text or images of the slide to allow for the content to be accessible to vision impaired individuals, as this can be converted to audio when creating videos.
+
+## Adding images and graphics in text
+
+All images should be included in your Google Slides with the captions we discussed above.
+To add images in the text in your Rmd, use the following function within an [R code chunk](https://bookdown.org/yihui/rmarkdown/r-code.html).
+
+```
+leanbuild::include_slide(<google_slide_url>)
+```
+
+You can adjust the size, alignment, or caption of the image you can use these arguments in the code chunk tag:  
+
+```
+```{r, fig.height=4, fig.align='center', fig.cap='...'}
+
+```
 
 ## Learning Objectives Formatting
 
