@@ -49,7 +49,8 @@ option_list <- list(
 opt <- parse_args(OptionParser(option_list = option_list))
 
 # Authorize using that token
-rgoogleslides::authorize(token = opt$token)
+rgoogleslides::authorize(token = authorize_from_secret(opt$access_token, 
+                                                       opt$refresh_token))
 
 # Slide id refers the id of the entire slide deck
 slides_id <- opt$slides_id

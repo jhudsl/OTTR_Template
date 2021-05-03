@@ -84,7 +84,8 @@ jobs:
             --image_key_dir resources \
             --git_repo ${GITHUB_REPOSITORY} \
             --git_branch ${GITHUB_REF#refs/heads/} \
-            --token ${{ secrets.GOOGLE_SLIDE_TOKEN }}
+            --access_token ${{ secrets.GOOGLE_SLIDE_TOKEN }}
+            --refresh_token ${{ secrets.GOOGLE_SLIDE_REFRESH_TOKEN }}
 
       # Refresh google slide code images
       - name: Download slides
@@ -94,7 +95,8 @@ jobs:
           jhudsl/course_template \
           Rscript --vanilla scripts/google_slide_png_downloader.R \
             --slides_id ${{ secrets.GOOGLE_SLIDE_ID }} \
-            --token ${{ secrets.GOOGLE_SLIDE_TOKEN }}
+            --access_token ${{ secrets.GOOGLE_SLIDE_TOKEN }}
+            --refresh_token ${{ secrets.GOOGLE_SLIDE_REFRESH_TOKEN }}
 
 
       # Commit the google slide images just downloaded
