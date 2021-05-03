@@ -2,6 +2,8 @@ FROM rocker/tidyverse:4.0.2
 LABEL maintainer="cansav09@gmail.com"
 WORKDIR /rocker-build/
 
+COPY /install_github.R /install_github.R
+
 # Install apt-getable packages to start
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils dialog
 
@@ -26,7 +28,6 @@ RUN Rscript -e  "install.packages( \
     c('bookdown', \
       'here', \
       'leanpubr', \
-      'littler', \
       'optparse', \
       'qpdf', \
       'R.utils', \
@@ -36,8 +37,10 @@ RUN Rscript -e  "install.packages( \
       'spelling', \
       'styler'))"
 
-# Install didactr from github
-RUN installGithub.r jhudsl/didactr jhudsl/leanbuild
+# Install didactr and leanbuild from github
+RUN Rscript --vanilla scripts/install_github.R \
+  --packages "jhudsl/didactr, jhudsl/leanbuild" \
+  --token $GITHUB_TOKEN
 
 # set final workdir for commands
 WORKDIR /home/rstudio

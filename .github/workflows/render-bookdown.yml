@@ -54,6 +54,7 @@ jobs:
           context: docker
           file: docker/Dockerfile
           tags: jhudsl/course_template
+          secrets: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
 
       # Run bookdown rendering
       - name: Run bookdown render

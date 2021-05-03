@@ -24,7 +24,7 @@ source(file.path(root_dir, "scripts", "util", "google-slides.R"))
 option_list <- list(
   make_option(
     opt_str = c("-s", "--slides_id"), type = "character",
-    default = NULL, 
+    default = NULL,
     help = "Slide ID obtained from Google Slides URL",
     metavar = "character"
   ),
@@ -34,8 +34,13 @@ option_list <- list(
     metavar = "character"
   ),
   make_option(
-    opt_str = c("-t", "--token"), type = "character",
-    default = NULL, help = "Token obtained from rgoogleslides::authorize() interactive steps.",
+    opt_str = c("-r", "--refresh_token"), type = "character",
+    default = NULL, help = "Can be obtained from: token <- rgoogleslides::authorize(); token$credentials$refresh_token",
+    metavar = "character"
+  ),
+  make_option(
+    opt_str = c("-a", "--access_token"), type = "character",
+    default = NULL, help = "Can be obtained from: token <- rgoogleslides::authorize(); token$credentials$access_token",
     metavar = "character"
   )
 )
@@ -62,9 +67,9 @@ if (dir.exists(opt$gs_loc)) {
   file.remove(dir(opt$gs_loc, full.names = TRUE))
 }
 
-lapply(slide_pages, 
+lapply(slide_pages,
       function(slide_page) {
-        
+
         # Download slides again
         download_gs_png(slides_id = slides_id,
                         slide_page = slide_page,
