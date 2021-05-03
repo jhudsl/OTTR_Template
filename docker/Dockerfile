@@ -2,7 +2,7 @@ FROM rocker/tidyverse:4.0.2
 LABEL maintainer="cansav09@gmail.com"
 WORKDIR /rocker-build/
 
-COPY /install_github.R /install_github.R
+COPY install_github.R .
 
 # Install apt-getable packages to start
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils dialog
