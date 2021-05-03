@@ -4,7 +4,7 @@
 library(rgoogleslides)
 
 ############################## Set up Functions ################################
-authorize_from_secret <- function(access_token) {
+authorize_from_secret <- function(access_token, refresh_token) {
   
   client_id <- getOption("slides.client.id")
   client_secret <- getOption("slides.client.secret")
@@ -12,7 +12,7 @@ authorize_from_secret <- function(access_token) {
   credentials = list(
     access_token = access_token, 
     expires_in = 3599L, 
-    # refresh_token = refresh_token,
+    refresh_token = refresh_token,
     scope = "https://www.googleapis.com/auth/presentations https://www.googleapis.com/auth/drive.readonly", 
     token_type = "Bearer")
   

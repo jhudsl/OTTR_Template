@@ -1,4 +1,4 @@
-# This code was originally written by Josh Shapiro 
+# This code was originally written by Josh Shapiro
 # for the Childhood Cancer Data Lab, an initiative of Alexs Lemonade Stand Foundation.
 # https://github.com/AlexsLemonade/refinebio-examples/blob/33cdeff66d57f9fe8ee4fcb5156aea4ac2dce07f/.github/workflows/style-and-sp-check.yml#L1
 
@@ -40,11 +40,9 @@ jobs:
 
       # Build docker image
       - name: Build Docker image
-        uses: docker/build-push-action@v2
-        with:
-          push: false
-          context: docker
-          file: docker/Dockerfile
-          tags: ccdl/refinebio-examples:latest
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
+        run: |
+          echo ${{ secrets.GIT_TOKEN }} > docker/git_token.txt
+          /usr/bin/docker buildx build --tag jhudsl/course_template:latest  \
+          --cache-from type=local,src=/tmp/.buildx-cache  \
+          --cache-to type=local,dest=/tmp/.buildx-cache \
+          --file docker/Dockerfile docker

@@ -53,8 +53,13 @@ option_list <- list(
     metavar = "character"
   ),
   make_option(
-    opt_str = c("-t", "--token"), type = "character",
-    default = NULL, help = "Token obtained from rgoogleslides::authorize() interactive steps.",
+    opt_str = c("-r", "--refresh_token"), type = "character",
+    default = NULL, help = "Can be obtained from: token <- rgoogleslides::authorize(); token$credentials$refresh_token",
+    metavar = "character"
+  ),
+  make_option(
+    opt_str = c("-a", "--access_token"), type = "character",
+    default = NULL, help = "Can be obtained from: token <- rgoogleslides::authorize(); token$credentials$access_token",
     metavar = "character"
   )
 )
@@ -63,7 +68,8 @@ option_list <- list(
 opt <- parse_args(OptionParser(option_list = option_list))
 
 # Authorize using that token
-rgoogleslides::authorize(token = authorize_from_secret(opt$token))
+rgoogleslides::authorize(token = authorize_from_secret(opt$access_token, 
+                                                       opt$refresh_token))
 
 # Slide id refers the id of the entire slide deck
 slides_id <- opt$slides_id

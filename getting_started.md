@@ -33,7 +33,8 @@ _Background information_:
   - [Running spell check and styler manually](#running-spell-check-and-styler-manually)
   - [URL Checking](#url-checking)
   - [Adding logo](#adding-logo)
-  - [Adding Images and Graphics](#adding-images-and-graphics)
+- [Setting Up Images and Graphics](#setting-up-images-and-graphics)
+- [Adding images and graphics in text](#adding-images-and-graphics-in-text)
     - [Themes for non-ITCR projects:](#themes-for-non-itcr-projects)
     - [Themes for ITCR project:](#themes-for-itcr-project)
 - [Learning Objectives Formatting](#learning-objectives-formatting)
@@ -222,10 +223,11 @@ RUN Rscript -e "options(warn = 2); BiocManager::install( \
 
 ```
 
-To add an R package from GitHub you can add a line that follows this general format:
+To add an R package from GitHub you can add a line that follows this general format (need a comma and space):
 
 ```
-RUN Rscript -e "remotes::install_github('gitrepo_slug', ref = 'COMMIT_ID', dependencies = TRUE)"
+RUN Rscript --vanilla install_github.R \
+  --packages "jhudsl/didactr, jhudsl/leanbuild, <NEW_PACKAGE>" \
 ```
 
 To add a Python package, you will need to add pip3 to install Python packages using this format:
@@ -358,12 +360,21 @@ The `_output.yml` file adds this as image above the table of contents when the c
 
 **Please replace the URL in the last line of code for the `_output.yml` file with the URL for the GitHub repo for your course.** This will allow people to more easily find how out how you created your course. Otherwise, they will be directed to this template.
 
+
+## Setting Up Images and Graphics
+
 Also replace the logo link which is currently: `"https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/images/logo.png"` if you are working on a project with the DaSL that has its own project logo.
 Create an image file with both the project logo on the left and a [black and white version of the DaSL logo](https://public.3.basecamp.com/p/gDNxkEZuMRVEkvXukGY96pLe) on the right and host this online on GitHub so that others working on your project can use the link so that the logo will get updated if need be.
 
-### Adding Images and Graphics
+To maintain style and attributions for graphics and images, as well as to enable easy updates in the future, please start a new Google Slide document for your course.
+This also allows you to make videos of your slides that can be added to your course.
 
-To maintain style and attributions for graphics and images, as well as to enable easy updates in the future, please start a new Google Slide document for your course. This also allows you to make videos of your slides that can be added to your course.
+Each Rmd with images that is a part of your bookdown needs to have thisi chunk at the beginning so that images are stored properly (where `<COURSE_TAG>` is properly replaced with the name of your course which should be identical to its Github repository name - minus the owner tag e.g. `DaSL_Course_Template_Bookdown` NOT `jhudsl/DaSL_Course_Template_Bookdown`).
+
+```
+```{r include=FALSE}
+knitr::opts_chunk$set(fig.path = "resources/images/<COURSE_TAG>")
+```
 
 Next, import the appropriate theme (see [this video](https://youtu.be/pNbwF263yY8) for assistance):
 
@@ -409,7 +420,7 @@ Images should be stored in `resources/images/` or you can link directly to your 
 
 Also add notes to each slide describing the text or images of the slide to allow for the content to be accessible to vision impaired individuals, as this can be converted to audio when creating videos.
 
-#### Themes for ITCR project: 
+#### Themes for ITCR project:
 
  - If you are not part of the [Johns Hopkins Data Science Lab](http://jhudatascience.org/), import the theme from this [template](https://docs.google.com/presentation/d/1lMNTlY8S21cNG4hL6NoOmXYZBQ30BtCQ4UdUJ7J_Wvs/edit?usp=sharing). Once you have done this add a slide with the ITN2 layout - and add your course title and any logos for your organization(s) that may be appropriate like so:
 
@@ -448,6 +459,22 @@ Once complete, your slides can be downloaded and a static version can be added t
 Images should be stored in `resources/images/` or you can link directly to your GoogleSlides following [the instructions here](https://www.evernote.com/shard/s425/client/snv?noteGuid=fd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d&noteKey=58951432cb4f6f996ad9a28df6852248&sn=https%3A%2F%2Fwww.evernote.com%2Fshard%2Fs425%2Fsh%2Ffd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d%2F58951432cb4f6f996ad9a28df6852248&title=Google%2Bslides).  
 
 Also add notes to each slide describing the text or images of the slide to allow for the content to be accessible to vision impaired individuals, as this can be converted to audio when creating videos.
+
+## Adding images and graphics in text
+
+All images should be included in your Google Slides with the captions we discussed above.
+To add images in the text in your Rmd, use the following function within an [R code chunk](https://bookdown.org/yihui/rmarkdown/r-code.html).
+
+```
+leanbuild::include_slide(<google_slide_url>)
+```
+
+You can adjust the size, alignment, or caption of the image you can use these arguments in the code chunk tag:  
+
+```
+```{r, fig.height=4, fig.align='center', fig.cap='...'}
+
+```
 
 ## Learning Objectives Formatting
 
