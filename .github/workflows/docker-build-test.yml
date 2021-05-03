@@ -42,4 +42,7 @@ jobs:
       - name: Build Docker image
         run: |
           echo ${{ secrets.GIT_TOKEN }} > docker/git_token.txt
-          docker build -< docker/Dockerfile -t jhudsl/course_template
+          /usr/bin/docker buildx build --tag jhudsl/course_template:latest  \
+          --cache-from type=local,src=/tmp/.buildx-cache  \
+          --cache-to type=local,dest=/tmp/.buildx-cache \
+          --file docker/Dockerfile docker
