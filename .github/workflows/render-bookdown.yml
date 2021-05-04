@@ -49,10 +49,7 @@ jobs:
       - name: Build Docker image
         run: |
           echo ${{ secrets.GIT_TOKEN }} > docker/git_token.txt
-          docker build --tag jhudsl/course_template:latest  \
-          --cache-from type=local,src=/tmp/.buildx-cache  \
-          --cache-to type=local,dest=/tmp/.buildx-cache \
-          --file docker/Dockerfile docker
+          docker build --file docker/Dockerfile -t jhudsl/course_template:latest 
 
       # Run bookdown rendering
       - name: Run bookdown render
