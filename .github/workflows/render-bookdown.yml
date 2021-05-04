@@ -43,12 +43,7 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Get Token
-        env:
-          GOOGLE_SLIDE_ID: ${{ secrets.GOOGLE_SLIDE_ID }}
-        run: |
-          echo ${{ secrets.GIT_TOKEN }} > docker/git_token.txt
-          echo "$GOOGLE_SLIDE_ID"
-          "$GOOGLE_SLIDE_ID"
+        run: echo ${{ secrets.GIT_TOKEN }} > docker/git_token.txt
 
       # Build docker image
       - name: Build Docker image
