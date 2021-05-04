@@ -23,12 +23,14 @@ option_list <- list(
 # Parse options
 opt <- parse_args(OptionParser(option_list = option_list))
 
+opt$token <- as.character(readLines(opt$token))
+
 # set up list of packages to install
 opt$packages <- unlist(strsplit(opt$packages, ", "))
 
 # We want errors not just warnings
 remotes::install_github(opt$packages,
-                        auth_token = readLines(opt$token))
+                        auth_token = opt$token)
 
 # Remove the file after we are done
 file.remove(opt$token)
