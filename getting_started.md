@@ -157,7 +157,8 @@ It will be placed in your local collection of Docker images, managed by Docker (
 Alternatively, if you'd prefer to re-build this image from the Dockerfile locally you can run:
 
 ```
-docker build -< docker/Dockerfile -t jhudsl/course_template
+cd docker
+docker buildx build . -t jhudsl/course_template
 ```
 
 To use the Docker image associated with the course template, first navigate to the the top of this GitHub repository.
@@ -369,7 +370,7 @@ Create an image file with both the project logo on the left and a [black and whi
 To maintain style and attributions for graphics and images, as well as to enable easy updates in the future, please start a new Google Slide document for your course.
 This also allows you to make videos of your slides that can be added to your course.
 
-Each Rmd with images that is a part of your bookdown needs to have this chunk at the beginning so that images are stored properly for Leanpub conversion: 
+Each Rmd with images that is a part of your bookdown needs to have this chunk at the beginning so that images are stored properly for Leanpub conversion:
 `````
 ```{r, include=FALSE}
 fp <- knitr::fig_path()

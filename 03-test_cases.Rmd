@@ -1,26 +1,77 @@
 # Uses cases for Bookdown to Leanpub
 
-```{r, include=FALSE}
-fp <- knitr::fig_path()
-fp <- dirname(fp)
-fp <- paste0("images/", fp, "/")
-print(paste0("figpath is ", fp))
+```{r}
+fp = knitr::fig_path()
+fp = dirname(fp)
+fp = paste0("images/", fp, "/")
 knitr::opts_chunk$set(fig.path = fp)
 ```
 
-Including a figure from the resources.  This shouldn't be an issue in the future
-```{r}
+Including a figure from the resources.  This shouldn't be an issue in the future 
+```{r, out.width="100%", fig.cap = "caption for first figure, we need multiple so make sure it works"}
 knitr::include_graphics("resources/images/itcr_training_network.png")
 ```
 
-```{r}
+
+```{r empty_cap, out.width="100%", fig.alt = "THIS IS AN ALT center align it's a training network", fig.align='center', fig.cap=""}
+knitr::include_graphics("resources/images/itcr_training_network.png")
+```
+
+
+```{r space_caption, out.width="100%", fig.alt = "THIS IS AN ALT center align it's a training network", fig.align='center', fig.cap=" "}
+knitr::include_graphics("resources/images/itcr_training_network.png")
+```
+
+
+```{r cool_stuff, out.width="100%", fig.alt = "center align it's a training network", fig.align='center'}
+knitr::include_graphics("resources/images/itcr_training_network.png")
+```
+
+```{r tools, out.width="100%", fig.alt = "left align it's a tool", fig.align='left'}
+knitr::include_graphics("resources/images/tools.png")
+```
+
+```{r right_tools, out.width="100%", fig.cap="caption for local png", fig.alt = "right align it's a tool", fig.align='right'}
+knitr::include_graphics("resources/images/tools.png")
+```
+
+```{r, fig.cap="caption for url png"}
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/e/e9/Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png")
 ```
 
 
-Including a figure from the resources.  This shouldn't be an issue in the future
-```{r}
+Including a figure from the resources.  This shouldn't be an issue in the future 
+```{r, fig.cap="url cap"}
+knitr::include_url("http://www.youtube.com/embed/9bZkp7q19f0?rel=0")
+```
+
+```{r url_nocap}
 knitr::include_url("http://www.youtube.com/embed/9bZkp7q19f0?rel=0")
 ```
 
 ![Introducing Markua](https://www.youtube.com/watch?t=105&v=VOCYL-FNbr0)
+
+
+```{r, fig.cap="caption for url"}
+knitr::include_url("https://www.youtube.com/watch?v=9bZkp7q19f0?rel=0")
+```
+
+```{r}
+# define GS_ID
+leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo/edit#slide=id.gc87451c247_0_17", overwrite = FALSE)
+```
+
+```{r, fig.alt = "picture of stuff"}
+# define GS_ID
+leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo/edit#slide=id.gc87451c247_0_17", overwrite = FALSE)
+```
+
+
+
+
+```{r, eval = FALSE}
+knitr::include_url("https://docs.google.com/presentation/d/1cd434bkLer_CJ04GzpsZwzeEA9gjc5Ho6QimiHPbyEg/export/png?id=1cd434bkLer_CJ04GzpsZwzeEA9gjc5Ho6QimiHPbyEg&pageid=p")
+```
+
+
+
