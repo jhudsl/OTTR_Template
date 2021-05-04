@@ -49,7 +49,7 @@ jobs:
       - name: Build Docker image
         run: |
           echo ${{ secrets.GIT_TOKEN }} > docker/git_token.txt
-          docker build --file docker/Dockerfile -t jhudsl/course_template:latest 
+          docker build -< docker/Dockerfile -t jhudsl/course_template:latest 
 
       # Run bookdown rendering
       - name: Run bookdown render
