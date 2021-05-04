@@ -29,6 +29,7 @@ RUN Rscript -e  "install.packages( \
       'here', \
       'leanpubr', \
       'optparse', \
+      'oro.nifti', \
       'qpdf', \
       'R.utils', \
       'rprojroot', \

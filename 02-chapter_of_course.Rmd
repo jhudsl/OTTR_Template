@@ -1,11 +1,7 @@
 ---
-title: "Chapter title"
+title: "Chapter of course"
 output: html_document
 ---
-
-```{r include=FALSE}
-knitr::opts_chunk$set(fig.path = "resources/images/<COURSE_TAG>")
-```
 
 ## Learning Objectives
 
@@ -16,7 +12,7 @@ This chapter will cover:
 
 ## Libraries
 
-For this chapter, we'll need the following packages attached.
+For this chapter, we'll need the following packages attached. 
 
 ```{r}
 library(here)
@@ -30,7 +26,7 @@ Text Text
 
 ## Subtopic
 
-Text Text
+Text Text 
 
 ### Code examples
 
@@ -64,9 +60,23 @@ ggsave(file.path(output_dir, "test_ggplot2.png"))
 
 ### Citation examples
 
-We can put citations at the end of a sentence like this [@bookdown2016].
+We can put citations at the end of a sentence like this [@bookdown2016]. 
+Or multiple citations [@bookdown2016, @rmarkdown2018]. 
 
-In text, we can put citations like this @bookdown2016.
+but they need a ; separator [@bookdown2016; @rmarkdown2018]. 
+
+but they need a ; separator [ \[@bookdown2016\](#bookdown2016); \[@rmarkdown2018\](#rmarkdown2018)]. 
+
+In text, we can put citations like this @bookdown2016. 
+
+
+Here's a silly example which may mess up references.
+
+```{r}
+library(oro.nifti)
+img <- oro.nifti::nifti()
+img@.Data
+```
 
 ## Print out session info
 

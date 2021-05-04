@@ -3,14 +3,15 @@ title: "Course Title"
 output: html_document
 ---
 
-# Introduction 
+
+
+# Introduction
 
 ## Motivation
-This course will cover 
+This course will cover
 
-## Target Audience:
-The course is intended for 
+**Target Audience:**  
+The course is intended for
 
-## Curriculum: 
-This course will feature 
-The curriculum will also cover 
+**Curriculum:**  
+The curriculum will cover
