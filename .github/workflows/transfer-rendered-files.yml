@@ -25,7 +25,7 @@ jobs:
       - name: Checkout code from Leanpub repo
         uses: actions/checkout@v2
         with:
-          repository: jhudsl/ITCR_Course_Template_Leanpub
+          repository: jhudsl/DaSL_Course_Template_Leanpub
           token: ${{ secrets.GIT_TOKEN }}
 
       - name: Get docs/ from Bookdown repo
@@ -44,7 +44,7 @@ jobs:
           # Copy over any .bib files too!
           svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/book.bib
           svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/packages.bib
-                    
+
       - name: Create PR with rendered docs files
         uses: peter-evans/create-pull-request@v3
         id: cpr
