@@ -99,7 +99,6 @@ jobs:
             --access_token ${{ secrets.GOOGLE_SLIDE_TOKEN }}
             --refresh_token ${{ secrets.GOOGLE_SLIDE_REFRESH_TOKEN }}
 
-
       # Commit the google slide images just downloaded
       - name: Commit slide images
         run: |
