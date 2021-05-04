@@ -1,0 +1,32 @@
+---
+title: "Chapter of course"
+output: html_document
+---
+
+# Figures
+
+```{r, include=FALSE}
+fp <- knitr::fig_path()
+fp <- dirname(fp)
+fp <- paste0("images/", fp, "/")
+print(paste0("figpath is ", fp))
+knitr::opts_chunk$set(fig.path = fp)
+```
+
+## Make a plot
+
+This is the same code as in chapter 2, but here we can show how setting `knitr` chunks helps us tidy stuff up.
+
+```{r}
+library(here)
+library(ggplot2)
+library(magrittr)
+```
+
+
+```{r}
+iris %>%
+  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) +
+  geom_point() +
+  theme_bw()
+```
