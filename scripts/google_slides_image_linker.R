@@ -67,6 +67,15 @@ option_list <- list(
 # Parse options
 opt <- parse_args(OptionParser(option_list = option_list))
 
+# Check the tokens
+if (is.null(opt$access_token)) {
+  stop("Access token is NULL. Set using --access_token.")
+}
+
+if (is.null(opt$refresh_token)) {
+  stop("Refresh token is NULL. Set using --refresh_token.")
+}
+
 # Get token from tokens
 token <- authorize_from_secret(opt$access_token,
                                opt$refresh_token)
