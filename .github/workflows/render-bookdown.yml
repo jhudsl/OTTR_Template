@@ -75,29 +75,37 @@ jobs:
 
       # Refresh google slide code images
       - name: Run google slide refresh script
+        env:
+          GOOGLE_SLIDE_ID: ${{ secrets.GOOGLE_SLIDE_ID }}
+          GOOGLE_SLIDE_TOKEN: ${{ secrets.GOOGLE_SLIDE_TOKEN }}
+          GOOGLE_SLIDE_REFRESH_TOKEN: ${{ secrets.GOOGLE_SLIDE_REFRESH_TOKEN }}
         run: |
           docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
           jhudsl/course_template:latest \
           Rscript --vanilla scripts/google_slides_image_linker.R \
-            --slides_id ${{ secrets.GOOGLE_SLIDE_ID }} \
+            --slides_id "$GOOGLE_SLIDE_ID" \
             --image_loc _bookdown_files \
             --image_key_dir resources \
             --git_repo ${GITHUB_REPOSITORY} \
             --git_branch ${GITHUB_REF#refs/heads/} \
-            --access_token ${{ secrets.GOOGLE_SLIDE_TOKEN }}
-            --refresh_token ${{ secrets.GOOGLE_SLIDE_REFRESH_TOKEN }}
+            --access_token "$GOOGLE_SLIDE_TOKEN" \
+            --refresh_token "$GOOGLE_SLIDE_REFRESH_TOKEN"
 
       # Refresh google slide code images
       - name: Download slides
+        env:
+          GOOGLE_SLIDE_ID: ${{ secrets.GOOGLE_SLIDE_ID }}
+          GOOGLE_SLIDE_TOKEN: ${{ secrets.GOOGLE_SLIDE_TOKEN }}
+          GOOGLE_SLIDE_REFRESH_TOKEN: ${{ secrets.GOOGLE_SLIDE_REFRESH_TOKEN }}
         run: |
           docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
           jhudsl/course_template:latest \
           Rscript --vanilla scripts/google_slide_png_downloader.R \
-            --slides_id ${{ secrets.GOOGLE_SLIDE_ID }} \
-            --access_token ${{ secrets.GOOGLE_SLIDE_TOKEN }}
-            --refresh_token ${{ secrets.GOOGLE_SLIDE_REFRESH_TOKEN }}
+            --slides_id "$GOOGLE_SLIDE_ID" \
+            --access_token "$GOOGLE_SLIDE_TOKEN" \
+            --refresh_token "$GOOGLE_SLIDE_REFRESH_TOKEN"
 
       # Commit the google slide images just downloaded
       - name: Commit slide images
