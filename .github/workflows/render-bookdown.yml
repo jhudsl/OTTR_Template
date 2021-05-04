@@ -46,9 +46,9 @@ jobs:
         env:
           GOOGLE_SLIDE_ID: ${{ secrets.GOOGLE_SLIDE_ID }}
         run: |
-        echo ${{ secrets.GIT_TOKEN }} > docker/git_token.txt
-        echo "$GOOGLE_SLIDE_ID"
-        "$GOOGLE_SLIDE_ID"
+          echo ${{ secrets.GIT_TOKEN }} > docker/git_token.txt
+          echo "$GOOGLE_SLIDE_ID"
+          "$GOOGLE_SLIDE_ID"
 
       # Build docker image
       - name: Build Docker image
