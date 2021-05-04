@@ -369,12 +369,16 @@ Create an image file with both the project logo on the left and a [black and whi
 To maintain style and attributions for graphics and images, as well as to enable easy updates in the future, please start a new Google Slide document for your course.
 This also allows you to make videos of your slides that can be added to your course.
 
-Each Rmd with images that is a part of your bookdown needs to have thisi chunk at the beginning so that images are stored properly (where `<COURSE_TAG>` is properly replaced with the name of your course which should be identical to its Github repository name - minus the owner tag e.g. `DaSL_Course_Template_Bookdown` NOT `jhudsl/DaSL_Course_Template_Bookdown`).
-
+Each Rmd with images that is a part of your bookdown needs to have this chunk at the beginning so that images are stored properly for Leanpub conversion: 
+`````
+```{r, include=FALSE}
+fp <- knitr::fig_path()
+fp <- dirname(fp)
+fp <- paste0("images/", fp, "/")
+print(paste0("figpath is ", fp))
+knitr::opts_chunk$set(fig.path = fp)
 ```
-```{r include=FALSE}
-knitr::opts_chunk$set(fig.path = "resources/images/<COURSE_TAG>")
-```
+`````
 
 Next, import the appropriate theme (see [this video](https://youtu.be/pNbwF263yY8) for assistance):
 

@@ -1,18 +1,42 @@
 ---
-title: "Chapter of course"
+title: "Chapter title"
 output: html_document
-
 ---
 
 
 
-# Topic of Course
+## Learning Objectives
 
-Text text
+This chapter will cover:  
+
+- {You can use https://www.bu.edu/cme/forms/RSS_forms/tips_for_writing_objectives.pdf to define some learning objectives here}
+- {Another learning objective}
+
+## Libraries
+
+For this chapter, we'll need the following packages attached.
+
+
+```r
+library(here)
+```
+
+```
+## here() starts at /home/rstudio
+```
+
+```r
+library(ggplot2)
+library(magrittr)
+```
+
+# Topic of Section
+
+Text Text
 
 ## Subtopic
 
-Text Text 
+Text Text
 
 ### Code examples
 
@@ -26,13 +50,13 @@ if (!dir.exists(output_dir)) {
 
 
 ```r
-iris %>% 
-  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) + 
-  geom_point() + 
+iris %>%
+  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) +
+  geom_point() +
   theme_bw()
 ```
 
-<img src="02-chapter_of_course_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 
 ```r
@@ -55,9 +79,9 @@ ggsave(file.path(output_dir, "test_ggplot2.png"))
 
 ### Citation examples
 
-We can put citations at the end of a sentence like this [@bookdown2016]. 
+We can put citations at the end of a sentence like this [@bookdown2016].
 
-In text, we can put citations like this @bookdown2016. 
+In text, we can put citations like this @bookdown2016.
 
 ## Print out session info
 
@@ -70,14 +94,14 @@ devtools::session_info()
 ## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
 ##  version  R version 4.0.2 (2020-06-22)
-##  os       Ubuntu 20.04 LTS            
+##  os       Ubuntu 20.04.2 LTS          
 ##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2021-04-07                  
+##  date     2021-05-04                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version date       lib source        
@@ -138,6 +162,3 @@ devtools::session_info()
 ## [1] /usr/local/lib/R/site-library
 ## [2] /usr/local/lib/R/library
 ```
-
-## References 
-
