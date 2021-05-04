@@ -59,7 +59,7 @@ token <- token$refresh()
 rgoogleslides::authorize(token = token)
 
 # Slide id refers the id of the entire slide deck
-slides_id <- opt$slides_id
+slides_id <- as.character(opt$slides_id)
 
 # Test by getting slide properties, but don't print it out
 slide_properties <- get_slides_properties(slides_id)

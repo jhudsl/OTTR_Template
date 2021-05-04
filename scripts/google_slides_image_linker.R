@@ -67,12 +67,18 @@ option_list <- list(
 # Parse options
 opt <- parse_args(OptionParser(option_list = option_list))
 
+# Get token from tokens
+token <- authorize_from_secret(opt$access_token,
+                               opt$refresh_token)
+
+# Refresh token
+token <- token$refresh()
+
 # Authorize using that token
-rgoogleslides::authorize(token = authorize_from_secret(opt$access_token, 
-                                                       opt$refresh_token))
+rgoogleslides::authorize(token = token)
 
 # Slide id refers the id of the entire slide deck
-slides_id <- opt$slides_id
+slides_id <- as.character(opt$slides_id)
 
 # Test by getting slide properties, but don't print it out
 slide_properties <- get_slides_properties(slides_id)
@@ -153,9 +159,7 @@ image_df <- data.frame(image_url) %>%
     is.na(page_id) ~ "no_slide",
     page_id %in% slide_properties$slides$objectId ~ page_id,
     TRUE ~ "no_slide"
-  ))
-
-image_df$page_id %in% slide_properties$slides$objectId
+  )) 
 
 ####################### Add new code output images #############################
 
@@ -179,7 +183,8 @@ if (nrow(images_without_slides) > 0) {
     image_df <- new_slide_images
   } else {
     # If there were images with slides before this, then bind the new to the old
-    image_df <- dplyr::bind_rows(dplyr::filter(image_df, page_id != "no_slide"), 
+    image_df <- dplyr::bind_rows(dplyr::filter(image_df, 
+                                               page_id != "no_slide"), 
                                  new_slide_images)
   }
   # Write this to the file
@@ -200,7 +205,7 @@ refreshed_image_df <- apply(image_df, 1,
       })
 
 # Write refreshed image info to TSV 
-dplyr::bind_rows(refreshed_image_df) %>% 
+refreshed_image_df <- dplyr::bind_rows(refreshed_image_df) %>% 
   readr::write_tsv(image_key_file)
 
 # Print out message
