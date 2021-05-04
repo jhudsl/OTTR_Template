@@ -45,5 +45,5 @@ RUN Rscript --vanilla install_github.R \
   --packages "jhudsl/didactr, jhudsl/leanbuild" \
   --token git_token.txt
 
-# set final workdir for commands
+# Set final workdir for commands
 WORKDIR /home/rstudio

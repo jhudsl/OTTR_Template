@@ -48,11 +48,9 @@ jobs:
       # Build docker image
       - name: Build Docker image
         run: |
-          echo ${{ secrets.GIT_TOKEN }} > docker/git_token.txt
-          /usr/bin/docker buildx build --tag jhudsl/course_template:latest  \
-          --cache-from type=local,src=/tmp/.buildx-cache  \
-          --cache-to type=local,dest=/tmp/.buildx-cache \
-          --file docker/Dockerfile docker
+          cd docker
+          echo ${{ secrets.GIT_TOKEN }} > git_token.txt
+          docker buildx build . -t jhudsl/course_template:latest
 
       # Run bookdown rendering
       - name: Run bookdown render
@@ -75,7 +73,7 @@ jobs:
         run: |
           docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
-          jhudsl/course_template \
+          jhudsl/course_template:latest \
           Rscript --vanilla scripts/google_slides_image_linker.R \
             --slides_id ${{ secrets.GOOGLE_SLIDE_ID }} \
             --image_loc _bookdown_files \
@@ -90,7 +88,7 @@ jobs:
         run: |
           docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
-          jhudsl/course_template \
+          jhudsl/course_template:latest \
           Rscript --vanilla scripts/google_slide_png_downloader.R \
             --slides_id ${{ secrets.GOOGLE_SLIDE_ID }} \
             --access_token ${{ secrets.GOOGLE_SLIDE_TOKEN }}
