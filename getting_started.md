@@ -31,6 +31,7 @@ _Background information_:
   - [Linking to Leanpub repository](#linking-to-leanpub-repository)
   - [Style guide](#style-guide)
   - [Spell check](#spell-check)
+  - [Google Slide Github Actions](#google-slide-github-actions)
   - [Running spell check and styler manually](#running-spell-check-and-styler-manually)
   - [URL Checking](#url-checking)
   - [Adding logo](#adding-logo)
@@ -196,13 +197,6 @@ docker pull jhudsl/course_template
 
 This pulls the course_template image from Docker Hub and copies it to your computer.
 It will be placed in your local collection of Docker images, managed by Docker (not in your pwd).
-
-Alternatively, if you'd prefer to re-build this image from the Dockerfile locally you can run:
-
-```
-cd docker
-docker buildx build . -t jhudsl/course_template
-```
 
 To use the Docker image associated with the course template, first navigate to the the top of this GitHub repository.
 Now you can start up the Docker container using the command below.
@@ -378,6 +372,16 @@ Go to the `resources/dictionary.txt` file.
 Open the file and add the new 'word' to its appropriate place (the words are in alphabetical order).
 Then commit the changes to `resources/dictionary.txt` to your branch and this should make the spell check status check pass.
 
+### Google Slide Github Actions
+
+There are two actions ran in `render-bookdown.yml` that attempt to keep Google Slides updated:
+Note that the steps in [Google Slide related Secrets](#google-slide-related-secrets) need to be followed in order for these to properly run.
+
+1) `google_slides_image_linker.R` makes sure any code output images are updated after bookdown is re-rendered.
+2) `google_slide_png_downloader.R` downloads all the slides from the linked Google slide set as PNGs to `resources/gs_slides`.
+
+If you don't wish for either of these actions to occur automatically, you can delete these steps from [`render-bookdown.yml`](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/render-bookdown.yml).
+
 ### Running spell check and styler manually
 
 If you are using the [Docker container](#setting-up-docker-image), or otherwise have the `spelling` and `styler` package installed, you can run spell check and styling locally on all Rmds by running this:
@@ -403,7 +407,6 @@ Currently the logos are saved within the images directory of the resources direc
 The `_output.yml` file adds this as image above the table of contents when the content is rendered with `bookdown`.
 
 **Please replace the URL in the last line of code for the `_output.yml` file with the URL for the GitHub repo for your course.** This will allow people to more easily find how out how you created your course. Otherwise, they will be directed to this template.
-
 
 ## Setting Up Images and Graphics
 
@@ -535,7 +538,7 @@ You can adjust the size, alignment, or caption of the image you can use these ar
 
 `````
 
-It's also okay to use `<img src` for your images if you like but then you need to do still make sure that you have alternative text designated using something like: `<img src="blah.png" alt="SOMETHING">`.
+It's also okay to use `<img src` for your images if you like you but you still need to make sure that you have alternative text designated using something like: `<img src="blah.png" alt="SOMETHING">`.
 
 ## Learning Objectives Formatting
 
