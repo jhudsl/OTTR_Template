@@ -20,6 +20,7 @@ _Background information_:
     - [Set up GitHub pages](#set-up-github-pages)
       - [Set up branches](#set-up-branches)
   - [Set up Github secrets](#set-up-github-secrets)
+    - [Google Slide related Secrets](#google-slide-related-secrets)
 - [Setting up the Docker image](#setting-up-the-docker-image)
   - [Starting a new Docker image](#starting-a-new-docker-image)
   - [Adding packages to the Dockerfile](#adding-packages-to-the-dockerfile)
@@ -30,13 +31,15 @@ _Background information_:
   - [Linking to Leanpub repository](#linking-to-leanpub-repository)
   - [Style guide](#style-guide)
   - [Spell check](#spell-check)
+  - [Google Slide Github Actions](#google-slide-github-actions)
   - [Running spell check and styler manually](#running-spell-check-and-styler-manually)
   - [URL Checking](#url-checking)
   - [Adding logo](#adding-logo)
 - [Setting Up Images and Graphics](#setting-up-images-and-graphics)
-- [Adding images and graphics in text](#adding-images-and-graphics-in-text)
     - [Themes for non-ITCR projects:](#themes-for-non-itcr-projects)
     - [Themes for ITCR project:](#themes-for-itcr-project)
+  - [Accessibility](#accessibility)
+- [Adding images and graphics in text](#adding-images-and-graphics-in-text)
 - [Learning Objectives Formatting](#learning-objectives-formatting)
 - [Bookdown Rendering](#bookdown-rendering)
 
@@ -104,7 +107,7 @@ The Github actions that this repository uses needs four Github secrets set up.
 
 It's important that these are set up and named exactly what they are below in order for Github actions to work correctly.
 
-![Github secrets](resources/git-secret.png)
+![Github secrets](resources/git-secrets.png)
 
 To set up these repository secrets, on your repository's main Github page, go to `Settings` and scroll down to see `Secrets` on the left side menu bar.
 
@@ -121,6 +124,45 @@ _Name: `GIT_TOKEN`_:
 For `value`: Create a personal access token [following these instructions](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token#creating-a-token). Underneath `Select scopes`, check both `repo` and `workflow`.
 Then copy the PAT and save as the value.
 
+#### Google Slide related Secrets
+
+Before following these steps, you'll need to set up the Google slides following the [instructions here](#adding-images-and-graphics).
+
+To set up Google Slides Github Actions, you'll need to do some set up, but you will only have to do this once.
+
+You'll need three secrets and you'll need to run some steps in your local R/RStudio _outside of Docker_ to get some of them.
+
+Install the package, `rgoogleslides` if you have not before.
+```
+install.packages("rgoogleslides")
+```
+Then, run the following:
+It will open up a browser and ask you to sign in
+```
+token <- rgoogleslides::authorize()
+```
+
+There are two tokens you'll need, an `ACCESS` token and a `REFRESH` token.
+Once you've run the above steps you can get these tokens by running for the `ACCESS` token:
+```
+token$credentials$access_token
+```
+and for the `REFRESH` token:
+```
+token$credentials$refresh_token
+```
+
+Now to set up these as Github secrets, on your repository's main Github page, go to `Settings` and scroll down to see `Secrets` on the left side menu bar.
+Click the `New repository secret` button and set each as follows, clicking `Add secret` as you fill each in appropriately:  
+
+_Name: `GOOGLE_SLIDE_ACCESS_TOKEN`_:  
+For `value`: paste the output from `token$credentials$access_token` from the steps above.
+
+_Name: `GOOGLE_SLIDE_REFRESH_TOKEN`_:  
+For `value`: paste the output from `token$credentials$access_token` from the steps above.
+
+Lastly, set your Google Slide ID:
+
 _Name: `GOOGLE_SLIDE_ID`_:  
 For `value`: set the presentation ID of your main Google Slides for this course.
 Set up the Google slides following the [instructions here](#adding-images-and-graphics).
@@ -128,6 +170,8 @@ The [<presentationID> is in the URL](https://developers.google.com/slides/how-to
 ```
 https://docs.google.com/presentation/d/<presentationId>/edit
 ```
+
+Once you click `Save` for all of these, you should be all set.
 
 ## Setting up the Docker image
 
@@ -153,13 +197,6 @@ docker pull jhudsl/course_template
 
 This pulls the course_template image from Docker Hub and copies it to your computer.
 It will be placed in your local collection of Docker images, managed by Docker (not in your pwd).
-
-Alternatively, if you'd prefer to re-build this image from the Dockerfile locally you can run:
-
-```
-cd docker
-docker buildx build . -t jhudsl/course_template
-```
 
 To use the Docker image associated with the course template, first navigate to the the top of this GitHub repository.
 Now you can start up the Docker container using the command below.
@@ -335,6 +372,16 @@ Go to the `resources/dictionary.txt` file.
 Open the file and add the new 'word' to its appropriate place (the words are in alphabetical order).
 Then commit the changes to `resources/dictionary.txt` to your branch and this should make the spell check status check pass.
 
+### Google Slide Github Actions
+
+There are two actions ran in `render-bookdown.yml` that attempt to keep Google Slides updated:
+Note that the steps in [Google Slide related Secrets](#google-slide-related-secrets) need to be followed in order for these to properly run.
+
+1) `google_slides_image_linker.R` makes sure any code output images are updated after bookdown is re-rendered.
+2) `google_slide_png_downloader.R` downloads all the slides from the linked Google slide set as PNGs to `resources/gs_slides`.
+
+If you don't wish for either of these actions to occur automatically, you can delete these steps from [`render-bookdown.yml`](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/render-bookdown.yml).
+
 ### Running spell check and styler manually
 
 If you are using the [Docker container](#setting-up-docker-image), or otherwise have the `spelling` and `styler` package installed, you can run spell check and styling locally on all Rmds by running this:
@@ -360,7 +407,6 @@ Currently the logos are saved within the images directory of the resources direc
 The `_output.yml` file adds this as image above the table of contents when the content is rendered with `bookdown`.
 
 **Please replace the URL in the last line of code for the `_output.yml` file with the URL for the GitHub repo for your course.** This will allow people to more easily find how out how you created your course. Otherwise, they will be directed to this template.
-
 
 ## Setting Up Images and Graphics
 
@@ -465,21 +511,34 @@ Images should be stored in `resources/images/` or you can link directly to your 
 
 Also add notes to each slide describing the text or images of the slide to allow for the content to be accessible to vision impaired individuals, as this can be converted to audio when creating videos.
 
+### Accessibility
+
+Each slide and image added to the courses needs to be accessible.
+There are two things to check for each slide:
+
+- [ ] Each slide is described in the notes of the slide so learners relying on a screen reader can access the content. See https://lastcallmedia.com/blog/accessible-comics for more guidance on this.
+
+- [ ] The color palette choices of the slide are contrasted in a way that is friendly to those with color vision deficiencies.
+You can check this using [Color Oracle](https://colororacle.org/).
+
 ## Adding images and graphics in text
 
 All images should be included in your Google Slides with the captions we discussed above.
 To add images in the text in your Rmd, use the following function within an [R code chunk](https://bookdown.org/yihui/rmarkdown/r-code.html).
 
-```
+`````
+```{r, fig.alt="Alternative text",}
 leanbuild::include_slide(<google_slide_url>)
-```
-
+`````
+_You must define `fig.alt` in the code chunk options/parameters to pass to `knitr`._
 You can adjust the size, alignment, or caption of the image you can use these arguments in the code chunk tag:  
 
-```
-```{r, fig.height=4, fig.align='center', fig.cap='...'}
+`````
+```{r, fig.alt="Alternative text", fig.height=4, fig.align='center', fig.cap='...'}
 
-```
+`````
+
+It's also okay to use `<img src` for your images if you like you but you still need to make sure that you have alternative text designated using something like: `<img src="blah.png" alt="SOMETHING">`.
 
 ## Learning Objectives Formatting
 
