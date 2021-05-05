@@ -399,7 +399,7 @@ This file should not be pushed to the GitHub repository (it is in the gitignore 
 If it fails, you'll need to go the `Actions` tab of this repository, then find the GitHub `check_urls` job for the last commit you just pushed.
 Click on `check_urls` and the specific step of `Check URLs` to see a print out of the URLs tested.
 
-If the URL checker is trying to check something that isn't really a URL or doesn't need to be checked, open up the GitHub actions file: `.github/workflows/url-checker.yml` and add the imposter URL on to the `blacklist` argument, to the end of the quote with a comma in between.
+If the URL checker is failing on something that isn't really a URL or doesn't need to be checked, open up the GitHub actions file: `.github/workflows/url-checker.yml` and add the imposter URL on to the `exclude-urls:` argument with a comma in between.
 
 ### Adding logo
 
