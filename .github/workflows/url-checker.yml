@@ -29,7 +29,7 @@ jobs:
           print_all: false
 
           # A comma separated links to exclude during URL checks
-          exclude_urls: 01-intro.md,about.md,doi2bib.org,https://jhudatascience.org/{Course_Name}}
+          exclude_urls: https://jhudatascience.org/{Course_Name}}
 
           # choose if the force pass or not
           force_pass : true
