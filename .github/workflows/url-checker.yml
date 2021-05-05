@@ -9,6 +9,7 @@ on:
     branches: [ main ]
 
 # Here's the main action of checking URLs
+jobs:
   build:
     runs-on: ubuntu-latest
 
@@ -19,18 +20,17 @@ on:
       - name: URLs-checker
         uses: urlstechie/urlchecker-action@master
         with:
+          # Delete the cloned repository after running URLchecked (default is false)
+          cleanup: true
 
-        # Delete the cloned repository after running URLchecked (default is false)
-        cleanup: true
+          # A comma-separated list of file types to cover in the URL checks
+          file_types: .Rmd
 
-        # A comma-separated list of file types to cover in the URL checks
-        file_types: .Rmd
+          # Choose whether to include file with no URLs in the prints.
+          print_all: false
 
-        # Choose whether to include file with no URLs in the prints.
-        print_all: false
+          # A comma separated links to exclude during URL checks
+          exclude_urls: 01-intro.md,about.md,doi2bib.org,https://jhudatascience.org/{Course_Name}}
 
-        # A comma separated links to exclude during URL checks
-        exclude_urls: 01-intro.md,about.md,doi2bib.org,https://jhudatascience.org/{Course_Name}}
-
-        # choose if the force pass or not
-        force_pass : true
+          # choose if the force pass or not
+          force_pass : true
