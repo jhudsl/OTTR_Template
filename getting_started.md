@@ -20,6 +20,7 @@ _Background information_:
     - [Set up GitHub pages](#set-up-github-pages)
       - [Set up branches](#set-up-branches)
   - [Set up Github secrets](#set-up-github-secrets)
+    - [Google Slide related Secrets](#google-slide-related-secrets)
 - [Setting up the Docker image](#setting-up-the-docker-image)
   - [Starting a new Docker image](#starting-a-new-docker-image)
   - [Adding packages to the Dockerfile](#adding-packages-to-the-dockerfile)
@@ -34,9 +35,10 @@ _Background information_:
   - [URL Checking](#url-checking)
   - [Adding logo](#adding-logo)
 - [Setting Up Images and Graphics](#setting-up-images-and-graphics)
-- [Adding images and graphics in text](#adding-images-and-graphics-in-text)
     - [Themes for non-ITCR projects:](#themes-for-non-itcr-projects)
     - [Themes for ITCR project:](#themes-for-itcr-project)
+  - [Accessibility](#accessibility)
+- [Adding images and graphics in text](#adding-images-and-graphics-in-text)
 - [Learning Objectives Formatting](#learning-objectives-formatting)
 - [Bookdown Rendering](#bookdown-rendering)
 
@@ -506,21 +508,34 @@ Images should be stored in `resources/images/` or you can link directly to your 
 
 Also add notes to each slide describing the text or images of the slide to allow for the content to be accessible to vision impaired individuals, as this can be converted to audio when creating videos.
 
+### Accessibility
+
+Each slide and image added to the courses needs to be accessible.
+There are two things to check for each slide:
+
+- [ ] Each slide is described in the notes of the slide so learners relying on a screen reader can access the content. See https://lastcallmedia.com/blog/accessible-comics for more guidance on this.
+
+- [ ] The color palette choices of the slide are contrasted in a way that is friendly to those with color vision deficiencies.
+You can check this using [Color Oracle](https://colororacle.org/).
+
 ## Adding images and graphics in text
 
 All images should be included in your Google Slides with the captions we discussed above.
 To add images in the text in your Rmd, use the following function within an [R code chunk](https://bookdown.org/yihui/rmarkdown/r-code.html).
 
-```
+`````
+```{r, fig.alt="Alternative text",}
 leanbuild::include_slide(<google_slide_url>)
-```
-
+`````
+_You must define `fig.alt` in the code chunk options/parameters to pass to `knitr`._
 You can adjust the size, alignment, or caption of the image you can use these arguments in the code chunk tag:  
 
-```
-```{r, fig.height=4, fig.align='center', fig.cap='...'}
+`````
+```{r, fig.alt="Alternative text", fig.height=4, fig.align='center', fig.cap='...'}
 
-```
+`````
+
+It's also okay to use `<img src` for your images if you like but then you need to do still make sure that you have alternative text designated using something like: `<img src="blah.png" alt="SOMETHING">`.
 
 ## Learning Objectives Formatting
 
