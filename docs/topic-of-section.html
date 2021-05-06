@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Topic of Section | Course Name</title>
+  <title>Chapter2 Topic of Section | Course Name</title>
   <meta name="description" content="Description about Course/Book." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Topic of Section | Course Name" />
+  <meta property="og:title" content="Chapter2 Topic of Section | Course Name" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Topic of Section | Course Name" />
+  <meta name="twitter:title" content="Chapter2 Topic of Section | Course Name" />
   
   <meta name="twitter:description" content="Description about Course/Book." />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Author Name" />
 
 
-<meta name="date" content="2021-05-04" />
+<meta name="date" content="2021-05-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="introduction.html"/>
-<link rel="next" href="about-the-authors.html"/>
+<link rel="next" href="uses-cases-for-bookdown-to-leanpub.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +119,8 @@ code span.vs { color: #4e9a06; } /* VerbatimString */
 code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
 </head>
 
 <body>
@@ -129,7 +133,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<a href="https://www.itcrtraining.org/"><img src="https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/images/logo.png" style="padding-top: 8px; padding-left: 8px; padding-right: 15px"/></a>
+<a href="http://jhudatascience.org/"><img src="https://jhudatascience.org/images/dasl.png" style=" width: 80%; padding-left: 40px; padding-top: 8px; vertical-align: top "</a>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this Course</a></li>
@@ -147,9 +151,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="topic-of-section.html"><a href="topic-of-section.html#print-out-session-info"><i class="fa fa-check"></i><b>2.2</b> Print out session info</a></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="uses-cases-for-bookdown-to-leanpub.html"><a href="uses-cases-for-bookdown-to-leanpub.html"><i class="fa fa-check"></i><b>3</b> Uses cases for Bookdown to Leanpub</a></li>
+<li class="chapter" data-level="4" data-path="figures.html"><a href="figures.html"><i class="fa fa-check"></i><b>4</b> Figures</a><ul>
+<li class="chapter" data-level="4.1" data-path="figures.html"><a href="figures.html#make-a-plot"><i class="fa fa-check"></i><b>4.1</b> Make a plot</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="about-the-authors.html"><a href="about-the-authors.html"><i class="fa fa-check"></i>About the Authors</a></li>
 <li class="divider"></li>
-<p style="text-align:center;"> <a href="https://github.com/jhudsl/DaSL_Course_Template_Bookdown" target="blank" > Content published with</a> <a href="https://bookdown.org/" target="blank"> bookdown</a> </p>
+<p style="text-align:center;"> <a href="https://github.com/jhudsl/DaSL_Course_Template_Bookdown" target="blank" > This content was published with</a> <a href="https://bookdown.org/" target="blank"> bookdown by:</a> </p>
+<p style="text-align:center;"> <a href="http://jhudatascience.org/"> The Johns Hopkins Data Science Lab </a></p>
+<p style="text-align:center; font-size: 12px;"> <a href="https://github.com/rstudio4edu/rstudio4edu-book/"> Style adapted from: rstudio4edu-book </a> <a href ="https://creativecommons.org/licenses/by/2.0/"> (CC-BY 2.0) </a></p>
 </ul>
 
       </nav>
@@ -167,8 +177,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
+<head>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=10.0,initial-scale=1.0">
+  <!--script src="https://kit.fontawesome.com/6a26f47516.js"></script-->
+  <!--<script src="assets/hideOutput.js"></script>-->
+  <link href="assets/style.css" rel="stylesheet">
+</head>
+        
+
+
+<div class="hero-image-container"> 
+  <img class= "hero-image" src="assets/dasl_main_image.png">
+</div>
 <div id="topic-of-section" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Topic of Section</h1>
+<h1><span class="header-section-number">Chapter2</span> Topic of Section</h1>
 <p>Text Text</p>
 <div id="subtopic" class="section level2">
 <h2><span class="header-section-number">2.1</span> Subtopic</h2>
@@ -183,7 +205,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-2"><a href="topic-of-section.html#cb5-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(Sepal.Length, Sepal.Width, <span class="dt">color =</span> Species)) <span class="op">+</span></span>
 <span id="cb5-3"><a href="topic-of-section.html#cb5-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb5-4"><a href="topic-of-section.html#cb5-4"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="02-chapter_of_course_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="topic-of-section.html#cb6-1"></a><span class="kw">ggsave</span>(<span class="kw">file.path</span>(output_dir, <span class="st">&quot;test_ggplot2.png&quot;</span>))</span></code></pre></div>
 <pre><code>## Saving 7 x 5 in image</code></pre>
 </div>
@@ -201,13 +223,26 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="citation-examples" class="section level3">
 <h3><span class="header-section-number">2.1.4</span> Citation examples</h3>
-<p>We can put citations at the end of a sentence like this <span class="citation">(Xie <a href="#ref-bookdown2016" role="doc-biblioref">2016</a>)</span>.</p>
+<p>We can put citations at the end of a sentence like this <span class="citation">(Xie <a href="#ref-bookdown2016" role="doc-biblioref">2016</a>)</span>.
+Or multiple citations <span class="citation">(Xie <a href="#ref-bookdown2016" role="doc-biblioref">2016</a>, @rmarkdown2018)</span>.</p>
+<p>but they need a ; separator <span class="citation">(Xie <a href="#ref-bookdown2016" role="doc-biblioref">2016</a>; Xie, Allaire, and Grolemund <a href="#ref-rmarkdown2018" role="doc-biblioref">2018</a>)</span>.</p>
+<p>but they need a ; separator [ <span class="math display">\[@bookdown2016\]</span>(#bookdown2016); <span class="math display">\[@rmarkdown2018\]</span>(#rmarkdown2018)].</p>
 <p>In text, we can put citations like this <span class="citation">Xie (<a href="#ref-bookdown2016" role="doc-biblioref">2016</a>)</span>.</p>
+<p>Here’s a silly example which may mess up references.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="topic-of-section.html#cb8-1"></a><span class="kw">library</span>(oro.nifti)</span></code></pre></div>
+<pre><code>## oro.nifti 0.11.0</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="topic-of-section.html#cb10-1"></a>img &lt;-<span class="st"> </span>oro.nifti<span class="op">::</span><span class="kw">nifti</span>()</span>
+<span id="cb10-2"><a href="topic-of-section.html#cb10-2"></a>img<span class="op">@</span>.Data</span></code></pre></div>
+<pre><code>## , , 1, 1
+## 
+##      [,1]
+## [1,]    0</code></pre>
 </div>
 </div>
 <div id="print-out-session-info" class="section level2">
 <h2><span class="header-section-number">2.2</span> Print out session info</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="topic-of-section.html#cb8-1"></a>devtools<span class="op">::</span><span class="kw">session_info</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="topic-of-section.html#cb12-1"></a>devtools<span class="op">::</span><span class="kw">session_info</span>()</span></code></pre></div>
+<pre><code>## Error in get(genname, envir = envir) : object &#39;testthat_print&#39; not found</code></pre>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
 ##  version  R version 4.0.2 (2020-06-22)
@@ -218,62 +253,72 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2021-05-04                  
+##  date     2021-05-06                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version date       lib source        
+##  abind         1.4-5   2016-07-21 [1] RSPM (R 4.0.3)
 ##  assertthat    0.2.1   2019-03-21 [1] RSPM (R 4.0.3)
-##  backports     1.1.10  2020-09-15 [1] RSPM (R 4.0.2)
-##  bookdown      0.20    2020-06-23 [1] RSPM (R 4.0.2)
-##  callr         3.4.4   2020-09-07 [1] RSPM (R 4.0.2)
-##  cli           2.0.2   2020-02-28 [1] RSPM (R 4.0.0)
+##  bitops        1.0-6   2013-08-17 [1] RSPM (R 4.0.3)
+##  blob          1.2.1   2020-01-20 [1] RSPM (R 4.0.3)
+##  bookdown      0.22    2021-04-22 [1] CRAN (R 4.0.2)
+##  cachem        1.0.4   2021-02-13 [1] CRAN (R 4.0.2)
+##  callr         3.7.0   2021-04-20 [1] CRAN (R 4.0.2)
+##  cli           2.5.0   2021-04-26 [1] CRAN (R 4.0.2)
 ##  colorspace    1.4-1   2019-03-18 [1] RSPM (R 4.0.0)
-##  crayon        1.3.4   2017-09-16 [1] RSPM (R 4.0.0)
-##  desc          1.2.0   2018-05-01 [1] RSPM (R 4.0.3)
+##  crayon        1.4.1   2021-02-08 [1] CRAN (R 4.0.2)
+##  DBI           1.1.0   2019-12-15 [1] RSPM (R 4.0.0)
+##  desc          1.3.0   2021-03-05 [1] CRAN (R 4.0.2)
 ##  devtools      2.3.2   2020-09-18 [1] RSPM (R 4.0.3)
-##  digest        0.6.25  2020-02-23 [1] RSPM (R 4.0.0)
-##  dplyr         1.0.2   2020-08-18 [1] RSPM (R 4.0.2)
-##  ellipsis      0.3.1   2020-05-15 [1] RSPM (R 4.0.3)
+##  digest        0.6.27  2020-10-24 [1] CRAN (R 4.0.2)
+##  dplyr         1.0.6   2021-05-05 [1] CRAN (R 4.0.2)
+##  ellipsis      0.3.2   2021-04-29 [1] CRAN (R 4.0.2)
 ##  evaluate      0.14    2019-05-28 [1] RSPM (R 4.0.3)
-##  fansi         0.4.1   2020-01-08 [1] RSPM (R 4.0.0)
+##  fansi         0.4.2   2021-01-15 [1] CRAN (R 4.0.2)
 ##  farver        2.0.3   2020-01-16 [1] RSPM (R 4.0.3)
+##  fastmap       1.1.0   2021-01-25 [1] CRAN (R 4.0.2)
 ##  fs            1.5.0   2020-07-31 [1] RSPM (R 4.0.3)
-##  generics      0.0.2   2018-11-29 [1] RSPM (R 4.0.0)
+##  generics      0.1.0   2020-10-31 [1] CRAN (R 4.0.2)
 ##  ggplot2     * 3.3.2   2020-06-19 [1] RSPM (R 4.0.1)
 ##  glue          1.4.2   2020-08-27 [1] RSPM (R 4.0.3)
 ##  gtable        0.3.0   2019-03-25 [1] RSPM (R 4.0.3)
 ##  here        * 0.1     2017-05-28 [1] RSPM (R 4.0.0)
-##  htmltools     0.5.0   2020-06-16 [1] RSPM (R 4.0.1)
-##  knitr         1.30    2020-09-22 [1] RSPM (R 4.0.2)
+##  highr         0.9     2021-04-16 [1] CRAN (R 4.0.2)
+##  htmltools     0.5.1.1 2021-01-22 [1] CRAN (R 4.0.2)
+##  knitr         1.33    2021-04-24 [1] CRAN (R 4.0.2)
 ##  labeling      0.3     2014-08-23 [1] RSPM (R 4.0.0)
-##  lifecycle     0.2.0   2020-03-06 [1] RSPM (R 4.0.3)
-##  magrittr    * 1.5     2014-11-22 [1] RSPM (R 4.0.0)
-##  memoise       1.1.0   2017-04-21 [1] RSPM (R 4.0.0)
+##  lifecycle     1.0.0   2021-02-15 [1] CRAN (R 4.0.2)
+##  magrittr    * 2.0.1   2020-11-17 [1] CRAN (R 4.0.2)
+##  memoise       2.0.0   2021-01-26 [1] CRAN (R 4.0.2)
 ##  munsell       0.5.0   2018-06-12 [1] RSPM (R 4.0.3)
-##  pillar        1.4.6   2020-07-10 [1] RSPM (R 4.0.2)
+##  oro.nifti   * 0.11.0  2020-09-08 [1] RSPM (R 4.0.2)
+##  pillar        1.6.0   2021-04-13 [1] CRAN (R 4.0.2)
 ##  pkgbuild      1.1.0   2020-07-13 [1] RSPM (R 4.0.2)
 ##  pkgconfig     2.0.3   2019-09-22 [1] RSPM (R 4.0.3)
 ##  pkgload       1.1.0   2020-05-29 [1] RSPM (R 4.0.3)
 ##  prettyunits   1.1.1   2020-01-24 [1] RSPM (R 4.0.3)
-##  processx      3.4.4   2020-09-03 [1] RSPM (R 4.0.2)
-##  ps            1.3.4   2020-08-11 [1] RSPM (R 4.0.2)
+##  processx      3.5.2   2021-04-30 [1] CRAN (R 4.0.2)
+##  ps            1.6.0   2021-02-28 [1] CRAN (R 4.0.2)
 ##  purrr         0.3.4   2020-04-17 [1] RSPM (R 4.0.3)
-##  R6            2.4.1   2019-11-12 [1] RSPM (R 4.0.0)
+##  R6            2.5.0   2020-10-28 [1] CRAN (R 4.0.2)
+##  Rcpp          1.0.6   2021-01-15 [1] CRAN (R 4.0.2)
 ##  remotes       2.2.0   2020-07-21 [1] RSPM (R 4.0.3)
-##  rlang         0.4.7   2020-07-09 [1] RSPM (R 4.0.2)
-##  rmarkdown     2.4     2020-09-30 [1] RSPM (R 4.0.2)
-##  rprojroot     1.3-2   2018-01-03 [1] RSPM (R 4.0.0)
+##  rlang         0.4.11  2021-04-30 [1] CRAN (R 4.0.2)
+##  rmarkdown     2.7     2021-02-19 [1] CRAN (R 4.0.2)
+##  RNifti        1.2.2   2020-09-07 [1] RSPM (R 4.0.2)
+##  rprojroot     2.0.2   2020-11-15 [1] CRAN (R 4.0.2)
 ##  scales        1.1.1   2020-05-11 [1] RSPM (R 4.0.3)
 ##  sessioninfo   1.1.1   2018-11-05 [1] RSPM (R 4.0.3)
 ##  stringi       1.5.3   2020-09-09 [1] RSPM (R 4.0.3)
 ##  stringr       1.4.0   2019-02-10 [1] RSPM (R 4.0.3)
 ##  testthat      2.3.2   2020-03-02 [1] RSPM (R 4.0.0)
-##  tibble        3.0.3   2020-07-10 [1] RSPM (R 4.0.2)
-##  tidyselect    1.1.0   2020-05-11 [1] RSPM (R 4.0.3)
-##  usethis       1.6.3   2020-09-17 [1] RSPM (R 4.0.2)
-##  vctrs         0.3.4   2020-08-29 [1] RSPM (R 4.0.2)
-##  withr         2.3.0   2020-09-22 [1] RSPM (R 4.0.2)
-##  xfun          0.18    2020-09-29 [1] RSPM (R 4.0.2)
+##  tibble        3.1.1   2021-04-18 [1] CRAN (R 4.0.2)
+##  tidyselect    1.1.1   2021-04-30 [1] CRAN (R 4.0.2)
+##  usethis       2.0.1   2021-02-10 [1] CRAN (R 4.0.2)
+##  utf8          1.2.1   2021-03-12 [1] CRAN (R 4.0.2)
+##  vctrs         0.3.8   2021-04-29 [1] CRAN (R 4.0.2)
+##  withr         2.4.2   2021-04-18 [1] CRAN (R 4.0.2)
+##  xfun          0.22    2021-03-11 [1] CRAN (R 4.0.2)
 ##  yaml          2.2.1   2020-02-01 [1] RSPM (R 4.0.3)
 ## 
 ## [1] /usr/local/lib/R/site-library
@@ -284,16 +329,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-bookdown2016">
-<p>Xie, Yihui. 2016. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.</p>
+<p>Xie, Yihui. 2016. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/bookdown">https://bookdown.org/yihui/bookdown</a>.</p>
+</div>
+<div id="ref-rmarkdown2018">
+<p>Xie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. <em>R Markdown: The Definitive Guide</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/rmarkdown">https://bookdown.org/yihui/rmarkdown</a>.</p>
 </div>
 </div>
+<hr>
+<center> 
+  <div class="footer">
+      All illustrations <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY. </a>
+      <br>
+      All other materials <a href= "https://creativecommons.org/licenses/by/4.0/"> CC-BY </a> unless noted otherwise.
+  </div>
+</center>
             </section>
 
           </div>
         </div>
       </div>
 <a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="about-the-authors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="uses-cases-for-bookdown-to-leanpub.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -316,6 +372,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -343,6 +400,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
