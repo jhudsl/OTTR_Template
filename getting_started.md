@@ -403,10 +403,13 @@ If the URL checker is failing on something that isn't really a URL or doesn't ne
 
 ### Adding logo
 
-Currently the logos are saved within the images directory of the resources directory.
-The `_output.yml` file adds this as image above the table of contents when the content is rendered with `bookdown`.
+Logos for the table of contents are added with the  `_output.yml` file. This adds this an image above the table of contents when the content is rendered with `bookdown`.
 
-**Please replace the URL in the last line of code for the `_output.yml` file with the URL for the GitHub repo for your course.** This will allow people to more easily find how out how you created your course. Otherwise, they will be directed to this template.
+**Please replace the URL in the line 13 of code for the `_output.yml` file with the URL for the GitHub repo for your course.** This will allow people to more easily find how out how you created your course. Otherwise, they will be directed to this template. 
+
+If you are creating an ITCR course for [ITN](https://www.itcrtraining.org/) then delete the `_output.yml` file and rename the `_output-itcr.yml` to be `_output.yml`.  Please modify the lines that link to the http://jhudatascience.org/ with your own website and logo if you are not part of the [jhuDaSL](http://jhudatascience.org/) . Again also replace the URL in line 13 for your repository.
+
+If you wish to create a project specific DaSL bookdown with a different color scheme, the font colors can also be modified in the `assets/style.css` file. 
 
 ## Setting Up Images and Graphics
 
