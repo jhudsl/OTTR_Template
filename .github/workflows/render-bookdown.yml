@@ -12,6 +12,9 @@ name: Build, Render, and Push
 on:
   push:
     branches: [ main ]
+      paths:
+        - '**.Rmd'
+        - docker/Dockerfile
 
 jobs:
   # This workflow contains a single job called "build-all"
@@ -73,7 +76,7 @@ jobs:
           git add -A
           git commit -m 'Render bookdown' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
-          
+
       # Refresh google slide code images
       - name: Run google slide refresh script
         env:
