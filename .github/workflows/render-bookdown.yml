@@ -12,9 +12,9 @@ name: Build, Render, and Push
 on:
   push:
     branches: [ main ]
-      paths:
-        - '**.Rmd'
-        - docker/Dockerfile
+    paths:
+      - '**.Rmd'
+      - docker/Dockerfile
 
 jobs:
   # This workflow contains a single job called "build-all"
