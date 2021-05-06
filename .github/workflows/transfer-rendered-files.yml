@@ -9,12 +9,13 @@ name: Copy docs/* folder from Bookdown to Leanpub repo
 
 # This workflow will run when there are changes to docs/ files in THIS repo
 on:
+  workflow_dispatch:
   # Only run after the render finishes running
-  workflow_run:
-    workflows: [ "Build, Render, and Push" ]
-    branches: [ main ]
-    types:
-      - completed
+  #workflow_run:
+  #  workflows: [ "Build, Render, and Push" ]
+  #  branches: [ main ]
+  #  types:
+  #    - completed
 
 jobs:
   file-bookdown-pr:
