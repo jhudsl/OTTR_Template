@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Course Name</title>
   <meta name="description" content="Description about Course/Book." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Course Name" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Author Name" />
 
 
-<meta name="date" content="2021-05-04" />
+<meta name="date" content="2021-05-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +119,8 @@ code span.vs { color: #4e9a06; } /* VerbatimString */
 code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
 </head>
 
 <body>
@@ -129,7 +133,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<a href="https://www.itcrtraining.org/"><img src="https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/images/logo.png" style="padding-top: 8px; padding-left: 8px; padding-right: 15px"/></a>
+<a href="http://jhudatascience.org/"><img src="https://jhudatascience.org/images/dasl.png" style=" width: 80%; padding-left: 40px; padding-top: 8px; vertical-align: top "</a>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this Course</a></li>
@@ -147,9 +151,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="topic-of-section.html"><a href="topic-of-section.html#print-out-session-info"><i class="fa fa-check"></i><b>2.2</b> Print out session info</a></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="uses-cases-for-bookdown-to-leanpub.html"><a href="uses-cases-for-bookdown-to-leanpub.html"><i class="fa fa-check"></i><b>3</b> Uses cases for Bookdown to Leanpub</a></li>
+<li class="chapter" data-level="4" data-path="figures.html"><a href="figures.html"><i class="fa fa-check"></i><b>4</b> Figures</a><ul>
+<li class="chapter" data-level="4.1" data-path="figures.html"><a href="figures.html#make-a-plot"><i class="fa fa-check"></i><b>4.1</b> Make a plot</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="about-the-authors.html"><a href="about-the-authors.html"><i class="fa fa-check"></i>About the Authors</a></li>
 <li class="divider"></li>
-<p style="text-align:center;"> <a href="https://github.com/jhudsl/DaSL_Course_Template_Bookdown" target="blank" > Content published with</a> <a href="https://bookdown.org/" target="blank"> bookdown</a> </p>
+<p style="text-align:center;"> <a href="https://github.com/jhudsl/DaSL_Course_Template_Bookdown" target="blank" > This content was published with</a> <a href="https://bookdown.org/" target="blank"> bookdown by:</a> </p>
+<p style="text-align:center;"> <a href="http://jhudatascience.org/"> The Johns Hopkins Data Science Lab </a></p>
+<p style="text-align:center; font-size: 12px;"> <a href="https://github.com/rstudio4edu/rstudio4edu-book/"> Style adapted from: rstudio4edu-book </a> <a href ="https://creativecommons.org/licenses/by/2.0/"> (CC-BY 2.0) </a></p>
 </ul>
 
       </nav>
@@ -167,15 +177,35 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
+<head>
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=10.0,initial-scale=1.0">
+  <!--script src="https://kit.fontawesome.com/6a26f47516.js"></script-->
+  <!--<script src="assets/hideOutput.js"></script>-->
+  <link href="assets/style.css" rel="stylesheet">
+</head>
+        
+
+
+<div class="hero-image-container"> 
+  <img class= "hero-image" src="assets/dasl_main_image.png">
+</div>
 <div id="header">
 <h1 class="title">Course Name</h1>
 <p class="author"><em>Author Name</em></p>
-<p class="date"><em>2021-05-04</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-05-06</em></p>
 </div>
 <div id="about-this-course" class="section level1 unnumbered">
 <h1>About this Course</h1>
 
 </div>
+<hr>
+<center> 
+  <div class="footer">
+      All illustrations <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY. </a>
+      <br>
+      All other materials <a href= "https://creativecommons.org/licenses/by/4.0/"> CC-BY </a> unless noted otherwise.
+  </div>
+</center>
             </section>
 
           </div>
@@ -205,6 +235,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -232,6 +263,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
