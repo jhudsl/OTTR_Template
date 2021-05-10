@@ -32,6 +32,9 @@ jobs:
           # use github PAT
           token: ${{ secrets.GIT_TOKEN }}
 
+###### If you aren't ever going to make changes to the Docker image in your
+###### course you can delete this chunk ########################################
+###### START OF DOCKER UPDATE CHUNK
       # Login to Dockerhub
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -60,6 +63,8 @@ jobs:
       - name: Push Docker image
         run: docker push jhudsl/course_template
 
+###### END OF DOCKER UPDATE CHUNK ##############################################
+
       # Run bookdown rendering
       - name: Run bookdown render
         run: |
@@ -76,6 +81,10 @@ jobs:
           git add -A
           git commit -m 'Render bookdown' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
+
+###### If you don't want automatic Google Slide updates for your course you can
+####### delete this chunk ######################################################
+###### START OF GOOGLE SLIDE UPDATE CHUNK
 
       # Refresh google slide code images
       - name: Run google slide refresh script
@@ -119,3 +128,5 @@ jobs:
           git add -A
           git commit -m 'Downloaded Google Slide Images' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
+
+###### END OF GOOGLE SLIDE UPDATE CHUNK
