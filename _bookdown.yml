@@ -1,5 +1,5 @@
 book_filename: "Course_Name"
-chapter_name: "Chapter"
+chapter_name: "Chapter "
 repo: https://github.com/jhudsl/DaSL_Course_Template_Bookdown/
 rmd_files: ["index.Rmd",
             "01-intro.Rmd",
