@@ -12,7 +12,7 @@ This chapter will cover:
 
 ## Libraries
 
-For this chapter, we'll need the following packages attached. 
+For this chapter, we'll need the following packages attached: 
 
 ```{r}
 library(here)
