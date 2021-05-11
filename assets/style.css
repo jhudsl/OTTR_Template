@@ -24,19 +24,19 @@ pre code {
   top: 0;
   left: 0;
   right: 0;
-  height: 390px;
+  height: 220px;
   /*background-image: url("images/books.jpg");*/
   /*background-color: #193a5c;*/
 }
 
 .hero-image {
   width: 100%;
-  height: 390px;
+  height: 220px;
   object-fit: cover;
 }
 
 .page-inner {
-  padding-top: 440px !important;
+  padding-top: 180px !important;
 }
 
 
