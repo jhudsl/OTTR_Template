@@ -12,7 +12,7 @@ This chapter will cover:
 
 ## Libraries
 
-For this chapter, we'll need the following packages attached. 
+For this chapter, we'll need the following packages attached: 
 
 
 ```r
@@ -132,7 +132,7 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2021-05-06                  
+##  date     2021-05-11                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version date       lib source        
@@ -183,12 +183,12 @@ devtools::session_info()
 ##  Rcpp          1.0.6   2021-01-15 [1] CRAN (R 4.0.2)
 ##  remotes       2.2.0   2020-07-21 [1] RSPM (R 4.0.3)
 ##  rlang         0.4.11  2021-04-30 [1] CRAN (R 4.0.2)
-##  rmarkdown     2.7     2021-02-19 [1] CRAN (R 4.0.2)
+##  rmarkdown     2.8     2021-05-07 [1] CRAN (R 4.0.2)
 ##  RNifti        1.2.2   2020-09-07 [1] RSPM (R 4.0.2)
 ##  rprojroot     2.0.2   2020-11-15 [1] CRAN (R 4.0.2)
 ##  scales        1.1.1   2020-05-11 [1] RSPM (R 4.0.3)
 ##  sessioninfo   1.1.1   2018-11-05 [1] RSPM (R 4.0.3)
-##  stringi       1.5.3   2020-09-09 [1] RSPM (R 4.0.3)
+##  stringi       1.6.1   2021-05-10 [1] CRAN (R 4.0.2)
 ##  stringr       1.4.0   2019-02-10 [1] RSPM (R 4.0.3)
 ##  testthat      2.3.2   2020-03-02 [1] RSPM (R 4.0.0)
 ##  tibble        3.1.1   2021-04-18 [1] CRAN (R 4.0.2)
