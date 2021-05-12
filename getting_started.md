@@ -437,16 +437,23 @@ If the URL checker is failing on something that isn't really a URL or doesn't ne
 
 Logos for the table of contents are added with the  `_output.yml` file. This adds this an image above the table of contents when the content is rendered with `bookdown`.
 
-**Please replace the URL in the line 13 of code for the `_output.yml` file with the URL for the GitHub repo for your course.** This will allow people to more easily find how out how you created your course. Otherwise, they will be directed to this template.
+If you are creating a general DaSL course:
+ - Please replace the URL in the line 13 of code for the `_output.yml` file with the URL for the GitHub repo for your course. This will allow people to more easily find how out how you created your course. Otherwise, they will be directed to this template.
 
-If you are creating an ITCR course for [ITN](https://www.itcrtraining.org/) then delete the `_output.yml` file and rename the `_output-itcr.yml` to be `_output.yml`.  Please modify the lines that link to the http://jhudatascience.org/ with your own website and logo if you are not part of the [jhuDaSL](http://jhudatascience.org/) . Again also replace the URL in line 13 for your repository.
+If you are creating a DaSL course for a project other than [ITN](https://www.itcrtraining.org/):
+ - Delete the `_output.yml` file and rename the `_output-itcr.yml` to be `_output.yml`.  
+ - Please modify the lines that link to the http://jhudatascience.org/ with your own website and logo if you are not part of the [jhuDaSL](http://jhudatascience.org/) . 
+- Please replace the URL in the line 13 of code with the URL for the GitHub repo for your course. This will allow people to more easily find how out how you created your course. Otherwise, they will be directed to this template.
+- If you wish to create a different color scheme, the font colors can also be modified along with other aspects in the `assets/style.css` file. Take a look at the `assets/style_ITN.css` file to see what was changed for that color scheme from the `assets/style.css` file.
+- You can replace the logo with the appropriate project logo by replacing `https://www.itcrtraining.org/` with the project website link and ` "https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/images/logo.png"` for the project logo image link in line 11.
 
-If you wish to create a project specific DaSL bookdown with a different color scheme, the font colors can also be modified in the `assets/style.css` file.
+If you are creating an ITCR course for [ITN](https://www.itcrtraining.org/):
+- Delete the `_output.yml` file and rename the `_output-itcr.yml` to be `_output.yml`. 
+- Please modify the lines that link to the http://jhudatascience.org/ with your own website and logo if you are not part of the [jhuDaSL](http://jhudatascience.org/) . 
+- Please replace the URL in the line 13 of code with the URL for the GitHub repo for your course. This will allow people to more easily find how out how you created your course. Otherwise, they will be directed to this template.
+
 
 ## Setting Up Images and Graphics
-
-Also replace the logo link which is currently: `"https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/images/logo.png"` if you are working on a project with the DaSL that has its own project logo.
-Create an image file with both the project logo on the left and a [black and white version of the DaSL logo](https://public.3.basecamp.com/p/gDNxkEZuMRVEkvXukGY96pLe) on the right and host this online on GitHub so that others working on your project can use the link so that the logo will get updated if need be.
 
 To maintain style and attributions for graphics and images, as well as to enable easy updates in the future, please start a new Google Slide document for your course.
 This also allows you to make videos of your slides that can be added to your course.
