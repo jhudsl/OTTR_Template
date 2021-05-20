@@ -32,36 +32,36 @@ jobs:
           # use github PAT
           token: ${{ secrets.GIT_TOKEN }}
 
-###### If you aren't ever going to make changes to the Docker image in your
-###### course you can delete this chunk ########################################
+###### If you will be making changes to the Docker image to make specific to the
+###### course, then highlight this chunk and uncomment it. Can use  ########################################
 ###### START OF DOCKER UPDATE CHUNK
-      # Login to Dockerhub
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      # Set up Docker build
-      - name: Set up Docker Build
-        uses: docker/setup-buildx-action@v1
-
-      - name: Get Token
-        run: echo ${{ secrets.GIT_TOKEN }} > docker/git_token.txt
-
-      # Build docker image
-      - name: Build Docker image
-        uses: docker/build-push-action@v2
-        with:
-          push: false
-          load: true
-          context: docker
-          file: docker/Dockerfile
-          tags: jhudsl/course_template
-
-      # Push the Docker image
-      - name: Push Docker image
-        run: docker push jhudsl/course_template
+      # # Login to Dockerhub
+      # - name: Login to DockerHub
+      #   uses: docker/login-action@v1
+      #   with:
+      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+      #
+      # # Set up Docker build
+      # - name: Set up Docker Build
+      #   uses: docker/setup-buildx-action@v1
+      #
+      # - name: Get Token
+      #   run: echo ${{ secrets.GIT_TOKEN }} > docker/git_token.txt
+      #
+      # # Build docker image
+      # - name: Build Docker image
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     push: false
+      #     load: true
+      #     context: docker
+      #     file: docker/Dockerfile
+      #     tags: jhudsl/course_template
+      #
+      # # Push the Docker image
+      # - name: Push Docker image
+      #   run: docker push jhudsl/course_template
 
 ###### END OF DOCKER UPDATE CHUNK ##############################################
 
@@ -82,51 +82,51 @@ jobs:
           git commit -m 'Render bookdown' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
 
-###### If you don't want automatic Google Slide updates for your course you can
-####### delete this chunk ######################################################
+###### If you want automatic Google Slide updates for your course you should
+###### uncomment this chunk ####################################################
 ###### START OF GOOGLE SLIDE UPDATE CHUNK
-
-      # Refresh google slide code images
-      - name: Run google slide refresh script
-        env:
-          GOOGLE_SLIDE_ID: ${{ secrets.GOOGLE_SLIDE_ID }}
-          GOOGLE_SLIDE_ACCESS_TOKEN: ${{ secrets.GOOGLE_SLIDE_ACCESS_TOKEN }}
-          GOOGLE_SLIDE_REFRESH_TOKEN: ${{ secrets.GOOGLE_SLIDE_REFRESH_TOKEN }}
-        run: |
-          docker run \
-          --mount type=bind,target=/home/rstudio,source=$PWD \
-          jhudsl/course_template:latest \
-          Rscript --vanilla scripts/google_slides_image_linker.R \
-            --slides_id "$GOOGLE_SLIDE_ID" \
-            --image_loc _bookdown_files \
-            --image_key_dir resources \
-            --git_repo ${GITHUB_REPOSITORY} \
-            --git_branch ${GITHUB_REF#refs/heads/} \
-            --access_token "$GOOGLE_SLIDE_ACCESS_TOKEN" \
-            --refresh_token "$GOOGLE_SLIDE_REFRESH_TOKEN"
-
-      # Refresh google slide code images
-      - name: Download slides
-        env:
-          GOOGLE_SLIDE_ID: ${{ secrets.GOOGLE_SLIDE_ID }}
-          GOOGLE_SLIDE_ACCESS_TOKEN: ${{ secrets.GOOGLE_SLIDE_ACCESS_TOKEN }}
-          GOOGLE_SLIDE_REFRESH_TOKEN: ${{ secrets.GOOGLE_SLIDE_REFRESH_TOKEN }}
-        run: |
-          docker run \
-          --mount type=bind,target=/home/rstudio,source=$PWD \
-          jhudsl/course_template:latest \
-          Rscript --vanilla scripts/google_slide_png_downloader.R \
-            --slides_id "$GOOGLE_SLIDE_ID" \
-            --access_token "$GOOGLE_SLIDE_ACCESS_TOKEN" \
-            --refresh_token "$GOOGLE_SLIDE_REFRESH_TOKEN"
-
-      # Commit the google slide images just downloaded
-      - name: Commit slide images
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add -A
-          git commit -m 'Downloaded Google Slide Images' || echo "No changes to commit"
-          git push origin main || echo "No changes to push"
+      #
+      # # Refresh google slide code images
+      # - name: Run google slide refresh script
+      #   env:
+      #     GOOGLE_SLIDE_ID: ${{ secrets.GOOGLE_SLIDE_ID }}
+      #     GOOGLE_SLIDE_ACCESS_TOKEN: ${{ secrets.GOOGLE_SLIDE_ACCESS_TOKEN }}
+      #     GOOGLE_SLIDE_REFRESH_TOKEN: ${{ secrets.GOOGLE_SLIDE_REFRESH_TOKEN }}
+      #   run: |
+      #     docker run \
+      #     --mount type=bind,target=/home/rstudio,source=$PWD \
+      #     jhudsl/course_template:latest \
+      #     Rscript --vanilla scripts/google_slides_image_linker.R \
+      #       --slides_id "$GOOGLE_SLIDE_ID" \
+      #       --image_loc _bookdown_files \
+      #       --image_key_dir resources \
+      #       --git_repo ${GITHUB_REPOSITORY} \
+      #       --git_branch ${GITHUB_REF#refs/heads/} \
+      #       --access_token "$GOOGLE_SLIDE_ACCESS_TOKEN" \
+      #       --refresh_token "$GOOGLE_SLIDE_REFRESH_TOKEN"
+      #
+      # # Refresh google slide code images
+      # - name: Download slides
+      #   env:
+      #     GOOGLE_SLIDE_ID: ${{ secrets.GOOGLE_SLIDE_ID }}
+      #     GOOGLE_SLIDE_ACCESS_TOKEN: ${{ secrets.GOOGLE_SLIDE_ACCESS_TOKEN }}
+      #     GOOGLE_SLIDE_REFRESH_TOKEN: ${{ secrets.GOOGLE_SLIDE_REFRESH_TOKEN }}
+      #   run: |
+      #     docker run \
+      #     --mount type=bind,target=/home/rstudio,source=$PWD \
+      #     jhudsl/course_template:latest \
+      #     Rscript --vanilla scripts/google_slide_png_downloader.R \
+      #       --slides_id "$GOOGLE_SLIDE_ID" \
+      #       --access_token "$GOOGLE_SLIDE_ACCESS_TOKEN" \
+      #       --refresh_token "$GOOGLE_SLIDE_REFRESH_TOKEN"
+      #
+      # # Commit the google slide images just downloaded
+      # - name: Commit slide images
+      #   run: |
+      #     git config --local user.email "actions@github.com"
+      #     git config --local user.name "GitHub Actions"
+      #     git add -A
+      #     git commit -m 'Downloaded Google Slide Images' || echo "No changes to commit"
+      #     git push origin main || echo "No changes to push"
 
 ###### END OF GOOGLE SLIDE UPDATE CHUNK

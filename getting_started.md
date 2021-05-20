@@ -20,6 +20,7 @@ _Background information_:
     - [Set up GitHub pages](#set-up-github-pages)
       - [Set up branches](#set-up-branches)
   - [Set up Github secrets](#set-up-github-secrets)
+    - [Dockerhub related secrets](#dockerhub-related-secrets)
     - [Google Slide related Secrets](#google-slide-related-secrets)
 - [Setting up the Docker image](#setting-up-the-docker-image)
   - [Starting a new Docker image](#starting-a-new-docker-image)
@@ -29,8 +30,8 @@ _Background information_:
 - [Citations](#citations)
 - [Github actions](#github-actions)
   - [About customizing render-bookdown.yml (also called `build-all`)](#about-customizing-render-bookdownyml-also-called-build-all)
-    - [For a course that will NEVER need changes to Docker image](#for-a-course-that-will-never-need-changes-to-docker-image)
-    - [For a course that does not need linking to Google Slides](#for-a-course-that-does-not-need-linking-to-google-slides)
+    - [For a course that will need changes to Docker image](#for-a-course-that-will-need-changes-to-docker-image)
+    - [For a course that needs linking to Google Slides](#for-a-course-that-needs-linking-to-google-slides)
   - [Linking to Leanpub repository](#linking-to-leanpub-repository)
   - [Style guide](#style-guide)
   - [Spell check](#spell-check)
@@ -122,9 +123,9 @@ _Name: `GIT_TOKEN`_:
 For `value`: Create a personal access token [following these instructions](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token#creating-a-token). Underneath `Select scopes`, check both `repo` and `workflow`.
 Then copy the PAT and save as the value.
 
-#### Dockerhub related Secrets
+#### Dockerhub related secrets
 
-Note these are not required if [Docker update Github actions are turned off](#about-customizing-render-bookdownyml-also-called-build-all).
+Note these are not required if [Docker update Github actions are not turned on](#about-customizing-render-bookdownyml-also-called-build-all).
 
 _Name: `DOCKERHUB_USERNAME`_:  
 For `value`: put your login username for https://hub.docker.com/
@@ -135,7 +136,7 @@ You can create this by following [these instructions](https://docs.docker.com/do
 
 #### Google Slide related Secrets
 
-Note these steps are not required if [Google slide update Github actions are turned off](#about-customizing-render-bookdownyml-also-called-build-all).
+Note these steps are not required if [Google slide update Github actions are not turned on](#about-customizing-render-bookdownyml-also-called-build-all).
 
 Before following these steps, you'll need to set up the Google slides following the [instructions here](#adding-images-and-graphics).
 
@@ -249,9 +250,14 @@ For more info on how to use Docker, they have very [extensive documentation here
 
 ### Starting a new Docker image
 
-Should you find that your course needs additional packages beyond what's included in the template, you should probably start a new Docker image.
+Should you find that your course needs additional packages beyond what's included in the template, you should probably start a new Docker image and you'll need to do two things to get this going:
+
+1) You need to uncomment the Docker image update [following these instructions](#for-a-course-that-will-need-changes-to-docker-image).  
+2) You'll need to set up a Dockerhub account and set up Dockerhub secrets [following these instructions](#dockerhub-related-secrets).   
 
 To start up a new Docker image for your new course, you can start with the Dockerfile in this repository and add the additional packages you need using the tips in the next section, but you'll need to change the tag.
+
+If you wish to keep the Docker image underneath the Dockerhub `jhudsl` organization account, you'll need to be granted access to that organization -- contact one of the `jhudsl` team to have them add you. 
 
 ### Adding packages to the Dockerfile
 
@@ -340,23 +346,25 @@ Here's a summary of the Github actions set up in this repository.
 
 Note that `build-all` and `docker-build-test` are not something we recommend requiring for status checks because `docker-build-test` is only run if there are changes to the Dockerfile and `build-all` is only run upon the acceptance and merging of a pull request.
 
-However for simplicity purposes there are two sections this Github action that you can delete if you won't be making changes to the docker image or wanting it to sync to Google Slides.
+However for simplicity purposes there are two sections this Github action that you keep off if you won't be making changes to the Docker image or you won't be wanting it to sync to Google Slides.
 
-#### For a course that will NEVER need changes to Docker image
+#### For a course that will need changes to Docker image
 
-If you know for sure that the course you are working on will never require Docker updates -- this may be the case if the course doesn't any interactive code as a part of the material, you can delete the Docker updating chunk.
-In the file `.github/render-bookdown.yml` you can delete the part marked by
+If you know for sure that the course you are working on will never require Docker updates -- this may be the case if the course doesn't any interactive code as a part of the material, you can delete the Docker updating chunk or keep it commented out.
+
+However, if you will need to make any change to the Docker image specific to the course you are working on, in the file `.github/render-bookdown.yml` you should uncomment the
 `###### START OF DOCKER UPDATE CHUNK` up to the part that says `###### END OF DOCKER UPDATE CHUNK`.
 
-This will make the build-all steps run faster and will make it so you don't have to set up the Docker related Github secrets.
+This will require you to set up the [Github secrets for Docker](#dockerhub-related-secrets).
 
-#### For a course that does not need linking to Google Slides
+#### For a course that needs linking to Google Slides
 
-If you know for sure that the course you are working on does not need Google Slide automatic updating, you can delete the Google Slide updating chunk.
-In the file `.github/render-bookdown.yml` you can delete the part marked by
+If you know for sure that the course you are working on does not need Google Slide automatic updating, you can delete the Google Slide updating chunk or keep it commented out.
+
+However, if you will need to make any change to the Docker image specific to the course you are working on, in the file `.github/render-bookdown.yml` you should uncomment the
 `###### START OF GOOGLE SLIDE UPDATE CHUNK` up to the part that says `###### END OF GOOGLE SLIDE UPDATE CHUNK`.
 
-This will make the `build-all` steps run faster and will make it so you don't have to set up the Google Slide related Github secrets but ALL edits to the Google Slide will need to be done by hand.
+This will require you to set up the [Github secrets for Google Slides](#google-slide-related-secrets).
 
 ### Linking to Leanpub repository
 
@@ -412,7 +420,7 @@ Note that the steps in [Google Slide related Secrets](#google-slide-related-secr
 1) `google_slides_image_linker.R` makes sure any code output images are updated after bookdown is re-rendered.
 2) `google_slide_png_downloader.R` downloads all the slides from the linked Google slide set as PNGs to `resources/gs_slides`.
 
-If you don't wish for either of these actions to occur automatically, you can delete these steps from [`render-bookdown.yml`](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/render-bookdown.yml).
+Note that for the Google Slides actions to run you need to set up the [Google Slides Github actions in the `render-bookdown.yml` file](#for-a-course-that-will-need-changes-to-docker-image) and its [related secrets](#google-slide-related-secrets).
 
 ### Running spell check and styler manually
 
@@ -442,14 +450,14 @@ If you are creating a general DaSL course:
 
 If you are creating a DaSL course for a project other than [ITN](https://www.itcrtraining.org/):
  - Delete the `_output.yml` file and rename the `_output-itcr.yml` to be `_output.yml`.  
- - Please modify the lines that link to the http://jhudatascience.org/ with your own website and logo if you are not part of the [jhuDaSL](http://jhudatascience.org/) . 
+ - Please modify the lines that link to the http://jhudatascience.org/ with your own website and logo if you are not part of the [jhuDaSL](http://jhudatascience.org/) .
 - Please replace the URL in the line 13 of code with the URL for the GitHub repo for your course. This will allow people to more easily find how out how you created your course. Otherwise, they will be directed to this template.
 - If you wish to create a different color scheme, the font colors can also be modified along with other aspects in the `assets/style.css` file. Take a look at the `assets/style_ITN.css` file to see what was changed for that color scheme from the `assets/style.css` file.
 - You can replace the logo with the appropriate project logo by replacing `https://www.itcrtraining.org/` with the project website link and ` "https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/images/logo.png"` for the project logo image link in line 11.
 
 If you are creating an ITCR course for [ITN](https://www.itcrtraining.org/):
-- Delete the `_output.yml` file and rename the `_output-itcr.yml` to be `_output.yml`. 
-- Please modify the lines that link to the http://jhudatascience.org/ with your own website and logo if you are not part of the [jhuDaSL](http://jhudatascience.org/) . 
+- Delete the `_output.yml` file and rename the `_output-itcr.yml` to be `_output.yml`.
+- Please modify the lines that link to the http://jhudatascience.org/ with your own website and logo if you are not part of the [jhuDaSL](http://jhudatascience.org/) .
 - Please replace the URL in the line 13 of code with the URL for the GitHub repo for your course. This will allow people to more easily find how out how you created your course. Otherwise, they will be directed to this template.
 
 
