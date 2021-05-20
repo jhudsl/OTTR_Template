@@ -134,7 +134,7 @@ _Name: `DOCKERHUB_TOKEN`_:
 For `value`: put a access token for Dockerhub.
 You can create this by following [these instructions](https://docs.docker.com/docker-hub/access-tokens/#create-an-access-token).
 
-#### Google Slide related Secrets
+#### Google Slide related secrets
 
 Note these steps are not required if [Google slide update Github actions are not turned on](#about-customizing-render-bookdownyml-also-called-build-all).
 
@@ -257,7 +257,7 @@ Should you find that your course needs additional packages beyond what's include
 
 To start up a new Docker image for your new course, you can start with the Dockerfile in this repository and add the additional packages you need using the tips in the next section, but you'll need to change the tag.
 
-If you wish to keep the Docker image underneath the Dockerhub `jhudsl` organization account, you'll need to be granted access to that organization -- contact one of the `jhudsl` team to have them add you. 
+If you wish to keep the Docker image underneath the Dockerhub `jhudsl` organization account, you'll need to be granted access to that organization -- contact one of the `jhudsl` team to have them add you.
 
 ### Adding packages to the Dockerfile
 
@@ -346,7 +346,7 @@ Here's a summary of the Github actions set up in this repository.
 
 Note that `build-all` and `docker-build-test` are not something we recommend requiring for status checks because `docker-build-test` is only run if there are changes to the Dockerfile and `build-all` is only run upon the acceptance and merging of a pull request.
 
-However for simplicity purposes there are two sections this Github action that you keep off if you won't be making changes to the Docker image or you won't be wanting it to sync to Google Slides.
+However for simplicity purposes there are two sections this Github action that can you keep off if you won't be making changes to the Docker image or you won't be wanting it to sync to Google Slides automatically.
 
 #### For a course that will need changes to Docker image
 

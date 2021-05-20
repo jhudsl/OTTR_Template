@@ -33,7 +33,8 @@ jobs:
           token: ${{ secrets.GIT_TOKEN }}
 
 ###### If you will be making changes to the Docker image to make specific to the
-###### course, then highlight this chunk and uncomment it. Can use  ########################################
+###### course, then highlight this chunk and uncomment it. #####################
+###### Recommend using short cut -- Command and / works for some editors.#######
 ###### START OF DOCKER UPDATE CHUNK
       # # Login to Dockerhub
       # - name: Login to DockerHub
@@ -83,7 +84,8 @@ jobs:
           git push origin main || echo "No changes to push"
 
 ###### If you want automatic Google Slide updates for your course you should
-###### uncomment this chunk ####################################################
+###### uncomment this chunk. ###################################################
+###### Recommend using short cut -- Command and / works for some editors.#######
 ###### START OF GOOGLE SLIDE UPDATE CHUNK
       #
       # # Refresh google slide code images
