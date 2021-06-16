@@ -590,6 +590,8 @@ You can adjust the size, alignment, or caption of the image you can use these ar
 
 It's also okay to use `<img src` for your images if you like you but you still need to make sure that you have alternative text designated using something like: `<img src="blah.png" alt="SOMETHING">`.
 
+Google Slides must be **public**. Share settings must be set to "Anyone on the internet with this link can view". Note that "Private" is the default setting when you make a new presentation.
+
 ## Learning Objectives Formatting
 
 Each chapter should start with Learning objectives!
