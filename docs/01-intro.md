@@ -15,3 +15,5 @@ The course is intended for
 
 **Curriculum:**  
 The curriculum will cover
+
+This course was funded by
