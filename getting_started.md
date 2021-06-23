@@ -467,13 +467,10 @@ To maintain style and attributions for graphics and images, as well as to enable
 This also allows you to make videos of your slides that can be added to your course.
 
 Each Rmd with images that is a part of your bookdown needs to have this chunk at the beginning so that images are stored properly for Leanpub conversion:
+
 `````
 ```{r, include=FALSE}
-fp <- knitr::fig_path()
-fp <- dirname(fp)
-fp <- paste0("images/", fp, "/")
-print(paste0("figpath is ", fp))
-knitr::opts_chunk$set(fig.path = fp)
+leanbuild::set_knitr_image_path()
 ```
 `````
 
