@@ -1,11 +1,9 @@
-# Uses cases for Bookdown to Leanpub
 
-```{r}
-fp <- knitr::fig_path()
-fp <- dirname(fp)
-fp <- paste0("images/", fp, "/")
-knitr::opts_chunk$set(fig.path = fp)
+```{r, include = FALSE}
+leanbuild::set_knitr_image_path()
 ```
+
+# Uses cases for Bookdown to Leanpub
 
 Including a figure from the resources.  This shouldn't be an issue in the future 
 ```{r, out.width="100%", fig.cap = "caption for first figure, we need multiple so make sure it works"}

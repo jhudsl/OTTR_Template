@@ -3,12 +3,9 @@ title: "Course Title"
 output: html_document
 ---
 
-```{r, include=FALSE}
-fp <- knitr::fig_path()
-fp <- dirname(fp)
-fp <- paste0("images/", fp, "/")
-print(paste0("figpath is ", fp))
-knitr::opts_chunk$set(fig.path = fp)
+
+```{r, include = FALSE}
+leanbuild::set_knitr_image_path()
 ```
 
 # Introduction
