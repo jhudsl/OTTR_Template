@@ -3,6 +3,11 @@ title: "Chapter of course"
 output: html_document
 ---
 
+
+```{r, include = FALSE}
+leanbuild::set_knitr_image_path()
+```
+
 ## Learning Objectives
 
 This chapter will cover:  
