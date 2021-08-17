@@ -4,7 +4,7 @@
 
 # Adapted for this jhudsl repository by Candace Savonen Apr 2021
 
-name: Copy docs/* folder from Bookdown to Leanpub repo
+name: Copy files from Bookdown to Leanpub repo
 # Copy rendered notebooks to Leanpub repo
 
 # This workflow will run when there are changes to docs/ files in THIS repo
@@ -45,7 +45,9 @@ jobs:
           # Copy over any .bib files too!
           svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/book.bib
           svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/packages.bib
-
+          
+          # Also need .Rmd files for leanbuild (at least first time... then might need to manually update iframes etc)
+          svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/*.Rmd
       - name: Create PR with rendered docs files
         uses: peter-evans/create-pull-request@v3
         id: cpr
