@@ -53,15 +53,46 @@ iris %>%
 ggsave(file.path(output_dir, "test_ggplot2.png"))
 ```
 
-### Image examples
+### Image example
 
-![](resources/images/itcr_training_network.png)
+```{r, fig.align='center', echo = FALSE, fig.alt= "Major point!! example image"}
+leanbuild::include_slide("https://docs.google.com/presentation/d/1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ/edit#slide=id.gcc4fbee202_0_141")
+```
 
-![](resources/images/tools.png)
 
-### Video example
+### Video examples
 
-![Introducing Markua](https://www.youtube.com/watch?t=105&v=VOCYL-FNbr0)
+
+```{r, fig.align="center", fig.alt = "video", echo=FALSE, out.width="100%"}
+knitr::include_url("https://www.youtube.com/embed/yiZQaE0q9BY")
+```
+
+```{r, fig.align="center", fig.alt = "video", echo=FALSE, out.width="100%"}
+knitr::include_url("https://www.youtube.com/embed/VOCYL-FNbr0")
+```
+
+### Embedded files examples
+
+
+```{r, fig.align="center", echo=FALSE}
+knitr::include_url("https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf", height = "800px")
+```
+
+```{r, fig.align="center", echo=FALSE}
+knitr::include_url("https://widgets.figshare.com/articles/5427418/embed?show_title=1", height = "800px")
+```
+
+Example of including a website:
+```{r, fig.align="center", echo=FALSE}
+knitr::include_url("https://yihui.org", height = "800px")
+```
+
+Example of including an html file hosted on GitHub:
+
+```{r, fig.align="center", echo=FALSE}
+knitr::include_url("https://carriewright11.github.io/stringr_RLadies/index.html", height = "800px")
+```
+
 
 ### Citation examples
 
