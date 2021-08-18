@@ -335,6 +335,8 @@ To reference the citations in your writing follow the [bookdown instructions](ht
 
 > Items can be cited directly within the documentation using the syntax @key where key is the citation key in the first line of the entry, e.g., @R-base. To put citations in parentheses, use [@key]. To cite multiple entries, separate the keys by semicolons, e.g., [@key-1; @key-2; @key-3]. To suppress the mention of the author, add a minus sign before @, e.g., [-@R-base].
 
+See [Chapter 2](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/02-chapter_of_course.Rmd) of the template course for examples.
+
 ## Github actions
 
 Here's a summary of the Github actions set up in this repository.
@@ -575,11 +577,11 @@ All images should be included in your Google Slides with the captions we discuss
 To add images in the text in your Rmd, use the following function within an [R code chunk](https://bookdown.org/yihui/rmarkdown/r-code.html).
 
 `````
-```{r, fig.alt="Alternative text",}
+```{r, fig.alt="Alternative text", echo = FALSE, outwidth = "100%"}
 leanbuild::include_slide(<google_slide_url>)
 `````
 _You must define `fig.alt` in the code chunk options/parameters to pass to `knitr`._
-You can adjust the size, alignment, or caption of the image you can use these arguments in the code chunk tag:  
+You can adjust the size(fig.hight, fig.width, out.width, out.height), alignment (fig.align), or caption (fig.cap) of the image you can use these arguments in the code chunk tag:  
 
 `````
 ```{r, fig.alt="Alternative text", fig.height=4, fig.align='center', fig.cap='...'}
@@ -589,6 +591,63 @@ You can adjust the size, alignment, or caption of the image you can use these ar
 It's also okay to use `<img src` for your images if you like you but you still need to make sure that you have alternative text designated using something like: `<img src="blah.png" alt="SOMETHING">`.
 
 Google Slides must be **public**. Share settings must be set to "Anyone on the internet with this link can view". Note that "Private" is the default setting when you make a new presentation.
+
+See [Chapter 2](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/02-chapter_of_course.Rmd) of the template course for examples.
+
+## Adding videos in text
+
+To add a youtube video to your Rmd files use the following:
+
+`````
+```{r, fig.align="center", fig.alt = "video", echo=FALSE, out.width="100%"}
+knitr::include_url("https://www.youtube.com/embed/yiZQaE0q9BY")
+```
+`````
+
+To get the appropriate youtube url do the following:
+1) click on the **SHARE** button on the lower right corner of the video on youtube
+2) click on the **Embed** option on the far left
+3) copy just the part after `"src ="` and paste the url into the `knitr::include_url()` function
+
+Again, it is important to use the `echo=FALSE` option so that only the video is shown and not the code to generate it.
+
+You could alternatively use html code by copying the entire embed code provded by youtube, but you might want to modify it a bit to center the video, like so:
+
+`````
+<p align="center"><iframe width="560" height="315" alt = "video of Russell McClain on biases and stereotypes" src="https://www.youtube.com/embed/yiZQaE0q9BY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+`````
+See [Chapter 2](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/02-chapter_of_course.Rmd) of the template course for examples.
+
+## Adding embedded files to text
+
+Sometimes it is useful to include an embedded version of a website or file on a website, if there is a particularly important link and you don't want to rely on learners clicking the link.
+
+To include such a file or website do the following:
+
+`````
+```{r, fig.align="center", echo=FALSE}
+knitr::include_url("https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf", height = "800px")
+```
+`````
+
+Again you will need to include `echo = FALSE` to ensure that the code to generate the preview of the website or file is not included in your course material.
+
+If you want to include a file that is not hosted online, consider hosting it on GitHub using the method described for hosting your Bookdown version of the course. See the [Set up GitHub pages](#set-up-github-pages) section.
+
+Then you would do the following, where the url is that of your hosted file:
+`````
+```{r, fig.align="center", echo=FALSE}
+knitr::include_url("https://carriewright11.github.io/stringr_RLadies/index.html", height = "800px")
+```
+`````
+
+You can also use html code for this like so:
+
+`````
+<p align="center"><iframe src="https://widgets.figshare.com/articles/5427418/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0" alt = "expectation document"></iframe></p>
+`````
+
+See [Chapter 2](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/02-chapter_of_course.Rmd) of the template course for examples.
 
 ## Learning Objectives Formatting
 
