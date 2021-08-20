@@ -12,10 +12,13 @@ RUN apt-get install -y --no-install-recommends \
     libxt6 \
     libpoppler-cpp-dev
 
-# Add curl, bzip2
+# Add curl, bzip2 and pandoc
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     bzip2 \
-    curl
+    curl 
+
+RUN wget https://github.com/jgm/pandoc/releases/download/2.9.2.1/pandoc-2.9.2.1-1-amd64.deb
+RUN apt-get install ./pandoc-2.9.2.1-1-amd64.deb
 
 # Install pip3 and installation tools
 RUN apt-get -y --no-install-recommends install \
