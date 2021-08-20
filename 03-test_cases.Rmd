@@ -5,7 +5,7 @@ leanbuild::set_knitr_image_path()
 
 # Uses cases for Bookdown to Leanpub
 
-Including a figure from the resources.  This shouldn't be an issue in the future 
+Including a figure from the resources.  This shouldn't be an issue in the future
 ```{r, out.width="100%", fig.cap = "caption for first figure, we need multiple so make sure it works"}
 knitr::include_graphics("resources/images/itcr_training_network.png")
 ```
@@ -38,7 +38,7 @@ knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/e/e9/Fel
 ```
 
 
-Including a figure from the resources.  This shouldn't be an issue in the future 
+Including a figure from the resources.  This shouldn't be an issue in the future
 ```{r, fig.cap="url cap"}
 knitr::include_url("http://www.youtube.com/embed/9bZkp7q19f0?rel=0")
 ```
@@ -66,10 +66,6 @@ leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal
 
 
 
-
 ```{r, eval = FALSE}
 knitr::include_url("https://docs.google.com/presentation/d/1cd434bkLer_CJ04GzpsZwzeEA9gjc5Ho6QimiHPbyEg/export/png?id=1cd434bkLer_CJ04GzpsZwzeEA9gjc5Ho6QimiHPbyEg&pageid=p")
 ```
-
-
-
