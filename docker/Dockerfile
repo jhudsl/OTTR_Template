@@ -21,8 +21,6 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
 RUN apt-get -y --no-install-recommends install \
     python3-pip  python3-dev
 
-## R packages
-
 # Commonly used R packages
 RUN Rscript -e  "install.packages( \
     c('bookdown', \

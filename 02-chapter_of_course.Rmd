@@ -17,7 +17,7 @@ This chapter will cover:
 
 ## Libraries
 
-For this chapter, we'll need the following packages attached: 
+For this chapter, we'll need the following packages attached:
 
 ```{r}
 library(here)
@@ -31,7 +31,7 @@ Text Text
 
 ## Subtopic
 
-Text Text 
+Text Text
 
 ### Code examples
 
@@ -96,14 +96,14 @@ knitr::include_url("https://carriewright11.github.io/stringr_RLadies/index.html"
 
 ### Citation examples
 
-We can put citations at the end of a sentence like this [@bookdown2016]. 
-Or multiple citations [@bookdown2016, @rmarkdown2018]. 
+We can put citations at the end of a sentence like this [@bookdown2016].
+Or multiple citations [@bookdown2016, @rmarkdown2018].
 
-but they need a ; separator [@bookdown2016; @rmarkdown2018]. 
+but they need a ; separator [@bookdown2016; @rmarkdown2018].
 
-but they need a ; separator [ \[@bookdown2016\](#bookdown2016); \[@rmarkdown2018\](#rmarkdown2018)]. 
+but they need a ; separator [ \[@bookdown2016\](#bookdown2016); \[@rmarkdown2018\](#rmarkdown2018)].
 
-In text, we can put citations like this @bookdown2016. 
+In text, we can put citations like this @bookdown2016.
 
 
 Here's a silly example which may mess up references.

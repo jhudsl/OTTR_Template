@@ -294,9 +294,12 @@ RUN pip3 install \
 #### Rebuilding the Docker image
 
 When you've added a package to the Dockerfile, you'll need to check that it builds successfully before including it in a pull request.
-You'll need to rebuild the docker image using this command:
+
+First create a GITHUB token file by making a token and copying a pasting it into a plain text file named `docker/github_token.txt`.
+
+Then you'll need to rebuild the docker image using this command:
 ```
-docker build -< docker/Dockerfile -t jhudsl/<TAG_FOR_COURSE>
+docker build -f docker/Dockerfile . -t jhudsl/course_template
 ```
 If it fails, often the issue is a missing dependency.
 Take a look at the error messages and see if you can determine the issue with some Googling.

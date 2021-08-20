@@ -7,6 +7,7 @@ output: html_document
 
 
 
+
 ## Make a plot
 
 This is the same code as in chapter 2, but here we can show how setting `knitr` chunks helps us tidy stuff up.
@@ -17,7 +18,7 @@ library(here)
 ```
 
 ```
-## here() starts at /home/rstudio
+## here() starts at /home/rstudio/Desktop/GitRepos/ITCR_Course_Template_Bookdown
 ```
 
 ```r
@@ -34,4 +35,4 @@ iris %>%
   theme_bw()
 ```
 
-<img src="images/04-figures_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="resources/images/04-figures_files/figure-html/unnamed-chunk-3-1.png" width="672" />

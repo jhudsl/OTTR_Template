@@ -1,14 +1,9 @@
+
+
+
 # Uses cases for Bookdown to Leanpub
 
-
-```r
-fp <- knitr::fig_path()
-fp <- dirname(fp)
-fp <- paste0("images/", fp, "/")
-knitr::opts_chunk$set(fig.path = fp)
-```
-
-Including a figure from the resources.  This shouldn't be an issue in the future 
+Including a figure from the resources.  This shouldn't be an issue in the future
 
 ```r
 knitr::include_graphics("resources/images/itcr_training_network.png")
@@ -74,7 +69,7 @@ knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/e/e9/Fel
 </div>
 
 
-Including a figure from the resources.  This shouldn't be an issue in the future 
+Including a figure from the resources.  This shouldn't be an issue in the future
 
 ```r
 knitr::include_url("http://www.youtube.com/embed/9bZkp7q19f0?rel=0")
@@ -111,7 +106,7 @@ knitr::include_url("https://www.youtube.com/watch?v=9bZkp7q19f0?rel=0")
 leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo/edit#slide=id.gc87451c247_0_17", overwrite = FALSE)
 ```
 
-![](images/03-test_cases_files/figure-html//12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo_gc87451c247_0_17.png)<!-- -->
+![](resources/images/03-test_cases_files/figure-html//12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo_gc87451c247_0_17.png)<!-- -->
 
 
 ```r
@@ -119,8 +114,7 @@ leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal
 leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo/edit#slide=id.gc87451c247_0_17", overwrite = FALSE)
 ```
 
-<img src="images/03-test_cases_files/figure-html//12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo_gc87451c247_0_17.png" title="picture of stuff" alt="picture of stuff"  />
-
+<img src="resources/images/03-test_cases_files/figure-html//12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo_gc87451c247_0_17.png" title="picture of stuff" alt="picture of stuff"  />
 
 
 
@@ -129,5 +123,4 @@ leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal
 knitr::include_url("https://docs.google.com/presentation/d/1cd434bkLer_CJ04GzpsZwzeEA9gjc5Ho6QimiHPbyEg/export/png?id=1cd434bkLer_CJ04GzpsZwzeEA9gjc5Ho6QimiHPbyEg&pageid=p")
 ```
 
-
-
+<p align="center"><iframe src="https://widgets.figshare.com/articles/5427418/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0" alt = "expectation document"></iframe></p>

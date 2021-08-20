@@ -26,6 +26,10 @@ opt <- parse_args(OptionParser(option_list = option_list))
 # Read in the token
 token <- as.character(readLines(opt$token)[1])
 
+# Reset GITHUB PAT to be token
+Sys.unsetenv("GITHUB_PAT")
+Sys.setenv(GITHUB_PAT = token)
+
 # set up list of packages to install
 opt$packages <- unlist(strsplit(opt$packages, ", "))
 
