@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Topic of Section | Course Name</title>
   <meta name="description" content="Description about Course/Book." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Topic of Section | Course Name" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Author Name" />
 
 
-<meta name="date" content="2021-06-16" />
+<meta name="date" content="2021-08-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="introduction.html"/>
 <link rel="next" href="uses-cases-for-bookdown-to-leanpub.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -145,9 +145,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="topic-of-section.html"><a href="topic-of-section.html"><i class="fa fa-check"></i><b>2</b> Topic of Section</a><ul>
 <li class="chapter" data-level="2.1" data-path="topic-of-section.html"><a href="topic-of-section.html#subtopic"><i class="fa fa-check"></i><b>2.1</b> Subtopic</a><ul>
 <li class="chapter" data-level="2.1.1" data-path="topic-of-section.html"><a href="topic-of-section.html#code-examples"><i class="fa fa-check"></i><b>2.1.1</b> Code examples</a></li>
-<li class="chapter" data-level="2.1.2" data-path="topic-of-section.html"><a href="topic-of-section.html#image-examples"><i class="fa fa-check"></i><b>2.1.2</b> Image examples</a></li>
-<li class="chapter" data-level="2.1.3" data-path="topic-of-section.html"><a href="topic-of-section.html#video-example"><i class="fa fa-check"></i><b>2.1.3</b> Video example</a></li>
-<li class="chapter" data-level="2.1.4" data-path="topic-of-section.html"><a href="topic-of-section.html#citation-examples"><i class="fa fa-check"></i><b>2.1.4</b> Citation examples</a></li>
+<li class="chapter" data-level="2.1.2" data-path="topic-of-section.html"><a href="topic-of-section.html#image-example"><i class="fa fa-check"></i><b>2.1.2</b> Image example</a></li>
+<li class="chapter" data-level="2.1.3" data-path="topic-of-section.html"><a href="topic-of-section.html#video-examples"><i class="fa fa-check"></i><b>2.1.3</b> Video examples</a></li>
+<li class="chapter" data-level="2.1.4" data-path="topic-of-section.html"><a href="topic-of-section.html#embedded-files-examples"><i class="fa fa-check"></i><b>2.1.4</b> Embedded files examples</a></li>
+<li class="chapter" data-level="2.1.5" data-path="topic-of-section.html"><a href="topic-of-section.html#citation-examples"><i class="fa fa-check"></i><b>2.1.5</b> Citation examples</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="topic-of-section.html"><a href="topic-of-section.html#print-out-session-info"><i class="fa fa-check"></i><b>2.2</b> Print out session info</a></li>
 </ul></li>
@@ -206,24 +207,35 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-2"><a href="topic-of-section.html#cb5-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(Sepal.Length, Sepal.Width, <span class="dt">color =</span> Species)) <span class="op">+</span></span>
 <span id="cb5-3"><a href="topic-of-section.html#cb5-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb5-4"><a href="topic-of-section.html#cb5-4"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="02-chapter_of_course_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="resources/images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="topic-of-section.html#cb6-1"></a><span class="kw">ggsave</span>(<span class="kw">file.path</span>(output_dir, <span class="st">&quot;test_ggplot2.png&quot;</span>))</span></code></pre></div>
 <pre><code>## Saving 7 x 5 in image</code></pre>
 </div>
-<div id="image-examples" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Image examples</h3>
-<p><img src="resources/images/itcr_training_network.png" /></p>
-<p><img src="resources/images/tools.png" /></p>
+<div id="image-example" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Image example</h3>
+<p><img src="resources/images/02-chapter_of_course_files/figure-html/1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" /></p>
 </div>
-<div id="video-example" class="section level3">
-<h3><span class="header-section-number">2.1.3</span> Video example</h3>
-<div class="figure">
-<img src="https://www.youtube.com/watch?t=105&amp;v=VOCYL-FNbr0" alt="" />
-<p class="caption">Introducing Markua</p>
+<div id="video-examples" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> Video examples</h3>
+<iframe src="https://www.youtube.com/embed/yiZQaE0q9BY" width="100%" height="400px">
+</iframe>
+<iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="100%" height="400px">
+</iframe>
 </div>
+<div id="embedded-files-examples" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> Embedded files examples</h3>
+<iframe src="https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf" width="672" height="800px">
+</iframe>
+<iframe src="https://widgets.figshare.com/articles/5427418/embed?show_title=1" width="672" height="800px">
+</iframe>
+<p>Example of including a website:
+<iframe src="https://yihui.org" width="672" height="800px"></iframe></p>
+<p>Example of including an html file hosted on GitHub:</p>
+<iframe src="https://carriewright11.github.io/stringr_RLadies/index.html" width="672" height="800px">
+</iframe>
 </div>
 <div id="citation-examples" class="section level3">
-<h3><span class="header-section-number">2.1.4</span> Citation examples</h3>
+<h3><span class="header-section-number">2.1.5</span> Citation examples</h3>
 <p>We can put citations at the end of a sentence like this <span class="citation">(Xie <a href="#ref-bookdown2016" role="doc-biblioref">2016</a>)</span>.
 Or multiple citations <span class="citation">(Xie <a href="#ref-bookdown2016" role="doc-biblioref">2016</a>, @rmarkdown2018)</span>.</p>
 <p>but they need a ; separator <span class="citation">(Xie <a href="#ref-bookdown2016" role="doc-biblioref">2016</a>; Xie, Allaire, and Grolemund <a href="#ref-rmarkdown2018" role="doc-biblioref">2018</a>)</span>.</p>
@@ -254,73 +266,93 @@ Or multiple citations <span class="citation">(Xie <a href="#ref-bookdown2016" ro
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2021-06-16                  
+##  date     2021-08-20                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
-##  package     * version date       lib source        
-##  abind         1.4-5   2016-07-21 [1] RSPM (R 4.0.3)
-##  assertthat    0.2.1   2019-03-21 [1] RSPM (R 4.0.3)
-##  bitops        1.0-6   2013-08-17 [1] RSPM (R 4.0.3)
-##  blob          1.2.1   2020-01-20 [1] RSPM (R 4.0.3)
-##  bookdown      0.22    2021-04-22 [1] CRAN (R 4.0.2)
-##  cachem        1.0.4   2021-02-13 [1] CRAN (R 4.0.2)
-##  callr         3.7.0   2021-04-20 [1] CRAN (R 4.0.2)
-##  cli           2.5.0   2021-04-26 [1] CRAN (R 4.0.2)
-##  colorspace    1.4-1   2019-03-18 [1] RSPM (R 4.0.0)
-##  crayon        1.4.1   2021-02-08 [1] CRAN (R 4.0.2)
-##  DBI           1.1.0   2019-12-15 [1] RSPM (R 4.0.0)
-##  desc          1.3.0   2021-03-05 [1] CRAN (R 4.0.2)
-##  devtools      2.3.2   2020-09-18 [1] RSPM (R 4.0.3)
-##  digest        0.6.27  2020-10-24 [1] CRAN (R 4.0.2)
-##  dplyr         1.0.6   2021-05-05 [1] CRAN (R 4.0.2)
-##  ellipsis      0.3.2   2021-04-29 [1] CRAN (R 4.0.2)
-##  evaluate      0.14    2019-05-28 [1] RSPM (R 4.0.3)
-##  fansi         0.4.2   2021-01-15 [1] CRAN (R 4.0.2)
-##  farver        2.0.3   2020-01-16 [1] RSPM (R 4.0.3)
-##  fastmap       1.1.0   2021-01-25 [1] CRAN (R 4.0.2)
-##  fs            1.5.0   2020-07-31 [1] RSPM (R 4.0.3)
-##  generics      0.1.0   2020-10-31 [1] CRAN (R 4.0.2)
-##  ggplot2     * 3.3.2   2020-06-19 [1] RSPM (R 4.0.1)
-##  glue          1.4.2   2020-08-27 [1] RSPM (R 4.0.3)
-##  gtable        0.3.0   2019-03-25 [1] RSPM (R 4.0.3)
-##  here        * 0.1     2017-05-28 [1] RSPM (R 4.0.0)
-##  highr         0.9     2021-04-16 [1] CRAN (R 4.0.2)
-##  htmltools     0.5.1.1 2021-01-22 [1] CRAN (R 4.0.2)
-##  knitr         1.33    2021-04-24 [1] CRAN (R 4.0.2)
-##  labeling      0.3     2014-08-23 [1] RSPM (R 4.0.0)
-##  lifecycle     1.0.0   2021-02-15 [1] CRAN (R 4.0.2)
-##  magrittr    * 2.0.1   2020-11-17 [1] CRAN (R 4.0.2)
-##  memoise       2.0.0   2021-01-26 [1] CRAN (R 4.0.2)
-##  munsell       0.5.0   2018-06-12 [1] RSPM (R 4.0.3)
-##  oro.nifti   * 0.11.0  2020-09-08 [1] RSPM (R 4.0.2)
-##  pillar        1.6.0   2021-04-13 [1] CRAN (R 4.0.2)
-##  pkgbuild      1.1.0   2020-07-13 [1] RSPM (R 4.0.2)
-##  pkgconfig     2.0.3   2019-09-22 [1] RSPM (R 4.0.3)
-##  pkgload       1.1.0   2020-05-29 [1] RSPM (R 4.0.3)
-##  prettyunits   1.1.1   2020-01-24 [1] RSPM (R 4.0.3)
-##  processx      3.5.2   2021-04-30 [1] CRAN (R 4.0.2)
-##  ps            1.6.0   2021-02-28 [1] CRAN (R 4.0.2)
-##  purrr         0.3.4   2020-04-17 [1] RSPM (R 4.0.3)
-##  R6            2.5.0   2020-10-28 [1] CRAN (R 4.0.2)
-##  Rcpp          1.0.6   2021-01-15 [1] CRAN (R 4.0.2)
-##  remotes       2.2.0   2020-07-21 [1] RSPM (R 4.0.3)
-##  rlang         0.4.11  2021-04-30 [1] CRAN (R 4.0.2)
-##  rmarkdown     2.8     2021-05-07 [1] CRAN (R 4.0.2)
-##  RNifti        1.2.2   2020-09-07 [1] RSPM (R 4.0.2)
-##  rprojroot     2.0.2   2020-11-15 [1] CRAN (R 4.0.2)
-##  scales        1.1.1   2020-05-11 [1] RSPM (R 4.0.3)
-##  sessioninfo   1.1.1   2018-11-05 [1] RSPM (R 4.0.3)
-##  stringi       1.6.1   2021-05-10 [1] CRAN (R 4.0.2)
-##  stringr       1.4.0   2019-02-10 [1] RSPM (R 4.0.3)
-##  testthat      2.3.2   2020-03-02 [1] RSPM (R 4.0.0)
-##  tibble        3.1.1   2021-04-18 [1] CRAN (R 4.0.2)
-##  tidyselect    1.1.1   2021-04-30 [1] CRAN (R 4.0.2)
-##  usethis       2.0.1   2021-02-10 [1] CRAN (R 4.0.2)
-##  utf8          1.2.1   2021-03-12 [1] CRAN (R 4.0.2)
-##  vctrs         0.3.8   2021-04-29 [1] CRAN (R 4.0.2)
-##  withr         2.4.2   2021-04-18 [1] CRAN (R 4.0.2)
-##  xfun          0.22    2021-03-11 [1] CRAN (R 4.0.2)
-##  yaml          2.2.1   2020-02-01 [1] RSPM (R 4.0.3)
+##  package     * version  date       lib source                                  
+##  abind         1.4-5    2016-07-21 [1] RSPM (R 4.0.3)                          
+##  ari           0.4.1    2021-08-20 [1] Github (jhudsl/ari@2638775)             
+##  ariExtra      0.3.1    2021-08-20 [1] Github (muschellij2/ariExtra@86c733b)   
+##  askpass       1.1      2019-01-13 [1] RSPM (R 4.0.3)                          
+##  assertthat    0.2.1    2019-03-21 [1] RSPM (R 4.0.3)                          
+##  bitops        1.0-6    2013-08-17 [1] RSPM (R 4.0.3)                          
+##  blob          1.2.1    2020-01-20 [1] RSPM (R 4.0.3)                          
+##  bookdown      0.23     2021-08-13 [1] CRAN (R 4.0.2)                          
+##  cachem        1.0.6    2021-08-19 [1] CRAN (R 4.0.2)                          
+##  callr         3.7.0    2021-04-20 [1] CRAN (R 4.0.2)                          
+##  cli           3.0.1    2021-07-17 [1] CRAN (R 4.0.2)                          
+##  colorspace    1.4-1    2019-03-18 [1] RSPM (R 4.0.0)                          
+##  crayon        1.4.1    2021-02-08 [1] CRAN (R 4.0.2)                          
+##  curl          4.3.2    2021-06-23 [1] CRAN (R 4.0.2)                          
+##  DBI           1.1.0    2019-12-15 [1] RSPM (R 4.0.0)                          
+##  desc          1.3.0    2021-03-05 [1] CRAN (R 4.0.2)                          
+##  devtools      2.3.2    2020-09-18 [1] RSPM (R 4.0.3)                          
+##  digest        0.6.27   2020-10-24 [1] CRAN (R 4.0.2)                          
+##  docxtractr    0.6.5    2020-07-05 [1] CRAN (R 4.0.2)                          
+##  dplyr         1.0.7    2021-06-18 [1] CRAN (R 4.0.2)                          
+##  ellipsis      0.3.2    2021-04-29 [1] CRAN (R 4.0.2)                          
+##  evaluate      0.14     2019-05-28 [1] RSPM (R 4.0.3)                          
+##  fansi         0.5.0    2021-05-25 [1] CRAN (R 4.0.2)                          
+##  farver        2.0.3    2020-01-16 [1] RSPM (R 4.0.3)                          
+##  fastmap       1.1.0    2021-01-25 [1] CRAN (R 4.0.2)                          
+##  fs            1.5.0    2020-07-31 [1] RSPM (R 4.0.3)                          
+##  generics      0.1.0    2020-10-31 [1] CRAN (R 4.0.2)                          
+##  ggplot2     * 3.3.2    2020-06-19 [1] RSPM (R 4.0.1)                          
+##  glue          1.4.2    2020-08-27 [1] RSPM (R 4.0.3)                          
+##  gtable        0.3.0    2019-03-25 [1] RSPM (R 4.0.3)                          
+##  here        * 0.1      2017-05-28 [1] RSPM (R 4.0.0)                          
+##  highr         0.9      2021-04-16 [1] CRAN (R 4.0.2)                          
+##  hms           1.1.0    2021-05-17 [1] CRAN (R 4.0.2)                          
+##  htmltools     0.5.1.1  2021-01-22 [1] CRAN (R 4.0.2)                          
+##  httr          1.4.2    2020-07-20 [1] RSPM (R 4.0.3)                          
+##  jquerylib     0.1.4    2021-04-26 [1] CRAN (R 4.0.2)                          
+##  jsonlite      1.7.2    2020-12-09 [1] CRAN (R 4.0.2)                          
+##  knitr         1.33     2021-04-24 [1] CRAN (R 4.0.2)                          
+##  labeling      0.3      2014-08-23 [1] RSPM (R 4.0.0)                          
+##  leanbuild     0.1.2    2021-08-20 [1] Github (jhudsl/leanbuild@6c3699c)       
+##  lifecycle     1.0.0    2021-02-15 [1] CRAN (R 4.0.2)                          
+##  magrittr    * 2.0.1    2020-11-17 [1] CRAN (R 4.0.2)                          
+##  MASS          7.3-51.6 2020-04-26 [2] CRAN (R 4.0.2)                          
+##  memoise       2.0.0    2021-01-26 [1] CRAN (R 4.0.2)                          
+##  munsell       0.5.0    2018-06-12 [1] RSPM (R 4.0.3)                          
+##  oro.nifti   * 0.11.0   2020-09-08 [1] RSPM (R 4.0.2)                          
+##  pdftools      3.0.1    2021-05-06 [1] CRAN (R 4.0.2)                          
+##  pillar        1.6.2    2021-07-29 [1] CRAN (R 4.0.2)                          
+##  pkgbuild      1.1.0    2020-07-13 [1] RSPM (R 4.0.2)                          
+##  pkgconfig     2.0.3    2019-09-22 [1] RSPM (R 4.0.3)                          
+##  pkgload       1.1.0    2020-05-29 [1] RSPM (R 4.0.3)                          
+##  prettyunits   1.1.1    2020-01-24 [1] RSPM (R 4.0.3)                          
+##  processx      3.5.2    2021-04-30 [1] CRAN (R 4.0.2)                          
+##  progress      1.2.2    2019-05-16 [1] RSPM (R 4.0.3)                          
+##  ps            1.6.0    2021-02-28 [1] CRAN (R 4.0.2)                          
+##  purrr         0.3.4    2020-04-17 [1] RSPM (R 4.0.3)                          
+##  qpdf          1.1      2019-03-07 [1] RSPM (R 4.0.2)                          
+##  R6            2.5.1    2021-08-19 [1] CRAN (R 4.0.2)                          
+##  Rcpp          1.0.7    2021-07-07 [1] CRAN (R 4.0.2)                          
+##  remotes       2.2.0    2020-07-21 [1] RSPM (R 4.0.3)                          
+##  rlang         0.4.11   2021-04-30 [1] CRAN (R 4.0.2)                          
+##  rmarkdown     2.10     2021-08-06 [1] CRAN (R 4.0.2)                          
+##  RNifti        1.2.2    2020-09-07 [1] RSPM (R 4.0.2)                          
+##  rprojroot     2.0.2    2020-11-15 [1] CRAN (R 4.0.2)                          
+##  rvest         1.0.1    2021-07-26 [1] CRAN (R 4.0.2)                          
+##  scales        1.1.1    2020-05-11 [1] RSPM (R 4.0.3)                          
+##  sessioninfo   1.1.1    2018-11-05 [1] RSPM (R 4.0.3)                          
+##  signal        0.7-7    2021-05-25 [1] CRAN (R 4.0.2)                          
+##  stringi       1.7.3    2021-07-16 [1] CRAN (R 4.0.2)                          
+##  stringr       1.4.0    2019-02-10 [1] RSPM (R 4.0.3)                          
+##  testthat      2.3.2    2020-03-02 [1] RSPM (R 4.0.0)                          
+##  text2speech   0.3.0    2021-08-20 [1] Github (muschellij2/text2speech@a0c9f86)
+##  tibble        3.1.3    2021-07-23 [1] CRAN (R 4.0.2)                          
+##  tidyselect    1.1.1    2021-04-30 [1] CRAN (R 4.0.2)                          
+##  tuneR         1.3.3.1  2021-08-04 [1] CRAN (R 4.0.2)                          
+##  usethis       2.0.1    2021-02-10 [1] CRAN (R 4.0.2)                          
+##  utf8          1.2.2    2021-07-24 [1] CRAN (R 4.0.2)                          
+##  vctrs         0.3.8    2021-04-29 [1] CRAN (R 4.0.2)                          
+##  webshot       0.5.2    2019-11-22 [1] CRAN (R 4.0.2)                          
+##  withr         2.4.2    2021-04-18 [1] CRAN (R 4.0.2)                          
+##  xfun          0.25     2021-08-06 [1] CRAN (R 4.0.2)                          
+##  xml2          1.3.2    2020-04-23 [1] RSPM (R 4.0.3)                          
+##  yaml          2.2.1    2020-02-01 [1] RSPM (R 4.0.3)                          
 ## 
 ## [1] /usr/local/lib/R/site-library
 ## [2] /usr/local/lib/R/library</code></pre>
@@ -394,6 +426,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
