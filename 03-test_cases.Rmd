@@ -1,6 +1,6 @@
 
 ```{r, include = FALSE}
-leanbuild::set_knitr_image_path()
+# leanbuild::set_knitr_image_path()
 ```
 
 # Uses cases for Bookdown to Leanpub
@@ -69,3 +69,5 @@ leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal
 ```{r, eval = FALSE}
 knitr::include_url("https://docs.google.com/presentation/d/1cd434bkLer_CJ04GzpsZwzeEA9gjc5Ho6QimiHPbyEg/export/png?id=1cd434bkLer_CJ04GzpsZwzeEA9gjc5Ho6QimiHPbyEg&pageid=p")
 ```
+
+<p align="center"><iframe src="https://widgets.figshare.com/articles/5427418/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0" alt = "expectation document"></iframe></p>

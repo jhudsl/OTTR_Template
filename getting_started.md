@@ -296,7 +296,7 @@ RUN pip3 install \
 When you've added a package to the Dockerfile, you'll need to check that it builds successfully before including it in a pull request.
 You'll need to rebuild the docker image using this command:
 ```
-docker build -< docker/Dockerfile -t jhudsl/<TAG_FOR_COURSE>
+docker build -f docker/Dockerfile . -t jhudsl/course_template
 ```
 If it fails, often the issue is a missing dependency.
 Take a look at the error messages and see if you can determine the issue with some Googling.
