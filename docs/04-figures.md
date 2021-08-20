@@ -18,7 +18,7 @@ library(here)
 ```
 
 ```
-## here() starts at /home/rstudio/ITCR_Course_Template_Bookdown
+## here() starts at /home/rstudio/Desktop/GitRepos/ITCR_Course_Template_Bookdown
 ```
 
 ```r
@@ -35,4 +35,4 @@ iris %>%
   theme_bw()
 ```
 
-<img src="04-figures_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="resources/images/04-figures_files/figure-html/unnamed-chunk-3-1.png" width="672" />

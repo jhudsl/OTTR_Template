@@ -5,7 +5,7 @@ output: html_document
 
 
 ```{r, include = FALSE}
-#leanbuild::set_knitr_image_path()
+leanbuild::set_knitr_image_path()
 ```
 
 # Introduction

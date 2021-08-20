@@ -106,7 +106,7 @@ knitr::include_url("https://www.youtube.com/watch?v=9bZkp7q19f0?rel=0")
 leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo/edit#slide=id.gc87451c247_0_17", overwrite = FALSE)
 ```
 
-![](03-test_cases_files/figure-html//12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo_gc87451c247_0_17.png)<!-- -->
+![](resources/images/03-test_cases_files/figure-html//12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo_gc87451c247_0_17.png)<!-- -->
 
 
 ```r
@@ -114,7 +114,7 @@ leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal
 leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo/edit#slide=id.gc87451c247_0_17", overwrite = FALSE)
 ```
 
-<img src="03-test_cases_files/figure-html//12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo_gc87451c247_0_17.png" title="picture of stuff" alt="picture of stuff"  />
+<img src="resources/images/03-test_cases_files/figure-html//12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo_gc87451c247_0_17.png" title="picture of stuff" alt="picture of stuff"  />
 
 
 

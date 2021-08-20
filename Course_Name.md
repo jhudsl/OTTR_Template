@@ -1,4 +1,46 @@
 ---
+title: "Course Name "
+author: "Author Name"
+date: "2021-08-20"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Description about Course/Book."
+---
+
+
+
+
+# About this Course {-}
+
+<!--chapter:end:index.Rmd-->
+
+---
+title: "Course Title"
+output: html_document
+---
+
+
+
+
+# Introduction
+
+## Motivation
+This course will cover
+
+**Target Audience:**  
+The course is intended for
+
+**Curriculum:**  
+The curriculum will cover
+
+This course was funded by
+
+<!--chapter:end:01-intro.Rmd-->
+
+---
 title: "Chapter of course"
 output: html_document
 ---
@@ -243,3 +285,189 @@ devtools::session_info()
 ## [1] /usr/local/lib/R/site-library
 ## [2] /usr/local/lib/R/library
 ```
+
+<!--chapter:end:02-chapter_of_course.Rmd-->
+
+
+
+
+# Uses cases for Bookdown to Leanpub
+
+Including a figure from the resources.  This shouldn't be an issue in the future
+
+```r
+knitr::include_graphics("resources/images/itcr_training_network.png")
+```
+
+<div class="figure">
+<img src="resources/images/itcr_training_network.png" alt="caption for first figure, we need multiple so make sure it works" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-2)caption for first figure, we need multiple so make sure it works</p>
+</div>
+
+
+
+```r
+knitr::include_graphics("resources/images/itcr_training_network.png")
+```
+
+<img src="resources/images/itcr_training_network.png" title="THIS IS AN ALT center align it's a training network" alt="THIS IS AN ALT center align it's a training network" width="100%" style="display: block; margin: auto;" />
+
+
+
+```r
+knitr::include_graphics("resources/images/itcr_training_network.png")
+```
+
+<div class="figure" style="text-align: center">
+<img src="resources/images/itcr_training_network.png" alt="THIS IS AN ALT center align it's a training network" width="100%" />
+<p class="caption"> </p>
+</div>
+
+
+
+```r
+knitr::include_graphics("resources/images/itcr_training_network.png")
+```
+
+<img src="resources/images/itcr_training_network.png" title="center align it's a training network" alt="center align it's a training network" width="100%" style="display: block; margin: auto;" />
+
+
+```r
+knitr::include_graphics("resources/images/tools.png")
+```
+
+<img src="resources/images/tools.png" title="left align it's a tool" alt="left align it's a tool" width="100%" style="display: block; margin: auto auto auto 0;" />
+
+
+```r
+knitr::include_graphics("resources/images/tools.png")
+```
+
+<div class="figure" style="text-align: right">
+<img src="resources/images/tools.png" alt="right align it's a tool" width="100%" />
+<p class="caption">(\#fig:right_tools)caption for local png</p>
+</div>
+
+
+```r
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/e/e9/Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png")
+```
+
+<div class="figure">
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png" alt="caption for url png"  />
+<p class="caption">(\#fig:unnamed-chunk-3)caption for url png</p>
+</div>
+
+
+Including a figure from the resources.  This shouldn't be an issue in the future
+
+```r
+knitr::include_url("http://www.youtube.com/embed/9bZkp7q19f0?rel=0")
+```
+
+<div class="figure">
+<iframe src="http://www.youtube.com/embed/9bZkp7q19f0?rel=0" width="672" height="400px"></iframe>
+<p class="caption">(\#fig:unnamed-chunk-4)url cap</p>
+</div>
+
+
+```r
+knitr::include_url("http://www.youtube.com/embed/9bZkp7q19f0?rel=0")
+```
+
+<iframe src="http://www.youtube.com/embed/9bZkp7q19f0?rel=0" width="672" height="400px"></iframe>
+
+![Introducing Markua](https://www.youtube.com/watch?t=105&v=VOCYL-FNbr0)
+
+
+
+```r
+knitr::include_url("https://www.youtube.com/watch?v=9bZkp7q19f0?rel=0")
+```
+
+<div class="figure">
+<iframe src="https://www.youtube.com/watch?v=9bZkp7q19f0?rel=0" width="672" height="400px"></iframe>
+<p class="caption">(\#fig:unnamed-chunk-5)caption for url</p>
+</div>
+
+
+```r
+# define GS_ID
+leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo/edit#slide=id.gc87451c247_0_17", overwrite = FALSE)
+```
+
+![](resources/images/03-test_cases_files/figure-html//12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo_gc87451c247_0_17.png)<!-- -->
+
+
+```r
+# define GS_ID
+leanbuild::include_slide("https://docs.google.com/presentation/d/12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo/edit#slide=id.gc87451c247_0_17", overwrite = FALSE)
+```
+
+<img src="resources/images/03-test_cases_files/figure-html//12DPZgPteQBwgal6kSPP58zhPhjZ7QSPZLe3NkA8M3eo_gc87451c247_0_17.png" title="picture of stuff" alt="picture of stuff"  />
+
+
+
+
+```r
+knitr::include_url("https://docs.google.com/presentation/d/1cd434bkLer_CJ04GzpsZwzeEA9gjc5Ho6QimiHPbyEg/export/png?id=1cd434bkLer_CJ04GzpsZwzeEA9gjc5Ho6QimiHPbyEg&pageid=p")
+```
+
+<p align="center"><iframe src="https://widgets.figshare.com/articles/5427418/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0" alt = "expectation document"></iframe></p>
+
+<!--chapter:end:03-test_cases.Rmd-->
+
+---
+title: "Chapter of course"
+output: html_document
+---
+
+# Figures
+
+
+
+
+## Make a plot
+
+This is the same code as in chapter 2, but here we can show how setting `knitr` chunks helps us tidy stuff up.
+
+
+```r
+library(here)
+```
+
+```
+## here() starts at /home/rstudio/Desktop/GitRepos/ITCR_Course_Template_Bookdown
+```
+
+```r
+library(ggplot2)
+library(magrittr)
+```
+
+
+
+```r
+iris %>%
+  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) +
+  geom_point() +
+  theme_bw()
+```
+
+<img src="resources/images/04-figures_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+
+<!--chapter:end:04-figures.Rmd-->
+
+---
+title: "about"
+output: html_document
+---
+
+# About the Authors {-}
+
+
+**Author Name** is a Blank in the Blank at the Blank.
+
+
+<!--chapter:end:About.Rmd-->
+
