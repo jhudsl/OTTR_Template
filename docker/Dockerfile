@@ -27,10 +27,16 @@ RUN wget \
     && rm -f Miniconda3-latest-Linux-x86_64.sh
 RUN conda --version
 
-# Install pandoc
+# Remove old symlinks to old pandoc
+RUN unlink /usr/lib/rstudio-server/bin/pandoc/pandoc
+
+# Install pandoc and pandoc-citeproc
 RUN conda install -c conda-forge pandoc
 
-# Add curl, bzip2 and pandoc
+# Create new symlinks
+# RUN ln -s /root/miniconda3/bin/pandoc /usr/lib/rstudio-server/bin/pandoc/
+
+# Add curl, bzip2
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     bzip2 \
     curl
@@ -61,6 +67,3 @@ COPY git_token.txt .
 RUN Rscript --vanilla install_github.R \
   --packages "jhudsl/didactr, jhudsl/leanbuild" \
   --token git_token.txt
-
-# Set final workdir for commands
-WORKDIR /home/rstudio
