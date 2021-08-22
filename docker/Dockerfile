@@ -12,31 +12,19 @@ RUN apt-get install -y --no-install-recommends \
     libxt6 \
     libpoppler-cpp-dev
 
-
-### Install conda
-ENV PATH="/root/miniconda3/bin:${PATH}"
-ARG PATH="/root/miniconda3/bin:${PATH}"
-ENV PATH="/usr/lib/rstudio-server/bin:${PATH}"
-ARG PATH="/usr/lib/rstudio-server/bin:${PATH}"
-RUN apt-get update
-
-RUN apt-get install -y wget && rm -rf /var/lib/apt/lists/*
-
-RUN wget \
-    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    && mkdir /root/.conda \
-    && bash Miniconda3-latest-Linux-x86_64.sh -b \
-    && rm -f Miniconda3-latest-Linux-x86_64.sh
-RUN conda --version
-
 # Remove old symlinks to old pandoc
 RUN unlink /usr/lib/rstudio-server/bin/pandoc/pandoc
 
-# Install pandoc and pandoc-citeproc
-RUN conda install -c conda-forge pandoc
+# Uninstall old version of pandoc
+RUN sudo apt-get purge pandoc pandoc-citeproc pandoc-data \
+  && sudo apt-get autoremove --purge
+
+# Install pandoc
+RUN wget https://github.com/jgm/pandoc/releases/download/2.9.2.1/pandoc-2.9.2.1-1-amd64.deb \
+  && sudo apt-get install ./pandoc-2.9.2.1-1-amd64.deb
 
 # Create new symlinks
-RUN ln -s /root/miniconda3/bin/pandoc /usr/lib/rstudio-server/bin/pandoc/pandoc
+RUN ln -s /usr/bin/pandoc /usr/lib/rstudio-server/bin/pandoc/pandoc
 
 # Add curl, bzip2
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
