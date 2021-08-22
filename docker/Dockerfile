@@ -16,6 +16,8 @@ RUN apt-get install -y --no-install-recommends \
 ### Install conda
 ENV PATH="/root/miniconda3/bin:${PATH}"
 ARG PATH="/root/miniconda3/bin:${PATH}"
+ENV PATH="/usr/lib/rstudio-server/bin:${PATH}"
+ARG PATH="/usr/lib/rstudio-server/bin:${PATH}"
 RUN apt-get update
 
 RUN apt-get install -y wget && rm -rf /var/lib/apt/lists/*
@@ -34,7 +36,7 @@ RUN unlink /usr/lib/rstudio-server/bin/pandoc/pandoc
 RUN conda install -c conda-forge pandoc
 
 # Create new symlinks
-# RUN ln -s /root/miniconda3/bin/pandoc /usr/lib/rstudio-server/bin/pandoc/
+RUN ln -s /root/miniconda3/bin/pandoc /usr/lib/rstudio-server/bin/pandoc/pandoc
 
 # Add curl, bzip2
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
