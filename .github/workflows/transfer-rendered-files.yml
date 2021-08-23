@@ -49,7 +49,7 @@ jobs:
           svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/_bookdown.yml
 
           # Get list of Rmds needing to copy
-          rmd_list=$(find . -name '*.Rmd' ) > resources/rmd_list.txt
+          Rscript --vanilla scripts/get_rmd_filenames.R
 
           # the url from this repo where files will be downloaded from
           base_url=https://${GIT_TOKEN}@raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/heads/}
@@ -62,9 +62,6 @@ jobs:
           rmd_paths=$(curl --fail -s ${list_url}) || echo "Error getting Rmd list at ${list_url}"
           # error if the Rmd list is empty
           [[ -z $rmd_paths ]] && echo "Rmd file list is empty." && exit 1
-
-          # remove old Rmd files
-          rm $(find . -name '*.Rmd'  | grep '.Rmd' )
 
           # remove old Rmd files
           rm $(find . -name '*.Rmd'  | grep '.Rmd' )
