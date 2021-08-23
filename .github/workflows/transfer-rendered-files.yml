@@ -43,10 +43,10 @@ jobs:
           fi
 
           # Copy over book.bib file
-          svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/book.bib
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/book.bib
 
           # Copy over _bookdown.yml
-          svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/_bookdown.yml
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/_bookdown.yml
 
           # Get list of Rmds needing to copy
           rmd_list=$(find . -name '*.Rmd'  | grep '.Rmd')
@@ -56,7 +56,7 @@ jobs:
             # test that the path is to an Rmd file, error if not
             [[ $path != *.Rmd ]] && echo "'$path' is not an .Rmd file." && exit 1
             echo $path
-            svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/manuscript/${path}
+            svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/manuscript/${path}
           done
 
       - name: Create PR with rendered docs files
