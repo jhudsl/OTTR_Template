@@ -35,6 +35,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GIT_TOKEN }}
         run: |
           sudo apt-get install subversion
+          sudo apt install r-base
 
           if [ -d "docs/" ]
           then
