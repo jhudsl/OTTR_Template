@@ -54,6 +54,9 @@ RUN Rscript -e  "install.packages( \
 COPY git_token.txt .
 COPY github_package_list.tsv .
 
+# Didactr needs this dependency:
+RUN Rscript -e  "devtools::install_version('lifecycle', version = '1.0.0', repos = 'http://cran.us.r-project.org')"
+
 # Install packages from github
 RUN Rscript install_github.R \
   --packages github_package_list.tsv \
