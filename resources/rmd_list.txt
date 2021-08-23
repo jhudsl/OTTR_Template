@@ -1,6 +1,0 @@
-index.Rmd
-01-intro.Rmd
-02-chapter_of_course.Rmd
-03-test_cases.Rmd
-04-figures.Rmd
-About.Rmd
