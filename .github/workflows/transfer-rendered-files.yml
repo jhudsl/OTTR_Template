@@ -38,8 +38,8 @@ jobs:
 
           if [ -d "docs/" ]
           then
-          # remove old docs/ files and folder
-          rm -r docs/*
+            # remove old docs/ files and folder
+            rm -r docs/*
           fi
 
           # Copy over book.bib file
@@ -49,7 +49,7 @@ jobs:
           svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/_bookdown.yml
 
           # Get list of Rmds needing to copy
-          rmd_list=$(find . -name '*.Rmd'  | grep '.Rmd') > resources/rmd_list.txt
+          rmd_list=$(find . -name '*.Rmd' ) > resources/rmd_list.txt
 
           # the url from this repo where files will be downloaded from
           base_url=https://${GIT_TOKEN}@raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/heads/}
@@ -57,15 +57,15 @@ jobs:
           # url for rmd_list.txt
           list_url=${base_url}/resources/rmd_list.txt
           echo $list_url
-​
+
           # get the Rmd file list
           rmd_paths=$(curl --fail -s ${list_url}) || echo "Error getting Rmd list at ${list_url}"
           # error if the Rmd list is empty
           [[ -z $rmd_paths ]] && echo "Rmd file list is empty." && exit 1
-​
+
           # remove old Rmd files
           rm $(find . -name '*.Rmd'  | grep '.Rmd' )
-​
+
           # get new Rmd files and put them in the right place
           for path in $rmd_paths
           do
