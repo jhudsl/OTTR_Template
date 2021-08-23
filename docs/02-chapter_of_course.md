@@ -23,7 +23,7 @@ library(here)
 ```
 
 ```
-## here() starts at /home/rstudio/Desktop/GitRepos/ITCR_Course_Template_Bookdown
+## here() starts at /home/rstudio
 ```
 
 ```r
@@ -191,6 +191,7 @@ devtools::session_info()
 ##  hms           1.1.0    2021-05-17 [1] CRAN (R 4.0.2)                          
 ##  htmltools     0.5.1.1  2021-01-22 [1] CRAN (R 4.0.2)                          
 ##  httr          1.4.2    2020-07-20 [1] RSPM (R 4.0.3)                          
+##  jquerylib     0.1.4    2021-04-26 [1] CRAN (R 4.0.2)                          
 ##  jsonlite      1.7.2    2020-12-09 [1] CRAN (R 4.0.2)                          
 ##  knitr         1.33     2021-04-24 [1] CRAN (R 4.0.2)                          
 ##  labeling      0.3      2014-08-23 [1] RSPM (R 4.0.0)                          
@@ -219,7 +220,6 @@ devtools::session_info()
 ##  rmarkdown     2.10     2021-08-06 [1] CRAN (R 4.0.2)                          
 ##  RNifti        1.2.2    2020-09-07 [1] RSPM (R 4.0.2)                          
 ##  rprojroot     2.0.2    2020-11-15 [1] CRAN (R 4.0.2)                          
-##  rstudioapi    0.13     2020-11-12 [1] CRAN (R 4.0.2)                          
 ##  rvest         1.0.1    2021-07-26 [1] CRAN (R 4.0.2)                          
 ##  scales        1.1.1    2020-05-11 [1] RSPM (R 4.0.3)                          
 ##  sessioninfo   1.1.1    2018-11-05 [1] RSPM (R 4.0.3)                          
