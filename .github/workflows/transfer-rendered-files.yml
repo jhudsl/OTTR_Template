@@ -53,7 +53,8 @@ jobs:
 
           for path in "${rmd_list[@]}"
           do
-            svn export https://github.com/jhudsl/DaSL_Course_Template_Bookdown.git/branches/main/${path}
+            echo $path
+            echo svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/${path}
           done
 
       - name: Create PR with rendered docs files
