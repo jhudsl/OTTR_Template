@@ -11,7 +11,7 @@ name: Copy files from Bookdown to Leanpub repo
 on:
   workflow_dispatch:
   # Only run after the render finishes running
-  #workflow_run:
+  # workflow_run:
   #  workflows: [ "Build, Render, and Push" ]
   #  branches: [ main ]
   #  types:
@@ -53,10 +53,8 @@ jobs:
 
           for path in $rmd_list
           do
-            # test that the path is to an Rmd file, error if not
-            [[ $path != *.Rmd ]] && echo "'$path' is not an .Rmd file." && exit 1
-            echo $path
-            svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/manuscript/${path}
+            echo Copying over $path
+            echo svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/${path}
           done
 
       - name: Create PR with rendered docs files
