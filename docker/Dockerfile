@@ -20,8 +20,8 @@ RUN sudo apt-get purge pandoc pandoc-citeproc pandoc-data \
   && sudo apt-get autoremove --purge
 
 # Install pandoc
-RUN wget https://github.com/jgm/pandoc/releases/download/2.9.2.1/pandoc-2.9.2.1-1-amd64.deb \
-  && sudo apt-get install ./pandoc-2.9.2.1-1-amd64.deb
+RUN wget https://github.com/jgm/pandoc/releases/download/2.14.1/pandoc-2.14.1-1-amd64.deb \
+  && sudo apt-get install ./pandoc-2.14.1-1-amd64.deb
 
 # Create new symlinks
 RUN ln -s /usr/bin/pandoc /usr/lib/rstudio-server/bin/pandoc/pandoc
@@ -50,10 +50,14 @@ RUN Rscript -e  "install.packages( \
       'spelling', \
       'styler'))"
 
-# Copy over git token
+# Copy over git token and package list
 COPY git_token.txt .
+COPY github_package_list.tsv .
 
 # Install packages from github
-RUN Rscript --vanilla install_github.R \
-  --packages "jhudsl/didactr, jhudsl/leanbuild" \
+RUN Rscript install_github.R \
+  --packages github_package_list.tsv \
   --token git_token.txt
+
+# Set final workdir for commands
+WORKDIR /home/rstudio
