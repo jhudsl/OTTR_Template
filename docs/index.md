@@ -1,7 +1,7 @@
 ---
 title: "Course Name "
 author: "Author Name"
-date: "2021-08-20"
+date: "2021-08-23"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
