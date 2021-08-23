@@ -7,8 +7,11 @@ library(optparse)
 option_list <- list(
   make_option(
     opt_str = c("-p", "--packages"), type = "character",
-    default = NULL,
-    help = "A list of packages to be installed through Github, separated by commas:
+    default = "github_package_list.tsv" ,
+    help = "Path to a TSV with a list of packages to be installed through Github, 
+    where file where the first column is the github package name e.g. 
+    jhudsl/leanbuild and the second column is the commit ID to be installed 
+    (to be supplied to the ref argument).
     ",
     metavar = "character"
   ),
@@ -31,11 +34,15 @@ Sys.unsetenv("GITHUB_PAT")
 Sys.setenv(GITHUB_PAT = token)
 
 # set up list of packages to install
-opt$packages <- unlist(strsplit(opt$packages, ", "))
+packages <- readr::read_tsv(opt$packages, 
+                                col_names = c("package_name", "ref"))
 
-# We want errors not just warnings
-remotes::install_github(opt$packages,
-                        auth_token = token)
+purrr::pmap(
+  packages,
+  ~remotes::install_github(..1,
+                           auth_token = token,
+                           ref = ..2)
+                )
 
 # Remove the file after we are done
 file.remove(opt$token)

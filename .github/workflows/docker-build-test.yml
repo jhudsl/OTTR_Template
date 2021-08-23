@@ -11,7 +11,7 @@ name: Test build of Dockerfile
 on:
   pull_request:
     branches: [ main ]
-    paths: [ docker/Dockerfile ]
+    paths: [ docker/Dockerfile, docker/github_package_list.tsv ]
   workflow_dispatch:
     inputs:
       dockerhubpush:
