@@ -39,7 +39,7 @@ jobs:
           if [ -d "docs/" ]
           then
           # remove old docs/ files and folder
-          rm docs/*
+          rm -r docs/*
           fi
 
           # Copy over book.bib file
