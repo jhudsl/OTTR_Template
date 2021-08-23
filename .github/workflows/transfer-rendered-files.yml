@@ -49,6 +49,9 @@ jobs:
           # Copy over _bookdown.yml
           svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/_bookdown.yml
 
+          # Copy over images folder
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/resources/images resources/images
+
           # Get list of Rmds needing to copy
           Rscript --vanilla scripts/get_rmd_filenames.R
 
