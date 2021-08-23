@@ -49,12 +49,11 @@ jobs:
           svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/_bookdown.yml
 
           # Get list of Rmds needing to copy
-          rmd_list=$(find . -name '*.Rmd'  | grep '.Rmd')
+          rmd_list=$(find . -name '*.Rmd'  | grep '.Rmd' | sed "s/.*\///")
 
-          for path in $rmd_list
+          for path in "${rmd_list[@]}"
           do
-            echo Copying over $path
-            echo svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/${path}
+            svn export https://github.com/jhudsl/DaSL_Course_Template_Bookdown.git/branches/main/${path}
           done
 
       - name: Create PR with rendered docs files
