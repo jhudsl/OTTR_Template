@@ -36,15 +36,17 @@ jobs:
         run: |
           sudo apt-get install subversion
 
+          if [ -d "docs/" ]
+          then
           # remove old docs/ files and folder
-          rm -r manuscript
+          rm docs/*
+          fi
 
-          # make manuscript directory
-          mkdir manuscript
-
-          # Copy over any .bib files too!
+          # Copy over book.bib file
           svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/book.bib
-          svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/packages.bib
+
+          # Copy over _bookdown.yml
+          svn export https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/_bookdown.yml
 
           # Get list of Rmds needing to copy
           rmd_list=$(find . -name '*.Rmd'  | grep '.Rmd')
