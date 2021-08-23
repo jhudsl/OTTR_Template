@@ -66,6 +66,9 @@ jobs:
           # remove old Rmd files
           rm $(find . -name '*.Rmd'  | grep '.Rmd' )
 
+          # remove old Rmd files
+          rm $(find . -name '*.Rmd'  | grep '.Rmd' )
+
           # get new Rmd files and put them in the right place
           for path in $rmd_paths
           do
