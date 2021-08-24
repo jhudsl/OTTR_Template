@@ -73,15 +73,19 @@ jobs:
         id: cpr
         with:
           token: ${{ secrets.GIT_TOKEN }}
-          commit-message: Copy docs/ files from Bookdown repository
+          commit-message: Copy files from Bookdown repository
           signoff: false
           branch: auto_copy_rendered_files
           delete-branch: true
-          title: 'GHA: Automated transfer of docs/ from Bookdown repository'
+          title: 'GHA: Automated transfer of leanbuild-needed files from Bookdown repository'
           body: |
             ### Description:
-            This PR auto-generated from github actions
-              - Copy the bookdown rendered files in docs/ from Bookdown repository
+             Copying over the leanbuild-needed files from Bookdown repository:
+               - Rmds listed in the _bookdoown.yml
+               - _bookdown.yml
+               - docs/*
+               - book.bib
+               - resources/images/*
           labels: |
             automated
           reviewers: $GITHUB_ACTOR
