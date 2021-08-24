@@ -29,7 +29,7 @@ jobs:
           repository: jhudsl/DaSL_Course_Template_Leanpub
           token: ${{ secrets.GIT_TOKEN }}
 
-      - name: Get docs/ from Bookdown repo
+      - name: Get files from Bookdown repo
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GIT_TOKEN }}
