@@ -18,7 +18,7 @@ library(here)
 ```
 
 ```
-## here() starts at /home/rstudio/Desktop/GitRepos/ITCR_Course_Template_Bookdown
+## here() starts at /home/rstudio
 ```
 
 ```r
