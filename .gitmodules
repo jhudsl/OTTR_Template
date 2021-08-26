@@ -1,0 +1,3 @@
+[submodule "mechanics"]
+	path = mechanics
+	url = https://github.com/cansavvy/DaSL_Template_Mechanics.git
