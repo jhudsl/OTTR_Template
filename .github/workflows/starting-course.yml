@@ -1,9 +1,11 @@
 # Code adapted from https://github.com/JetBrains/intellij-platform-plugin-template/blob/deb171483598ee8a5d7621154db880e87b4db4ef/.github/workflows/template-cleanup.yml
 # by Candace Savonen for this repository.
 
-name: Starting a new template
+name: Starting a new course
 on:
-  create:
+  # Trigger on page_build, as well as release created events
+  release:
+    types: [ created ]
   workflow_dispatch:
 
 jobs:
@@ -44,7 +46,7 @@ jobs:
           content-filepath: .github/automatic-issues/git-secrets.md
           labels: automated training issue
 
-      # Cleanup project
+      # Cleanup Template-specific bits
       - name: Cleanup
         run: |
           # Cleanup
