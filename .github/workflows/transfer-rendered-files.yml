@@ -27,12 +27,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: jhudsl/DaSL_Course_Template_Leanpub
-          token: ${{ secrets.GIT_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
 
       - name: Get files from Bookdown repo
         shell: bash
         env:
-          GH_TOKEN: ${{ secrets.GIT_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           sudo apt-get install subversion
           sudo apt install r-base
@@ -56,7 +56,7 @@ jobs:
           Rscript --vanilla scripts/get_rmd_filenames.R
 
           # the url from this repo where files will be downloaded from
-          base_url=https://${GIT_TOKEN}@raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/heads/}
+          base_url=https://${GH_PAT}@raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/heads/}
 
           # remove old Rmd files
           rm $(find . -name '*.Rmd'  | grep '.Rmd' )
@@ -72,7 +72,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         id: cpr
         with:
-          token: ${{ secrets.GIT_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
           commit-message: Copy files from Bookdown repository
           signoff: false
           branch: auto_copy_rendered_files
