@@ -1,0 +1,9 @@
+# Candace Savonen Aug 2021
+
+user/repository:
+  - .github/workflows/test.yml
+  - .github/workflows/lint.yml
+
+user/repository2:
+  - source: workflows/stale.yml
+    dest: .github/workflows/stale.yml
