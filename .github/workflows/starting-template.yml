@@ -1,10 +1,10 @@
 # Code adapted from https://github.com/JetBrains/intellij-platform-plugin-template/blob/deb171483598ee8a5d7621154db880e87b4db4ef/.github/workflows/template-cleanup.yml
 # by Candace Savonen for this repository.
 
-name: Template Cleanup
+name: Starting a new template
 on:
   create:
-
+  workflow_dispatch:
 jobs:
 
   # Run cleaning process only if workflow is triggered by not being in the Bookdown template anymore
@@ -17,31 +17,6 @@ jobs:
       # Check out current repository
       - name: Fetch current branch
         uses: actions/checkout@v2
-
-      # Cleanup project
-      - name: Cleanup
-        run: |
-          echo ${{github.event.repository.name}}
-          # Cleanup
-          rm -rf \
-            .github/workflows/downstream-mechanics-update.yml \
-            .github/sync.yml \
-            .github/workflows/starting-template.yml \
-
-      # Commit modified files
-      - name: Commit deleted files
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "Template cleanup"
-
-      # Push changes
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          branch: main
-          github_token: ${{ secrets.GH_PAT }}
 
 ##### Filing issues!
 
@@ -68,3 +43,27 @@ jobs:
           title: New Course - Set Github Secrets
           content-filepath: .github/automatic-issues/git-secrets.md
           labels: automated training issue
+
+      # Cleanup project
+      - name: Cleanup
+        run: |
+          # Cleanup
+          rm -rf \
+            .github/workflows/downstream-mechanics-update.yml \
+            .github/sync.yml \
+            .github/workflows/starting-template.yml \
+
+      # Commit modified files
+      - name: Commit deleted files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Template cleanup"
+
+      # Push changes
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: main
+          github_token: ${{ secrets.GH_PAT }}
