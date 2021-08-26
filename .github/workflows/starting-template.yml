@@ -5,8 +5,8 @@ name: Starting a new template
 on:
   create:
   workflow_dispatch:
-jobs:
 
+jobs:
   # Run cleaning process only if workflow is triggered by not being in the Bookdown template anymore
   template-cleanup:
     name: Template Cleanup
