@@ -9,7 +9,6 @@ group:
   files:
   - .github/workflows/render-bookdown.yml
   - .github/workflows/style-and-sp-check.yml
-  - .github/workflows/transfer-rendered-files.yml
   - .github/workflows/url-checker.yml
   - .github/workflows/ISSUE_TEMPLATES/issue_template.md
   - .github/workflows/PULL_REQUEST_TEMPLATE.md
