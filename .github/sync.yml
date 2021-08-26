@@ -4,7 +4,7 @@
 group:
   # Repositories to recieve changes
   repos: |
-    jhudsl/Documentation_and_Usability
+    jhudsl/ITCR_Documentation_and_Usability
   # Files which should be updated
   files:
   - .github/workflows/render-bookdown.yml

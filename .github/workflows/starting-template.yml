@@ -23,7 +23,7 @@ jobs:
         run: |
           # Cleanup
           rm -rf \
-            .sync-mechanics.yml \
+            .github/workflows/downstream-mechanics-update.yml \
             .github/sync.yml \
             .github/workflows/starting-template.yml \
 
