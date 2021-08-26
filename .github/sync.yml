@@ -1,0 +1,18 @@
+# Candace Savonen Aug 2021
+# For info on how to update this file see: https://github.com/marketplace/actions/repo-file-sync-action#%EF%B8%8F-sync-configuration
+
+group:
+  # Repositories to recieve changes
+  repos: |
+    jhudsl/ITCR_Documentation_and_Usability
+  # Files which should be updated
+  files:
+  - .github/workflows/render-bookdown.yml
+  - .github/workflows/style-and-sp-check.yml
+  - .github/workflows/transfer-rendered-files.yml
+  - .github/workflows/url-checker.yml
+  - .github/workflows/ISSUE_TEMPLATES/issue_template.md
+  - .github/workflows/PULL_REQUEST_TEMPLATE.md
+  - docker/*
+  - scripts/*
+  - getting_started.md

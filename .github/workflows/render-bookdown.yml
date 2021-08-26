@@ -30,7 +30,7 @@ jobs:
           # get the full repo
           fetch-depth: 0
           # use github PAT
-          token: ${{ secrets.GIT_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
 
 ###### If you will be making changes to the Docker image to make specific to the
 ###### course, then highlight this chunk and uncomment it. #####################
@@ -48,7 +48,7 @@ jobs:
       #   uses: docker/setup-buildx-action@v1
       #
       # - name: Get Token
-      #   run: echo ${{ secrets.GIT_TOKEN }} > docker/git_token.txt
+      #   run: echo ${{ secrets.GH_PAT }} > docker/git_token.txt
       #
       # # Build docker image
       # - name: Build Docker image
