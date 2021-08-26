@@ -1,0 +1,69 @@
+# Code adapted from https://github.com/JetBrains/intellij-platform-plugin-template/blob/deb171483598ee8a5d7621154db880e87b4db4ef/.github/workflows/template-cleanup.yml
+# by Candace Savonen for this repository.
+
+name: Template Cleanup
+on:
+  create:
+
+jobs:
+
+  # Run cleaning process only if workflow is triggered by not being in the Bookdown template anymore
+  template-cleanup:
+    name: Template Cleanup
+    runs-on: ubuntu-latest
+    if: github.event.repository.name != 'jhudsl/DaSL_Course_Template_Bookdown'
+    steps:
+
+      # Check out current repository
+      - name: Fetch current branch
+        uses: actions/checkout@v2
+
+      # Cleanup project
+      - name: Cleanup
+        run: |
+          # Cleanup
+          rm -rf \
+            .sync-mechanics.yml \
+            .github/sync.yml \
+            .github/workflows/starting-template.yml \
+
+      # Commit modified files
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Template cleanup"
+
+      # Push changes
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: main
+          github_token: ${{ secrets.GH_PAT }}
+
+##### Filing issues!
+
+      # Issue for what repository settings need to be set
+      - name: New Course - Set Repository Settings
+        uses: peter-evans/create-issue-from-file@v2.3.2
+        with:
+          title: New Course - Set Repository Settings
+          content-filepath: .github/automatic-issues/set-repo-settings.md
+          labels: automated training issue
+
+      # Issue for what needs to be edited
+      - name: New Course - Templates to Edit
+        uses: peter-evans/create-issue-from-file@v2.3.2
+        with:
+          title: New Course - Templates to Edit
+          content-filepath: .github/automatic-issues/templates-to-edit.md
+          labels: automated training issue
+
+      # Issue for what github secrets that need to be set
+      - name: New Course - Set Github Secrets
+        uses: peter-evans/create-issue-from-file@v2.3.2
+        with:
+          title: New Course - Set Github Secrets
+          content-filepath: .github/automatic-issues/git-secrets.md
+          labels: automated training issue
