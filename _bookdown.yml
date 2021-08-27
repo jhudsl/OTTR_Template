@@ -4,8 +4,6 @@ repo: https://github.com/jhudsl/DaSL_Course_Template_Bookdown/
 rmd_files: ["index.Rmd",
             "01-intro.Rmd",
             "02-chapter_of_course.Rmd",
-            "03-test_cases.Rmd",
-            "04-figures.Rmd",
             "About.Rmd"]
 new_session: yes
 delete_merged_file: true
