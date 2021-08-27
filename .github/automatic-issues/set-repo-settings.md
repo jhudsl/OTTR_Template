@@ -17,3 +17,5 @@ _After the first pull request, a couple of checks will automatically happen and 
 - [ ] `style-n-check` is a required status check
 
 - [ ] All these settings have been saved!
+
+- [ ] This repo has been enrolled in [automatic updates from the original template](#receiving-automatic-mechanic-updates-from-the-original-template).
