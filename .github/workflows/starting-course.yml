@@ -53,9 +53,9 @@ jobs:
         run: |
           # Cleanup
           rm -rf \
-            .github/workflows/downstream-mechanics-update.yml \
+            .github/workflows/downstream-mechanics-updates.yml \
             .github/sync.yml \
-            .github/workflows/starting-template.yml \
+            .github/workflows/starting-course.yml
 
       # Commit modified files
       - name: Commit deleted files
