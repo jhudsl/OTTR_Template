@@ -3,9 +3,9 @@
 
 name: Starting a new course
 on:
-  # Trigger on page_build, as well as release created events
-  release:
-    types: [ created ]
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
   template-cleanup:
     name: Template Cleanup
     runs-on: ubuntu-latest
-    if: ${{ github.event.repository.name != 'jhudsl/DaSL_Course_Template_Bookdown' }}
+    if: github.event.repository.name != 'DaSL_Course_Template_Bookdown'
     steps:
 
       # Check out current repository
@@ -45,6 +45,8 @@ jobs:
           title: New Course - Set Github Secrets
           content-filepath: .github/automatic-issues/git-secrets.md
           labels: automated training issue
+
+##### Delete Template-specific files that aren't needed for new courses
 
       # Cleanup Template-specific bits
       - name: Cleanup
