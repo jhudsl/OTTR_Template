@@ -4,14 +4,11 @@ output: html_document
 ---
 
 
-
 *If you haven't yet read the getting started guide; [start there](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md)
 
 Every chapter needs to start out with this chunk of code:
 
-```{r, include = FALSE}
-leanbuild::set_knitr_image_path()
-```
+
 
 ## Learning Objectives
 
@@ -34,7 +31,7 @@ library(here)
 ```
 
 ```
-## here() starts at /Users/carriewright/Documents/GitHub/ITCR/templates/DaSL_Course_Template_Bookdown
+## here() starts at /home/rstudio
 ```
 
 ```r
@@ -72,11 +69,9 @@ iris %>%
   theme_bw()
 ```
 
-
 <img src="resources/images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 You can also save these plots to file: 
-
 
 
 ```r
@@ -168,20 +163,20 @@ devtools::session_info()
 ```
 ## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
-##  version  R version 4.0.3 (2020-10-10)
-##  os       macOS Mojave 10.14.6        
-##  system   x86_64, darwin17.0          
+##  version  R version 4.0.2 (2020-06-22)
+##  os       Ubuntu 20.04.2 LTS          
+##  system   x86_64, linux-gnu           
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2021-08-27                  
+##  date     2021-08-30                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib
-##  ari           0.4.1      2021-08-26 [1]
-##  ariExtra      0.3.1      2021-08-26 [1]
+##  ari           0.4.1      2021-08-28 [1]
+##  ariExtra      0.3.1      2021-08-28 [1]
 ##  askpass       1.1        2019-01-13 [1]
 ##  assertthat    0.2.1      2019-03-21 [1]
 ##  backports     1.1.10     2020-09-15 [1]
@@ -211,9 +206,9 @@ devtools::session_info()
 ##  htmltools     0.5.0      2020-06-16 [1]
 ##  httr          1.4.2      2020-07-20 [1]
 ##  jsonlite      1.7.1      2020-09-07 [1]
-##  knitr         1.33       2021-08-26 [1]
+##  knitr         1.33       2021-08-28 [1]
 ##  labeling      0.3        2014-08-23 [1]
-##  leanbuild     0.1.2      2021-08-26 [1]
+##  leanbuild     0.1.2      2021-08-28 [1]
 ##  lifecycle     1.0.0      2021-02-15 [1]
 ##  magrittr    * 1.5        2014-11-22 [1]
 ##  MASS          7.3-51.6   2020-04-26 [2]
@@ -233,25 +228,25 @@ devtools::session_info()
 ##  R6            2.4.1      2019-11-12 [1]
 ##  Rcpp          1.0.5      2020-07-06 [1]
 ##  remotes       2.2.0      2020-07-21 [1]
-##  rlang         0.4.10     2021-08-26 [1]
-##  rmarkdown     2.10       2021-08-26 [1]
+##  rlang         0.4.10     2021-08-28 [1]
+##  rmarkdown     2.10       2021-08-28 [1]
 ##  rprojroot     1.3-2      2018-01-03 [1]
-##  rvest         1.0.1      2021-08-26 [1]
+##  rvest         1.0.1      2021-08-28 [1]
 ##  scales        1.1.1      2020-05-11 [1]
 ##  sessioninfo   1.1.1      2018-11-05 [1]
 ##  signal        0.7-6      2015-07-30 [1]
 ##  stringi       1.5.3      2020-09-09 [1]
 ##  stringr       1.4.0      2019-02-10 [1]
-##  testthat      2.3.2      2020-03-02 [1]
-##  text2speech   0.3.0      2021-08-26 [1]
+##  testthat      3.0.1      2021-08-28 [1]
+##  text2speech   0.3.0      2021-08-28 [1]
 ##  tibble        3.0.3      2020-07-10 [1]
 ##  tidyselect    1.1.0      2020-05-11 [1]
 ##  tuneR         1.3.3      2018-07-08 [1]
-##  usethis       2.0.1.9000 2021-08-26 [1]
+##  usethis       2.0.1.9000 2021-08-28 [1]
 ##  vctrs         0.3.4      2020-08-29 [1]
 ##  webshot       0.5.2      2019-11-22 [1]
 ##  withr         2.3.0      2020-09-22 [1]
-##  xfun          0.21       2021-08-26 [1]
+##  xfun          0.21       2021-08-28 [1]
 ##  xml2          1.3.2      2020-04-23 [1]
 ##  yaml          2.2.1      2020-02-01 [1]
 ##  source                                  
@@ -288,7 +283,7 @@ devtools::session_info()
 ##  RSPM (R 4.0.2)                          
 ##  Github (yihui/knitr@a1052d1)            
 ##  RSPM (R 4.0.0)                          
-##  Github (jhudsl/leanbuild@bba0fc8)       
+##  Github (jhudsl/leanbuild@284634b)       
 ##  CRAN (R 4.0.2)                          
 ##  RSPM (R 4.0.0)                          
 ##  CRAN (R 4.0.2)                          
@@ -317,12 +312,12 @@ devtools::session_info()
 ##  RSPM (R 4.0.0)                          
 ##  RSPM (R 4.0.3)                          
 ##  RSPM (R 4.0.3)                          
-##  RSPM (R 4.0.0)                          
+##  Github (R-lib/testthat@e99155a)         
 ##  Github (muschellij2/text2speech@a0c9f86)
 ##  RSPM (R 4.0.2)                          
 ##  RSPM (R 4.0.3)                          
 ##  RSPM (R 4.0.0)                          
-##  Github (r-lib/usethis@2b3f3bf)          
+##  Github (r-lib/usethis@1e07bdc)          
 ##  RSPM (R 4.0.2)                          
 ##  RSPM (R 4.0.3)                          
 ##  RSPM (R 4.0.2)                          
@@ -330,5 +325,6 @@ devtools::session_info()
 ##  RSPM (R 4.0.3)                          
 ##  RSPM (R 4.0.3)                          
 ## 
-## [1] /Library/Frameworks/R.framework/Versions/4.0/Resources/library
+## [1] /usr/local/lib/R/site-library
+## [2] /usr/local/lib/R/library
 ```
