@@ -62,12 +62,13 @@ Name your repository fill in a short description (If this is an ITCR course, sta
 
 ![Creating new course repository](resources/creating_new_course_repo.png)
 
-- Now if you go to `Issues` you will see issues filed that you can follow to set up the new course!
-![Issues to Guide you through creating the course](guides_issues.png)
+Now if you go to `Issues` you will see issues filed that you can follow to set up the new course!
 
-Start with the issue called `New Course -Templates to Edit`.
+![Issues to Guide you through creating the course](resouces/guides_issues.png)
 
-![Templates to Edit Guide Checklist](resouces/templates_to_edit.png)
+Start with the issue called `New Course - Templates to Edit`.
+
+![Templates to Edit Guide Checklist](resources/templates_to_edit.png)
 
 _If you are creating an ITCR course:_
 
@@ -86,6 +87,10 @@ Once this is done, you can start on the next issue guide checklist called `New C
 ### Recommended repository settings:
 
 With your course repository set up, there are some settings recommended for development.
+
+Using the issue guide checklist called `New Course - Set Repository Settings`, you can walk through the steps for setting up your repository as we would recommend.
+
+![Next issues checklist for repository settings](resources/guides_issues_2.png)
 
 #### Set up GitHub pages
 
