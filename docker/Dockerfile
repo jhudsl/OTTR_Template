@@ -12,6 +12,20 @@ RUN apt-get install -y --no-install-recommends \
     libxt6 \
     libpoppler-cpp-dev
 
+# Remove old symlinks to old pandoc
+RUN unlink /usr/lib/rstudio-server/bin/pandoc/pandoc
+
+# Uninstall old version of pandoc
+RUN sudo apt-get purge pandoc pandoc-citeproc pandoc-data \
+  && sudo apt-get autoremove --purge
+
+# Install pandoc
+RUN wget https://github.com/jgm/pandoc/releases/download/2.14.1/pandoc-2.14.1-1-amd64.deb \
+  && sudo apt-get install ./pandoc-2.14.1-1-amd64.deb
+
+# Create new symlinks
+RUN ln -s /usr/bin/pandoc /usr/lib/rstudio-server/bin/pandoc/pandoc
+
 # Add curl, bzip2
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     bzip2 \
@@ -20,8 +34,6 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
 # Install pip3 and installation tools
 RUN apt-get -y --no-install-recommends install \
     python3-pip  python3-dev
-
-## R packages
 
 # Commonly used R packages
 RUN Rscript -e  "install.packages( \
@@ -38,12 +50,16 @@ RUN Rscript -e  "install.packages( \
       'spelling', \
       'styler'))"
 
-# Copy over git token
+# Copy over git token and package list
 COPY git_token.txt .
+COPY github_package_list.tsv .
+
+# Didactr needs this dependency:
+RUN Rscript -e  "devtools::install_version('lifecycle', version = '1.0.0', repos = 'http://cran.us.r-project.org')"
 
 # Install packages from github
-RUN Rscript --vanilla install_github.R \
-  --packages "jhudsl/didactr, jhudsl/leanbuild" \
+RUN Rscript install_github.R \
+  --packages github_package_list.tsv \
   --token git_token.txt
 
 # Set final workdir for commands

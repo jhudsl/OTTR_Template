@@ -4,11 +4,17 @@ output: html_document
 ---
 
 
+*If you haven't yet read the getting started guide; [start there](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md)
+
+Every chapter needs to start out with this chunk of code:
+
 ```{r, include = FALSE}
 leanbuild::set_knitr_image_path()
 ```
 
 ## Learning Objectives
+
+*Every chapter also needs Learning objectives that will look like this:  
 
 This chapter will cover:  
 
@@ -17,7 +23,9 @@ This chapter will cover:
 
 ## Libraries
 
-For this chapter, we'll need the following packages attached: 
+For this chapter, we'll need the following packages attached:
+
+*Remember to add [any additional packages you need to your course's own docker image](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#setting-up-the-docker-image).
 
 ```{r}
 library(here)
@@ -27,13 +35,15 @@ library(magrittr)
 
 # Topic of Section
 
-Text Text
+You can write all your text in sections like this!
 
 ## Subtopic
 
-Text Text 
+Here's a subheading and some text in this subsection!
 
 ### Code examples
+
+You can demonstrate code like this: 
 
 ```{r}
 output_dir <- "code_output"
@@ -42,6 +52,8 @@ if (!dir.exists(output_dir)) {
 }
 ```
 
+And make pretty plots too: 
+
 ```{r}
 iris %>%
   ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) +
@@ -49,70 +61,80 @@ iris %>%
   theme_bw()
 ```
 
+You can also save these plots to file: 
+
 ```{r}
 ggsave(file.path(output_dir, "test_ggplot2.png"))
 ```
 
 ### Image example
 
+
+How to include a Google slide. It's simplest to use the `leanbuild` package: 
+
 ```{r, fig.align='center', echo = FALSE, fig.alt= "Major point!! example image"}
 leanbuild::include_slide("https://docs.google.com/presentation/d/1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ/edit#slide=id.gcc4fbee202_0_141")
 ```
 
+But if you have the slide or some other image locally downloaded you can also use html like this: 
+
+<img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
+
 
 ### Video examples
 
+You can use `knitr::include_url()` like this: 
 
-```{r, fig.align="center", fig.alt = "video", echo=FALSE, out.width="100%"}
-knitr::include_url("https://www.youtube.com/embed/yiZQaE0q9BY")
-```
-
-```{r, fig.align="center", fig.alt = "video", echo=FALSE, out.width="100%"}
+```{r}
 knitr::include_url("https://www.youtube.com/embed/VOCYL-FNbr0")
 ```
 
-### Embedded files examples
+OR this works: 
 
+<iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
+
+### Links to files
+
+This works: 
 
 ```{r, fig.align="center", echo=FALSE}
 knitr::include_url("https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf", height = "800px")
 ```
 
-```{r, fig.align="center", echo=FALSE}
-knitr::include_url("https://widgets.figshare.com/articles/5427418/embed?show_title=1", height = "800px")
+Or this: 
+
+[This works](https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf).
+
+Or this: 
+
+<iframe src="https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf" width="672" height="800px"></iframe>
+
+### Links to websites
+
+Examples of including a website link. 
+
+This works:
+
+```{r, fig.align="center"}
+knitr::include_url("https://yihui.org")
 ```
 
-Example of including a website:
-```{r, fig.align="center", echo=FALSE}
-knitr::include_url("https://yihui.org", height = "800px")
-```
+OR this:
 
-Example of including an html file hosted on GitHub:
+![Another link](https://yihui.org) 
 
-```{r, fig.align="center", echo=FALSE}
-knitr::include_url("https://carriewright11.github.io/stringr_RLadies/index.html", height = "800px")
-```
+OR this: 
 
+<iframe src="https://yihui.org" width="672" height="400px"></iframe>
 
 ### Citation examples
 
-We can put citations at the end of a sentence like this [@bookdown2016]. 
-Or multiple citations [@bookdown2016, @rmarkdown2018]. 
+We can put citations at the end of a sentence like this [@bookdown2016].
+Or multiple citations [@bookdown2016, @rmarkdown2018].
 
-but they need a ; separator [@bookdown2016; @rmarkdown2018]. 
+but they need a ; separator [@bookdown2016; @rmarkdown2018].
 
-but they need a ; separator [ \[@bookdown2016\](#bookdown2016); \[@rmarkdown2018\](#rmarkdown2018)]. 
-
-In text, we can put citations like this @bookdown2016. 
-
-
-Here's a silly example which may mess up references.
-
-```{r}
-library(oro.nifti)
-img <- oro.nifti::nifti()
-img@.Data
-```
+In text, we can put citations like this @bookdown2016.
 
 ## Print out session info
 

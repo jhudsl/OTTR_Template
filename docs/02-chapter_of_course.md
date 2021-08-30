@@ -5,8 +5,17 @@ output: html_document
 
 
 
+*If you haven't yet read the getting started guide; [start there](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md)
+
+Every chapter needs to start out with this chunk of code:
+
+```{r, include = FALSE}
+leanbuild::set_knitr_image_path()
+```
 
 ## Learning Objectives
+
+*Every chapter also needs Learning objectives that will look like this:  
 
 This chapter will cover:  
 
@@ -15,7 +24,9 @@ This chapter will cover:
 
 ## Libraries
 
-For this chapter, we'll need the following packages attached: 
+For this chapter, we'll need the following packages attached:
+
+*Remember to add [any additional packages you need to your course's own docker image](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#setting-up-the-docker-image).
 
 
 ```r
@@ -33,13 +44,15 @@ library(magrittr)
 
 # Topic of Section
 
-Text Text
+You can write all your text in sections like this!
 
 ## Subtopic
 
-Text Text 
+Here's a subheading and some text in this subsection!
 
 ### Code examples
+
+You can demonstrate code like this: 
 
 
 ```r
@@ -49,6 +62,8 @@ if (!dir.exists(output_dir)) {
 }
 ```
 
+And make pretty plots too: 
+
 
 ```r
 iris %>%
@@ -57,7 +72,11 @@ iris %>%
   theme_bw()
 ```
 
-<img src="images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+
+<img src="resources/images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+
+You can also save these plots to file: 
+
 
 
 ```r
@@ -70,65 +89,74 @@ ggsave(file.path(output_dir, "test_ggplot2.png"))
 
 ### Image example
 
-<img src="images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" width="480" style="display: block; margin: auto;" />
+
+How to include a Google slide. It's simplest to use the `leanbuild` package: 
+
+<img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
+
+But if you have the slide or some other image locally downloaded you can also use html like this: 
+
+<img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
 
 
 ### Video examples
 
-
-<iframe src="https://www.youtube.com/embed/yiZQaE0q9BY" width="100%" height="400px" data-external="1"></iframe>
-
-<iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="100%" height="400px" data-external="1"></iframe>
-
-### Embedded files examples
+You can use `knitr::include_url()` like this: 
 
 
-<iframe src="https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf" width="672" height="800px" data-external="1"></iframe>
+```r
+knitr::include_url("https://www.youtube.com/embed/VOCYL-FNbr0")
+```
 
-<iframe src="https://widgets.figshare.com/articles/5427418/embed?show_title=1" width="672" height="800px" data-external="1"></iframe>
+<iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
 
-Example of including a website:
-<iframe src="https://yihui.org" width="672" height="800px" data-external="1"></iframe>
+OR this works: 
 
-Example of including an html file hosted on GitHub:
+<iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
 
-<iframe src="https://carriewright11.github.io/stringr_RLadies/index.html" width="672" height="800px" data-external="1"></iframe>
+### Links to files
 
+This works: 
+
+<iframe src="https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf" width="672" height="800px"></iframe>
+
+Or this: 
+
+[This works](https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf).
+
+Or this: 
+
+<iframe src="https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf" width="672" height="800px"></iframe>
+
+### Links to websites
+
+Examples of including a website link. 
+
+This works:
+
+
+```r
+knitr::include_url("https://yihui.org")
+```
+
+<iframe src="https://yihui.org" width="672" height="400px"></iframe>
+
+OR this:
+
+![Another link](https://yihui.org) 
+
+OR this: 
+
+<iframe src="https://yihui.org" width="672" height="400px"></iframe>
 
 ### Citation examples
 
-We can put citations at the end of a sentence like this [@bookdown2016]. 
-Or multiple citations [@bookdown2016, @rmarkdown2018]. 
+We can put citations at the end of a sentence like this [@bookdown2016].
+Or multiple citations [@bookdown2016, @rmarkdown2018].
 
-but they need a ; separator [@bookdown2016; @rmarkdown2018]. 
+but they need a ; separator [@bookdown2016; @rmarkdown2018].
 
-but they need a ; separator [ \[@bookdown2016\](#bookdown2016); \[@rmarkdown2018\](#rmarkdown2018)]. 
-
-In text, we can put citations like this @bookdown2016. 
-
-
-Here's a silly example which may mess up references.
-
-
-```r
-library(oro.nifti)
-```
-
-```
-## oro.nifti 0.11.0
-```
-
-```r
-img <- oro.nifti::nifti()
-img@.Data
-```
-
-```
-## , , 1, 1
-## 
-##      [,1]
-## [1,]    0
-```
+In text, we can put citations like this @bookdown2016.
 
 ## Print out session info
 
@@ -147,100 +175,160 @@ devtools::session_info()
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
-##  tz       America/New_York            
-##  date     2021-08-17                  
+##  tz       Etc/UTC                     
+##  date     2021-08-27                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
-##  package     * version date       lib source                                  
-##  abind         1.4-5   2016-07-21 [1] CRAN (R 4.0.0)                          
-##  ari           0.4.1   2021-05-06 [1] Github (muschellij2/ari@b1f3b64)        
-##  ariExtra      0.3.1   2021-06-23 [1] Github (jhudsl/ariExtra@86c733b)        
-##  askpass       1.1     2019-01-13 [1] CRAN (R 4.0.0)                          
-##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.0)                          
-##  bitops        1.0-7   2021-04-24 [1] CRAN (R 4.0.2)                          
-##  bookdown      0.22    2021-04-22 [1] CRAN (R 4.0.2)                          
-##  bslib         0.2.5.1 2021-05-18 [1] CRAN (R 4.0.2)                          
-##  cachem        1.0.5   2021-05-15 [1] CRAN (R 4.0.2)                          
-##  callr         3.7.0   2021-04-20 [1] CRAN (R 4.0.2)                          
-##  cli           3.0.1   2021-07-17 [1] CRAN (R 4.0.2)                          
-##  colorspace    2.0-2   2021-06-24 [1] CRAN (R 4.0.2)                          
-##  crayon        1.4.1   2021-02-08 [1] CRAN (R 4.0.3)                          
-##  curl          4.3.2   2021-06-23 [1] CRAN (R 4.0.2)                          
-##  DBI           1.1.1   2021-01-15 [1] CRAN (R 4.0.2)                          
-##  desc          1.3.0   2021-03-05 [1] CRAN (R 4.0.2)                          
-##  devtools      2.4.2   2021-06-07 [1] CRAN (R 4.0.2)                          
-##  digest        0.6.27  2020-10-24 [1] CRAN (R 4.0.2)                          
-##  docxtractr    0.6.5   2020-07-05 [1] CRAN (R 4.0.2)                          
-##  dplyr         1.0.7   2021-06-18 [1] CRAN (R 4.0.2)                          
-##  ellipsis      0.3.2   2021-04-29 [1] CRAN (R 4.0.2)                          
-##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.0)                          
-##  fansi         0.5.0   2021-05-25 [1] CRAN (R 4.0.2)                          
-##  farver        2.1.0   2021-02-28 [1] CRAN (R 4.0.2)                          
-##  fastmap       1.1.0   2021-01-25 [1] CRAN (R 4.0.2)                          
-##  fs            1.5.0   2020-07-31 [1] CRAN (R 4.0.2)                          
-##  generics      0.1.0   2020-10-31 [1] CRAN (R 4.0.2)                          
-##  ggplot2     * 3.3.5   2021-06-25 [1] CRAN (R 4.0.2)                          
-##  glue          1.4.2   2020-08-27 [1] CRAN (R 4.0.2)                          
-##  gtable        0.3.0   2019-03-25 [1] CRAN (R 4.0.0)                          
-##  here        * 1.0.1   2020-12-13 [1] CRAN (R 4.0.2)                          
-##  highr         0.9     2021-04-16 [1] CRAN (R 4.0.2)                          
-##  hms           1.1.0   2021-05-17 [1] CRAN (R 4.0.2)                          
-##  htmltools     0.5.1.1 2021-01-22 [1] CRAN (R 4.0.2)                          
-##  httr          1.4.2   2020-07-20 [1] CRAN (R 4.0.2)                          
-##  jquerylib     0.1.4   2021-04-26 [1] CRAN (R 4.0.2)                          
-##  jsonlite      1.7.2   2020-12-09 [1] CRAN (R 4.0.2)                          
-##  knitr         1.33.8  2021-07-23 [1] Github (yihui/knitr@d65b923)            
-##  labeling      0.4.2   2020-10-20 [1] CRAN (R 4.0.2)                          
-##  leanbuild     0.1.2   2021-06-23 [1] Github (jhudsl/leanbuild@f9be3fd)       
-##  lifecycle     1.0.0   2021-02-15 [1] CRAN (R 4.0.2)                          
-##  magrittr    * 2.0.1   2020-11-17 [1] CRAN (R 4.0.2)                          
-##  MASS          7.3-54  2021-05-03 [1] CRAN (R 4.0.2)                          
-##  memoise       2.0.0   2021-01-26 [1] CRAN (R 4.0.2)                          
-##  munsell       0.5.0   2018-06-12 [1] CRAN (R 4.0.0)                          
-##  oro.nifti   * 0.11.0  2020-09-08 [1] CRAN (R 4.0.2)                          
-##  pdftools      3.0.1   2021-05-06 [1] CRAN (R 4.0.2)                          
-##  pillar        1.6.2   2021-07-29 [1] CRAN (R 4.0.2)                          
-##  pkgbuild      1.2.0   2020-12-15 [1] CRAN (R 4.0.2)                          
-##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.0.0)                          
-##  pkgload       1.2.1   2021-04-06 [1] CRAN (R 4.0.2)                          
-##  png           0.1-7   2013-12-03 [1] CRAN (R 4.0.2)                          
-##  prettyunits   1.1.1   2020-01-24 [1] CRAN (R 4.0.0)                          
-##  processx      3.5.2   2021-04-30 [1] CRAN (R 4.0.2)                          
-##  progress      1.2.2   2019-05-16 [1] CRAN (R 4.0.0)                          
-##  ps            1.6.0   2021-02-28 [1] CRAN (R 4.0.2)                          
-##  purrr         0.3.4   2020-04-17 [1] CRAN (R 4.0.0)                          
-##  qpdf          1.1     2019-03-07 [1] CRAN (R 4.0.0)                          
-##  R6            2.5.0   2020-10-28 [1] CRAN (R 4.0.2)                          
-##  ragg          1.1.3   2021-06-09 [1] CRAN (R 4.0.2)                          
-##  Rcpp          1.0.7   2021-07-07 [1] CRAN (R 4.0.2)                          
-##  remotes       2.4.0   2021-06-02 [1] CRAN (R 4.0.2)                          
-##  rlang         0.4.11  2021-04-30 [1] CRAN (R 4.0.2)                          
-##  rmarkdown     2.9.5   2021-07-23 [1] Github (rstudio/rmarkdown@0af6b35)      
-##  RNifti        1.3.1   2021-05-13 [1] CRAN (R 4.0.2)                          
-##  rprojroot     2.0.2   2020-11-15 [1] CRAN (R 4.0.2)                          
-##  rstudioapi    0.13    2020-11-12 [1] CRAN (R 4.0.2)                          
-##  rvest         1.0.0   2021-03-09 [1] CRAN (R 4.0.2)                          
-##  sass          0.4.0   2021-05-12 [1] CRAN (R 4.0.2)                          
-##  scales        1.1.1   2020-05-11 [1] CRAN (R 4.0.0)                          
-##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.2)                          
-##  signal        0.7-7   2021-05-25 [1] CRAN (R 4.0.2)                          
-##  stringi       1.7.3   2021-07-16 [1] CRAN (R 4.0.2)                          
-##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.0)                          
-##  systemfonts   1.0.2   2021-05-11 [1] CRAN (R 4.0.2)                          
-##  testthat      3.0.4   2021-07-01 [1] CRAN (R 4.0.2)                          
-##  text2speech   0.3.0   2021-03-03 [1] Github (muschellij2/text2speech@a0c9f86)
-##  textshaping   0.3.5   2021-06-09 [1] CRAN (R 4.0.2)                          
-##  tibble        3.1.3   2021-07-23 [1] CRAN (R 4.0.2)                          
-##  tidyselect    1.1.1   2021-04-30 [1] CRAN (R 4.0.2)                          
-##  tuneR         1.3.3   2018-07-08 [1] CRAN (R 4.0.2)                          
-##  usethis       2.0.1   2021-02-10 [1] CRAN (R 4.0.2)                          
-##  utf8          1.2.2   2021-07-24 [1] CRAN (R 4.0.2)                          
-##  vctrs         0.3.8   2021-04-29 [1] CRAN (R 4.0.2)                          
-##  webshot       0.5.2   2019-11-22 [1] CRAN (R 4.0.0)                          
-##  withr         2.4.2   2021-04-18 [1] CRAN (R 4.0.2)                          
-##  xfun          0.24    2021-06-15 [1] CRAN (R 4.0.2)                          
-##  xml2          1.3.2   2020-04-23 [1] CRAN (R 4.0.2)                          
-##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.0)                          
+##  package     * version    date       lib
+##  ari           0.4.1      2021-08-26 [1]
+##  ariExtra      0.3.1      2021-08-26 [1]
+##  askpass       1.1        2019-01-13 [1]
+##  assertthat    0.2.1      2019-03-21 [1]
+##  backports     1.1.10     2020-09-15 [1]
+##  bookdown      0.20       2020-06-23 [1]
+##  callr         3.4.4      2020-09-07 [1]
+##  cli           2.0.2      2020-02-28 [1]
+##  colorspace    1.4-1      2019-03-18 [1]
+##  crayon        1.3.4      2017-09-16 [1]
+##  curl          4.3        2019-12-02 [1]
+##  desc          1.2.0      2018-05-01 [1]
+##  devtools      2.3.2      2020-09-18 [1]
+##  digest        0.6.25     2020-02-23 [1]
+##  docxtractr    0.6.5      2020-07-05 [1]
+##  dplyr         1.0.2      2020-08-18 [1]
+##  ellipsis      0.3.1      2020-05-15 [1]
+##  evaluate      0.14       2019-05-28 [1]
+##  fansi         0.4.1      2020-01-08 [1]
+##  farver        2.0.3      2020-01-16 [1]
+##  fs            1.5.0      2020-07-31 [1]
+##  generics      0.0.2      2018-11-29 [1]
+##  ggplot2     * 3.3.2      2020-06-19 [1]
+##  glue          1.4.2      2020-08-27 [1]
+##  gtable        0.3.0      2019-03-25 [1]
+##  here        * 0.1        2017-05-28 [1]
+##  highr         0.8        2019-03-20 [1]
+##  hms           0.5.3      2020-01-08 [1]
+##  htmltools     0.5.0      2020-06-16 [1]
+##  httr          1.4.2      2020-07-20 [1]
+##  jsonlite      1.7.1      2020-09-07 [1]
+##  knitr         1.33       2021-08-26 [1]
+##  labeling      0.3        2014-08-23 [1]
+##  leanbuild     0.1.2      2021-08-26 [1]
+##  lifecycle     1.0.0      2021-02-15 [1]
+##  magrittr    * 1.5        2014-11-22 [1]
+##  MASS          7.3-51.6   2020-04-26 [2]
+##  memoise       1.1.0      2017-04-21 [1]
+##  munsell       0.5.0      2018-06-12 [1]
+##  pdftools      2.3.1      2020-05-22 [1]
+##  pillar        1.4.6      2020-07-10 [1]
+##  pkgbuild      1.1.0      2020-07-13 [1]
+##  pkgconfig     2.0.3      2019-09-22 [1]
+##  pkgload       1.1.0      2020-05-29 [1]
+##  prettyunits   1.1.1      2020-01-24 [1]
+##  processx      3.4.4      2020-09-03 [1]
+##  progress      1.2.2      2019-05-16 [1]
+##  ps            1.3.4      2020-08-11 [1]
+##  purrr         0.3.4      2020-04-17 [1]
+##  qpdf          1.1        2019-03-07 [1]
+##  R6            2.4.1      2019-11-12 [1]
+##  Rcpp          1.0.5      2020-07-06 [1]
+##  remotes       2.2.0      2020-07-21 [1]
+##  rlang         0.4.10     2021-08-26 [1]
+##  rmarkdown     2.10       2021-08-26 [1]
+##  rprojroot     1.3-2      2018-01-03 [1]
+##  rvest         1.0.1      2021-08-26 [1]
+##  scales        1.1.1      2020-05-11 [1]
+##  sessioninfo   1.1.1      2018-11-05 [1]
+##  signal        0.7-6      2015-07-30 [1]
+##  stringi       1.5.3      2020-09-09 [1]
+##  stringr       1.4.0      2019-02-10 [1]
+##  testthat      2.3.2      2020-03-02 [1]
+##  text2speech   0.3.0      2021-08-26 [1]
+##  tibble        3.0.3      2020-07-10 [1]
+##  tidyselect    1.1.0      2020-05-11 [1]
+##  tuneR         1.3.3      2018-07-08 [1]
+##  usethis       2.0.1.9000 2021-08-26 [1]
+##  vctrs         0.3.4      2020-08-29 [1]
+##  webshot       0.5.2      2019-11-22 [1]
+##  withr         2.3.0      2020-09-22 [1]
+##  xfun          0.21       2021-08-26 [1]
+##  xml2          1.3.2      2020-04-23 [1]
+##  yaml          2.2.1      2020-02-01 [1]
+##  source                                  
+##  Github (jhudsl/ari@2638775)             
+##  Github (jhudsl/ariExtra@86c733b)        
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.2)                          
+##  RSPM (R 4.0.2)                          
+##  RSPM (R 4.0.2)                          
+##  RSPM (R 4.0.0)                          
+##  RSPM (R 4.0.0)                          
+##  RSPM (R 4.0.0)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.0)                          
+##  RSPM (R 4.0.2)                          
+##  RSPM (R 4.0.2)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.0)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.0)                          
+##  RSPM (R 4.0.1)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.0)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.0)                          
+##  RSPM (R 4.0.1)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.2)                          
+##  Github (yihui/knitr@a1052d1)            
+##  RSPM (R 4.0.0)                          
+##  Github (jhudsl/leanbuild@bba0fc8)       
+##  CRAN (R 4.0.2)                          
+##  RSPM (R 4.0.0)                          
+##  CRAN (R 4.0.2)                          
+##  RSPM (R 4.0.0)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.2)                          
+##  RSPM (R 4.0.2)                          
+##  RSPM (R 4.0.2)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.2)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.2)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.2)                          
+##  RSPM (R 4.0.0)                          
+##  RSPM (R 4.0.2)                          
+##  RSPM (R 4.0.3)                          
+##  Github (r-lib/rlang@f0c9be5)            
+##  Github (rstudio/rmarkdown@02d3c25)      
+##  RSPM (R 4.0.0)                          
+##  Github (tidyverse/rvest@4fe39fb)        
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.0)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.0)                          
+##  Github (muschellij2/text2speech@a0c9f86)
+##  RSPM (R 4.0.2)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.0)                          
+##  Github (r-lib/usethis@2b3f3bf)          
+##  RSPM (R 4.0.2)                          
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.2)                          
+##  Github (yihui/xfun@dd87cfc)             
+##  RSPM (R 4.0.3)                          
+##  RSPM (R 4.0.3)                          
 ## 
 ## [1] /Library/Frameworks/R.framework/Versions/4.0/Resources/library
 ```

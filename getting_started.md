@@ -19,9 +19,10 @@ _Background information_:
   - [Recommended repository settings:](#recommended-repository-settings)
     - [Set up GitHub pages](#set-up-github-pages)
       - [Set up branches](#set-up-branches)
+  - [Receiving automatic mechanic updates from the original template](#receiving-automatic-mechanic-updates-from-the-original-template)
   - [Set up Github secrets](#set-up-github-secrets)
     - [Dockerhub related secrets](#dockerhub-related-secrets)
-    - [Google Slide related Secrets](#google-slide-related-secrets)
+    - [Google Slide related secrets](#google-slide-related-secrets)
 - [Setting up the Docker image](#setting-up-the-docker-image)
   - [Starting a new Docker image](#starting-a-new-docker-image)
   - [Adding packages to the Dockerfile](#adding-packages-to-the-dockerfile)
@@ -44,6 +45,8 @@ _Background information_:
     - [Themes for ITCR project:](#themes-for-itcr-project)
   - [Accessibility](#accessibility)
 - [Adding images and graphics in text](#adding-images-and-graphics-in-text)
+- [Adding videos in text](#adding-videos-in-text)
+- [Adding embedded files to text](#adding-embedded-files-to-text)
 - [Learning Objectives Formatting](#learning-objectives-formatting)
 - [Bookdown Rendering](#bookdown-rendering)
 
@@ -117,6 +120,14 @@ See the [Github Actions section](#github-actions) for more details on these.
 
 After setting up these new branch items, click `Create` and `Save changes`.
 
+### Receiving automatic mechanic updates from the original template
+
+When updates are made to files that aren't specific to the course content but instead run checks and other processes in the original repository, PRs are filed automatically to any downstream repositories made from this template.
+
+To enroll in these automatic update PRs, the new course's repository name will need to be added to [this file in the original template](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/sync.yml) where it says `#NEW REPO HERE#`.
+File a pull request to make this change.
+If the your new course doesn't need some of the functionality of these files or you find the automatic you can feel free to use [this guide](https://github.com/marketplace/actions/repo-file-sync-action#sync-the-same-files-to-multiple-repositories) to tailor which files you want updates for.
+
 ### Set up Github secrets
 
 The Github actions that this repository uses needs four Github secrets set up.
@@ -131,13 +142,15 @@ To set up these repository secrets, on your repository's main Github page, go to
 
 For each new secret, click the `New repository secret` button and set each as follows, clicking `Add secret` as you fill each in appropriately:  
 
-_Name: `GIT_TOKEN`_:  
+_Name: `GH_PAT`_:  
+*If you are a part of `jhudsl` organization you do not need to set these.
 For `value`: Create a personal access token [following these instructions](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token#creating-a-token). Underneath `Select scopes`, check both `repo` and `workflow`.
 Then copy the PAT and save as the value.
 
 #### Dockerhub related secrets
 
 Note these are not required if [Docker update Github actions are not turned on](#about-customizing-render-bookdownyml-also-called-build-all).
+*If you are a part of `jhudsl` organization you do not need to set these.
 
 _Name: `DOCKERHUB_USERNAME`_:  
 For `value`: put your login username for https://hub.docker.com/
@@ -306,9 +319,12 @@ RUN pip3 install \
 #### Rebuilding the Docker image
 
 When you've added a package to the Dockerfile, you'll need to check that it builds successfully before including it in a pull request.
-You'll need to rebuild the docker image using this command:
+
+First create a GITHUB token file by making a token and copying a pasting it into a plain text file named `docker/github_token.txt`.
+
+Then you'll need to rebuild the docker image using this command:
 ```
-docker build -< docker/Dockerfile -t jhudsl/<TAG_FOR_COURSE>
+docker build -f docker/Dockerfile . -t jhudsl/course_template
 ```
 If it fails, often the issue is a missing dependency.
 Take a look at the error messages and see if you can determine the issue with some Googling.
