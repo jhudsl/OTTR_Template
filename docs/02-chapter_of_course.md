@@ -4,11 +4,14 @@ output: html_document
 ---
 
 
+
 *If you haven't yet read the getting started guide; [start there](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md)
 
 Every chapter needs to start out with this chunk of code:
 
-
+```{r, include = FALSE}
+leanbuild::set_knitr_image_path()
+```
 
 ## Learning Objectives
 
@@ -31,7 +34,7 @@ library(here)
 ```
 
 ```
-## here() starts at /home/rstudio
+## here() starts at /Users/carriewright/Documents/GitHub/ITCR/templates/DaSL_Course_Template_Bookdown
 ```
 
 ```r
@@ -69,9 +72,11 @@ iris %>%
   theme_bw()
 ```
 
+
 <img src="resources/images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 You can also save these plots to file: 
+
 
 
 ```r
@@ -84,6 +89,7 @@ ggsave(file.path(output_dir, "test_ggplot2.png"))
 
 ### Image example
 
+
 How to include a Google slide. It's simplest to use the `leanbuild` package: 
 
 <img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
@@ -91,6 +97,7 @@ How to include a Google slide. It's simplest to use the `leanbuild` package:
 But if you have the slide or some other image locally downloaded you can also use html like this: 
 
 <img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
+
 
 ### Video examples
 
@@ -159,15 +166,11 @@ devtools::session_info()
 ```
 
 ```
-## Error in get(genname, envir = envir) : object 'testthat_print' not found
-```
-
-```
 ## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
-##  version  R version 4.0.2 (2020-06-22)
-##  os       Ubuntu 20.04.2 LTS          
-##  system   x86_64, linux-gnu           
+##  version  R version 4.0.3 (2020-10-10)
+##  os       macOS Mojave 10.14.6        
+##  system   x86_64, darwin17.0          
 ##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_US.UTF-8                 
@@ -327,6 +330,5 @@ devtools::session_info()
 ##  RSPM (R 4.0.3)                          
 ##  RSPM (R 4.0.3)                          
 ## 
-## [1] /usr/local/lib/R/site-library
-## [2] /usr/local/lib/R/library
+## [1] /Library/Frameworks/R.framework/Versions/4.0/Resources/library
 ```
