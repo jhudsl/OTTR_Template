@@ -54,7 +54,7 @@ _Background information_:
 
 ## Creating your course
 
-In the upper right of the landing page for this repository, click the green `Use this template` botton and follow the steps to set up your course's GitHub repository.
+In the upper right of the landing page for this repository, click the green `Use this template` button and follow the steps to set up your course's GitHub repository.
 
 ![Where is the `Use this template` button?](resources/template_button.png)
 
@@ -65,6 +65,13 @@ Name your repository fill in a short description (If this is an ITCR course, sta
 Now if you go to `Issues` you will see issues filed that you can follow to set up the new course!
 
 ![Issues to Guide you through creating the course](resouces/guides_issues.png)
+
+We then recommend that set up a project with RStudio and connect this with your repository on GitHub.
+
+<details> <summary> Click here to see more about creating new projects in RStudio and setting them up with Git version control. </summary>
+
+testing this with just markdown
+</details>
 
 Start with the issue called `New Course - Templates to Edit`.
 
@@ -98,18 +105,23 @@ Go to `Settings` > `Pages`.
 
 ![Find pages settings](resources/pages_settings.png)
 
-![Change pages settings](resouces/change_pages_settings.png)
+![Change pages settings](resources/change_pages_settings.png)
 
 - Under `Source`, pick the drop down menu and pick `main` and `/docs`.  
 - Then click `Save`.  
 - Lastly, check the box that says `Enforce HTTPS` at the bottom of this page.   
 
-![Enforce HTTPS](resouces/change_https.png)
+![Enforce HTTPS](resources/change_https.png)
 
 ##### Set up branches
 
 Go to `Settings` > `Branches` and click `Add rule`.
+
+![Add branch rule](resources/branches.png)
+
 For `Branch name pattern`, put `main`.
+
+![Put main for branch name pattern](resources/main.png)
 
 _Protect the main branch_:  
 Then check the box that says `Require pull request reviews before merging`.
@@ -117,6 +129,10 @@ Then check the box that says `Require pull request reviews before merging`.
 _Make sure branches are updated_:  
 - Check the box that says `Require status checks to pass before merging`.
 - Underneath this also check the box that says `Require branches to be up to date before merging`.
+
+![Branch settings](resources/branch_settings.png)
+
+Submit a pull request if you haven't already done so, to enable you to do the next step of establishing the branch settings.
 
 _Use automatic spell and URL checks_:  
 After the first pull request, a couple of checks will automatically happen and then appear here in settings.
