@@ -51,16 +51,20 @@ _Background information_:
 
 ## Creating your course
 
-In the upper right of this screen, click `Use this template` and follow the steps to set up your course's GitHub repository.
+In the upper right of the landing page for this repository, click the green `Use this template` botton and follow the steps to set up your course's GitHub repository.
+
+![Where is the `Use this template` button?](resources/template_button.png)
 
 Name your repository fill in a short description (If this is an ITCR course, start the repo name with `ITCR_`).
 
-_Trigger the workflow to set up the Github issues that you can use to guide your set up of this course_:   
-- Go to `Actions` > under `Workflows` click on `Issue Filer`.
-- Where it says `This workflow has a workflow_dispatch event trigger.` click `Run workflow` and then click the green button that says `Run workflow`.
-- Now if you go to `Issues` you will see issues filed that you can follow to set up the new course!
+![Creating new course repository](resources/creating_new_course_repo.png)
 
-Now start filling out the documents with the information for the course!
+- Now if you go to `Issues` you will see issues filed that you can follow to set up the new course!
+![Issues to Guide you through creating the course](guides_issues.png)
+
+Start with the issue called `New Course -Templates to Edit`.
+
+![Templates to Edit Guide Checklist](resouces/templates_to_edit.png)
 
 _If you are creating an ITCR course:_
 
@@ -74,6 +78,8 @@ _If you are creating any other courses:_
 Now, you can go through each file (the issues have checklists to guide you) and make sure the existing Rmd template files are changed to fit your course, and delete the `code_output` folder if you do not expect to have any code output (or if you wish to call the folder something else).
 There are `{}` in these files to get you started filling out information and should be deleted after you've filled them out.
 
+Once this is done, you can start on the next issue guide checklist called `New Course - Set Repository Settings`. 
+
 ### Recommended repository settings:
 
 With your course repository set up, there are some settings recommended for development.
@@ -82,9 +88,15 @@ With your course repository set up, there are some settings recommended for deve
 
 Go to `Settings` > `Pages`.
 
+![Find pages settings](resources/pages_settings.png)
+
+![Change pages settings](resouces/change_pages_settings.png)
+
 - Under `Source`, pick the drop down menu and pick `main` and `/docs`.  
 - Then click `Save`.  
 - Lastly, check the box that says `Enforce HTTPS` at the bottom of this page.   
+
+![Enforce HTTPS](resouces/change_https.png)
 
 ##### Set up branches
 
