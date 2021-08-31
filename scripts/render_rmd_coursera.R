@@ -10,7 +10,7 @@
 
 # Rscript scripts/render-notebooks.R \
 # -r 01-getting-started/getting-started.Rmd \
-# -b references.bib \
+# -b "[book.bib, packages.bib]" \
 # --style
 
 # Load library:
@@ -27,7 +27,7 @@ option_list <- list(
   make_option(
     opt_str = c("-b", "--bib_file"),
     type = "character",
-    default = "references.bib", # Default is this file, but it can be changed
+    default = c("[book.bib, packages.bib]"), # Default is this file, but it can be changed
     help = "File name of the references file. Can be any format pandoc works with. Will be normalized with normalizePath().",
     metavar = "character"
   ),
@@ -68,14 +68,10 @@ if (!file.exists(opt$rmd)) {
 }
 
 # Check that the bib file exists
-if (!file.exists(opt$bib_file)) {
-  stop("File specified for --bib_file option is not at the specified file path.")
-} else {
-  header_line <- paste0(
-    "bibliography: ", normalizePath(opt$bib_file), "\n",
-    "link-citations: TRUE"
-  )
-}
+header_line <- paste0(
+    "bibliography: ", opt$bib_file, "\n",
+    "link-citations: TRUE")
+
 # Check for a citation style
 if (!is.null(opt$cite_style)){
   if (!file.exists(opt$cite_style)) {
@@ -100,7 +96,6 @@ if (!is.null(opt$include_file)){
   }
 }
 
-
 # If no output html filename specification, make one from the original filename
 if (is.null(opt$html)) {
   output_file <- stringr::str_replace(normalizePath(opt$rmd), "\\.Rmd$", ".html")
@@ -120,6 +115,9 @@ tmp_file <- stringr::str_replace(opt$rmd, "\\.Rmd$", "-tmp-torender.Rmd")
 # Read in as lines
 lines <- readr::read_lines(opt$rmd)
 
+# Remove the set knit image path function
+# lines <- stringr::str_remove_all(lines, "leanbuild::set_knitr_image_path\\(\\)") 
+
 # Find which lines are the beginning and end of the header chunk
 header_range <- which(lines == "---")
 
@@ -137,7 +135,6 @@ if (!is.null(opt$include_file)){
 # Add the bibliography specification line at the beginning of the chunk
 new_lines <- append(lines, header_line, header_range[1])
 
-
 # Write to a tmp file
 readr::write_lines(new_lines, tmp_file)
 
@@ -147,16 +144,15 @@ footer_file <- normalizePath(file.path("assets", "footer.html"))
 # Declare path to css
 
 # If an not an ITCR course, use this css file: 
-# css_file <- normalizePath(file.path("assets", "style.css"))
+# css_file <- normalizePath(file.path("assets", "style_coursera.css"))
 
 # If an ITCR course, use this css file: 
-css_file <- normalizePath(file.path("assets", "style_ITN.css"))
+css_file <- normalizePath(file.path("assets", "style_ITN_coursera.css"))
 
 # Render the modified notebook
 rmarkdown::render(tmp_file,
                   output_format = rmarkdown::html_document(
-                    toc = TRUE, toc_depth = 2,
-                    toc_float = TRUE, number_sections = TRUE,
+                    number_sections = TRUE,
                     highlight = "haddock",
                     df_print = "paged",
                     css = css_file,

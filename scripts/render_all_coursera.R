@@ -14,13 +14,16 @@ root_dir <- rprojroot::find_root("_bookdown.yml")
 # Retrieve list of Rmd files from the _bookdown.yml
 rmd_files <- leanbuild::get_bookdown_spec(root_dir)$rmd_files
 
+# Create output folder
+output_dir <- file.path("docs", "coursera")
+dir.create(output_dir, showWarnings = FALSE)
+
 # Set up function which will call the 
 render_coursera <- function(rmd_file, verbose = FALSE) {
   r_command <- 
     paste0("Rscript --vanilla ", file.path(root_dir, "scripts", "render_rmd_coursera.R"),
     " --rmd ", file.path(root_dir, rmd_file), 
-    " -b ", file.path(root_dir, "book.bib"),
-   # " --include_file ", file.path(root_dir, "assets", "footer.html"),
+    " --html ", file.path(output_dir, rmd_file),
     " --style")
   
   if (verbose) {message(r_command)}
