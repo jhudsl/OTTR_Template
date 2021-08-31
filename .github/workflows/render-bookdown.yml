@@ -74,6 +74,14 @@ jobs:
           jhudsl/course_template \
           Rscript -e "bookdown::render_book('index.Rmd')"
 
+      # Run Coursera version
+      - name: Run Coursera version of render
+        run: |
+          docker run \
+          --mount type=bind,target=/home/rstudio,source=$PWD \
+          jhudsl/course_template \
+          Rscript -e "bookdown::render_book('index.Rmd')"
+
       # Commit the rendered bookdown files
       - name: Commit rendered bookdown files
         run: |
