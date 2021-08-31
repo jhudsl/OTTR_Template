@@ -158,7 +158,7 @@ rmarkdown::render(tmp_file,
                     css = css_file,
                     includes = rmarkdown::includes(after_body = footer_file)
                   ),
-                  # Save to original html output file name
+                  # Save to html output file name
                   output_file = output_file
 )
 
