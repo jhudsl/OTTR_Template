@@ -70,8 +70,68 @@ We then recommend that set up a project with RStudio and connect this with your 
 
 <details> <summary> Click here to see more about creating new projects in RStudio and setting them up with Git version control. </summary>
 
-testing this with just markdown
+First, to create a new project in RStudio, select File > New Project.
+![Make a new project](resources/new_project.png)
+
+Select a directory for your course to live. We suggest a new directory.
+
+![Select a directory for your new project](resources/select_directory.png)
+
+Select `New Project` for project type.
+
+![Select project type](resources/project_type.png)
+
+If creating a new directory for your project, name the new directory and decide where it should be.
+
+![New Project Directory](resources/project_directory.png)
+
+
+Go back to your new GitHub repository for the course you are creating and click on the green button on the right corner of the landing page to clone the repository.
+
+This will pop up a window that looks like this:
+
+![Clone the GitHub repo to work on the files on your local machine](resources/clone.png)
+
+Click the button that looks like a clip board to copy the location of your repository on GitHub. 
+
+In the terminal pane of RStudio, make sure you are in the newly created directory for your project. 
+
+Then type: `git init` and press enter.
+
+Then type:`git clone` and paste the location of the repository that you just copied from GitHub and press enter.
+
+Finally type: `git pull origin main` and you should see the files on GitHub populate your directory.
+
+This will give you a message like this:
+
+![cloning messages](resources/messages.png)
+
+Next make a new git branch in the terminal in RStudio by typing the following and replacing `branch_name` with something that makes sense for you like `update_about`: `git checkout -b branch_name`
+
+Now to make changes to files, you can open them in Rstudio by clicking on the file name from the file pane (lower right corner).
+
+![Open File in RStudio](resources/file_pane.png)
+
+After editing a file, make sure you save it.
+
+Then in the terminal you can use Git for version control. Again, if you are new to Git please see this [tutorial](https://happygitwithr.com/).
+
+However, as a brief introduction:
+ 
+You can type: `git add` and the file name to stage it for commiting to GitHub. For example `git add about.Rmd`.
+
+Then type a message about what changes you are committing to the copy on GitHub:
+
+For example:
+
+`git commit -m "updating the about file."`
+
+Then type `git push`.
+
+You will get a message about your branch the first time - you can do what git suggests. Then on GitHub you should see that new Pull Request is possible.
 </details>
+
+
 
 Start with the issue called `New Course - Templates to Edit`.
 
