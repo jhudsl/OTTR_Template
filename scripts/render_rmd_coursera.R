@@ -132,15 +132,26 @@ if (!is.null(opt$include_file)){
   lines <- append(lines, include_chunk, header_range[2])
 }
 
-# Add the bibliography specification line at the beginning of the chunk
-new_lines <- append(lines, header_line, header_range[1])
-
 # Convert any embed youtube links to watch links if they exist
 embed_utube_links <- grep("www.youtube.com/embed", lines)
 
 if (length(embed_utube_links) > 0 ) {
-  lines[embed_utube_links] <- leanbuild::convert_utube_link(lines[embed_utube_links])
+
+  # Extract links only
+  extracted_links <- stringr::word(lines[embed_utube_links], sep = "\"", 2)
+
+  # Convert extracted links
+  updated_utube_links <- sapply(extracted_links, leanbuild::convert_utube_link)
+
+  # Substitute in the new links
+  lines[embed_utube_links] <- stringr::str_replace_all(
+    lines[embed_utube_links],
+    updated_utube_links,
+    extracted_links)
 }
+
+# Add the bibliography specification line at the beginning of the chunk
+new_lines <- append(lines, header_line, header_range[1])
 
 # Write to a tmp file
 readr::write_lines(new_lines, tmp_file)
