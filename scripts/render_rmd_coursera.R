@@ -46,9 +46,15 @@ option_list <- list(
     metavar = "character"
   ),
   make_option(
-    opt_str = c("-o", "--html"), type = "character",
-    default = NULL,
-    help = "Desired filename for rendered output html file",
+    opt_str = c("--output_tag"), type = "character",
+    default = "",
+    help = "Desired tag for output file",
+    metavar = "character"
+  ),
+  make_option(
+    opt_str = c("--output_dir"), type = "character",
+    default = getwd(),
+    help = "Desired location for output html",
     metavar = "character"
   ),
   make_option(
@@ -61,17 +67,19 @@ option_list <- list(
 # Parse options
 opt <- parse_args(OptionParser(option_list = option_list))
 
-
-opt$rmd <- "/home/rstudio/ITCR_Course_Template_Bookdown/02-chapter_of_course.Rmd"
-opt$html <- "docs/coursera/02-chapter_of_course.html"
+opt$rmd <- "02-chapter_of_course.Rmd"
+opt$output <- "_coursera"
+opt$output_dir <- file.path("docs", "coursera")
+opt$css_file <- file.path("assets", "style_ITN_coursera.css")
 opt$style <- TRUE
-
-# Get working directory
-base_dir <- getwd()
 
 # Check that the rmd file exists
 if (!file.exists(opt$rmd)) {
   stop("Rmd file specified with --rmd is not found.")
+}
+
+if (!file.exists(opt$css_file)) {
+  stop("CSS file specified with --css_file is not found.")
 }
 
 # Build the header
@@ -80,23 +88,20 @@ header_line <- paste0(
     "link-citations: TRUE \n",
     "output: \n",
     "    html_document: \n",
-    "        css: \"", css_file, "\"")
+    "        css: \"", opt$css_file, "\"")
 
 # Check for a citation style
 if (!is.null(opt$cite_style)){
   if (!file.exists(opt$cite_style)) {
     stop("File specified for --cite_style option is not at the specified file path.")
   } else {
-    header_line <- paste0(header_line, "\n", "csl: ", opt$cite_style)
+    header_line <- paste0(header_line, "\n", "csl: ", normalizePath(opt$cite_style))
   }
 }
 
-# If no output html filename specification, make one from the original filename
-if (is.null(opt$html)) {
-  output_file <- stringr::str_replace(opt$rmd, "\\.Rmd$", ".html")
-} else {
-  # Render is weird about relative file paths, so we have to do this
-  output_file <- file.path(base_dir, opt$html)
+# Check if the output_dir exist, otherwise create it
+if (!dir.exists(opt$output_dir)) {
+  dir.create(opt$output_dir)
 }
 
 # Run styler if option is used
@@ -104,8 +109,9 @@ if (opt$style) {
   styler::style_file(opt$rmd)
 }
 
-# Specify the temp file
-tmp_file <- stringr::str_replace(opt$rmd, "\\.Rmd$", "-tmp-torender.Rmd")
+# Declare new file names
+coursera_rmd_file <- stringr::str_replace(opt$rmd, "\\.Rmd$", paste0(opt$output_tag, ".Rmd"))
+#coursera_html_file <- stringr::str_replace(coursera_rmd_file, "\\.Rmd", ".html")
 
 # Read in as lines
 lines <- readr::read_lines(opt$rmd)
@@ -118,45 +124,20 @@ if (length(header_range) < 2) {
   stop("Not finding the `---` which are at the beginning and end of the header.")
 }
 
-# Add the bibliography specification line at the beginning of the chunk
+# Remove knitr chunk bit
+#lines <- lines[-grep("leanbuild::set_knitr_image_path\\(\\)", lines)]
+
+# Add new header specification line at the beginning of the chunk
 new_lines <- append(lines, header_line, header_range[1])
 
 # Write to a tmp file
-readr::write_lines(new_lines, tmp_file)
+readr::write_lines(new_lines, coursera_rmd_file)
 
 # Declare path to footer
 footer_file <- file.path("assets", "footer.html")
 
+##### Clean up
+system(paste0("mv ", coursera_rmd_file, " ", file.path(opt$output_dir, coursera_rmd_file)))
+
 # Render the modified notebook
-rmarkdown::render(tmp_file,
-                  #output_format = rmarkdown::html_document(
-                  #  css = css_file,
-                  #  includes = rmarkdown::includes(after_body = footer_file)
-                  #),
-                  # Save to html output file name
-                  output_file = output_file
-)
-
-# Remove the modified .Rmd tmp file
-file.remove(tmp_file)
-
-##### Convert youtube links
-output_lines <- readLines(output_file)
-
-# Convert any embed youtube links to watch links if they exist
-embed_utube_links <- grep("www.youtube.com/embed", output_lines, value = TRUE)
-
-if (length(embed_utube_links) > 0 ) {
-
-  # Extract links only
-  extracted_links <- stringr::word(output_lines[embed_utube_links], sep = "\"", 2)
-
-  # Convert extracted links
-  updated_utube_links <- sapply(extracted_links, leanbuild::convert_utube_link)
-
-  # Substitute in the new links
-  output_lines[embed_utube_links] <- stringr::str_replace_all(
-    output_lines[embed_utube_links],
-    updated_utube_links,
-    extracted_links)
-}
+render_filename <- rmarkdown::render(file.path(opt$output_dir, coursera_rmd_file))

@@ -18,6 +18,24 @@ rmd_files <- leanbuild::get_bookdown_spec(root_dir)$rmd_files
 output_dir <- file.path("docs", "coursera")
 dir.create(output_dir, showWarnings = FALSE)
 
+
+# Create symlinks to the files we need
+files_needed <- c(
+  file.path("assets"),
+  file.path("libs"),
+  file.path("book.bib"),
+  file.path("packages.bib")
+  )
+
+# Make a function
+create_symlink <- function(file) {
+  if (!file.exists(file)) {
+  file.symlink(from = file, to = file.path(output_dir, file))
+  }
+}
+# Run it
+lapply(files_needed, create_symlink)
+
 # Set up function which will call the
 render_coursera <- function(rmd_file, verbose = FALSE) {
 
@@ -27,8 +45,10 @@ render_coursera <- function(rmd_file, verbose = FALSE) {
   # Build the command
   r_command <-
     paste0("Rscript --vanilla ", file.path(root_dir, "scripts", "render_rmd_coursera.R"),
-    " --rmd ", file.path(root_dir, rmd_file),
-    " --html ", file.path(output_dir, output_filename),
+    " --rmd ", rmd_file,
+    " --css_file ", file.path("assets", "style_ITN_coursera.css"),
+    " --output_tag _coursera",
+    " --output_dir ", output_dir,
     " --style")
 
   if (verbose) {message(r_command)}
