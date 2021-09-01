@@ -28,21 +28,21 @@ option_list <- list(
     opt_str = c("-b", "--bib_file"),
     type = "character",
     default = c("[book.bib, packages.bib]"), # Default is this file, but it can be changed
-    help = "File name of the references file. Can be any format pandoc works with. Will be normalized with normalizePath().",
+    help = "File name of the references file. Can be any format pandoc works with.",
     metavar = "character"
   ),
   make_option(
     opt_str = c("--css_file"),
     type = "character",
     default = file.path("assets", "style_coursera.css"), # Default is this file, but it can be changed
-    help = "File name of the CSS style file to be used. Will be normalized with normalizePath().",
+    help = "File name of the CSS style file to be used.",
     metavar = "character"
   ),
   make_option(
     opt_str = c("--cite_style"),
     type = "character",
     default = NULL,
-    help = "File name of the citation style file, csl format. Will be normalized with normalizePath().",
+    help = "File name of the citation style file, csl format. ",
     metavar = "character"
   ),
   make_option(
@@ -74,9 +74,6 @@ if (!file.exists(opt$rmd)) {
   stop("Rmd file specified with --rmd is not found.")
 }
 
-# Normalize path to css
-css_file <- normalizePath(file.path(opt$css_file))
-
 # Build the header
 header_line <- paste0(
     "bibliography: ", opt$bib_file, "\n",
@@ -90,13 +87,13 @@ if (!is.null(opt$cite_style)){
   if (!file.exists(opt$cite_style)) {
     stop("File specified for --cite_style option is not at the specified file path.")
   } else {
-    header_line <- paste0(header_line, "\n", "csl: ", normalizePath(opt$cite_style))
+    header_line <- paste0(header_line, "\n", "csl: ", opt$cite_style)
   }
 }
 
 # If no output html filename specification, make one from the original filename
 if (is.null(opt$html)) {
-  output_file <- stringr::str_replace(normalizePath(opt$rmd), "\\.Rmd$", ".html")
+  output_file <- stringr::str_replace(opt$rmd, "\\.Rmd$", ".html")
 } else {
   # Render is weird about relative file paths, so we have to do this
   output_file <- file.path(base_dir, opt$html)
@@ -128,7 +125,7 @@ new_lines <- append(lines, header_line, header_range[1])
 readr::write_lines(new_lines, tmp_file)
 
 # Declare path to footer
-footer_file <- normalizePath(file.path("assets", "footer.html"))
+footer_file <- file.path("assets", "footer.html")
 
 # Render the modified notebook
 rmarkdown::render(tmp_file,
