@@ -32,6 +32,13 @@ option_list <- list(
     metavar = "character"
   ),
   make_option(
+    opt_str = c("--css_file"),
+    type = "character",
+    default = file.path("assets", "style_coursera.css"), # Default is this file, but it can be changed
+    help = "File name of the CSS style file to be used. Will be normalized with normalizePath().",
+    metavar = "character"
+  ),
+  make_option(
     opt_str = c("--cite_style"),
     type = "character",
     default = NULL,
@@ -48,16 +55,16 @@ option_list <- list(
     opt_str = c("-s", "--style"), action = "store_true",
     default = FALSE,
     help = "Style input file before processing"
-  ),
-  make_option(
-    opt_str = c("-i", "--include_file"), type = "character",
-    default = NULL,
-    help = "File with R code to include for rendering"
   )
 )
 
 # Parse options
 opt <- parse_args(OptionParser(option_list = option_list))
+
+
+opt$rmd <- "/home/rstudio/ITCR_Course_Template_Bookdown/02-chapter_of_course.Rmd"
+opt$html <- "docs/coursera/02-chapter_of_course.html"
+opt$style <- TRUE
 
 # Get working directory
 base_dir <- getwd()
@@ -67,10 +74,16 @@ if (!file.exists(opt$rmd)) {
   stop("Rmd file specified with --rmd is not found.")
 }
 
-# Check that the bib file exists
+# Normalize path to css
+css_file <- normalizePath(file.path(opt$css_file))
+
+# Build the header
 header_line <- paste0(
     "bibliography: ", opt$bib_file, "\n",
-    "link-citations: TRUE")
+    "link-citations: TRUE \n",
+    "output: \n",
+    "    html_document: \n",
+    "        css: \"", css_file, "\"")
 
 # Check for a citation style
 if (!is.null(opt$cite_style)){
@@ -78,21 +91,6 @@ if (!is.null(opt$cite_style)){
     stop("File specified for --cite_style option is not at the specified file path.")
   } else {
     header_line <- paste0(header_line, "\n", "csl: ", normalizePath(opt$cite_style))
-  }
-}
-
-# Check for an R code inclusion file and create a chunk to source it
-if (!is.null(opt$include_file)){
-  if (!file.exists(opt$include_file)) {
-    stop("File specified for --include_file option is not at the specified file path.")
-  } else {
-    # create a hidden chunk to source the include file
-    include_chunk <- paste0(
-      '```{r, include = FALSE}\n',
-      'source("', normalizePath(opt$include_file), '")\n',
-      '```'
-    )
-
   }
 }
 
@@ -115,39 +113,12 @@ tmp_file <- stringr::str_replace(opt$rmd, "\\.Rmd$", "-tmp-torender.Rmd")
 # Read in as lines
 lines <- readr::read_lines(opt$rmd)
 
-# Remove the set knit image path function
-# lines <- stringr::str_remove_all(lines, "leanbuild::set_knitr_image_path\\(\\)")
-
 # Find which lines are the beginning and end of the header chunk
 header_range <- which(lines == "---")
 
 # Stop if no header found
 if (length(header_range) < 2) {
   stop("Not finding the `---` which are at the beginning and end of the header.")
-}
-
-
-# Add the include chunk after the header
-if (!is.null(opt$include_file)){
-  lines <- append(lines, include_chunk, header_range[2])
-}
-
-# Convert any embed youtube links to watch links if they exist
-embed_utube_links <- grep("www.youtube.com/embed", lines)
-
-if (length(embed_utube_links) > 0 ) {
-
-  # Extract links only
-  extracted_links <- stringr::word(lines[embed_utube_links], sep = "\"", 2)
-
-  # Convert extracted links
-  updated_utube_links <- sapply(extracted_links, leanbuild::convert_utube_link)
-
-  # Substitute in the new links
-  lines[embed_utube_links] <- stringr::str_replace_all(
-    lines[embed_utube_links],
-    updated_utube_links,
-    extracted_links)
 }
 
 # Add the bibliography specification line at the beginning of the chunk
@@ -159,26 +130,36 @@ readr::write_lines(new_lines, tmp_file)
 # Declare path to footer
 footer_file <- normalizePath(file.path("assets", "footer.html"))
 
-# Declare path to css
-
-# If an not an ITCR course, use this css file:
-# css_file <- normalizePath(file.path("assets", "style_coursera.css"))
-
-# If an ITCR course, use this css file:
-css_file <- normalizePath(file.path("assets", "style_ITN_coursera.css"))
-
 # Render the modified notebook
 rmarkdown::render(tmp_file,
-                  output_format = rmarkdown::html_document(
-                    number_sections = TRUE,
-                    highlight = "haddock",
-                    df_print = "paged",
-                    css = css_file,
-                    includes = rmarkdown::includes(after_body = footer_file)
-                  ),
+                  #output_format = rmarkdown::html_document(
+                  #  css = css_file,
+                  #  includes = rmarkdown::includes(after_body = footer_file)
+                  #),
                   # Save to html output file name
                   output_file = output_file
 )
 
 # Remove the modified .Rmd tmp file
 file.remove(tmp_file)
+
+##### Convert youtube links
+output_lines <- readLines(output_file)
+
+# Convert any embed youtube links to watch links if they exist
+embed_utube_links <- grep("www.youtube.com/embed", output_lines, value = TRUE)
+
+if (length(embed_utube_links) > 0 ) {
+
+  # Extract links only
+  extracted_links <- stringr::word(output_lines[embed_utube_links], sep = "\"", 2)
+
+  # Convert extracted links
+  updated_utube_links <- sapply(extracted_links, leanbuild::convert_utube_link)
+
+  # Substitute in the new links
+  output_lines[embed_utube_links] <- stringr::str_replace_all(
+    output_lines[embed_utube_links],
+    updated_utube_links,
+    extracted_links)
+}
