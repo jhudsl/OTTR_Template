@@ -756,15 +756,17 @@ Note that When a pull request is merged to main, `bookdown::render_book()` will 
 
 ## Using this template for publishing to Coursera
 
-The github actions set up in the [render-bookdown.yml](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/render-bookdown.yml)
+The Github actions set up in the [render-bookdown.yml](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/render-bookdown.yml) also render your course material in a format suitable for linking to Coursera.
 
 Github actions does this by using this command within the docker image:
 ```
 Rscript scripts/render_all_coursera.R
 ```
+You can run this same command locally if you wish to test something. 
 This script will render all the Rmd files listed in the _bookdown.yml.
 This render the chapters individually so they can be linked out to Coursera chapters.
+If you do not wish to publish to Coursera and prefer this do not run, you may delete this section (but it shouldn't hurt anything to keep as is -- unless for some reason it causes you some troubles).
 
-Additionally, the Leanpub companion repository has a [Leanpub -> Coursera quiz conversion script](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/blob/main/scripts/coursera_quiz_conversion.R) if you choose to create quizzes and publish on both Leanpub and Coursera. 
+Additionally, the Leanpub companion repository has a [Leanpub -> Coursera quiz conversion script](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/blob/main/scripts/coursera_quiz_conversion.R) if you choose to create quizzes and publish on both Leanpub and Coursera.
 
 TODO: Fill in with instructions on how to actually publish on Coursera here (for both JH and non-JH folks).
