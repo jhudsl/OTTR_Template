@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 # Adapted from https://github.com/AlexsLemonade/refinebio-examples/blob/staging/scripts/render-notebooks.R
-# 
+#
 # C. Savonen 2021
 #
 # Make rendered versions of .Rmd files with automagic citations with a specified
@@ -92,7 +92,7 @@ if (!is.null(opt$include_file)){
       'source("', normalizePath(opt$include_file), '")\n',
       '```'
     )
-    
+
   }
 }
 
@@ -116,7 +116,7 @@ tmp_file <- stringr::str_replace(opt$rmd, "\\.Rmd$", "-tmp-torender.Rmd")
 lines <- readr::read_lines(opt$rmd)
 
 # Remove the set knit image path function
-# lines <- stringr::str_remove_all(lines, "leanbuild::set_knitr_image_path\\(\\)") 
+# lines <- stringr::str_remove_all(lines, "leanbuild::set_knitr_image_path\\(\\)")
 
 # Find which lines are the beginning and end of the header chunk
 header_range <- which(lines == "---")
@@ -135,6 +135,13 @@ if (!is.null(opt$include_file)){
 # Add the bibliography specification line at the beginning of the chunk
 new_lines <- append(lines, header_line, header_range[1])
 
+# Convert any embed youtube links to watch links if they exist
+embed_utube_links <- grep("www.youtube.com/embed", lines)
+
+if (length(embed_utube_links) > 0 ) {
+  lines[embed_utube_links] <- leanbuild::convert_utube_link(lines[embed_utube_links])
+}
+
 # Write to a tmp file
 readr::write_lines(new_lines, tmp_file)
 
@@ -143,10 +150,10 @@ footer_file <- normalizePath(file.path("assets", "footer.html"))
 
 # Declare path to css
 
-# If an not an ITCR course, use this css file: 
+# If an not an ITCR course, use this css file:
 # css_file <- normalizePath(file.path("assets", "style_coursera.css"))
 
-# If an ITCR course, use this css file: 
+# If an ITCR course, use this css file:
 css_file <- normalizePath(file.path("assets", "style_ITN_coursera.css"))
 
 # Render the modified notebook

@@ -89,7 +89,7 @@ _If you are creating any other courses:_
 Now, you can go through each file (the issues have checklists to guide you) and make sure the existing Rmd template files are changed to fit your course, and delete the `code_output` folder if you do not expect to have any code output (or if you wish to call the folder something else).
 There are `{}` in these files to get you started filling out information and should be deleted after you've filled them out.
 
-Once this is done, you can start on the next issue guide checklist called `New Course - Set Repository Settings`. 
+Once this is done, you can start on the next issue guide checklist called `New Course - Set Repository Settings`.
 
 ### Recommended repository settings:
 
@@ -398,6 +398,9 @@ Here's a summary of the Github actions set up in this repository.
 Note that `build-all` and `docker-build-test` are not something we recommend requiring for status checks because `docker-build-test` is only run if there are changes to the Dockerfile and `build-all` is only run upon the acceptance and merging of a pull request.
 
 However for simplicity purposes there are two sections this Github action that can you keep off if you won't be making changes to the Docker image or you won't be wanting it to sync to Google Slides automatically.
+
+
+![](https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=ged277ddb11_3_5)
 
 #### For a course that will need changes to Docker image
 
