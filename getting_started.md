@@ -2,6 +2,9 @@
 
 This template includes all of the files that you need to get started creating your course in [R Markdown](https://rmarkdown.rstudio.com/) using the [bookdown package](https://bookdown.org/).
 
+
+This course template repository also has [accessory tools](#using-this-template-for-publishing-to-coursera) for publishing to [Coursera](https://www.coursera.org/) and a [companion course template repository](https://github.com/jhudsl/DaSL_Course_Template_Leanpub) for if you are interested in publishing the content on [Leanpub](https://leanpub.com/).
+
 Please take a look at the [code of conduct](./code_of_conduct.md).
 
 _Note all materials in this template are licensed [CC-BY](https://tldrlegal.com/license/creative-commons-attribution-(cc)) and can be repurposed freely with attribution._
@@ -49,6 +52,7 @@ _Background information_:
 - [Adding embedded files to text](#adding-embedded-files-to-text)
 - [Learning Objectives Formatting](#learning-objectives-formatting)
 - [Bookdown Rendering](#bookdown-rendering)
+- [Using this template for publishing to Coursera](#using-this-template-for-publishing-to-coursera)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -393,14 +397,17 @@ Here's a summary of the Github actions set up in this repository.
 ![](resources/GHASetUp.png)
 
 
+These Github actions also work across repositories to support converting Bookdown content into formats ready for publishing on Coursera or Leanpub.
+
+If you are only looking to use this template for creating a Bookdown course, this diagram is not as pertinent.
+![Summary of publishing process](https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=ged277ddb11_3_5)
+
+
 ### About customizing render-bookdown.yml (also called `build-all`)
 
 Note that `build-all` and `docker-build-test` are not something we recommend requiring for status checks because `docker-build-test` is only run if there are changes to the Dockerfile and `build-all` is only run upon the acceptance and merging of a pull request.
 
 However for simplicity purposes there are two sections this Github action that can you keep off if you won't be making changes to the Docker image or you won't be wanting it to sync to Google Slides automatically.
-
-
-![](https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=ged277ddb11_3_5)
 
 #### For a course that will need changes to Docker image
 
@@ -746,3 +753,18 @@ Note that when you run `bookdown` it will create an `.rds` file; you can general
 You will then see a live version of your book in your RStudio viewer.
 
 Note that When a pull request is merged to main, `bookdown::render_book()` will be re-run by the [GitHub actions](#github-actions) and the results added to `main`.
+
+## Using this template for publishing to Coursera
+
+The github actions set up in the [render-bookdown.yml](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/render-bookdown.yml)
+
+Github actions does this by using this command within the docker image:
+```
+Rscript scripts/render_all_coursera.R
+```
+This script will render all the Rmd files listed in the _bookdown.yml.
+This render the chapters individually so they can be linked out to Coursera chapters.
+
+Additionally, the Leanpub companion repository has a [Leanpub -> Coursera quiz conversion script](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/blob/main/scripts/coursera_quiz_conversion.R) if you choose to create quizzes and publish on both Leanpub and Coursera. 
+
+TODO: Fill in with instructions on how to actually publish on Coursera here (for both JH and non-JH folks).
