@@ -21,29 +21,12 @@ rmd_files <- grep("index", rmd_files, invert = TRUE, value = TRUE)
 output_dir <- file.path("docs", "coursera")
 dir.create(output_dir, showWarnings = FALSE)
 
-# Create symlinks to the files we need
-files_needed <- c(
-  file.path("assets"),
-  file.path("libs"),
-  file.path("book.bib"),
-  file.path("packages.bib")
-  )
-
-# Make a function
-create_symlink <- function(original_file,
-                           output_dir) {
-  # Build file path to new directory
-  dest_file <- file.path(output_dir, original_file)
-
-  if (!file.exists(dest_file)) {
-    file.symlink(from = original_file, to = dest_file)
-  }
-  message(paste0("symlink created at ", dest_file))
-}
-# Run it
-lapply(files_needed,
-       create_symlink,
-       output_dir = output_dir)
+# Copy all these things into the coursera folder
+dir_copy("assets", file.path(output_dir, "assets"))
+dir_copy("docs/libs", file.path(output_dir, "libs"))
+dir_copy("resources", file.path(output_dir, "resources"))
+file_copy("book.bib", file.path(output_dir, "book.bib"))
+file_copy("packages.bib", file.path(output_dir, "packages.bib"))
 
 # Set up function which will call the
 render_coursera <- function(rmd_file, verbose = FALSE) {
