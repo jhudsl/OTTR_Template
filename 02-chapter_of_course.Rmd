@@ -1,6 +1,5 @@
 ---
 title: "Chapter of course"
-output: html_document
 ---
 
 
@@ -43,7 +42,7 @@ Here's a subheading and some text in this subsection!
 
 ### Code examples
 
-You can demonstrate code like this: 
+You can demonstrate code like this:
 
 ```{r}
 output_dir <- "code_output"
@@ -52,7 +51,7 @@ if (!dir.exists(output_dir)) {
 }
 ```
 
-And make pretty plots too: 
+And make pretty plots too:
 
 ```{r}
 iris %>%
@@ -61,7 +60,7 @@ iris %>%
   theme_bw()
 ```
 
-You can also save these plots to file: 
+You can also save these plots to file:
 
 ```{r}
 ggsave(file.path(output_dir, "test_ggplot2.png"))
@@ -70,48 +69,48 @@ ggsave(file.path(output_dir, "test_ggplot2.png"))
 ### Image example
 
 
-How to include a Google slide. It's simplest to use the `leanbuild` package: 
+How to include a Google slide. It's simplest to use the `leanbuild` package:
 
 ```{r, fig.align='center', echo = FALSE, fig.alt= "Major point!! example image"}
 leanbuild::include_slide("https://docs.google.com/presentation/d/1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ/edit#slide=id.gcc4fbee202_0_141")
 ```
 
-But if you have the slide or some other image locally downloaded you can also use html like this: 
+But if you have the slide or some other image locally downloaded you can also use html like this:
 
 <img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
 
 
 ### Video examples
 
-You can use `knitr::include_url()` like this: 
+You can use `knitr::include_url()` like this:
 
 ```{r}
 knitr::include_url("https://www.youtube.com/embed/VOCYL-FNbr0")
 ```
 
-OR this works: 
+OR this works:
 
 <iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
 
 ### Links to files
 
-This works: 
+This works:
 
 ```{r, fig.align="center", echo=FALSE}
 knitr::include_url("https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf", height = "800px")
 ```
 
-Or this: 
+Or this:
 
 [This works](https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf).
 
-Or this: 
+Or this:
 
 <iframe src="https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf" width="672" height="800px"></iframe>
 
 ### Links to websites
 
-Examples of including a website link. 
+Examples of including a website link.
 
 This works:
 
@@ -121,9 +120,9 @@ knitr::include_url("https://yihui.org")
 
 OR this:
 
-![Another link](https://yihui.org) 
+![Another link](https://yihui.org)
 
-OR this: 
+OR this:
 
 <iframe src="https://yihui.org" width="672" height="400px"></iframe>
 
