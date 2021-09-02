@@ -50,19 +50,15 @@ option_list <- list(
     help = "Style input file before processing"
   ),
   make_option(
-    opt_str = c("-i", "--include_file"), type = "character",
+    opt_str = c("-c", "--css_file"), type = "character",
     default = NULL,
-    help = "File with R code to include for rendering"
+    help = "CSS file to use for styling (optional)",
+    metavar = "character"
   )
 )
 
 # Parse options
 opt <- parse_args(OptionParser(option_list = option_list))
-
-
-opt$rmd <- "/home/rstudio/DaSL_Course_Template_Bookdown/02-chapter_of_course.Rmd"
-opt$html <- "docs/coursera/01-intro.html"
-opt$style <- TRUE
 
 # Get working directory
 base_dir <- getwd()
@@ -87,17 +83,11 @@ if (!is.null(opt$cite_style)){
 }
 
 # Check for an R code inclusion file and create a chunk to source it
-if (!is.null(opt$include_file)){
-  if (!file.exists(opt$include_file)) {
+if (!is.null(opt$css_file)){
+  if (!file.exists(opt$css_file)) {
     stop("File specified for --include_file option is not at the specified file path.")
-  } else {
-    # create a hidden chunk to source the include file
-    include_chunk <- paste0(
-      '```{r, include = FALSE}\n',
-      'source("', normalizePath(opt$include_file), '")\n',
-      '```'
-    )
-
+  } else {# Declare path to css
+    css_file <- normalizePath(file.path(opt$css_file))
   }
 }
 
@@ -143,14 +133,25 @@ if (length(embed_utube_links) > 0 ) {
   extracted_links <- stringr::word(lines[embed_utube_links], sep = "\"", 2)
 
   # Convert extracted links
-  updated_utube_links <- sapply(extracted_links,
-                                leanbuild::convert_utube_link)
+  updated_utube_links <- sapply(extracted_links, function(link) {
+                                paste0("[Click here to watch video](", leanbuild::convert_utube_link(link), ")")
+    })
+
+  #### Need to remove knitr r chunk completely
+  knitr_regex <- "knitr::include_url\\(|\\)$"
+
+  ### Find knitr chunks in the subset of the youtube links
+  knitr_index <- embed_utube_links[grep(knitr_regex, lines[embed_utube_links])]
 
   # Substitute in the new links
-  lines[embed_utube_links] <- stringr::str_replace_all(
-    lines[embed_utube_links],
-    updated_utube_links,
-    extracted_links)
+  lines[embed_utube_links] <- updated_utube_links
+
+  if (length(knitr_index) > 0 ) {
+    before_and_after_knitr <- c((knitr_index - 1), (knitr_index + 1))
+
+    # I'm assuming the chunk starts directly before and ends directly after -- kind of a big assumption
+    lines <- lines[-before_and_after_knitr]
+  }
 }
 
 # Add the bibliography specification line at the beginning of the chunk
@@ -161,11 +162,6 @@ readr::write_lines(new_lines, tmp_file)
 
 # Declare path to footer
 footer_file <- normalizePath(file.path("assets", "footer.html"))
-
-# Declare path to css
-
-# If an ITCR course, use this css file:
-css_file <- normalizePath(file.path("assets", "style_ITN_coursera.css"))
 
 # Render the modified notebook
 rmarkdown::render(tmp_file,
