@@ -48,6 +48,12 @@ option_list <- list(
     opt_str = c("-s", "--style"), action = "store_true",
     default = FALSE,
     help = "Style input file before processing"
+  ),
+  make_option(
+    opt_str = c("-c", "--css_file"), type = "character",
+    default = NULL,
+    help = "CSS file to use for styling (optional)",
+    metavar = "character"
   )
 )
 
@@ -71,6 +77,14 @@ header_line <- paste0(
     "    html_document: \n",
     "        css: \"", opt$css_file, "\"")
 
+# Check for a css file option spec
+if (!is.null(opt$css_file)){
+  if (!file.exists(opt$css_file)) {
+    stop("File specified for --include_file option is not at the specified file path.")
+  } else {# Declare path to css
+    css_file <- normalizePath(file.path(opt$css_file))
+  }
+}
 
 # Check if the output_dir exist, otherwise create it
 if (!dir.exists(opt$output_dir)) {
@@ -96,11 +110,50 @@ if (length(header_range) < 2) {
 # Set up file path to temporary file
 output_file <- file.path(opt$output_dir, opt$rmd)
 
-# Add new header specification line at the beginning of the chunk
+# Add the include chunk after the header
+if (!is.null(opt$include_file)){
+  lines <- append(lines, include_chunk, header_range[2])
+}
+
+# Convert any embed youtube links to watch links if they exist
+embed_utube_links <- grep("www.youtube.com/embed", lines)
+
+if (length(embed_utube_links) > 0 ) {
+
+  # Extract links only
+  extracted_links <- stringr::word(lines[embed_utube_links], sep = "\"", 2)
+
+  # Convert extracted links
+  updated_utube_links <- sapply(extracted_links, function(link) {
+                                paste0("[Click here to watch video](", leanbuild::convert_utube_link(link), ")")
+    })
+
+  #### Need to remove knitr r chunk completely
+  knitr_regex <- "knitr::include_url\\(|\\)$"
+
+  ### Find knitr chunks in the subset of the youtube links
+  knitr_index <- embed_utube_links[grep(knitr_regex, lines[embed_utube_links])]
+
+  # Substitute in the new links
+  lines[embed_utube_links] <- updated_utube_links
+
+  if (length(knitr_index) > 0 ) {
+    before_and_after_knitr <- c((knitr_index - 1), (knitr_index + 1))
+
+    # I'm assuming the chunk starts directly before and ends directly after -- kind of a big assumption
+    lines <- lines[-before_and_after_knitr]
+  }
+}
+
+# Add the bibliography specification line at the beginning of the chunk
 new_lines <- append(lines, header_line, header_range[1])
 
 # Write to a tmp file
-readr::write_lines(new_lines, output_file )
+readr::write_lines(new_lines, tmp_file)
+
+# Declare path to footer
+footer_file <- normalizePath(file.path("assets", "footer.html"))
+
 
 # Render the modified notebook
 render_filename <- rmarkdown::render(output_file )
