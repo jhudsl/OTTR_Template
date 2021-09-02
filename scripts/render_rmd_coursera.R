@@ -94,17 +94,16 @@ if (length(header_range) < 2) {
 }
 
 # Set up file path to temporary file
-tmp_file <- file.path(opt$output_dir,
-                      stringr::str_replace(opt$rmd, "\\.Rmd$", "-tmp-torender.Rmd"))
+output_file <- file.path(opt$output_dir, opt$rmd)
 
 # Add new header specification line at the beginning of the chunk
 new_lines <- append(lines, header_line, header_range[1])
 
 # Write to a tmp file
-readr::write_lines(new_lines, tmp_file )
+readr::write_lines(new_lines, output_file )
 
 # Render the modified notebook
-render_filename <- rmarkdown::render(tmp_file)
+render_filename <- rmarkdown::render(output_file )
 
 # Remove the temporary file
-file.remove(tmp_file)
+file.remove(output_file )

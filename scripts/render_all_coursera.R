@@ -22,11 +22,11 @@ output_dir <- file.path("docs", "coursera")
 dir.create(output_dir, showWarnings = FALSE)
 
 # Copy all these things into the coursera folder
-dir_copy("assets", file.path(output_dir, "assets"))
-dir_copy("docs/libs", file.path(output_dir, "libs"))
-dir_copy("resources", file.path(output_dir, "resources"))
-file_copy("book.bib", file.path(output_dir, "book.bib"))
-file_copy("packages.bib", file.path(output_dir, "packages.bib"))
+fs::dir_copy("assets", file.path(output_dir, "assets"), overwrite = TRUE)
+fs::dir_copy("docs/libs", file.path(output_dir, "libs"), overwrite = TRUE)
+fs::dir_copy("resources", file.path(output_dir, "resources"), overwrite = TRUE)
+fs::file_copy("book.bib", file.path(output_dir, "book.bib"), overwrite = TRUE)
+fs::file_copy("packages.bib", file.path(output_dir, "packages.bib"), overwrite = TRUE)
 
 # Set up function which will call the
 render_coursera <- function(rmd_file, verbose = FALSE) {
