@@ -74,8 +74,50 @@ We then recommend that set up a project with RStudio and connect this with your 
 
 <details> <summary> Click here to see more about creating new projects in RStudio and setting them up with Git version control. </summary>
 
-testing this with just markdown
+First, to create a new project in RStudio, select File > New Project.
+![Make a new project](resources/new_project.png)
+
+Select a directory for your course to live. We suggest a new directory.
+
+![Select a directory for your new project](resources/select_directory.png)
+
+Select `New Project` for project type.
+
+![Select project type](resources/project_type.png)
+
+If creating a new directory for your project, name the new directory and decide where it should be.
+
+![New Project Directory](resources/project_directory.png)
+
+
+Go back to your new GitHub repository for the course you are creating and click on the green button on the right corner of the landing page to clone the repository.
+
+This will pop up a window that looks like this:
+
+![Clone the GitHub repo to work on the files on your local machine](resources/clone.png)
+
+Click the button that looks like a clip board to copy the location of your repository on GitHub. 
+
+In the terminal pane of RStudio, make sure you are in the newly created directory for your project. 
+
+Then type: `git init` and press enter.
+
+Then type:`git clone` and paste the location of the repository that you just copied from GitHub and press enter.
+
+Finally type: `git pull origin main` and you should see the files on GitHub populate your directory.
+
+This will give you a message like this:
+
+![cloning messages](resources/messages.png)
+
+Next make a new git branch in the terminal in RStudio by typing the following and replacing `branch_name` with something that makes sense for you like `update_about`: `git checkout -b branch_name`
+
+Now you are ready to start making changes to files for the next section!
+
 </details>
+
+
+
 
 Start with the issue called `New Course - Templates to Edit`.
 
@@ -83,15 +125,70 @@ Start with the issue called `New Course - Templates to Edit`.
 
 _If you are creating an ITCR course:_
 
-- Delete `_output.yml` and `index.Rmd` files
-- Keep the `_output-itcr.yml` and `index-itcr.Rmd` files but delete the `-itcr` parts of those file names.
+- Use git to delete `_output.yml` and `index.Rmd` files like so:
+    `git rm _output.yml` and `git rm index.Rmd`
+    This will remove these files locally and on GitHub.
+- Keep the `_output-itcr.yml` and `index-itcr.Rmd` files but use git to rename them to remove the `-itcr` parts of those file names like so:
+    `git mv _output-itcr.yml _output.yml` and `git mv index-itcr.Rmd index.Rmd`
 
 _If you are creating any other courses:_
 
-- Delete the `_output-itcr.yml` and `index-itcr.Rmd` files.
+- Use Git to delete the `_output-itcr.yml` and `index-itcr.Rmd` files like so:
+    `git rm _output-itcr.yml` and `git rm index-itcr.Rmd`
 
 Now, you can go through each file (the issues have checklists to guide you) and make sure the existing Rmd template files are changed to fit your course, and delete the `code_output` folder if you do not expect to have any code output (or if you wish to call the folder something else).
-There are `{}` in these files to get you started filling out information and should be deleted after you've filled them out.
+There are `{}` in these files to get you started filling out information and should be deleted after you've filled them out. **Make your changes in a new branch to enable you to make a pull request with Git.** If you are unfamiliar with how to do this, please see the above section about how to set up a RStudio project with Git/GitHub.
+
+<details> <summary>Also see here for more information about how to make changes to your files with pull requests using RStudio and Git.</summary> 
+
+To make changes to files, you can open them in Rstudio by clicking on the file name from the file pane (lower right corner).
+
+![Open File in RStudio](resources/file_pane.png)
+
+After editing a file, make sure you save it.
+
+Then in the terminal you can use Git for version control. Again, if you are new to Git please see this [tutorial](https://happygitwithr.com/).
+
+However, as a brief introduction:
+ 
+You can type: `git add` and the file name to stage it for commiting to GitHub. For example `git add about.Rmd`.
+
+Then type a message about what changes you are committing to the copy on GitHub:
+
+For example:
+
+`git commit -m "updating the about file."`
+
+Then type `git push`.
+
+You will get a message about your branch the first time - you can do what git suggests. Then on GitHub you should see that new Pull Request is possible.
+
+Click on the green button that says `Compare & pull request`.
+
+![New pull request possible](resources/pull_request.png)
+
+Then fill out the prompt with the information about your pull request. Dont worry if some of the later sections are unclear, we will get to more of that in a bit.
+
+![Submitting pull request](resources/pull_request2.png)
+
+When you are done click the `Create pull request` button!
+
+The first time you shouldn't have any conflicts with the main branch, thus you should see something like this:
+
+![Pull request output](resources/pull_request3.png)
+
+If everything looks good, you can press the `Merge pull request` button.
+</details>
+
+
+It is likely that you might see something like this with your pull requests which will happen if you have too many new words not in the dictionary:
+
+![Spelling check fails](resources/spell_check_fails.png)
+
+We will discuss how to get the spelling results and fix your file in a bit, but for now you can press the merge pull request button.
+
+
+
 
 Once this is done, you can start on the next issue guide checklist called `New Course - Set Repository Settings`.
 
