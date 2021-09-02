@@ -59,6 +59,11 @@ option_list <- list(
 # Parse options
 opt <- parse_args(OptionParser(option_list = option_list))
 
+
+opt$rmd <- "/home/rstudio/DaSL_Course_Template_Bookdown/02-chapter_of_course.Rmd"
+opt$html <- "docs/coursera/01-intro.html"
+opt$style <- TRUE
+
 # Get working directory
 base_dir <- getwd()
 
@@ -115,9 +120,6 @@ tmp_file <- stringr::str_replace(opt$rmd, "\\.Rmd$", "-tmp-torender.Rmd")
 # Read in as lines
 lines <- readr::read_lines(opt$rmd)
 
-# Remove the set knit image path function
-# lines <- stringr::str_remove_all(lines, "leanbuild::set_knitr_image_path\\(\\)")
-
 # Find which lines are the beginning and end of the header chunk
 header_range <- which(lines == "---")
 
@@ -141,7 +143,8 @@ if (length(embed_utube_links) > 0 ) {
   extracted_links <- stringr::word(lines[embed_utube_links], sep = "\"", 2)
 
   # Convert extracted links
-  updated_utube_links <- sapply(extracted_links, leanbuild::convert_utube_link)
+  updated_utube_links <- sapply(extracted_links,
+                                leanbuild::convert_utube_link)
 
   # Substitute in the new links
   lines[embed_utube_links] <- stringr::str_replace_all(
@@ -160,9 +163,6 @@ readr::write_lines(new_lines, tmp_file)
 footer_file <- normalizePath(file.path("assets", "footer.html"))
 
 # Declare path to css
-
-# If an not an ITCR course, use this css file:
-# css_file <- normalizePath(file.path("assets", "style_coursera.css"))
 
 # If an ITCR course, use this css file:
 css_file <- normalizePath(file.path("assets", "style_ITN_coursera.css"))
