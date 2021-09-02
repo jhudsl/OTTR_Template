@@ -36,7 +36,6 @@ render_coursera <- function(rmd_file, verbose = FALSE) {
   r_command <-
     paste0("Rscript --vanilla ", file.path(root_dir, "scripts", "render_rmd_coursera.R"),
     " --rmd ", file.path(root_dir, rmd_file),
-    " --html ", file.path(output_dir, output_filename),
     " --css_file ", file.path("assets", "style_ITN_coursera.css"),
     " --style")
 
