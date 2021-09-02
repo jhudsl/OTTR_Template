@@ -14,10 +14,12 @@ root_dir <- rprojroot::find_root("_bookdown.yml")
 # Retrieve list of Rmd files from the _bookdown.yml
 rmd_files <- leanbuild::get_bookdown_spec(root_dir)$rmd_files
 
+# But we don't need the index file
+rmd_files <- grep("index", rmd_files, invert = TRUE, value = TRUE)
+
 # Create output folder
 output_dir <- file.path("docs", "coursera")
 dir.create(output_dir, showWarnings = FALSE)
-
 
 # Create symlinks to the files we need
 files_needed <- c(
@@ -28,26 +30,29 @@ files_needed <- c(
   )
 
 # Make a function
-create_symlink <- function(file) {
-  if (!file.exists(file)) {
-  file.symlink(from = file, to = file.path(output_dir, file))
+create_symlink <- function(original_file,
+                           output_dir) {
+  # Build file path to new directory
+  dest_file <- file.path(output_dir, original_file)
+
+  if (!file.exists(dest_file)) {
+    file.symlink(from = original_file, to = dest_file)
   }
+  message(paste0("symlink created at ", dest_file))
 }
 # Run it
-lapply(files_needed, create_symlink)
+lapply(files_needed,
+       create_symlink,
+       output_dir = output_dir)
 
 # Set up function which will call the
 render_coursera <- function(rmd_file, verbose = FALSE) {
-
-  # Construct output file name
-  output_filename <- gsub(".Rmd$", ".html", rmd_file)
 
   # Build the command
   r_command <-
     paste0("Rscript --vanilla ", file.path(root_dir, "scripts", "render_rmd_coursera.R"),
     " --rmd ", rmd_file,
     " --css_file ", file.path("assets", "style_ITN_coursera.css"),
-    " --output_tag _coursera",
     " --output_dir ", output_dir,
     " --style")
 

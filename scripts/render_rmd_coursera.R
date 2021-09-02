@@ -39,19 +39,6 @@ option_list <- list(
     metavar = "character"
   ),
   make_option(
-    opt_str = c("--cite_style"),
-    type = "character",
-    default = NULL,
-    help = "File name of the citation style file, csl format. ",
-    metavar = "character"
-  ),
-  make_option(
-    opt_str = c("--output_tag"), type = "character",
-    default = "",
-    help = "Desired tag for output file",
-    metavar = "character"
-  ),
-  make_option(
     opt_str = c("--output_dir"), type = "character",
     default = getwd(),
     help = "Desired location for output html",
@@ -66,12 +53,6 @@ option_list <- list(
 
 # Parse options
 opt <- parse_args(OptionParser(option_list = option_list))
-
-opt$rmd <- "02-chapter_of_course.Rmd"
-opt$output <- "_coursera"
-opt$output_dir <- file.path("docs", "coursera")
-opt$css_file <- file.path("assets", "style_ITN_coursera.css")
-opt$style <- TRUE
 
 # Check that the rmd file exists
 if (!file.exists(opt$rmd)) {
@@ -90,14 +71,6 @@ header_line <- paste0(
     "    html_document: \n",
     "        css: \"", opt$css_file, "\"")
 
-# Check for a citation style
-if (!is.null(opt$cite_style)){
-  if (!file.exists(opt$cite_style)) {
-    stop("File specified for --cite_style option is not at the specified file path.")
-  } else {
-    header_line <- paste0(header_line, "\n", "csl: ", normalizePath(opt$cite_style))
-  }
-}
 
 # Check if the output_dir exist, otherwise create it
 if (!dir.exists(opt$output_dir)) {
@@ -108,10 +81,6 @@ if (!dir.exists(opt$output_dir)) {
 if (opt$style) {
   styler::style_file(opt$rmd)
 }
-
-# Declare new file names
-coursera_rmd_file <- stringr::str_replace(opt$rmd, "\\.Rmd$", paste0(opt$output_tag, ".Rmd"))
-#coursera_html_file <- stringr::str_replace(coursera_rmd_file, "\\.Rmd", ".html")
 
 # Read in as lines
 lines <- readr::read_lines(opt$rmd)
@@ -124,20 +93,18 @@ if (length(header_range) < 2) {
   stop("Not finding the `---` which are at the beginning and end of the header.")
 }
 
-# Remove knitr chunk bit
-#lines <- lines[-grep("leanbuild::set_knitr_image_path\\(\\)", lines)]
+# Set up file path to temporary file
+tmp_file <- file.path(opt$output_dir,
+                      stringr::str_replace(opt$rmd, "\\.Rmd$", "-tmp-torender.Rmd"))
 
 # Add new header specification line at the beginning of the chunk
 new_lines <- append(lines, header_line, header_range[1])
 
 # Write to a tmp file
-readr::write_lines(new_lines, coursera_rmd_file)
-
-# Declare path to footer
-footer_file <- file.path("assets", "footer.html")
-
-##### Clean up
-system(paste0("mv ", coursera_rmd_file, " ", file.path(opt$output_dir, coursera_rmd_file)))
+readr::write_lines(new_lines, tmp_file )
 
 # Render the modified notebook
-render_filename <- rmarkdown::render(file.path(opt$output_dir, coursera_rmd_file))
+render_filename <- rmarkdown::render(tmp_file)
+
+# Remove the temporary file
+file.remove(tmp_file)
