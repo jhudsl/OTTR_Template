@@ -2,6 +2,9 @@
 
 This template includes all of the files that you need to get started creating your course in [R Markdown](https://rmarkdown.rstudio.com/) using the [bookdown package](https://bookdown.org/).
 
+
+This course template repository also has [accessory tools](#using-this-template-for-publishing-to-coursera) for publishing to [Coursera](https://www.coursera.org/) and a [companion course template repository](https://github.com/jhudsl/DaSL_Course_Template_Leanpub) for if you are interested in publishing the content on [Leanpub](https://leanpub.com/).
+
 Please take a look at the [code of conduct](./code_of_conduct.md).
 
 _Note all materials in this template are licensed [CC-BY](https://tldrlegal.com/license/creative-commons-attribution-(cc)) and can be repurposed freely with attribution._
@@ -49,6 +52,7 @@ _Background information_:
 - [Adding embedded files to text](#adding-embedded-files-to-text)
 - [Learning Objectives Formatting](#learning-objectives-formatting)
 - [Bookdown Rendering](#bookdown-rendering)
+- [Using this template for publishing to Coursera](#using-this-template-for-publishing-to-coursera)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -89,7 +93,7 @@ _If you are creating any other courses:_
 Now, you can go through each file (the issues have checklists to guide you) and make sure the existing Rmd template files are changed to fit your course, and delete the `code_output` folder if you do not expect to have any code output (or if you wish to call the folder something else).
 There are `{}` in these files to get you started filling out information and should be deleted after you've filled them out.
 
-Once this is done, you can start on the next issue guide checklist called `New Course - Set Repository Settings`. 
+Once this is done, you can start on the next issue guide checklist called `New Course - Set Repository Settings`.
 
 ### Recommended repository settings:
 
@@ -391,6 +395,12 @@ See [Chapter 2](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/mai
 Here's a summary of the Github actions set up in this repository.
 
 ![](resources/GHASetUp.png)
+
+
+These Github actions also work across repositories to support converting Bookdown content into formats ready for publishing on Coursera or Leanpub.
+
+If you are only looking to use this template for creating a Bookdown course, this diagram is not as pertinent.
+![Summary of publishing process](https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=ged277ddb11_3_5)
 
 
 ### About customizing render-bookdown.yml (also called `build-all`)
@@ -743,3 +753,20 @@ Note that when you run `bookdown` it will create an `.rds` file; you can general
 You will then see a live version of your book in your RStudio viewer.
 
 Note that When a pull request is merged to main, `bookdown::render_book()` will be re-run by the [GitHub actions](#github-actions) and the results added to `main`.
+
+## Using this template for publishing to Coursera
+
+The Github actions set up in the [render-bookdown.yml](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/render-bookdown.yml) also render your course material in a format suitable for linking to Coursera.
+
+Github actions does this by using this command within the docker image:
+```
+Rscript scripts/render_all_coursera.R
+```
+You can run this same command locally if you wish to test something. 
+This script will render all the Rmd files listed in the _bookdown.yml.
+This render the chapters individually so they can be linked out to Coursera chapters.
+If you do not wish to publish to Coursera and prefer this do not run, you may delete this section (but it shouldn't hurt anything to keep as is -- unless for some reason it causes you some troubles).
+
+Additionally, the Leanpub companion repository has a [Leanpub -> Coursera quiz conversion script](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/blob/main/scripts/coursera_quiz_conversion.R) if you choose to create quizzes and publish on both Leanpub and Coursera.
+
+TODO: Fill in with instructions on how to actually publish on Coursera here (for both JH and non-JH folks).
