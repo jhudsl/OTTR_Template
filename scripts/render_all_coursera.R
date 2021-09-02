@@ -32,9 +32,6 @@ if (length(old_files) > 0) {
 # Set up function which will call the
 render_coursera <- function(rmd_file, verbose = FALSE) {
 
-  # Construct output file name
-  output_filename <- gsub(".Rmd$", ".html", rmd_file)
-
   # Build the command
   r_command <-
     paste0("Rscript --vanilla ", file.path(root_dir, "scripts", "render_rmd_coursera.R"),

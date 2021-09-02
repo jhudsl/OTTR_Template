@@ -1,6 +1,5 @@
 ---
 title: "Course Title"
-output: html_document
 ---
 
 

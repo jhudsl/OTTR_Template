@@ -28,20 +28,20 @@ option_list <- list(
     opt_str = c("-b", "--bib_file"),
     type = "character",
     default = c("[book.bib, packages.bib]"), # Default is this file, but it can be changed
-    help = "File name of the references file. Can be any format pandoc works with. Will be normalized with normalizePath().",
+    help = "File name of the references file. Can be any format pandoc works with.",
     metavar = "character"
   ),
   make_option(
-    opt_str = c("--cite_style"),
+    opt_str = c("--css_file"),
     type = "character",
-    default = NULL,
-    help = "File name of the citation style file, csl format. Will be normalized with normalizePath().",
+    default = file.path("assets", "style_coursera.css"), # Default is this file, but it can be changed
+    help = "File name of the CSS style file to be used.",
     metavar = "character"
   ),
   make_option(
-    opt_str = c("-o", "--html"), type = "character",
-    default = NULL,
-    help = "Desired filename for rendered output html file",
+    opt_str = c("--output_dir"), type = "character",
+    default = getwd(),
+    help = "Desired location for output html",
     metavar = "character"
   ),
   make_option(
@@ -60,29 +60,24 @@ option_list <- list(
 # Parse options
 opt <- parse_args(OptionParser(option_list = option_list))
 
-# Get working directory
-base_dir <- getwd()
-
 # Check that the rmd file exists
 if (!file.exists(opt$rmd)) {
   stop("Rmd file specified with --rmd is not found.")
 }
 
-# Check that the bib file exists
-header_line <- paste0(
-    "bibliography: ", opt$bib_file, "\n",
-    "link-citations: TRUE")
-
-# Check for a citation style
-if (!is.null(opt$cite_style)){
-  if (!file.exists(opt$cite_style)) {
-    stop("File specified for --cite_style option is not at the specified file path.")
-  } else {
-    header_line <- paste0(header_line, "\n", "csl: ", normalizePath(opt$cite_style))
-  }
+if (!file.exists(opt$css_file)) {
+  stop("CSS file specified with --css_file is not found.")
 }
 
-# Check for an R code inclusion file and create a chunk to source it
+# Build the header
+header_line <- paste0(
+    "bibliography: ", opt$bib_file, "\n",
+    "link-citations: TRUE \n",
+    "output: \n",
+    "    html_document: \n",
+    "        css: \"", opt$css_file, "\"")
+
+# Check for a css file option spec
 if (!is.null(opt$css_file)){
   if (!file.exists(opt$css_file)) {
     stop("File specified for --include_file option is not at the specified file path.")
@@ -91,21 +86,15 @@ if (!is.null(opt$css_file)){
   }
 }
 
-# If no output html filename specification, make one from the original filename
-if (is.null(opt$html)) {
-  output_file <- stringr::str_replace(normalizePath(opt$rmd), "\\.Rmd$", ".html")
-} else {
-  # Render is weird about relative file paths, so we have to do this
-  output_file <- file.path(base_dir, opt$html)
+# Check if the output_dir exist, otherwise create it
+if (!dir.exists(opt$output_dir)) {
+  dir.create(opt$output_dir)
 }
 
 # Run styler if option is used
 if (opt$style) {
   styler::style_file(opt$rmd)
 }
-
-# Specify the temp file
-tmp_file <- stringr::str_replace(opt$rmd, "\\.Rmd$", "-tmp-torender.Rmd")
 
 # Read in as lines
 lines <- readr::read_lines(opt$rmd)
@@ -118,6 +107,8 @@ if (length(header_range) < 2) {
   stop("Not finding the `---` which are at the beginning and end of the header.")
 }
 
+# Set up file path to temporary file
+output_file <- file.path(opt$output_dir, opt$rmd)
 
 # Add the include chunk after the header
 if (!is.null(opt$include_file)){
@@ -163,18 +154,9 @@ readr::write_lines(new_lines, tmp_file)
 # Declare path to footer
 footer_file <- normalizePath(file.path("assets", "footer.html"))
 
-# Render the modified notebook
-rmarkdown::render(tmp_file,
-                  output_format = rmarkdown::html_document(
-                    number_sections = TRUE,
-                    highlight = "haddock",
-                    df_print = "paged",
-                    css = css_file,
-                    includes = rmarkdown::includes(after_body = footer_file)
-                  ),
-                  # Save to html output file name
-                  output_file = output_file
-)
 
-# Remove the modified .Rmd tmp file
-file.remove(tmp_file)
+# Render the modified notebook
+render_filename <- rmarkdown::render(output_file )
+
+# Remove the temporary file
+file.remove(output_file )
