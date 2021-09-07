@@ -5,9 +5,11 @@ group:
   # Repositories to recieve changes
   repos: |
     jhudsl/ITCR_Documentation_and_Usability
+    jhudsl/ITCR_Cancer_Research_Leadership
 #ADD NEW REPO HERE following the format above#
   # Files which should be updated
   files:
+  - .gitignore
   - .github/workflows/render-bookdown.yml
   - .github/workflows/style-and-sp-check.yml
   - .github/workflows/url-checker.yml
@@ -25,6 +27,7 @@ group:
 #    org/repo_name
 #  # Files which should be updated
 #  files:
+#  - .gitignore
 #  - .github/workflows/render-leanpub.yml
 #  - .github/workflows/sp-check.yml
 #  - .github/workflows/url-checker.yml
