@@ -6,10 +6,15 @@ group:
   repos: |
     jhudsl/ITCR_Documentation_and_Usability
     jhudsl/ITCR_Cancer_Research_Leadership
+    jhudsl/ITCR_Data_Management
 #ADD NEW REPO HERE following the format above#
   # Files which should be updated
-  - source: .github/workflows/
-    dest: .github/workflows/
+  - source: .github/workflows/docker-build-test.yml
+    dest: .github/workflows/docker-build-test.yml
+  - source: .github/workflows/style-and-sp-check.yml
+    dest: .github/workflows/style-and-sp-check.yml
+  - source: .github/workflows/url-checker.yml
+    dest: .github/workflows/url-checker.yml
   - source: scripts/
     dest: scripts/
   - source: docker/
