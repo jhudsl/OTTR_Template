@@ -40,6 +40,7 @@ output_yaml <- yaml::yaml.load_file(file.path(root_dir, "_output.yml"))
 
 # Change CSS file to coursera special one
 output_yaml$`bookdown::gitbook`$css <- gsub("\\.css", "_coursera.css", output_yaml$`bookdown::gitbook`$css)
+output_yaml$`bookdown::html_book`$css <- gsub("\\.css", "_coursera.css", output_yaml$`bookdown::html_book`$css)
 
 # Write this new coursera yml
 yaml::write_yaml(output_yaml, file.path(output_dir, "_output_coursera.yml"))
