@@ -17,7 +17,7 @@ root_dir <- rprojroot::find_root("_bookdown.yml")
 output_dir <- file.path("docs", "coursera")
 
 if (!dir.exists(output_dir)) {
-  dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
+  dir.create(output_dir, showWarnings = FALSE)
 }
 
 # Clean out old files if they exist
@@ -58,7 +58,7 @@ message("Render bookdown without TOC for Coursera")
 bookdown::render_book(
   input = "index.Rmd",
   output_yaml = file.path(output_dir, "_output_coursera.yaml"),
-  output_dir = file.path(output_dir, "coursera"),
+  output_dir = output_dir,
   clean_envir = FALSE)
 
 # Get specified style name
