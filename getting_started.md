@@ -96,9 +96,9 @@ This will pop up a window that looks like this:
 
 ![Clone the GitHub repo to work on the files on your local machine](resources/clone.png)
 
-Click the button that looks like a clip board to copy the location of your repository on GitHub. 
+Click the button that looks like a clip board to copy the location of your repository on GitHub.
 
-In the terminal pane of RStudio, make sure you are in the newly created directory for your project. 
+In the terminal pane of RStudio, make sure you are in the newly created directory for your project.
 
 Then type: `git init` and press enter.
 
@@ -139,7 +139,7 @@ _If you are creating any other courses:_
 Now, you can go through each file (the issues have checklists to guide you) and make sure the existing Rmd template files are changed to fit your course, and delete the `code_output` folder if you do not expect to have any code output (or if you wish to call the folder something else).
 There are `{}` in these files to get you started filling out information and should be deleted after you've filled them out. **Make your changes in a new branch to enable you to make a pull request with Git.** If you are unfamiliar with how to do this, please see the above section about how to set up a RStudio project with Git/GitHub.
 
-<details> <summary>Also see here for more information about how to make changes to your files with pull requests using RStudio and Git.</summary> 
+<details> <summary>Also see here for more information about how to make changes to your files with pull requests using RStudio and Git.</summary>
 
 To make changes to files, you can open them in Rstudio by clicking on the file name from the file pane (lower right corner).
 
@@ -150,7 +150,7 @@ After editing a file, make sure you save it.
 Then in the terminal you can use Git for version control. Again, if you are new to Git please see this [tutorial](https://happygitwithr.com/).
 
 However, as a brief introduction:
- 
+
 You can type: `git add` and the file name to stage it for commiting to GitHub. For example `git add about.Rmd`.
 
 Then type a message about what changes you are committing to the copy on GitHub:
@@ -857,11 +857,10 @@ The Github actions set up in the [render-bookdown.yml](https://github.com/jhudsl
 
 Github actions does this by using this command within the docker image:
 ```
-Rscript scripts/render_all_coursera.R
+Rscript scripts/render_coursera.R
 ```
-You can run this same command locally if you wish to test something. 
-This script will render all the Rmd files listed in the _bookdown.yml.
-This render the chapters individually so they can be linked out to Coursera chapters.
+You can run this same command locally if you wish to test something.
+This render the chapters without the table of Contents.
 If you do not wish to publish to Coursera and prefer this do not run, you may delete this section (but it shouldn't hurt anything to keep as is -- unless for some reason it causes you some troubles).
 
 Additionally, the Leanpub companion repository has a [Leanpub -> Coursera quiz conversion script](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/blob/main/scripts/coursera_quiz_conversion.R) if you choose to create quizzes and publish on both Leanpub and Coursera.
