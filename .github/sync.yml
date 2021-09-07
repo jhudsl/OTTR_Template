@@ -10,19 +10,14 @@ group:
   # Files which should be updated
   - source: .github/workflows/
     dest: .github/workflows/
-    deleteOrphaned: true
   - source: scripts/
     dest: scripts/
-    deleteOrphaned: true
   - source: docker/
     dest: docker/
-    deleteOrphaned: true
   - source: .gitignore
     dest: .gitignore
-    deleteOrphaned: true
   - source: getting_started.md
     dest: getting_started.md
-    deleteOrphaned: true
 
 ###### TO ADD NEW REPOSITORY USE THIS FORMAT; Feel free to add/drop files that
 # you specifically would like synced (or not).
@@ -33,16 +28,11 @@ group:
 #  # Files which should be updated
 #  - source: .github/workflows/
   #   dest: .github/workflows/
-  #   deleteOrphaned: true
   # - source: scripts/
   #   dest: scripts/
-  #   deleteOrphaned: true
   # - source: docker/
   #   dest: docker/
-  #   deleteOrphaned: true
   # - source: .gitignore
   #   dest: .gitignore
-  #   deleteOrphaned: true
   # - source: getting_started.md
   #   dest: getting_started.md
-  #   deleteOrphaned: true 
