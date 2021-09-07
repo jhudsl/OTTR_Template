@@ -8,16 +8,21 @@ group:
     jhudsl/ITCR_Cancer_Research_Leadership
 #ADD NEW REPO HERE following the format above#
   # Files which should be updated
-  files:
-  - .gitignore
-  - .github/workflows/render-bookdown.yml
-  - .github/workflows/style-and-sp-check.yml
-  - .github/workflows/url-checker.yml
-  - .github/workflows/ISSUE_TEMPLATES/issue_template.md
-  - .github/workflows/PULL_REQUEST_TEMPLATE.md
-  - docker/*
-  - scripts/*
-  - getting_started.md
+  - source: .github/workflows/
+    dest: .github/workflows/
+    deleteOrphaned: true
+  - source: scripts/
+    dest: scripts/
+    deleteOrphaned: true
+  - source: docker/
+    dest: docker/
+    deleteOrphaned: true
+  - source: .gitignore
+    dest: .gitignore
+    deleteOrphaned: true
+  - source: getting_started.md
+    dest: getting_started.md
+    deleteOrphaned: true
 
 ###### TO ADD NEW REPOSITORY USE THIS FORMAT; Feel free to add/drop files that
 # you specifically would like synced (or not).
@@ -26,12 +31,18 @@ group:
 #  repos: |
 #    org/repo_name
 #  # Files which should be updated
-#  files:
-#  - .gitignore
-#  - .github/workflows/render-leanpub.yml
-#  - .github/workflows/sp-check.yml
-#  - .github/workflows/url-checker.yml
-#  - .github/workflows/ISSUE_TEMPLATES/issue_template.md
-#  - .github/workflows/PULL_REQUEST_TEMPLATE.md
-#  - scripts/*
-#  - getting_started.md
+#  - source: .github/workflows/
+  #   dest: .github/workflows/
+  #   deleteOrphaned: true
+  # - source: scripts/
+  #   dest: scripts/
+  #   deleteOrphaned: true
+  # - source: docker/
+  #   dest: docker/
+  #   deleteOrphaned: true
+  # - source: .gitignore
+  #   dest: .gitignore
+  #   deleteOrphaned: true
+  # - source: getting_started.md
+  #   dest: getting_started.md
+  #   deleteOrphaned: true 
