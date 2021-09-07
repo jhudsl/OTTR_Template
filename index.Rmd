@@ -8,6 +8,9 @@ biblio-style: apalike
 description: "Description about Course/Book."
 ---
 
+```{js, echo = FALSE}
+$(document).ready(function(e) {gitbook.sidebar.toggle(false, false)});
+```
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages

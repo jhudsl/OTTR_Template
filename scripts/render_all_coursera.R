@@ -10,12 +10,6 @@
 # Assumes script is located in the scripts folder
 root_dir <- rprojroot::find_root("_bookdown.yml")
 
-# Retrieve list of Rmd files from the _bookdown.yml
-rmd_files <- leanbuild::get_bookdown_spec(root_dir)$rmd_files
-
-# Don't process index.Rmd file
-rmd_files <- grep("index.Rmd", rmd_files, invert = TRUE, value = TRUE)
-
 # Create output folder
 output_dir <- file.path("docs", "coursera")
 dir.create(output_dir, showWarnings = FALSE)
@@ -26,25 +20,32 @@ if (length(old_files) > 0) {
   file.remove(old_files)
 }
 
-# Copy over the assets
-# fs::dir_copy("assets", file.path(output_dir, "assets"))
+# Copy these directories over if they don't exist in the output folder
+needed_directories <- c("assets", "code_output", "resources")
 
-# Set up function which will call the
-render_coursera <- function(rmd_file, verbose = FALSE) {
+lapply(needed_directories, function(needed_dir) {
+  if (!dir.exists(file.path(output_dir, needed_dir))) {
+    fs::dir_copy(needed_dir, file.path(output_dir, needed_dir), overwrite = TRUE)
+  }
+})
 
-  # Build the command
-  r_command <-
-    paste0("Rscript --vanilla ", file.path(root_dir, "scripts", "render_rmd_coursera.R"),
-    " --rmd ", file.path(root_dir, rmd_file),
-    " --css_file ", file.path("assets", "style_ITN_coursera.css"),
-    " --style")
-
-  if (verbose) {message(r_command)}
-
-  # Run it!
-  system(r_command)
-
+# Slightly different path for the libs folder
+libs_path <- file.path("docs", "libs")
+if (!dir.exists(file.path(output_dir, "libs"))) {
+  fs::dir_copy(libs_path, file.path(output_dir, "libs"), overwrite = TRUE)
 }
 
-# Call for all files
-lapply(rmd_files, render_coursera, verbose = TRUE)
+# Retrieve list of Rmd files from the _bookdown.yml
+output_yaml <- yaml::yaml.load_file(file.path(root_dir, "_output.yml"))
+
+# Change CSS file to coursera special one
+output_yaml$`bookdown::gitbook`$css <- gsub("\\.css", "_coursera.css", output_yaml$`bookdown::gitbook`$css)
+
+# Write this new coursera yml
+yaml::write_yaml(output_yaml, file.path(output_dir, "_output_coursera.yml"))
+
+# Do the render
+bookdown::render_book(
+  input = "index.Rmd",
+  output_yaml = file.path(output_dir, "_output_coursera.yaml"),
+  output_dir = output_dir)

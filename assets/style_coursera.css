@@ -151,15 +151,15 @@ h1, h2, h3, h4 {
 }
 
 .book.with-summary .book-header.fixed {
-    left: 0%;
+    left: 0% !important;
 }
 
 .book.with-summary .book-body {
-    left: 0%;
+    left: 0% !important;
 }
 
 .book.with-summary .book-summary {
-    width: 0%;
+    width: 0% !important;
 }
 
 .book-body.fixed > div > .book-header.fixed > a:nth-child(1) {
