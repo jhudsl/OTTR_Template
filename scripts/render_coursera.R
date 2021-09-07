@@ -7,12 +7,18 @@
 # Usage (from Terminal):
 # Rscript -e "render_all_coursera.R"
 
+# Clean out environment before we start
+rm(list = ls())
+
 # Assumes script is located in the scripts folder
 root_dir <- rprojroot::find_root("_bookdown.yml")
 
 # Create output folder
 output_dir <- file.path("docs", "coursera")
-dir.create(output_dir, showWarnings = FALSE)
+
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
+}
 
 # Clean out old files if they exist
 old_files <- list.files(output_dir, pattern = c("html$", "md$"), full.names = TRUE)
@@ -39,19 +45,27 @@ if (!dir.exists(file.path(output_dir, "libs"))) {
 output_yaml <- yaml::yaml.load_file(file.path(root_dir, "_output.yml"))
 
 # Change CSS file to coursera special one
-output_yaml$`bookdown::gitbook`$css <- gsub("\\.css", "_coursera.css", output_yaml$`bookdown::gitbook`$css)
+coursera_css <- gsub("\\.css", "_coursera.css", output_yaml$`bookdown::gitbook`$css)
+output_yaml$`bookdown::gitbook`$css <- coursera_css
 
 # Write this new coursera yml
 yaml::write_yaml(output_yaml, file.path(output_dir, "_output_coursera.yml"))
+
+
+message("Render bookdown without TOC for Coursera")
 
 # Do the render
 bookdown::render_book(
   input = "index.Rmd",
   output_yaml = file.path(output_dir, "_output_coursera.yaml"),
-  output_dir = output_dir)
+  output_dir = file.path(output_dir, "coursera"),
+  clean_envir = FALSE)
+
+# Get specified style name
+style_css <- file.path(coursera_css)
 
 # Read in TOC closing CSS lines
-toc_close_css <- readLines(output_yaml$`bookdown::gitbook`$css)
+toc_close_css <- readLines(style_css)
 full_css <- readLines(file.path(output_dir, "assets", "style.css"))
 
 # Write to "style.css"
