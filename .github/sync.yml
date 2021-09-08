@@ -8,21 +8,21 @@ group:
     jhudsl/ITCR_Cancer_Research_Leadership
     jhudsl/ITCR_Data_Management
 #ADD NEW REPO HERE following the format above#
-  # Files which should be updated
-  - source: .github/workflows/docker-build-test.yml
-    dest: .github/workflows/docker-build-test.yml
-  - source: .github/workflows/style-and-sp-check.yml
-    dest: .github/workflows/style-and-sp-check.yml
-  - source: .github/workflows/url-checker.yml
-    dest: .github/workflows/url-checker.yml
-  - source: scripts/
-    dest: scripts/
-  - source: docker/
-    dest: docker/
-  - source: .gitignore
-    dest: .gitignore
-  - source: getting_started.md
-    dest: getting_started.md
+  files:
+    - source: .github/workflows/docker-build-test.yml
+      dest: .github/workflows/docker-build-test.yml
+    - source: .github/workflows/style-and-sp-check.yml
+      dest: .github/workflows/style-and-sp-check.yml
+    - source: .github/workflows/url-checker.yml
+      dest: .github/workflows/url-checker.yml
+    - source: scripts/
+      dest: scripts/
+    - source: docker/
+      dest: docker/
+    - source: .gitignore
+      dest: .gitignore
+    - source: getting_started.md
+      dest: getting_started.md
 
 ###### TO ADD NEW REPOSITORY USE THIS FORMAT; Feel free to add/drop files that
 # you specifically would like synced (or not).
