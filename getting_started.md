@@ -655,7 +655,7 @@ leanbuild::set_knitr_image_path()
 
 Next, import the appropriate theme (see [this video](https://youtu.be/pNbwF263yY8) for assistance):
 
-Note that you will need to [change your Google Slide permissions](https://support.google.com/drive/answer/2494893?hl=en&co=GENIE.Platform%3DDesktop) to "Anyone with a link" in order for some functionality to work. 
+Note that you will need to [change your Google Slide permissions](https://support.google.com/drive/answer/2494893?hl=en&co=GENIE.Platform%3DDesktop) to "Anyone with a link" in order for some functionality to work.
 
 #### Themes for non-ITCR projects:
 
@@ -880,7 +880,7 @@ Once your content has been largely developed you may want to add your course to 
 ## Setting up your Coursera course
 
 _If you are from Johns Hopkins:_
-You will need to [follow this document](https://docs.google.com/document/d/1aZeOSFLkK4hZne4Vb1iaP_0H4zyhIwvbnw9sbdCFq1Y/edit#heading=h.qdep0kkrfb0m) and send information Ira Gooding who will create a course shell for you.
+You will need to [follow this document](https://docs.google.com/document/d/1aZeOSFLkK4hZne4Vb1iaP_0H4zyhIwvbnw9sbdCFq1Y/edit?usp=sharing) and send information Ira Gooding who will create a course shell for you.
 
 _If you are not from Johns Hopkins:_
 You will need to set up your own educator profile and course shell through your institution.
