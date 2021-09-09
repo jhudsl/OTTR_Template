@@ -53,7 +53,14 @@ _Background information_:
 - [Adding embedded files to text](#adding-embedded-files-to-text)
 - [Learning Objectives Formatting](#learning-objectives-formatting)
 - [Bookdown Rendering](#bookdown-rendering)
-- [Using this template for publishing to Coursera](#using-this-template-for-publishing-to-coursera)
+- [Publishing to Coursera](#publishing-to-coursera)
+  - [Setting up your Coursera course](#setting-up-your-coursera-course)
+  - [Converting your files for upload to Coursera](#converting-your-files-for-upload-to-coursera)
+  - [Navigating to your course on Coursera](#navigating-to-your-course-on-coursera)
+    - [Adding new chapters to Coursera](#adding-new-chapters-to-coursera)
+    - [Adding new quizzes to Coursera](#adding-new-quizzes-to-coursera)
+      - [Converting quizzes from Leanpub format](#converting-quizzes-from-leanpub-format)
+  - [Github actions for coursera](#github-actions-for-coursera)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -116,9 +123,6 @@ Next make a new git branch in the terminal in RStudio by typing the following an
 Now you are ready to start making changes to files for the next section!
 
 </details>
-
-
-
 
 Start with the issue called `New Course - Templates to Edit`.
 
@@ -187,8 +191,6 @@ It is likely that you might see something like this with your pull requests whic
 ![Spelling check fails](resources/spell_check_fails.png)
 
 We will discuss how to get the spelling results and fix your file in a bit, but for now you can press the merge pull request button.
-
-
 
 
 Once this is done, you can start on the next issue guide checklist called `New Course - Set Repository Settings`.
@@ -653,6 +655,8 @@ leanbuild::set_knitr_image_path()
 
 Next, import the appropriate theme (see [this video](https://youtu.be/pNbwF263yY8) for assistance):
 
+Note that you will need to [change your Google Slide permissions](https://support.google.com/drive/answer/2494893?hl=en&co=GENIE.Platform%3DDesktop) to "Anyone with a link" in order for some functionality to work. 
+
 #### Themes for non-ITCR projects:
 
  - If you are not creating a course as part of a larger collaboration but simply just as a DaSL course, import the theme from this [template](https://docs.google.com/presentation/d/1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ/edit?usp=sharing). Once you have done this add a slide with the "Title slide" layout under layouts - and add your course title.
@@ -869,11 +873,164 @@ You will then see a live version of your book in your RStudio viewer.
 
 Note that When a pull request is merged to main, `bookdown::render_book()` will be re-run by the [GitHub actions](#github-actions) and the results added to `main`.
 
-## Using this template for publishing to Coursera
+# Publishing to Coursera
+
+Once your content has been largely developed you may want to add your course to Coursera.
+
+## Setting up your Coursera course
+
+_If you are from Johns Hopkins:_
+You will need to [follow this document](https://docs.google.com/document/d/1aZeOSFLkK4hZne4Vb1iaP_0H4zyhIwvbnw9sbdCFq1Y/edit#heading=h.qdep0kkrfb0m) and send information Ira Gooding who will create a course shell for you.
+
+_If you are not from Johns Hopkins:_
+You will need to set up your own educator profile and course shell through your institution.
+
+## Converting your files for upload to Coursera
 
 The Github actions set up in the [render-bookdown.yml](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/render-bookdown.yml) also render your course material in a format suitable for linking to Coursera.
+This Coursera version is identical except that the table of contents bar on the left side has been dropped so as to not confuse Coursera users about navigating the course.
+These files can be previewed in the `docs/coursera/` folder.
+Click on  your chapter htmls to see what it will look like.
 
-Github actions does this by using this command within the docker image:
+In the Leanpub repo, Leanpub-formatted quizzes can be converted to a Coursera yaml format. Or alternatively if you do not wish to have a Leanpub version of your course, you can either manually enter your Coursera quizzes or manually write a Coursera yaml file following the format of our [Coursera template quiz]().
+
+## Navigating to your course on Coursera
+
+After your [course shell has been added to your account](#setting-up-your-coursera-course) you can navigate to it by going to `My Courses`:
+
+![](resources/coursera_screenshots/profile.png)
+
+And you should see it listed:
+
+![](resources/coursera_screenshots/my-courses.png)
+
+You can click on `Go to Course`. And on your main course page click `Edit Course` in the right corner.
+
+![](resources/coursera_screenshots/edit-course-nav.png)
+
+This will bring you to your version page (at this point you should only have a Version 1, so go to that one).
+
+![](resources/coursera_screenshots/versions.png)
+
+Now you are on the Edit content page and ready to add lessons, modules and quizzes!
+
+![](resources/coursera_screenshots/edit-content.png)
+
+In general, you will want each lesson to contain at least a chapter and a quiz.
+
+Each module is supposed to take a learner one week, so depending on the length of your chapters and quizzes you may want one or two lessons/chapters/quizzes a module.
+
+To add a new lesson, click the `+ Add Lesson` button:
+
+![](resources/coursera_screenshots/add-lesson.png)
+
+Now you are ready to add a chapter!
+
+### Adding new chapters to Coursera
+
+You'll need to link out each chapters in Coursera by providing a url built from your Github pages.
+
+You can see a preview of these chapters you will link to in Coursera by going to your [Github pages](https://guides.github.com/features/pages/), but adding `/coursera` at the end of your url before the chapter file name.
+
+So the urls for each of your chapters which you will supply to Coursera in the next steps will look like this:
+```
+<main-github-pages-url>/coursera/<html_filename>
+```
+If you are unsure what the main url for your Github pages is, in your github repository, go to `Settings` > `Pages` and you'll see `Your site is published at:`
+
+So for example, the introduction chapter of this template would be linked by using this url:
+
+```
+https://jhudatascience.org/DaSL_Course_Template_Bookdown/coursera/introduction.html
+```
+
+To add this URL to Coursera, add a new lesson, click `+ More` and choose `Ungraded Plugin`.
+
+![](resources/coursera_screenshots/add-chapter-1.png)
+
+This will add an unpublished ungraded plugin to your lesson:
+![](resources/coursera_screenshots/add-chapter-2.png)
+
+Now click the edit button on the new `Ungraded Plugin`.
+
+![](resources/coursera_screenshots/add-chapter-3.png)
+
+This will bring you to the standard example plug in page.
+![](resources/coursera_screenshots/add-chapter-4.png)
+
+Scroll down and click `Edit Configuration`:
+
+![](resources/coursera_screenshots/add-chapter-5.png)
+
+Replace the example url with the url of your individual chapter we discussed above.
+
+![](resources/coursera_screenshots/add-chapter-6.png)
+
+Then click on `Save Configuration`:
+
+![](resources/coursera_screenshots/add-chapter-7.png)
+
+IF the url you provided was correct, you should see a preview of your chapter:
+
+![](resources/coursera_screenshots/add-chapter-8.png)
+
+You may want to edit the title at the top of this page to indicate the material being linked.
+
+Now click `Publish` in the left upper corner (don't worry it's not actually publishing publicly, its just saving your changes).
+And it will ask you again to really scare you, but yes, click `Publish`.
+
+![](resources/coursera_screenshots/add-chapter-9.png)
+
+Congrats you added a chapter to your course! Now do the same thing for all your chapters!
+
+### Adding new quizzes to Coursera
+
+To add a new quiz start from your `Edit content` page and on whatever lesson you would like to add the quiz to and click the `+ Quiz` button.
+
+![](resources/coursera_screenshots/add-quiz-1.png)
+
+Now go to `Edit` on the new quiz.
+
+![](resources/coursera_screenshots/add-quiz-2.png)
+
+If you are choosing to manually enter your quizzes, you can continue to add each question from this page.
+
+If you are importing a Leanpub converted quiz click the `Import Questions` button and choose your converted yml files.
+(If you've not yet converted your leanpub quizzes, then [refer to that section](#converting-quizzes-from-leanpub-format).)
+
+![](resources/coursera_screenshots/add-quiz-3.png)
+
+Upload your Coursera quiz yml file from your device:
+
+![](resources/coursera_screenshots/add-quiz-4.png)
+
+After you've selected the file click `Upload`:
+
+![](resources/coursera_screenshots/add-quiz-5.png)
+
+It will let you know if there are any problems uploading the quiz. If the  `coursera_quiz_conversion.R` script failed to render something properly, please [file an issue here](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/issues) describing how it failed and including a file that shows the instance it failed to convert.
+
+Note that images and links are not currently supported in that conversion script. You also cannot have `:` in your prompts or answers.
+
+But if the quiz uploads without issue, then click `Continue`.
+You can edit the title of your quiz and then click `Publish` (don't worry it's not actually publishing publicly, its just saving your changes).
+And it will ask you again to really scare you, but yes, click `Publish`.
+
+![](resources/coursera_screenshots/add-chapter-9.png)
+
+Congrats you added a quiz to your course!
+S
+#### Converting quizzes from Leanpub format
+
+If you already have a `_Leanpub` repository for your course, you can convert your quizzes to a nicely upload-able yaml file by using that repository and running this command:
+
+ `Rscript scripts/coursera_quiz_conversion.R`
+
+ Note that currently images and links are not supported and if your quizzes contain those, you will have to manually add them.
+
+## Github actions for Coursera
+
+The [render-bookdown.yml](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/render-bookdown.yml) github action the chapter content for coursera by using this command within the docker image:
 ```
 Rscript scripts/render_coursera.R
 ```
@@ -882,5 +1039,3 @@ This render the chapters without the table of Contents.
 If you do not wish to publish to Coursera and prefer this do not run, you may delete this section (but it shouldn't hurt anything to keep as is -- unless for some reason it causes you some troubles).
 
 Additionally, the Leanpub companion repository has a [Leanpub -> Coursera quiz conversion script](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/blob/main/scripts/coursera_quiz_conversion.R) if you choose to create quizzes and publish on both Leanpub and Coursera.
-
-TODO: Fill in with instructions on how to actually publish on Coursera here (for both JH and non-JH folks).
