@@ -1004,7 +1004,7 @@ And it will ask you again to really scare you, but yes, click `Publish`.
 ![](resources/coursera_screenshots/add-chapter-9.png)
 
 Congrats you added a quiz to your course!
-
+S
 #### Converting quizzes from Leanpub format
 
 If you already have a `_Leanpub` repository for your course, you can convert your quizzes to a nicely upload-able yaml file by using that repository and running this command:
@@ -1013,9 +1013,9 @@ If you already have a `_Leanpub` repository for your course, you can convert you
 
  Note that currently images and links are not supported and if your quizzes contain those, you will have to manually add them.
 
-## Github actions for coursera
+## Github actions for Coursera
 
-The [render-bookdown.yml](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/render-bookdown.yml) github action does this by using this command within the docker image:
+The [render-bookdown.yml](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/render-bookdown.yml) github action the chapter content for coursera by using this command within the docker image:
 ```
 Rscript scripts/render_coursera.R
 ```
