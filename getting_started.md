@@ -642,6 +642,8 @@ leanbuild::set_knitr_image_path()
 
 Next, import the appropriate theme (see [this video](https://youtu.be/pNbwF263yY8) for assistance):
 
+Note that you will need to [change your Google Slide permissions](https://support.google.com/drive/answer/2494893?hl=en&co=GENIE.Platform%3DDesktop) to "Anyone with a link" in order for some functionality to work. 
+
 #### Themes for non-ITCR projects:
 
  - If you are not creating a course as part of a larger collaboration but simply just as a DaSL course, import the theme from this [template](https://docs.google.com/presentation/d/1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ/edit?usp=sharing). Once you have done this add a slide with the "Title slide" layout under layouts - and add your course title.
