@@ -18,40 +18,41 @@ _Background information_:
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-  - [Creating your course](#creating-your-course)
-    - [Recommended repository settings:](#recommended-repository-settings)
-      - [Set up GitHub pages](#set-up-github-pages)
-        - [Set up branches](#set-up-branches)
-    - [Receiving automatic mechanic updates from the original template](#receiving-automatic-mechanic-updates-from-the-original-template)
-    - [Set up Github secrets](#set-up-github-secrets)
-      - [Dockerhub related secrets](#dockerhub-related-secrets)
-      - [Google Slide related secrets](#google-slide-related-secrets)
-  - [Setting up the Docker image](#setting-up-the-docker-image)
-    - [Starting a new Docker image](#starting-a-new-docker-image)
-    - [Adding packages to the Dockerfile](#adding-packages-to-the-dockerfile)
-      - [Template commands for adding packages to the Dockerfile](#template-commands-for-adding-packages-to-the-dockerfile)
-      - [Rebuilding the Docker image](#rebuilding-the-docker-image)
-  - [Citations](#citations)
-  - [Github actions](#github-actions)
-    - [About customizing render-bookdown.yml (also called `build-all`)](#about-customizing-render-bookdownyml-also-called-build-all)
-      - [For a course that will need changes to Docker image](#for-a-course-that-will-need-changes-to-docker-image)
-      - [For a course that needs linking to Google Slides](#for-a-course-that-needs-linking-to-google-slides)
-    - [Linking to Leanpub repository](#linking-to-leanpub-repository)
-    - [Style guide](#style-guide)
-    - [Spell check](#spell-check)
-    - [Google Slide Github Actions](#google-slide-github-actions)
-    - [Running spell check and styler manually](#running-spell-check-and-styler-manually)
-    - [URL Checking](#url-checking)
-    - [Adding logo](#adding-logo)
-  - [Setting Up Images and Graphics](#setting-up-images-and-graphics)
-      - [Themes for non-ITCR projects:](#themes-for-non-itcr-projects)
-      - [Themes for ITCR project:](#themes-for-itcr-project)
-    - [Accessibility](#accessibility)
-  - [Adding images and graphics in text](#adding-images-and-graphics-in-text)
-  - [Adding videos in text](#adding-videos-in-text)
-  - [Adding embedded files to text](#adding-embedded-files-to-text)
-  - [Learning Objectives Formatting](#learning-objectives-formatting)
-  - [Bookdown Rendering](#bookdown-rendering)
+- [Creating your course](#creating-your-course)
+  - [Recommended repository settings:](#recommended-repository-settings)
+    - [Set up GitHub pages](#set-up-github-pages)
+      - [Set up branches](#set-up-branches)
+  - [Receiving automatic mechanic updates from the original template](#receiving-automatic-mechanic-updates-from-the-original-template)
+    - [How to tailor the sync PR changes:](#how-to-tailor-the-sync-pr-changes)
+  - [Set up Github secrets](#set-up-github-secrets)
+    - [Dockerhub related secrets](#dockerhub-related-secrets)
+    - [Google Slide related secrets](#google-slide-related-secrets)
+- [Setting up the Docker image](#setting-up-the-docker-image)
+  - [Starting a new Docker image](#starting-a-new-docker-image)
+  - [Adding packages to the Dockerfile](#adding-packages-to-the-dockerfile)
+    - [Template commands for adding packages to the Dockerfile](#template-commands-for-adding-packages-to-the-dockerfile)
+    - [Rebuilding the Docker image](#rebuilding-the-docker-image)
+- [Citations](#citations)
+- [Github actions](#github-actions)
+  - [About customizing render-bookdown.yml (also called `build-all`)](#about-customizing-render-bookdownyml-also-called-build-all)
+    - [For a course that will need changes to Docker image](#for-a-course-that-will-need-changes-to-docker-image)
+    - [For a course that needs linking to Google Slides](#for-a-course-that-needs-linking-to-google-slides)
+  - [Linking to Leanpub repository](#linking-to-leanpub-repository)
+  - [Style guide](#style-guide)
+  - [Spell check](#spell-check)
+  - [Google Slide Github Actions](#google-slide-github-actions)
+  - [Running spell check and styler manually](#running-spell-check-and-styler-manually)
+  - [URL Checking](#url-checking)
+  - [Adding logo](#adding-logo)
+- [Setting Up Images and Graphics](#setting-up-images-and-graphics)
+    - [Themes for non-ITCR projects:](#themes-for-non-itcr-projects)
+    - [Themes for ITCR project:](#themes-for-itcr-project)
+  - [Accessibility](#accessibility)
+- [Adding images and graphics in text](#adding-images-and-graphics-in-text)
+- [Adding videos in text](#adding-videos-in-text)
+- [Adding embedded files to text](#adding-embedded-files-to-text)
+- [Learning Objectives Formatting](#learning-objectives-formatting)
+- [Bookdown Rendering](#bookdown-rendering)
 - [Publishing to Coursera](#publishing-to-coursera)
   - [Setting up your Coursera course](#setting-up-your-coursera-course)
   - [Converting your files for upload to Coursera](#converting-your-files-for-upload-to-coursera)
@@ -123,9 +124,6 @@ Now you are ready to start making changes to files for the next section!
 
 </details>
 
-
-
-
 Start with the issue called `New Course - Templates to Edit`.
 
 ![Templates to Edit Guide Checklist](resources/templates_to_edit.png)
@@ -195,8 +193,6 @@ It is likely that you might see something like this with your pull requests whic
 We will discuss how to get the spelling results and fix your file in a bit, but for now you can press the merge pull request button.
 
 
-
-
 Once this is done, you can start on the next issue guide checklist called `New Course - Set Repository Settings`.
 
 ### Recommended repository settings:
@@ -256,6 +252,23 @@ When updates are made to files that aren't specific to the course content but in
 To enroll in these automatic update PRs, the new course's repository name will need to be added to [this file in the original template](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/sync.yml) where it says `#NEW REPO HERE#`.
 File a pull request to make this change.
 If the your new course doesn't need some of the functionality of these files or you find the automatic you can feel free to use [this guide](https://github.com/marketplace/actions/repo-file-sync-action#sync-the-same-files-to-multiple-repositories) to tailor which files you want updates for.
+
+_Carefully review the sync PR before merging it!_
+It might be that you want some of the changes from the PR but not all of them.
+Each file that is updated in a sync PR is updated in its own commit.
+
+#### How to tailor the sync PR changes:   
+- If you don't want the changes from a particular file, you can always [revert that particular commit](https://git-scm.com/docs/git-revert) before merging the sync PR.    
+If you will not want any updates on this file in the future, you may want to remove a file from being synced in your repo [by reconfiguring the sync file](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/sync.yml).
+
+- If you want only some changes, but they are not on a whole file basis, you could check out the branch and make manual edits.
+To checkout the branch, navigate to your own repository you should be able to run:  
+```
+git checkout repo-sync/DaSL_Course_Template_Bookdown/default
+```
+
+- If you don't want any of the changes you can close the PR entirely.
+You may want to unenroll your repository from the [sync github actions by deleting your repo name from this file](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/sync.yml) if this will continue to be the case.
 
 ### Set up Github secrets
 
@@ -867,7 +880,7 @@ Once your content has been largely developed you may want to add your course to 
 ## Setting up your Coursera course
 
 _If you are from Johns Hopkins:_
-You will need to [follow this document](https://docs.google.com/document/d/1aZeOSFLkK4hZne4Vb1iaP_0H4zyhIwvbnw9sbdCFq1Y/edit#heading=h.qdep0kkrfb0m) and send information Ira Gooding who will create a course shell for you.
+You will need to [follow this document](https://docs.google.com/document/d/1aZeOSFLkK4hZne4Vb1iaP_0H4zyhIwvbnw9sbdCFq1Y/edit?usp=sharing) and send information Ira Gooding who will create a course shell for you.
 
 _If you are not from Johns Hopkins:_
 You will need to set up your own educator profile and course shell through your institution.
