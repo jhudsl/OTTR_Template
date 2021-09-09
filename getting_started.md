@@ -894,7 +894,19 @@ Now you are on the Edit content page and ready to add lessons, modules and quizz
 
 ![](resources/coursera_screenshots/edit-content.png)
 
+In general, you will want each lesson to contain at least a chapter and a quiz.
+
+Each module is supposed to take a learner one week, so depending on the length of your chapters and quizzes you may want one or two lessons/chapters/quizzes a module.
+
+To add a new lesson, click the `+ Add Lesson` button:
+
+![](resources/coursera_screenshots/add-lesson.png)
+
+Now you are ready to add a chapter!
+
 ### Adding new chapters to Coursera
+
+You'll need to link out each chapters in Coursera by providing a url built from your Github pages.
 
 You can see a preview of these chapters you will link to in Coursera by going to your [Github pages](https://guides.github.com/features/pages/), but adding `/coursera` at the end of your url before the chapter file name.
 
@@ -902,7 +914,7 @@ So the urls for each of your chapters which you will supply to Coursera in the n
 ```
 <main-github-pages-url>/coursera/<html_filename>
 ```
-If you are unsure what the main url for your github pages is, in your github repository, go to `Settings` > `Pages` and you'll see `Your site is published at:`
+If you are unsure what the main url for your Github pages is, in your github repository, go to `Settings` > `Pages` and you'll see `Your site is published at:`
 
 So for example, the introduction chapter of this template would be linked by using this url:
 
@@ -910,12 +922,85 @@ So for example, the introduction chapter of this template would be linked by usi
 https://jhudatascience.org/DaSL_Course_Template_Bookdown/coursera/introduction.html
 ```
 
+To add this URL to Coursera, add a new lesson, click `+ More` and choose `Ungraded Plugin`.
+
+![](resources/coursera_screenshots/add-chapter-1.png)
+
+This will add an unpublished ungraded plugin to your lesson:
+![](resources/coursera_screenshots/add-chapter-2.png)
+
+Now click the edit button on the new `Ungraded Plugin`.
+
+![](resources/coursera_screenshots/add-chapter-3.png)
+
+This will bring you to the standard example plug in page.
+![](resources/coursera_screenshots/add-chapter-4.png)
+
+Scroll down and click `Edit Configuration`:
+
+![](resources/coursera_screenshots/add-chapter-5.png)
+
+Replace the example url with the url of your individual chapter we discussed above.
+
+![](resources/coursera_screenshots/add-chapter-6.png)
+
+Then click on `Save Configuration`:
+
+![](resources/coursera_screenshots/add-chapter-7.png)
+
+IF the url you provided was correct, you should see a preview of your chapter:
+
+![](resources/coursera_screenshots/add-chapter-8.png)
+
+You may want to edit the title at the top of this page to indicate the material being linked.
+
+Now click `Publish` in the left upper corner (don't worry it's not actually publishing publicly, its just saving your changes).
+And it will ask you again to really scare you, but yes, click `Publish`.
+
+![](resources/coursera_screenshots/add-chapter-9.png)
+
+Congrats you added a chapter to your course! Now do the same thing for all your chapters!
 
 ### Adding new quizzes to Coursera
 
+To add a new quiz start from your `Edit content` page and on whatever lesson you would like to add the quiz to and click the `+ Quiz` button.
+
+![](resources/coursera_screenshots/add-quiz-1.png)
+
+Now go to `Edit` on the new quiz.
+
+![](resources/coursera_screenshots/add-quiz-2.png)
+
+If you are choosing to manually enter your quizzes, you can continue to add each question from this page.
+
+If you are importing a Leanpub converted quiz click the `Import Questions` button and choose your converted yml files.
+(If you've not yet converted your leanpub quizzes, then [refer to that section](#converting-quizzes-from-leanpub-format).)
+
+![](resources/coursera_screenshots/add-quiz-3.png)
+
+Upload your Coursera quiz yml file from your device:
+
+![](resources/coursera_screenshots/add-quiz-4.png)
+
+After you've selected the file click `Upload`:
+
+![](resources/coursera_screenshots/add-quiz-5.png)
+
+It will let you know if there are any problems uploading the quiz. If the  `coursera_quiz_conversion.R` script failed to render something properly, please [file an issue here](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/issues) describing how it failed and including a file that shows the instance it failed to convert.
+
+Note that images and links are not currently supported in that conversion script. You also cannot have `:` in your prompts or answers.
+
+But if the quiz uploads without issue, then click `Continue`.
+You can edit the title of your quiz and then click `Publish` (don't worry it's not actually publishing publicly, its just saving your changes).
+And it will ask you again to really scare you, but yes, click `Publish`.
+
+![](resources/coursera_screenshots/add-chapter-9.png)
+
+Congrats you added a quiz to your course!
 
 #### Converting quizzes from Leanpub format
-If you already have a `_Leanpub` repository for your course, you can convert your quizzes by using that repository and running this command:
+
+If you already have a `_Leanpub` repository for your course, you can convert your quizzes to a nicely upload-able yaml file by using that repository and running this command:
 
  `Rscript scripts/coursera_quiz_conversion.R`
 
