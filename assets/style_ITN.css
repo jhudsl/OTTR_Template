@@ -31,12 +31,12 @@ pre code {
 
 .hero-image {
   width: 100%;
-  height: 80px;
+  height: 80%;
   /*object-fit: cover;*/
 }
 
 .page-inner {
-  padding-top: 180px !important;
+  padding-top: 140px !important;
 }
 
 
@@ -166,6 +166,26 @@ color: #193a5c
   padding-left: 11px !important;
 } 
 
+.trapezoid {
+  width: 130px;
+  text-align: center;
+  height: 15; 
+  position: relative;
+  border-right: 50px solid transparent;
+  border-bottom: 50px solid #dbdbdb;
+  border-left: 50px solid transparent;
+  box-sizing: content-box;
+}
+.trapezoid span { 
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 5%;
+  color: #fff;
+}
+
+
+
 
 li.appendix span, li.part span { /* for TOC part names */
   margin-top: 1em;
@@ -190,6 +210,7 @@ li.appendix span, li.part span { /* for TOC part names */
 .book .book-summary ul.summary li.divider {
 	height: 0px;
 }
+
 
 
 /*--- LOGO ---*/
