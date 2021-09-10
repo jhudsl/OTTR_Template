@@ -45,7 +45,7 @@ Here's a subheading and some text in this subsection!
 You can demonstrate code like this:
 
 ```{r}
-output_dir <- "code_output"
+output_dir <- file.path("resources", "code_output")
 if (!dir.exists(output_dir)) {
   dir.create(output_dir)
 }
