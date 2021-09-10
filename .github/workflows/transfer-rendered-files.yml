@@ -92,7 +92,9 @@ jobs:
                - _bookdown.yml
                - docs/*
                - book.bib
-               - resources/images/*
+               - resources/*
+               - _output.yml 
+               - _output_coursera.yml
           labels: |
             automated
           reviewers: $GITHUB_ACTOR
