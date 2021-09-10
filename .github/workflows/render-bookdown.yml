@@ -81,7 +81,8 @@ jobs:
           docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
           jhudsl/course_template \
-          Rscript --vanilla "scripts/render_coursera.R"
+          Rscript -e "leanbuild::render_coursera()"
+
 ##### End of Coursera rendering section ########################################
 
       # Commit the rendered bookdown files

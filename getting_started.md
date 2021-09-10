@@ -655,7 +655,7 @@ leanbuild::set_knitr_image_path()
 
 Next, import the appropriate theme (see [this video](https://youtu.be/pNbwF263yY8) for assistance):
 
-Note that you will need to [change your Google Slide permissions](https://support.google.com/drive/answer/2494893?hl=en&co=GENIE.Platform%3DDesktop) to "Anyone with a link" in order for some functionality to work. 
+Note that you will need to [change your Google Slide permissions](https://support.google.com/drive/answer/2494893?hl=en&co=GENIE.Platform%3DDesktop) to "Anyone with a link" in order for some functionality to work.
 
 #### Themes for non-ITCR projects:
 
@@ -1022,17 +1022,19 @@ Congrats you added a quiz to your course!
 S
 #### Converting quizzes from Leanpub format
 
-If you already have a `_Leanpub` repository for your course, you can convert your quizzes to a nicely upload-able yaml file by using that repository and running this command:
+If you already have a `_Leanpub` repository for your course, you can convert your quizzes to a nicely upload-able yaml file by using that repository and running this command with the leanbuild package:
 
- `Rscript scripts/coursera_quiz_conversion.R`
+```
+leanbuild::convert_quizzes()
+```
 
  Note that currently images and links are not supported and if your quizzes contain those, you will have to manually add them.
 
 ## Github actions for Coursera
 
-The [render-bookdown.yml](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/render-bookdown.yml) github action the chapter content for coursera by using this command within the docker image:
+The [render-bookdown.yml](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/workflows/render-bookdown.yml) github action the chapter content for Coursera by using this command within the docker image:
 ```
-Rscript scripts/render_coursera.R
+leanbuild::render_coursera()
 ```
 You can run this same command locally if you wish to test something.
 This render the chapters without the table of Contents.
