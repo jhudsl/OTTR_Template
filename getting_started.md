@@ -655,7 +655,7 @@ leanbuild::set_knitr_image_path()
 
 Next, import the appropriate theme (see [this video](https://youtu.be/pNbwF263yY8) for assistance):
 
-Note that you will need to [change your Google Slide permissions](https://support.google.com/drive/answer/2494893?hl=en&co=GENIE.Platform%3DDesktop) to "Anyone with a link" in order for some functionality to work.
+Note that you will need to [change your Google Slide permissions](https://support.google.com/drive/answer/2494893?hl=en&co=GENIE.Platform%3DDesktop) to "Anyone with a link" in order for some functionality to work. 
 
 #### Themes for non-ITCR projects:
 
