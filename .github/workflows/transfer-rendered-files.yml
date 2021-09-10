@@ -42,6 +42,8 @@ jobs:
             # remove old docs/ files and folder
             rm -r docs/*
           fi
+          # Copy over docs folder
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/docs
 
           # Copy over book.bib file
           svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/book.bib
@@ -93,7 +95,6 @@ jobs:
                - book.bib
                - resources/*
                - _output.yml
-               - _output_coursera.yml
           labels: |
             automated
           reviewers: $GITHUB_ACTOR
