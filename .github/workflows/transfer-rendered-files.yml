@@ -52,6 +52,10 @@ jobs:
           # Copy over _bookdown.yml
           svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/_bookdown.yml
 
+          # Copy over _output.ymls
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/_output.yml
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/_output_coursera.yml
+
           # Copy over images folder
           svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/resources/ resources/
 
@@ -88,7 +92,9 @@ jobs:
                - _bookdown.yml
                - docs/*
                - book.bib
-               - resources/images/*
+               - resources/*
+               - _output.yml 
+               - _output_coursera.yml
           labels: |
             automated
           reviewers: $GITHUB_ACTOR
