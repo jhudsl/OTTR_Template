@@ -27,8 +27,6 @@ For this chapter, we'll need the following packages attached:
 *Remember to add [any additional packages you need to your course's own docker image](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#setting-up-the-docker-image).
 
 ```{r}
-library(here)
-library(ggplot2)
 library(magrittr)
 ```
 
@@ -51,19 +49,18 @@ if (!dir.exists(output_dir)) {
 }
 ```
 
-And make pretty plots too:
+And make plots too:
 
 ```{r}
-iris %>%
-  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) +
-  geom_point() +
-  theme_bw()
+hist_plot <- hist(iris$Sepal.Length)
 ```
 
 You can also save these plots to file:
 
 ```{r}
-ggsave(file.path(output_dir, "test_ggplot2.png"))
+png(file.path(output_dir, "test_plot.png"))
+hist_plot
+dev.off()
 ```
 
 ### Image example
