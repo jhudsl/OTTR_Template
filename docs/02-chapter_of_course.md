@@ -145,12 +145,12 @@ OR this:
 
 ### Citation examples
 
-We can put citations at the end of a sentence like this [@bookdown2016].
-Or multiple citations [@bookdown2016, @rmarkdown2018].
+We can put citations at the end of a sentence like this [@rmarkdown2021].
+Or multiple citations [@rmarkdown2021, @Xie2018].
 
-but they need a ; separator [@bookdown2016; @rmarkdown2018].
+but they need a ; separator [@rmarkdown2021; @Xie2018].
 
-In text, we can put citations like this @bookdown2016.
+In text, we can put citations like this @rmarkdown2021.
 
 ## Print out session info
 
@@ -170,7 +170,7 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2021-09-10                  
+##  date     2021-09-14                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
@@ -199,9 +199,9 @@ devtools::session_info()
 ##  highr         0.8        2019-03-20 [1] RSPM (R 4.0.3)                    
 ##  htmltools     0.5.0      2020-06-16 [1] RSPM (R 4.0.1)                    
 ##  httr          1.4.2      2020-07-20 [1] RSPM (R 4.0.3)                    
-##  knitr         1.33       2021-09-08 [1] Github (yihui/knitr@a1052d1)      
+##  knitr         1.33       2021-09-11 [1] Github (yihui/knitr@a1052d1)      
 ##  labeling      0.3        2014-08-23 [1] RSPM (R 4.0.0)                    
-##  leanbuild     0.1.2      2021-09-08 [1] Github (jhudsl/leanbuild@7404f63) 
+##  leanbuild     0.1.2      2021-09-11 [1] Github (jhudsl/leanbuild@8dcd9a8) 
 ##  lifecycle     1.0.0      2021-02-15 [1] CRAN (R 4.0.2)                    
 ##  magrittr    * 1.5        2014-11-22 [1] RSPM (R 4.0.0)                    
 ##  memoise       1.1.0      2017-04-21 [1] RSPM (R 4.0.0)                    
@@ -216,20 +216,20 @@ devtools::session_info()
 ##  purrr         0.3.4      2020-04-17 [1] RSPM (R 4.0.3)                    
 ##  R6            2.4.1      2019-11-12 [1] RSPM (R 4.0.0)                    
 ##  remotes       2.2.0      2020-07-21 [1] RSPM (R 4.0.3)                    
-##  rlang         0.4.10     2021-09-08 [1] Github (r-lib/rlang@f0c9be5)      
-##  rmarkdown     2.10       2021-09-08 [1] Github (rstudio/rmarkdown@02d3c25)
+##  rlang         0.4.10     2021-09-11 [1] Github (r-lib/rlang@f0c9be5)      
+##  rmarkdown     2.10       2021-09-11 [1] Github (rstudio/rmarkdown@02d3c25)
 ##  rprojroot     1.3-2      2018-01-03 [1] RSPM (R 4.0.0)                    
 ##  scales        1.1.1      2020-05-11 [1] RSPM (R 4.0.3)                    
 ##  sessioninfo   1.1.1      2018-11-05 [1] RSPM (R 4.0.3)                    
 ##  stringi       1.5.3      2020-09-09 [1] RSPM (R 4.0.3)                    
 ##  stringr       1.4.0      2019-02-10 [1] RSPM (R 4.0.3)                    
-##  testthat      3.0.1      2021-09-08 [1] Github (R-lib/testthat@e99155a)   
+##  testthat      3.0.1      2021-09-11 [1] Github (R-lib/testthat@e99155a)   
 ##  tibble        3.0.3      2020-07-10 [1] RSPM (R 4.0.2)                    
 ##  tidyselect    1.1.0      2020-05-11 [1] RSPM (R 4.0.3)                    
-##  usethis       2.0.1.9000 2021-09-08 [1] Github (r-lib/usethis@3385e14)    
+##  usethis       2.0.1.9000 2021-09-11 [1] Github (r-lib/usethis@3385e14)    
 ##  vctrs         0.3.4      2020-08-29 [1] RSPM (R 4.0.2)                    
 ##  withr         2.3.0      2020-09-22 [1] RSPM (R 4.0.2)                    
-##  xfun          0.21       2021-09-08 [1] Github (yihui/xfun@dd87cfc)       
+##  xfun          0.21       2021-09-11 [1] Github (yihui/xfun@dd87cfc)       
 ##  yaml          2.2.1      2020-02-01 [1] RSPM (R 4.0.3)                    
 ## 
 ## [1] /usr/local/lib/R/site-library
