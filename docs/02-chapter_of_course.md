@@ -26,15 +26,6 @@ For this chapter, we'll need the following packages attached:
 
 
 ```r
-library(here)
-```
-
-```
-## here() starts at /home/rstudio
-```
-
-```r
-library(ggplot2)
 library(magrittr)
 ```
 
@@ -58,14 +49,11 @@ if (!dir.exists(output_dir)) {
 }
 ```
 
-And make pretty plots too:
+And make plots too:
 
 
 ```r
-iris %>%
-  ggplot(aes(Sepal.Length, Sepal.Width, color = Species)) +
-  geom_point() +
-  theme_bw()
+hist_plot <- hist(iris$Sepal.Length)
 ```
 
 <img src="resources/images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png" width="672" />
@@ -74,11 +62,41 @@ You can also save these plots to file:
 
 
 ```r
-ggsave(file.path(output_dir, "test_ggplot2.png"))
+png(file.path(output_dir, "test_plot.png"))
+hist_plot
 ```
 
 ```
-## Saving 7 x 5 in image
+## $breaks
+## [1] 4.0 4.5 5.0 5.5 6.0 6.5 7.0 7.5 8.0
+## 
+## $counts
+## [1]  5 27 27 30 31 18  6  6
+## 
+## $density
+## [1] 0.06666667 0.36000000 0.36000000 0.40000000 0.41333333 0.24000000 0.08000000
+## [8] 0.08000000
+## 
+## $mids
+## [1] 4.25 4.75 5.25 5.75 6.25 6.75 7.25 7.75
+## 
+## $xname
+## [1] "iris$Sepal.Length"
+## 
+## $equidist
+## [1] TRUE
+## 
+## attr(,"class")
+## [1] "histogram"
+```
+
+```r
+dev.off()
+```
+
+```
+## png 
+##   2
 ```
 
 ### Image example
@@ -179,36 +197,25 @@ devtools::session_info()
 ##  bookdown      0.20       2020-06-23 [1] RSPM (R 4.0.2)                    
 ##  callr         3.4.4      2020-09-07 [1] RSPM (R 4.0.2)                    
 ##  cli           2.0.2      2020-02-28 [1] RSPM (R 4.0.0)                    
-##  colorspace    1.4-1      2019-03-18 [1] RSPM (R 4.0.0)                    
 ##  crayon        1.3.4      2017-09-16 [1] RSPM (R 4.0.0)                    
 ##  curl          4.3        2019-12-02 [1] RSPM (R 4.0.3)                    
 ##  desc          1.2.0      2018-05-01 [1] RSPM (R 4.0.3)                    
 ##  devtools      2.3.2      2020-09-18 [1] RSPM (R 4.0.3)                    
 ##  digest        0.6.25     2020-02-23 [1] RSPM (R 4.0.0)                    
-##  dplyr         1.0.2      2020-08-18 [1] RSPM (R 4.0.2)                    
 ##  ellipsis      0.3.1      2020-05-15 [1] RSPM (R 4.0.3)                    
 ##  evaluate      0.14       2019-05-28 [1] RSPM (R 4.0.3)                    
 ##  fansi         0.4.1      2020-01-08 [1] RSPM (R 4.0.0)                    
-##  farver        2.0.3      2020-01-16 [1] RSPM (R 4.0.3)                    
 ##  fs            1.5.0      2020-07-31 [1] RSPM (R 4.0.3)                    
-##  generics      0.0.2      2018-11-29 [1] RSPM (R 4.0.0)                    
-##  ggplot2     * 3.3.2      2020-06-19 [1] RSPM (R 4.0.1)                    
 ##  glue          1.4.2      2020-08-27 [1] RSPM (R 4.0.3)                    
-##  gtable        0.3.0      2019-03-25 [1] RSPM (R 4.0.3)                    
-##  here        * 0.1        2017-05-28 [1] RSPM (R 4.0.0)                    
 ##  highr         0.8        2019-03-20 [1] RSPM (R 4.0.3)                    
 ##  htmltools     0.5.0      2020-06-16 [1] RSPM (R 4.0.1)                    
 ##  httr          1.4.2      2020-07-20 [1] RSPM (R 4.0.3)                    
-##  knitr         1.33       2021-09-11 [1] Github (yihui/knitr@a1052d1)      
-##  labeling      0.3        2014-08-23 [1] RSPM (R 4.0.0)                    
-##  leanbuild     0.1.2      2021-09-11 [1] Github (jhudsl/leanbuild@8dcd9a8) 
+##  knitr         1.33       2021-09-14 [1] Github (yihui/knitr@a1052d1)      
+##  leanbuild     0.1.2      2021-09-14 [1] Github (jhudsl/leanbuild@6f52a5e) 
 ##  lifecycle     1.0.0      2021-02-15 [1] CRAN (R 4.0.2)                    
 ##  magrittr    * 1.5        2014-11-22 [1] RSPM (R 4.0.0)                    
 ##  memoise       1.1.0      2017-04-21 [1] RSPM (R 4.0.0)                    
-##  munsell       0.5.0      2018-06-12 [1] RSPM (R 4.0.3)                    
-##  pillar        1.4.6      2020-07-10 [1] RSPM (R 4.0.2)                    
 ##  pkgbuild      1.1.0      2020-07-13 [1] RSPM (R 4.0.2)                    
-##  pkgconfig     2.0.3      2019-09-22 [1] RSPM (R 4.0.3)                    
 ##  pkgload       1.1.0      2020-05-29 [1] RSPM (R 4.0.3)                    
 ##  prettyunits   1.1.1      2020-01-24 [1] RSPM (R 4.0.3)                    
 ##  processx      3.4.4      2020-09-03 [1] RSPM (R 4.0.2)                    
@@ -216,20 +223,16 @@ devtools::session_info()
 ##  purrr         0.3.4      2020-04-17 [1] RSPM (R 4.0.3)                    
 ##  R6            2.4.1      2019-11-12 [1] RSPM (R 4.0.0)                    
 ##  remotes       2.2.0      2020-07-21 [1] RSPM (R 4.0.3)                    
-##  rlang         0.4.10     2021-09-11 [1] Github (r-lib/rlang@f0c9be5)      
-##  rmarkdown     2.10       2021-09-11 [1] Github (rstudio/rmarkdown@02d3c25)
+##  rlang         0.4.10     2021-09-14 [1] Github (r-lib/rlang@f0c9be5)      
+##  rmarkdown     2.10       2021-09-14 [1] Github (rstudio/rmarkdown@02d3c25)
 ##  rprojroot     1.3-2      2018-01-03 [1] RSPM (R 4.0.0)                    
-##  scales        1.1.1      2020-05-11 [1] RSPM (R 4.0.3)                    
 ##  sessioninfo   1.1.1      2018-11-05 [1] RSPM (R 4.0.3)                    
 ##  stringi       1.5.3      2020-09-09 [1] RSPM (R 4.0.3)                    
 ##  stringr       1.4.0      2019-02-10 [1] RSPM (R 4.0.3)                    
-##  testthat      3.0.1      2021-09-11 [1] Github (R-lib/testthat@e99155a)   
-##  tibble        3.0.3      2020-07-10 [1] RSPM (R 4.0.2)                    
-##  tidyselect    1.1.0      2020-05-11 [1] RSPM (R 4.0.3)                    
-##  usethis       2.0.1.9000 2021-09-11 [1] Github (r-lib/usethis@3385e14)    
-##  vctrs         0.3.4      2020-08-29 [1] RSPM (R 4.0.2)                    
+##  testthat      3.0.1      2021-09-14 [1] Github (R-lib/testthat@e99155a)   
+##  usethis       2.0.1.9000 2021-09-14 [1] Github (r-lib/usethis@3385e14)    
 ##  withr         2.3.0      2020-09-22 [1] RSPM (R 4.0.2)                    
-##  xfun          0.21       2021-09-11 [1] Github (yihui/xfun@dd87cfc)       
+##  xfun          0.21       2021-09-14 [1] Github (yihui/xfun@dd87cfc)       
 ##  yaml          2.2.1      2020-02-01 [1] RSPM (R 4.0.3)                    
 ## 
 ## [1] /usr/local/lib/R/site-library
