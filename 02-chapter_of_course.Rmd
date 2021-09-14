@@ -128,12 +128,12 @@ OR this:
 
 ### Citation examples
 
-We can put citations at the end of a sentence like this [@bookdown2016].
-Or multiple citations [@bookdown2016, @rmarkdown2018].
+We can put citations at the end of a sentence like this [@rmarkdown2021].
+Or multiple citations [@rmarkdown2021, @Xie2018].
 
-but they need a ; separator [@bookdown2016; @rmarkdown2018].
+but they need a ; separator [@rmarkdown2021; @Xie2018].
 
-In text, we can put citations like this @bookdown2016.
+In text, we can put citations like this @rmarkdown2021.
 
 ## Print out session info
 
