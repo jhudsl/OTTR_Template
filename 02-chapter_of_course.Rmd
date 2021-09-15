@@ -135,5 +135,5 @@ In text, we can put citations like this @rmarkdown2021.
 ## Print out session info
 
 ```{r}
-devtools::session_info()
+sessionInfo()
 ```
