@@ -48,7 +48,8 @@ RUN Rscript -e  "install.packages( \
       'rgoogleslides', \
       'servr', \
       'spelling', \
-      'styler'))"
+      'styler', \
+      'reticulate'))"
 
 # Copy over git token and package list
 COPY git_token.txt .
