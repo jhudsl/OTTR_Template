@@ -55,7 +55,8 @@ jobs:
           rm -rf \
             .github/workflows/downstream-mechanics-updates.yml \
             .github/sync.yml \
-            .github/workflows/starting-course.yml
+            .github/workflows/starting-course.yml \
+            .github/ISSUE_TEMPLATES/config.yml
 
       # Commit modified files
       - name: Commit deleted files
