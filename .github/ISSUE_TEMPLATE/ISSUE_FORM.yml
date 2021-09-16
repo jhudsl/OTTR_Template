@@ -9,15 +9,11 @@ body:
       value: |
         Thanks for taking the time to fill out this issue!
         The more details you are able to provide, the better we will be able to help!
-  - type: markdown
+  - type: textarea
     attributes:
-      value: |
-      What is not working with the template? Or what is unclear in the documentation? The more context you can provide around the problem, the better.
-  - type: markdown
+    description: What is not working with the template? Or what is unclear in the documentation? The more context you can provide around the problem, the better.
+  - type: textarea
     attributes:
-      value: |
-      What course repository are you seeing this problem on? (Provide a link please).
-  - type: markdown
-    attributes:
-      value: |
-      Please post a link to any failed Github actions (if relevant).
+    description: What course repository are you seeing this problem on? (Provide a link please).
+  - type: textarea
+    description: Please post a link to any failed Github actions (if relevant).
