@@ -7,6 +7,8 @@ This course template repository also has [accessory tools](#using-this-template-
 
 Please take a look at the [code of conduct](./code_of_conduct.md).
 
+If you encounter any problems or have ideas for improvements to this template repository or this getting started guide, please [file an issue here](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/issues/new/choose)! Your feedback is very much appreciated. 
+
 _Note all materials in this template are licensed [CC-BY](https://tldrlegal.com/license/creative-commons-attribution-(cc)) and can be repurposed freely with attribution._
 
 _Background information_:  
