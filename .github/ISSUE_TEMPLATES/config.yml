@@ -1,0 +1,23 @@
+name: Template Problem Report
+description: File an issue about problems with the template/template documentation
+title: "[Problem]: "
+labels: ["problem", "triage"]
+assignees:
+  - octocat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this issue!
+        The more details you are able to provide, the better we will be able to help!
+  - type: markdown
+    attributes:
+      label: problem
+      value: What is not working with the template? Or what is unclear in the documentation? The more context you can provide around the problem, the better.
+  - type: markdown
+    attributes:
+      label: location
+      value: What course repository are you seeing this problem on? (Provide a link please).
+  - type: markdown
+    attributes:
+      value: Please post a link to any failed Github actions (if relevant).
