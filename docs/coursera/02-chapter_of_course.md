@@ -200,9 +200,11 @@ sessionInfo()
 ## [1] magrittr_1.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] bookdown_0.20   digest_0.6.25   R6_2.4.1        evaluate_0.14  
-##  [5] highr_0.8       leanbuild_0.1.2 httr_1.4.2      rlang_0.4.10   
-##  [9] stringi_1.5.3   curl_4.3        rmarkdown_2.10  tools_4.0.2    
-## [13] stringr_1.4.0   xfun_0.21       yaml_2.2.1      compiler_4.0.2 
-## [17] htmltools_0.5.0 knitr_1.33
+##  [1] bookdown_0.20   digest_0.6.25   crayon_1.3.4    R6_2.4.1       
+##  [5] lifecycle_1.0.0 evaluate_0.14   httr_1.4.2      highr_0.8      
+##  [9] pillar_1.4.6    leanbuild_0.1.2 stringi_1.5.3   rlang_0.4.10   
+## [13] curl_4.3        vctrs_0.3.4     ellipsis_0.3.1  rmarkdown_2.10 
+## [17] tools_4.0.2     stringr_1.4.0   readr_1.4.0     hms_0.5.3      
+## [21] yaml_2.2.1      xfun_0.21       compiler_4.0.2  pkgconfig_2.0.3
+## [25] htmltools_0.5.0 knitr_1.33      tibble_3.0.3
 ```
