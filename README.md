@@ -11,8 +11,8 @@ _This template helps you_:
 - Have [Github action robots](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/How-to-set-up-and-customize-GitHub-actions-robots) do your repetitive tasks
 - Have [automagic conversion]() to the different platforms' formats
 
-To get started:
-- Go to the [Wiki page](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Introduction)
+_To get started:_  
+- Go to the [Wiki page](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Getting-started)
 - Please take a look at the [code of conduct](./code_of_conduct.md).
 
 - If you encounter any problems or have ideas for improvements to this template repository or this getting started guide, please [file an issue here](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/issues/new/choose)! Your feedback is very much appreciated.

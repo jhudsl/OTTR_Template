@@ -1,5 +1,5 @@
 
-Note: This is being reorganized as a [GitHub Wiki](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Introduction) go there instead.
+Note: This is being reorganized as a [GitHub Wiki](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki) go there instead.
 
 # Contributing Guidelines for this Course Template
 
