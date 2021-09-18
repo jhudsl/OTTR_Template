@@ -1,6 +1,6 @@
 <!--Delete this section below upon using the template-->
 
-The purpose of this course template (and its [companion template repo](https://github.com/jhudsl/DaSL_Course_Template_Leanpub)) is to make course publishing maintainence across multiple different platforms _less painful_.
+The purpose of this course template (and its [companion template repo](https://github.com/jhudsl/DaSL_Course_Template_Leanpub)) is to make course publishing maintenance across multiple different platforms _less painful_.
 
 _This template helps you_:   
 
@@ -8,7 +8,7 @@ _This template helps you_:
   - [Leanpub](https://leanpub.com/bookstore?type=course)
   - [Bookdown](https://bookdown.org/)
   - [Coursera](https://www.coursera.org/)
-- Have [Github action robots]() do your repetitive tasks
+- Have [Github action robots](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/How-to-set-up-and-customize-GitHub-actions-robots) do your repetitive tasks
 - Have [automagic conversion]() to the different platforms' formats
 
 To get started:
