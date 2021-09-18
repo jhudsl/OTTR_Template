@@ -1,3 +1,6 @@
+
+Note: This is being reorganized as a [GitHub Wiki](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Introduction) go there instead.
+
 # Contributing Guidelines for this Course Template
 
 This template includes all of the files that you need to get started creating your course in [R Markdown](https://rmarkdown.rstudio.com/) using the [bookdown package](https://bookdown.org/).
@@ -7,7 +10,7 @@ This course template repository also has [accessory tools](#using-this-template-
 
 Please take a look at the [code of conduct](./code_of_conduct.md).
 
-If you encounter any problems or have ideas for improvements to this template repository or this getting started guide, please [file an issue here](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/issues/new/choose)! Your feedback is very much appreciated. 
+If you encounter any problems or have ideas for improvements to this template repository or this getting started guide, please [file an issue here](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/issues/new/choose)! Your feedback is very much appreciated.
 
 _Note all materials in this template are licensed [CC-BY](https://tldrlegal.com/license/creative-commons-attribution-(cc)) and can be repurposed freely with attribution._
 
@@ -70,11 +73,11 @@ _Background information_:
 
 In the upper right of the landing page for this repository, click the green `Use this template` button and follow the steps to set up your course's GitHub repository.
 
-![Where is the `Use this template` button?](resources/template_button.png)
+![Where is the `Use this template` button?](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/template_button.png)
 
 Name your repository fill in a short description (If this is an ITCR course, start the repo name with `ITCR_`).
 
-![Creating new course repository](resources/creating_new_course_repo.png)
+![Creating new course repository](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/creating_new_course_repo.png)
 
 Now if you go to `Issues` you will see issues filed that you can follow to set up the new course!
 
@@ -85,26 +88,26 @@ We then recommend that set up a project with RStudio and connect this with your 
 <details> <summary> Click here to see more about creating new projects in RStudio and setting them up with Git version control. </summary>
 
 First, to create a new project in RStudio, select File > New Project.
-![Make a new project](resources/new_project.png)
+![Make a new project](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/new_project.png)
 
 Select a directory for your course to live. We suggest a new directory.
 
-![Select a directory for your new project](resources/select_directory.png)
+![Select a directory for your new project](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/select_directory.png)
 
 Select `New Project` for project type.
 
-![Select project type](resources/project_type.png)
+![Select project type](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/project_type.png)
 
 If creating a new directory for your project, name the new directory and decide where it should be.
 
-![New Project Directory](resources/project_directory.png)
+![New Project Directory](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/project_directory.png)
 
 
 Go back to your new GitHub repository for the course you are creating and click on the green button on the right corner of the landing page to clone the repository.
 
 This will pop up a window that looks like this:
 
-![Clone the GitHub repo to work on the files on your local machine](resources/clone.png)
+![Clone the GitHub repo to work on the files on your local machine](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/clone.png)
 
 Click the button that looks like a clip board to copy the location of your repository on GitHub.
 
@@ -118,7 +121,7 @@ Finally type: `git pull origin main` and you should see the files on GitHub popu
 
 This will give you a message like this:
 
-![cloning messages](resources/messages.png)
+![cloning messages](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/messages.png)
 
 Next make a new git branch in the terminal in RStudio by typing the following and replacing `branch_name` with something that makes sense for you like `update_about`: `git checkout -b branch_name`
 
@@ -128,7 +131,7 @@ Now you are ready to start making changes to files for the next section!
 
 Start with the issue called `New Course - Templates to Edit`.
 
-![Templates to Edit Guide Checklist](resources/templates_to_edit.png)
+![Templates to Edit Guide Checklist](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/templates_to_edit.png)
 
 _If you are creating an ITCR course:_
 
@@ -150,7 +153,7 @@ There are `{}` in these files to get you started filling out information and sho
 
 To make changes to files, you can open them in Rstudio by clicking on the file name from the file pane (lower right corner).
 
-![Open File in RStudio](resources/file_pane.png)
+![Open File in RStudio](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/file_pane.png)
 
 After editing a file, make sure you save it.
 
@@ -172,17 +175,17 @@ You will get a message about your branch the first time - you can do what git su
 
 Click on the green button that says `Compare & pull request`.
 
-![New pull request possible](resources/pull_request.png)
+![New pull request possible](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/pull_request.png)
 
 Then fill out the prompt with the information about your pull request. Dont worry if some of the later sections are unclear, we will get to more of that in a bit.
 
-![Submitting pull request](resources/pull_request2.png)
+![Submitting pull request](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/pull_request2.png)
 
 When you are done click the `Create pull request` button!
 
 The first time you shouldn't have any conflicts with the main branch, thus you should see something like this:
 
-![Pull request output](resources/pull_request3.png)
+![Pull request output](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/pull_request3.png)
 
 If everything looks good, you can press the `Merge pull request` button.
 </details>
@@ -190,7 +193,7 @@ If everything looks good, you can press the `Merge pull request` button.
 
 It is likely that you might see something like this with your pull requests which will happen if you have too many new words not in the dictionary:
 
-![Spelling check fails](resources/spell_check_fails.png)
+![Spelling check fails](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/spell_check_fails.png)
 
 We will discuss how to get the spelling results and fix your file in a bit, but for now you can press the merge pull request button.
 
@@ -203,31 +206,31 @@ With your course repository set up, there are some settings recommended for deve
 
 Using the issue guide checklist called `New Course - Set Repository Settings`, you can walk through the steps for setting up your repository as we would recommend.
 
-![Next issues checklist for repository settings](resources/guides_issues_2.png)
+![Next issues checklist for repository settings](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/guides_issues_2.png)
 
 #### Set up GitHub pages
 
 Go to `Settings` > `Pages`.
 
-![Find pages settings](resources/pages_settings.png)
+![Find pages settings](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/pages_settings.png)
 
-![Change pages settings](resources/change_pages_settings.png)
+![Change pages settings](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/change_pages_settings.png)
 
 - Under `Source`, pick the drop down menu and pick `main` and `/docs`.  
 - Then click `Save`.  
 - Lastly, check the box that says `Enforce HTTPS` at the bottom of this page.   
 
-![Enforce HTTPS](resources/change_https.png)
+![Enforce HTTPS](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/change_https.png)
 
 ##### Set up branches
 
 Go to `Settings` > `Branches` and click `Add rule`.
 
-![Add branch rule](resources/branches.png)
+![Add branch rule](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/branches.png)
 
 For `Branch name pattern`, put `main`.
 
-![Put main for branch name pattern](resources/main.png)
+![Put main for branch name pattern](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/main.png)
 
 _Protect the main branch_:  
 Then check the box that says `Require pull request reviews before merging`.
@@ -236,7 +239,7 @@ _Make sure branches are updated_:
 - Check the box that says `Require status checks to pass before merging`.
 - Underneath this also check the box that says `Require branches to be up to date before merging`.
 
-![Branch settings](resources/branch_settings.png)
+![Branch settings](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/branch_settings.png)
 
 Submit a pull request if you haven't already done so, to enable you to do the next step of establishing the branch settings.
 
@@ -259,7 +262,8 @@ _Carefully review the sync PR before merging it!_
 It might be that you want some of the changes from the PR but not all of them.
 Each file that is updated in a sync PR is updated in its own commit.
 
-#### How to tailor the sync PR changes:   
+#### How to tailor the sync PR changes:  
+
 - If you don't want the changes from a particular file, you can always [revert that particular commit](https://git-scm.com/docs/git-revert) before merging the sync PR.    
 If you will not want any updates on this file in the future, you may want to remove a file from being synced in your repo [by reconfiguring the sync file](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/sync.yml).
 
@@ -280,7 +284,7 @@ It's important that these are set up and named exactly what they are below in or
 
 See [Github Actions section](#github-actions) for how you can customize Github actions which can change the necessity of these secrets.  
 
-![Github secrets](resources/git-secrets.png)
+![Github secrets](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/git-secrets.png)
 
 To set up these repository secrets, on your repository's main Github page, go to `Settings` and scroll down to see `Secrets` on the left side menu bar.
 
@@ -513,7 +517,7 @@ See [Chapter 2](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/mai
 
 Here's a summary of the Github actions set up in this repository.
 
-![](resources/GHASetUp.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/GHASetUp.png)
 
 
 These Github actions also work across repositories to support converting Bookdown content into formats ready for publishing on Coursera or Leanpub.
@@ -589,9 +593,9 @@ This will download a zip file with a TSV that lists all the spelling errors.
 Some of these errors may be things that the spell check doesn't recognize for example: `ITCR` or `DaSL`.
 If it's a 'word' the spell check should recognize, you'll need to add this to the dictionary.
 
-Go to the `resources/dictionary.txt` file.
+Go to the `https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/dictionary.txt` file.
 Open the file and add the new 'word' to its appropriate place (the words are in alphabetical order).
-Then commit the changes to `resources/dictionary.txt` to your branch and this should make the spell check status check pass.
+Then commit the changes to `https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/dictionary.txt` to your branch and this should make the spell check status check pass.
 
 ### Google Slide Github Actions
 
@@ -599,7 +603,7 @@ There are two actions ran in `render-bookdown.yml` that attempt to keep Google S
 Note that the steps in [Google Slide related Secrets](#google-slide-related-secrets) need to be followed in order for these to properly run.
 
 1) `google_slides_image_linker.R` makes sure any code output images are updated after bookdown is re-rendered.
-2) `google_slide_png_downloader.R` downloads all the slides from the linked Google slide set as PNGs to `resources/gs_slides`.
+2) `google_slide_png_downloader.R` downloads all the slides from the linked Google slide set as PNGs to `https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/gs_slides`.
 
 Note that for the Google Slides actions to run you need to set up the [Google Slides Github actions in the `render-bookdown.yml` file](#for-a-course-that-will-need-changes-to-docker-image) and its [related secrets](#google-slide-related-secrets).
 
@@ -634,7 +638,7 @@ If you are creating a DaSL course for a project other than [ITN](https://www.itc
  - Please modify the lines that link to the http://jhudatascience.org/ with your own website and logo if you are not part of the [jhuDaSL](http://jhudatascience.org/) .
 - Please replace the URL in the line 13 of code with the URL for the GitHub repo for your course. This will allow people to more easily find how out how you created your course. Otherwise, they will be directed to this template.
 - If you wish to create a different color scheme, the font colors can also be modified along with other aspects in the `assets/style.css` file. Take a look at the `assets/style_ITN.css` file to see what was changed for that color scheme from the `assets/style.css` file.
-- You can replace the logo with the appropriate project logo by replacing `https://www.itcrtraining.org/` with the project website link and ` "https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/images/logo.png"` for the project logo image link in line 11.
+- You can replace the logo with the appropriate project logo by replacing `https://www.itcrtraining.org/` with the project website link and ` "https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/images/logo.png"` for the project logo image link in line 11.
 
 If you are creating an ITCR course for [ITN](https://www.itcrtraining.org/):
 - Delete the `_output.yml` file and rename the `_output-itcr.yml` to be `_output.yml`.
@@ -697,7 +701,7 @@ Please update the text at the bottom to describe the source.
 
 Once complete, your slides can be downloaded and a static version can be added to your bookdown and or Leanpub repository to build your course. See [this link](https://www.howtogeek.com/509046/how-to-save-google-slides-objects-as-images/) for information on how to download slides from Google Slides.
 
-Images should be stored in `resources/images/` or you can link directly to your GoogleSlides following [the instructions here](https://www.evernote.com/shard/s425/client/snv?noteGuid=fd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d&noteKey=58951432cb4f6f996ad9a28df6852248&sn=https%3A%2F%2Fwww.evernote.com%2Fshard%2Fs425%2Fsh%2Ffd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d%2F58951432cb4f6f996ad9a28df6852248&title=Google%2Bslides).  
+Images should be stored in `https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/images/` or you can link directly to your GoogleSlides following [the instructions here](https://www.evernote.com/shard/s425/client/snv?noteGuid=fd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d&noteKey=58951432cb4f6f996ad9a28df6852248&sn=https%3A%2F%2Fwww.evernote.com%2Fshard%2Fs425%2Fsh%2Ffd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d%2F58951432cb4f6f996ad9a28df6852248&title=Google%2Bslides).  
 
 Also add notes to each slide describing the text or images of the slide to allow for the content to be accessible to vision impaired individuals, as this can be converted to audio when creating videos.
 
@@ -737,7 +741,7 @@ Please update the text at the bottom to describe the source.
 
 Once complete, your slides can be downloaded and a static version can be added to your bookdown and or Leanpub repository to build your course. See [this link](https://www.howtogeek.com/509046/how-to-save-google-slides-objects-as-images/) for information on how to download slides from Google Slides.
 
-Images should be stored in `resources/images/` or you can link directly to your GoogleSlides following [the instructions here](https://www.evernote.com/shard/s425/client/snv?noteGuid=fd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d&noteKey=58951432cb4f6f996ad9a28df6852248&sn=https%3A%2F%2Fwww.evernote.com%2Fshard%2Fs425%2Fsh%2Ffd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d%2F58951432cb4f6f996ad9a28df6852248&title=Google%2Bslides).  
+Images should be stored in `https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/images/` or you can link directly to your GoogleSlides following [the instructions here](https://www.evernote.com/shard/s425/client/snv?noteGuid=fd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d&noteKey=58951432cb4f6f996ad9a28df6852248&sn=https%3A%2F%2Fwww.evernote.com%2Fshard%2Fs425%2Fsh%2Ffd22f17a-5b1e-c3d6-eb85-e47c20aa4b1d%2F58951432cb4f6f996ad9a28df6852248&title=Google%2Bslides).  
 
 Also add notes to each slide describing the text or images of the slide to allow for the content to be accessible to vision impaired individuals, as this can be converted to audio when creating videos.
 
@@ -900,23 +904,23 @@ In the Leanpub repo, Leanpub-formatted quizzes can be converted to a Coursera ya
 
 After your [course shell has been added to your account](#setting-up-your-coursera-course) you can navigate to it by going to `My Courses`:
 
-![](resources/coursera_screenshots/profile.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/profile.png)
 
 And you should see it listed:
 
-![](resources/coursera_screenshots/my-courses.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/my-courses.png)
 
 You can click on `Go to Course`. And on your main course page click `Edit Course` in the right corner.
 
-![](resources/coursera_screenshots/edit-course-nav.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/edit-course-nav.png)
 
 This will bring you to your version page (at this point you should only have a Version 1, so go to that one).
 
-![](resources/coursera_screenshots/versions.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/versions.png)
 
 Now you are on the Edit content page and ready to add lessons, modules and quizzes!
 
-![](resources/coursera_screenshots/edit-content.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/edit-content.png)
 
 In general, you will want each lesson to contain at least a chapter and a quiz.
 
@@ -924,7 +928,7 @@ Each module is supposed to take a learner one week, so depending on the length o
 
 To add a new lesson, click the `+ Add Lesson` button:
 
-![](resources/coursera_screenshots/add-lesson.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/add-lesson.png)
 
 Now you are ready to add a chapter!
 
@@ -948,40 +952,40 @@ https://jhudatascience.org/DaSL_Course_Template_Bookdown/coursera/introduction.h
 
 To add this URL to Coursera, add a new lesson, click `+ More` and choose `Ungraded Plugin`.
 
-![](resources/coursera_screenshots/add-chapter-1.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/add-chapter-1.png)
 
 This will add an unpublished ungraded plugin to your lesson:
-![](resources/coursera_screenshots/add-chapter-2.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/add-chapter-2.png)
 
 Now click the edit button on the new `Ungraded Plugin`.
 
-![](resources/coursera_screenshots/add-chapter-3.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/add-chapter-3.png)
 
 This will bring you to the standard example plug in page.
-![](resources/coursera_screenshots/add-chapter-4.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/add-chapter-4.png)
 
 Scroll down and click `Edit Configuration`:
 
-![](resources/coursera_screenshots/add-chapter-5.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/add-chapter-5.png)
 
 Replace the example url with the url of your individual chapter we discussed above.
 
-![](resources/coursera_screenshots/add-chapter-6.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/add-chapter-6.png)
 
 Then click on `Save Configuration`:
 
-![](resources/coursera_screenshots/add-chapter-7.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/add-chapter-7.png)
 
 IF the url you provided was correct, you should see a preview of your chapter:
 
-![](resources/coursera_screenshots/add-chapter-8.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/add-chapter-8.png)
 
 You may want to edit the title at the top of this page to indicate the material being linked.
 
 Now click `Publish` in the left upper corner (don't worry it's not actually publishing publicly, its just saving your changes).
 And it will ask you again to really scare you, but yes, click `Publish`.
 
-![](resources/coursera_screenshots/add-chapter-9.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/add-chapter-9.png)
 
 Congrats you added a chapter to your course! Now do the same thing for all your chapters!
 
@@ -989,26 +993,26 @@ Congrats you added a chapter to your course! Now do the same thing for all your 
 
 To add a new quiz start from your `Edit content` page and on whatever lesson you would like to add the quiz to and click the `+ Quiz` button.
 
-![](resources/coursera_screenshots/add-quiz-1.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/add-quiz-1.png)
 
 Now go to `Edit` on the new quiz.
 
-![](resources/coursera_screenshots/add-quiz-2.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/add-quiz-2.png)
 
 If you are choosing to manually enter your quizzes, you can continue to add each question from this page.
 
 If you are importing a Leanpub converted quiz click the `Import Questions` button and choose your converted yml files.
 (If you've not yet converted your leanpub quizzes, then [refer to that section](#converting-quizzes-from-leanpub-format).)
 
-![](resources/coursera_screenshots/add-quiz-3.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/add-quiz-3.png)
 
 Upload your Coursera quiz yml file from your device:
 
-![](resources/coursera_screenshots/add-quiz-4.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/add-quiz-4.png)
 
 After you've selected the file click `Upload`:
 
-![](resources/coursera_screenshots/add-quiz-5.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/add-quiz-5.png)
 
 It will let you know if there are any problems uploading the quiz. If the  `coursera_quiz_conversion.R` script failed to render something properly, please [file an issue here](https://github.com/jhudsl/DaSL_Course_Template_Leanpub/issues) describing how it failed and including a file that shows the instance it failed to convert.
 
@@ -1018,7 +1022,7 @@ But if the quiz uploads without issue, then click `Continue`.
 You can edit the title of your quiz and then click `Publish` (don't worry it's not actually publishing publicly, its just saving your changes).
 And it will ask you again to really scare you, but yes, click `Publish`.
 
-![](resources/coursera_screenshots/add-chapter-9.png)
+![](https://raw.githubusercontent.com/jhudsl/DaSL_Course_Template_Bookdown/main/resources/coursera_screenshots/add-chapter-9.png)
 
 Congrats you added a quiz to your course!
 S
