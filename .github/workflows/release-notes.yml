@@ -1,9 +1,10 @@
 # Candace Savonen Aug 2021
 
+name: Release note PR comment
+
 on:
   pull_request:
-    branches:
-      - repo-sync/DaSL_Course_Template_Leanpub/default
+    branches: [ repo-sync/DaSL_Course_Template_Leanpub/default ]
 
 jobs:
   pr-comment:
