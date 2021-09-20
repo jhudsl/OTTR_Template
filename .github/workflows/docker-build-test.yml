@@ -10,9 +10,8 @@ name: Test build of Dockerfile
 # master
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ main , !repo-sync/DaSL_Course_Template_Leanpub/default ]
     paths: [ docker/Dockerfile, docker/github_package_list.tsv ]
-    branches-ignore: [ repo-sync/DaSL_Course_Template_Leanpub/default ]
   workflow_dispatch:
     inputs:
       dockerhubpush:
