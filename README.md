@@ -1,5 +1,7 @@
 <!--Delete this section below upon using the template-->
 
+## DaSL Course Templates
+
 The purpose of this course template (and its [companion template repo](https://github.com/jhudsl/DaSL_Course_Template_Leanpub)) is to make course publishing maintenance across multiple different platforms _less painful_.
 
 _This template helps you_:   
