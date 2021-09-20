@@ -3,8 +3,6 @@
 name: Sync Files
 on:
   workflow_dispatch:
-    inputs:
-    release_notes:
 
 jobs:
   sync:
