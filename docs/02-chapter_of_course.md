@@ -3,7 +3,7 @@ title: "Chapter of course"
 ---
 
 
-*If you haven't yet read the getting started guide; [start there](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Getting-started)
+*If you haven't yet read the getting started Wiki pages; [start there](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Getting-started)
 
 Every chapter needs to start out with this chunk of code:
 
@@ -22,7 +22,7 @@ This chapter will cover:
 
 For this chapter, we'll need the following packages attached:
 
-*Remember to add [any additional packages you need to your course's own docker image](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#setting-up-the-docker-image).
+*Remember to add [any additional packages you need to your course's own docker image](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Using-Docker#starting-a-new-docker-image).
 
 
 ```r
@@ -69,23 +69,23 @@ hist_plot
 ```
 ## $breaks
 ## [1] 4.0 4.5 5.0 5.5 6.0 6.5 7.0 7.5 8.0
-##
+## 
 ## $counts
 ## [1]  5 27 27 30 31 18  6  6
-##
+## 
 ## $density
 ## [1] 0.06666667 0.36000000 0.36000000 0.40000000 0.41333333 0.24000000 0.08000000
 ## [8] 0.08000000
-##
+## 
 ## $mids
 ## [1] 4.25 4.75 5.25 5.75 6.25 6.75 7.25 7.75
-##
+## 
 ## $xname
 ## [1] "iris$Sepal.Length"
-##
+## 
 ## $equidist
 ## [1] TRUE
-##
+## 
 ## attr(,"class")
 ## [1] "histogram"
 ```
@@ -95,7 +95,7 @@ dev.off()
 ```
 
 ```
-## png
+## png 
 ##   2
 ```
 
@@ -181,10 +181,10 @@ sessionInfo()
 ## R version 4.0.2 (2020-06-22)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 20.04.2 LTS
-##
+## 
 ## Matrix products: default
 ## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
-##
+## 
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
 ##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
@@ -192,13 +192,13 @@ sessionInfo()
 ##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
 ##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
 ## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
-##
+## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
-##
+## 
 ## other attached packages:
 ## [1] magrittr_1.5
-##
+## 
 ## loaded via a namespace (and not attached):
 ##  [1] knitr_1.33      hms_0.5.3       R6_2.4.1        rlang_0.4.10   
 ##  [5] stringr_1.4.0   highr_0.8       httr_1.4.2      tools_4.0.2    
