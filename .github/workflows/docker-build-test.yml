@@ -12,7 +12,6 @@ on:
   pull_request:
     branches: [ main , !repo-sync/DaSL_Course_Template_Leanpub/default ]
     paths: [ docker/Dockerfile, docker/github_package_list.tsv ]
-
   workflow_dispatch:
     inputs:
       dockerhubpush:
