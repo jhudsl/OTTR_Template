@@ -1,5 +1,5 @@
 
-For more information on these settings see instructions in the [getting_started.md](./getting_started.md#recommended-repository-settings).
+For more information on these settings see instructions in the [getting started GitHub wiki pages](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Setting-up-images-and-graphics).
 
 ### Needed settings:
 
@@ -18,4 +18,4 @@ _After the first pull request, a couple of checks will automatically happen and 
 
 - [ ] All these settings have been saved!
 
-- [ ] This repo has been enrolled in [automatic updates from the original template](#receiving-automatic-mechanic-updates-from-the-original-template).
+- [ ] This repo has been enrolled in [automatic updates from the original template](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Receiving-template-updates).

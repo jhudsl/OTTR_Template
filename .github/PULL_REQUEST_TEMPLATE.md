@@ -22,17 +22,17 @@
 
 - [ ] New content/chapter is in an Rmd file with [this kind of format and headers](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/02-chapter_of_course.Rmd).
 
-- [ ] New content/chapter contains [Learning Objectives and are in the correct format](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#learning-objectives-formatting).
+- [ ] New content/chapter contains [Learning Objectives and are in the correct format](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Setting-up-images-and-graphics#learning-objectives-formatting).
 
-- [ ] [Bookdown successfully re-renders and any new content files have been added to the _bookdown.yml](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#bookdown-rendering).
+- [ ] [Bookdown successfully re-renders and any new content files have been added to the _bookdown.yml](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Publishing-with-Bookdown).
 
-- [ ] Spell check runs successfully (either using [Github actions style-n-check](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#spell-check) or [running manually](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#running-spell-check-and-styler-manually)).
+- [ ] Spell check runs successfully in [Github actions style-n-check](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/How-to-set-up-and-customize-GitHub-actions-robots#spell-check)).
 
-- [ ] Any newly necessary packages that are needed have been added to the [Dockerfile and image](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#adding-packages-to-the-dockerfile).
+- [ ] Any newly necessary packages that are needed have been added to the [Dockerfile and image](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Using-Docker#adding-packages-to-the-dockerfile).
 
-- [ ] Images are in the [correct format for rendering](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#adding-images-and-graphics-in-text).
+- [ ] Images are in the [correct format for rendering](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Setting-up-images-and-graphics#adding-images-and-graphics-in-text).
 
-- [ ] Every new image has [alt text and is in a Google Slide](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md#adding-images-and-graphics-in-text).
+- [ ] Every new image has [alt text and is in a Google Slide](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Setting-up-images-and-graphics#accessibility).
 
 - [ ] Each slide is described in the notes of the slide so learners relying on a screen reader can access the content. See https://lastcallmedia.com/blog/accessible-comics for more guidance on this.
 

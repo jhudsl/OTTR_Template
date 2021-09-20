@@ -3,7 +3,7 @@ title: "Chapter of course"
 ---
 
 
-*If you haven't yet read the getting started guide; [start there](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/getting_started.md)
+*If you haven't yet read the getting started guide; [start there](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Getting-started)
 
 Every chapter needs to start out with this chunk of code:
 
@@ -69,23 +69,23 @@ hist_plot
 ```
 ## $breaks
 ## [1] 4.0 4.5 5.0 5.5 6.0 6.5 7.0 7.5 8.0
-## 
+##
 ## $counts
 ## [1]  5 27 27 30 31 18  6  6
-## 
+##
 ## $density
 ## [1] 0.06666667 0.36000000 0.36000000 0.40000000 0.41333333 0.24000000 0.08000000
 ## [8] 0.08000000
-## 
+##
 ## $mids
 ## [1] 4.25 4.75 5.25 5.75 6.25 6.75 7.25 7.75
-## 
+##
 ## $xname
 ## [1] "iris$Sepal.Length"
-## 
+##
 ## $equidist
 ## [1] TRUE
-## 
+##
 ## attr(,"class")
 ## [1] "histogram"
 ```
@@ -95,7 +95,7 @@ dev.off()
 ```
 
 ```
-## png 
+## png
 ##   2
 ```
 
@@ -181,10 +181,10 @@ sessionInfo()
 ## R version 4.0.2 (2020-06-22)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 20.04.2 LTS
-## 
+##
 ## Matrix products: default
 ## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
-## 
+##
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
 ##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
@@ -192,18 +192,18 @@ sessionInfo()
 ##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
 ##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
 ## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
-## 
+##
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
+##
 ## other attached packages:
 ## [1] magrittr_1.5
-## 
+##
 ## loaded via a namespace (and not attached):
 ##  [1] bookdown_0.20   digest_0.6.25   crayon_1.3.4    R6_2.4.1       
 ##  [5] lifecycle_1.0.0 evaluate_0.14   httr_1.4.2      highr_0.8      
 ##  [9] pillar_1.4.6    leanbuild_0.1.2 stringi_1.5.3   rlang_0.4.10   
-## [13] curl_4.3        vctrs_0.3.4     ellipsis_0.3.1  rmarkdown_2.10 
+## [13] curl_4.3        vctrs_0.3.4     ellipsis_0.3.1  rmarkdown_2.10
 ## [17] tools_4.0.2     stringr_1.4.0   readr_1.4.0     hms_0.5.3      
 ## [21] yaml_2.2.1      xfun_0.21       compiler_4.0.2  pkgconfig_2.0.3
 ## [25] htmltools_0.5.0 knitr_1.33      tibble_3.0.3

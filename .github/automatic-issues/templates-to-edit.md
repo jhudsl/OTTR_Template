@@ -21,10 +21,10 @@ _If you are creating any other courses:_
 - [ ] `code_output` can be deleted.
 
 ### Files that need to be edited upon adding each new chapter (including upon creating a new course):
-
-- [ ] `_bookdown.yml` - The Rmd files that need to be rendered need to be updated. See [instructions](./getting_started.md#bookdown-rendering).
-- [ ] `book.bib` - any citations need to be added. See [instructions](./getting_started.md#citations).
+.
+- [ ] `_bookdown.yml` - The Rmd files that need to be rendered need to be updated. See [instructions](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Publishing-with-Bookdown).
+- [ ] `book.bib` - any citations need to be added. See [instructions](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Citations).
 
 ### Files that need to be edited upon adding new packages that the book's code uses:
-- `docker/Dockerfile` needs to have the new package added so it will be installed. See [instructions](./getting_started.md#adding-packages-to-the-dockerfile).
+- `docker/Dockerfile` needs to have the new package added so it will be installed. See [instructions](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Using-Docker#starting-a-new-docker-image).
 - The code chunk in `index.Rmd` should be edited to add the new package.
