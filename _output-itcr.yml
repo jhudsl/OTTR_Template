@@ -1,4 +1,3 @@
-date: "`r format(Sys.time(), '%B, %Y')`" #
 bookdown::gitbook:
   css: assets/style_ITN.css
   includes:
