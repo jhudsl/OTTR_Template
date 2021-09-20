@@ -3,7 +3,7 @@
 name: Release note PR comment
 
 on:
-  pull_request:
+  pull_request_target:
     branches: [ repo-sync/DaSL_Course_Template_Leanpub/default ]
 
 jobs:
