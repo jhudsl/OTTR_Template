@@ -12,8 +12,8 @@ on:
   pull_request:
     branches:
       - 'main'
-      - '!repo-sync/DaSL_Course_Template_Leanpub/default'
     paths: [ docker/Dockerfile, docker/github_package_list.tsv ]
+      - '!repo-sync/DaSL_Course_Template_Leanpub/default'
   workflow_dispatch:
     inputs:
       dockerhubpush:
@@ -32,6 +32,12 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+
+      - name: Don't re-test if this is a sync branch
+        if: ${{ github.base_ref == 'repo-sync/DaSL_Course_Template_Leanpub/default' }}
+        run: |
+        echo This was tested on DaSL_Course_Template_Leanpub no need to re-run
+        exit 1
 
       # Set up Docker build
       - name: Set up Docker Buildx
