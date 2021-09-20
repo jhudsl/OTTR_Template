@@ -35,8 +35,8 @@ jobs:
       - name: Don't re-test if this is a sync branch
         if: ${{ github.base_ref == 'repo-sync/DaSL_Course_Template_Leanpub/default' }}
         run: |
-        echo This was tested on DaSL_Course_Template_Leanpub no need to re-run
-        exit 1
+          echo This was tested on DaSL_Course_Template_Leanpub no need to re-run
+          exit 1
 
       # Set up Docker build
       - name: Set up Docker Buildx
