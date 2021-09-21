@@ -21,7 +21,7 @@ dictionary <- c(dictionary, spelling::spell_check_text("⬇️")$word)
 
 # Only declare `.Rmd` files
 files <- list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)
-files <- grep("About.Rmd", files, ignore.case = TRUE, invert = TRUE)
+files <- grep("About.Rmd", files, ignore.case = TRUE, invert = TRUE, value = TRUE)
 
 # Run spell check
 sp_errors <- spelling::spell_check_files(files, ignore = dictionary) %>%
