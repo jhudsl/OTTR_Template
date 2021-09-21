@@ -24,3 +24,12 @@ For JHU courses, these are credits you will need to have in your table from the 
 |Technical Publishing Stylist|[Carrie Wright](https://carriewright11.github.io/), [Candace Savonen](https://www.cansavvy.com/)|
 |Packages|[John Muschelli](https://johnmuschelli.com/), [Candace Savonen](https://www.cansavvy.com/), [Carrie Wright](https://carriewright11.github.io/)|
 -->
+
+|Credits|Names|
+|-------|-----|
+|Content Directory|[Jeff Leek](https://jtleek.com/)|
+|Content Publisher|[Ira Gooding](https://provost.jhu.edu/members/ira-gooding/)|
+|Template Publishing Engineer|[Candace Savonen](https://www.cansavvy.com/), [Carrie Wright](https://carriewright11.github.io/)|
+|Publishing Maintainence Engineer|[Candace Savonen](https://www.cansavvy.com/)|
+|Technical Publishing Stylist|[Carrie Wright](https://carriewright11.github.io/), [Candace Savonen](https://www.cansavvy.com/)|
+|Packages|[John Muschelli](https://johnmuschelli.com/), [Candace Savonen](https://www.cansavvy.com/), [Carrie Wright](https://carriewright11.github.io/)|
