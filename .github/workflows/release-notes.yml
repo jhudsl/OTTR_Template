@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: mshick/add-pr-comment@v1
-        if: ${{ github.base_ref == 'repo-sync/DaSL_Course_Template_Leanpub/default' }}
+        if: ${{ github.head_ref == 'repo-sync/DaSL_Course_Template_Leanpub/default' }}
         with:
           message: |
             **Please carefully review these changes and decide which are useful for your course.**
