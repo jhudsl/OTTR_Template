@@ -3,14 +3,15 @@
 name: Release note PR comment
 
 on:
-  pull_request_target:
-    branches: [ repo-sync/* ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   pr-comment:
     runs-on: ubuntu-latest
     steps:
       - uses: mshick/add-pr-comment@v1
+        if: ${{ github.head_ref == 'repo-sync/DaSL_Course_Template_Bookdown/default' }}
         with:
           message: |
             **Please carefully review these changes and decide which are useful for your course.**
