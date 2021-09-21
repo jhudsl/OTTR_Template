@@ -4,5 +4,29 @@ title: "About"
 
 # About the Authors {-}
 
+|Name|Credit(s)|Bio|
+|-----------|---------|---|
+|Rey Skywalker|Lead Content Instructor, Packages|Rey is a Blank in the Blank at the Blank.|
+|   |   |   |
+|   |   |   |
 
-**Author Name** is a Blank in the Blank at the Blank.
+<!-- Instructions about Credits
+
+Please see course credits PDF table: https://bit.ly/course-credits-table for how credits should be attributed for the course.
+
+This table has these columns:
+
+- _Order_: Indicating what order contributors' names should come in the list. The highest credit an individual has indicates their order.
+- _Credit Label_: What should be placed in the `Credits(s)` column. All credits that apply should be put in the column, separated by a comma.
+- _Role Description_: The description of what the role means.
+- _Category_: Indicates the general grouping of the credit
+
+Example Table:
+
+|Name|Credit(s)|Bio|
+|----|---------|---|
+|Rey Skywalker|Lead Content Instructor, Packages |Rey is a Blank in the Blank at the Blank.|
+|Han Solo|Content Editor, Funder|Han is a Blank in the Blank at the Blank.|
+|Darth Vader|Videography Editor|Darth is a Blank at the Blank.|
+
+--!>
