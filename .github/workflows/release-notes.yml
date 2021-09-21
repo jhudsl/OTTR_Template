@@ -4,7 +4,7 @@ name: Release note PR comment
 
 on:
   pull_request_target:
-    branches: [ repo-sync/DaSL_Course_Template_Bookdown/default ]
+    branches: [ repo-sync/* ]
 
 jobs:
   pr-comment:
