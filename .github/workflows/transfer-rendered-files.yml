@@ -27,12 +27,16 @@ jobs:
       - name: Run git repo check
         id: git_repo_check
         run: |
+          # What's the LEANPUB repository's name?
           LEANPUB_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}')
           echo $LEANPUB_REPO
-          echo $GITHUB_REPOSITORY
 
+          # Get repo check script
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/scripts/git_repo_check.R
+
+          # Run repo check script
           results=$(Rscript --vanilla scripts/git_repo_check.R "$GITHUB_REPOSITORY")
-          echo $results
+          echo $LEANPUB_REPO exists: $results
           # echo "::set-output name=git_results::$results"
 
       - name: Checkout code from Leanpub repo
