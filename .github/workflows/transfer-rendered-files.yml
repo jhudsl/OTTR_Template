@@ -111,7 +111,7 @@ jobs:
           title: 'GHA: Automated transfer of leanbuild-needed files from Bookdown repository'
           body: |
             ### Description:
-             This PR was initiated by: $GITHUB_REF
+             This PR was initiated by: ${GITHUB_REF}
              Copying over the leanbuild-needed files from Bookdown repository:
                - Rmds listed in the _bookdoown.yml
                - _bookdown.yml
