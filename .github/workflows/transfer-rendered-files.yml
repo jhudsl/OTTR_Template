@@ -28,7 +28,7 @@ jobs:
         id: git_repo_check
         run: |
           results=$(Rscript --vanilla scripts/git_repo_check.R ${GITHUB_REPOSITORY})
-          echo "::set-output name=git_repo_check::$results"
+          echo "::set-output name=results::$results"
 
       - name: Checkout code from Leanpub repo
         if: ${{ steps.git_repo_check.outputs.results == 'TRUE' }}

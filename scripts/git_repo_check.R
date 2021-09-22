@@ -3,7 +3,7 @@
 # Written by Candace Savonen Sept 2021
 
 repo <- commandArgs(trailingOnly = TRUE)
-repo <- "jhudsl/DaSL_Course_Template_Bookdown"
+
 check_git_repo <- function(repo, silent = TRUE, return_repo = FALSE) {
   # Given a repository name, check with git ls-remote whether the repository 
   # exists and return a TRUE/FALSE

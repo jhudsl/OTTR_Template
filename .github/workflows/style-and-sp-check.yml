@@ -37,6 +37,7 @@ jobs:
           results=$(Rscript "scripts/spell-check.R")
           echo "::set-output name=sp_chk_results::$results"
           cat spell_check_results.tsv
+          
       - name: Archive spelling errors
         uses: actions/upload-artifact@v2
         with:
