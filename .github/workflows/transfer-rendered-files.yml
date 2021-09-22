@@ -29,6 +29,7 @@ jobs:
         run: |
           LEANPUB_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}')
           echo $LEANPUB_REPO
+
           results=$(Rscript --vanilla scripts/git_repo_check.R ${GITHUB_REPOSITORY})
           echo $results
           # echo "::set-output name=git_results::$results"
@@ -37,7 +38,7 @@ jobs:
         if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
         uses: actions/checkout@v2
         with:
-          repository: ${{ steps.get_repo_name.outputs.LEANPUB_REPO }}
+          repository: ${{ steps.git_repo_check.outputs.LEANPUB_REPO }}
           token: ${{ secrets.GH_PAT }}
 
       - name: Get files from Bookdown repo
