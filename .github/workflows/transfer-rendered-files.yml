@@ -1,4 +1,4 @@
-# This code was originally written by Josh Shapiro
+# This code was adapted from code written by Josh Shapiro
 # for the Childhood Cancer Data Lab, an initiative of Alexs Lemonade Stand Foundation.
 # https://github.com/AlexsLemonade/exercise-notebook-answers
 
@@ -22,6 +22,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    # Get repository name by dropping Bookdown if it exists but always append _Leanpub
     steps:
       - name: Get files from Bookdown repo
         shell: bash
@@ -30,11 +31,8 @@ jobs:
 
       - name: Checkout code from Leanpub repo
         uses: actions/checkout@v2
-        # Get repository name by dropping Bookdown if it exists but always append _Leanpub
-        env:
-          LEANPUB_REPO: ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}'
         with:
-          repository: ${env.LEANPUB_REPO}
+          repository: ${{ ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}' }}
           token: ${{ secrets.GH_PAT }}
 
       - name: Get files from Bookdown repo
