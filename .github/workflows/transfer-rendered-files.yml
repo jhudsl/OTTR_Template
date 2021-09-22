@@ -34,13 +34,14 @@ jobs:
       - name: Set up test for if LEANPUB REPO EXISTS
         run: |
           LEANPUB_REPO_EXISTS=$(git ls-remote https://github.com/$LEANPUB_REPO > /dev/null 2>&1)
+          FALSE=false
           if [ "$?" -ne 0 ]; then
             LEANPUB_REPO_EXISTS=false
             echo "'$LEANPUB_REPO' does not exist in GitHub; skipping transfer"
           fi
 
       - name: Quit if LEANPUB_REPO doesn't exist
-        if: ${{ steps.spell_check_run.outputs.LEANPUB_REPO_EXISTS == "false" }}
+        if: ${{ steps.spell_check_run.outputs.LEANPUB_REPO_EXISTS == steps.spell_check_run.outputs.FALSE }}
         run:
           set +e
           exit 1
