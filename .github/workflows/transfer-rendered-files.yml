@@ -23,10 +23,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Get files from Bookdown repo
+        shell: bash
+        env:
+          LEANPUB_REPO: ${GITHUB_REPOSITORY} | sed "s/Bookdown/Leanpub/g"
+
       - name: Checkout code from Leanpub repo
         uses: actions/checkout@v2
         with:
-          repository: jhudsl/DaSL_Course_Template_Leanpub
+          repository: ${env.LEANPUB_REPO}
           token: ${{ secrets.GH_PAT }}
 
       - name: Get files from Bookdown repo
