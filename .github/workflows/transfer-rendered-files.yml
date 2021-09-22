@@ -27,6 +27,8 @@ jobs:
       - name: Run git repo check
         id: git_repo_check
         run: |
+          sudo apt-get install subversion
+          
           # What's the LEANPUB repository's name?
           LEANPUB_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}')
           echo $LEANPUB_REPO
@@ -52,7 +54,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
-          sudo apt-get install subversion
           sudo apt install r-base
           sudo Rscript -e "install.packages('yaml')"
 
