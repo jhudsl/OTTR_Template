@@ -11,11 +11,11 @@ name: Copy files from Bookdown to Leanpub repo
 on:
   workflow_dispatch:
   # Only run after the render finishes running
-  # workflow_run:
-  #  workflows: [ "Build, Render, and Push" ]
-  #  branches: [ main ]
-  #  types:
-  #    - completed
+  workflow_run:
+    workflows: [ "Build, Render, and Push" ]
+    branches: [ main ]
+    types:
+      - completed
 
 jobs:
   file-bookdown-pr:
