@@ -28,8 +28,17 @@ jobs:
         id: get_repo_name
         shell: bash
         run: |
-          LEANPUB_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}')
+          LEANPUB_REPO=$(echo jhudsl/DaSL_Course_Template_Bookdown | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}')
           echo $LEANPUB_REPO
+
+      # If the repo doesn't exist, stop
+      - name: Stop if repository doesn't exist
+        run: |
+          git ls-remote "$LEANPUB_REPO" > /dev/null 2>&1
+          if [ "$?" -ne 0 ]; then
+            echo "'$LEANPUB_REPO' does not exist in GitHub; skipping transfer"
+            exit 1;
+          fi
 
       - name: Checkout code from Leanpub repo
         uses: actions/checkout@v2
