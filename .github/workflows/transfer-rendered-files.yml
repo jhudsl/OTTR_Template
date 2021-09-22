@@ -27,7 +27,7 @@ jobs:
       - name: Checkout code from Leanpub repo
         uses: actions/checkout@v2
         with:
-          repository: ${{ ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}' }}
+          repository: ${{ GITHUB_REPOSITORY | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}' }}
           token: ${{ secrets.GH_PAT }}
 
       - name: Get files from Bookdown repo
