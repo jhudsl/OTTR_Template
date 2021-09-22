@@ -28,7 +28,8 @@ jobs:
         id: get_repo_name
         shell: bash
         run: |
-          LEANPUB_REPO=$(echo DaSL_Course_Template_Bookdown | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}')
+          LEANPUB_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}')
+          echo $LEANPUB_REPO
 
       - name: Checkout code from Leanpub repo
         uses: actions/checkout@v2
