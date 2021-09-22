@@ -31,13 +31,20 @@ jobs:
           LEANPUB_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}')
           echo $LEANPUB_REPO
 
-      - name: Stop if repository doesn't exist
+      - name: Set up test for if LEANPUB REPO EXISTS
         run: |
-          git ls-remote https://github.com/$LEANPUB_REPO > /dev/null 2>&1
+          LEANPUB_REPO_EXISTS=$(git ls-remote https://github.com/$LEANPUB_REPO > /dev/null 2>&1)
           if [ "$?" -ne 0 ]; then
+            LEANPUB_REPO_EXISTS="false"
             echo "'$LEANPUB_REPO' does not exist in GitHub; skipping transfer"
-            exit 1;
           fi
+
+      - name: Quit if LEANPUB_REPO doesn't exist
+        if: ${{ steps.spell_check_run.outputs.LEANPUB_REPO_EXISTS == "false" }}
+        run:
+          set +e
+          exit 1
+          set -e
 
       - name: Checkout code from Leanpub repo
         uses: actions/checkout@v2
