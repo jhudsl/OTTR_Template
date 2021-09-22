@@ -32,9 +32,6 @@ jobs:
           results=$(Rscript "scripts/git_repo_check.R $LEANPUB_REPO")
           echo "::set-output name=git_repo_check::$results"
 
-      - name: Quit if LEANPUB_REPO doesn't exist
-        if: ${{ steps.git_repo_check.outputs.results == TRUE }}
-
       - name: Checkout code from Leanpub repo
         if: ${{ steps.git_repo_check.outputs.results == TRUE }}
         uses: actions/checkout@v2
