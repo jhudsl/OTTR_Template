@@ -23,8 +23,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get files from Bookdown repo
-        shell: bash
+      - name: Set repo
         env:
           LEANPUB_REPO: ${GITHUB_REPOSITORY} | sed "s/Bookdown/Leanpub/g"
 
