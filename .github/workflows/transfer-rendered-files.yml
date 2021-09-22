@@ -23,12 +23,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set repo
-        env:
-          LEANPUB_REPO: ${GITHUB_REPOSITORY} | sed "s/Bookdown/Leanpub/g"
-
       - name: Checkout code from Leanpub repo
         uses: actions/checkout@v2
+        env:
+          LEANPUB_REPO: ${GITHUB_REPOSITORY} | sed "s/Bookdown/Leanpub/g"
         with:
           repository: ${env.LEANPUB_REPO}
           token: ${{ secrets.GH_PAT }}
