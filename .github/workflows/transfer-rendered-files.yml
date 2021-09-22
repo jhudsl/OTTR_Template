@@ -30,6 +30,9 @@ jobs:
 
       - name: Checkout code from Leanpub repo
         uses: actions/checkout@v2
+        # Get repository name by dropping Bookdown if it exists but always append _Leanpub
+        env:
+          LEANPUB_REPO: ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}'
         with:
           repository: ${env.LEANPUB_REPO}
           token: ${{ secrets.GH_PAT }}
