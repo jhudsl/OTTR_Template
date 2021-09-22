@@ -27,10 +27,10 @@ jobs:
       - name: Run git repo check
         id: git_repo_check
         run: |
-        LEANPUB_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}')
+          LEANPUB_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}')
 
-        results=$(Rscript "scripts/git_repo_check.R $LEANPUB_REPO")
-        echo "::set-output name=git_repo_check::$results"
+          results=$(Rscript "scripts/git_repo_check.R $LEANPUB_REPO")
+          echo "::set-output name=git_repo_check::$results"
 
       - name: Quit if LEANPUB_REPO doesn't exist
         if: ${{ steps.git_repo_check.outputs.results == TRUE }}
