@@ -33,7 +33,7 @@ jobs:
 
       - name: Stop if repository doesn't exist
         run: |
-          git ls-remote https://github.com$LEANPUB_REPO > /dev/null 2>&1
+          git ls-remote https://github.com/$LEANPUB_REPO > /dev/null 2>&1
           if [ "$?" -ne 0 ]; then
             echo "'$LEANPUB_REPO' does not exist in GitHub; skipping transfer"
             exit 1;
