@@ -36,8 +36,6 @@ jobs:
           # Get repo check script
           svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/scripts/git_repo_check.R git_repo_check.R
 
-          git_repo_check.R
-
           # Run repo check script
           results=$(Rscript --vanilla git_repo_check.R "$GITHUB_REPOSITORY")
           echo $LEANPUB_REPO exists: $results
