@@ -4,7 +4,7 @@
 
 # Adapted for this jhudsl repository by Candace Savonen Apr 2021
 
-name: Copy files from Bookdown to Leanpub repo
+name: Bookdown to Leanpub repo copy over
 # Copy rendered notebooks to Leanpub repo
 
 # This workflow will run when there are changes to docs/ files in THIS repo
@@ -24,41 +24,38 @@ jobs:
 
     # Get repository name by dropping Bookdown if it exists but always append _Leanpub
     steps:
-      - name: Get repository name
-        id: get_repo_name
-        shell: bash
+      - name: Run git repo check
+        id: git_repo_check
         run: |
+          sudo apt-get install subversion
+
+          # What's the LEANPUB repository's name?
           LEANPUB_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}')
           echo $LEANPUB_REPO
 
-      - name: Set up test for if LEANPUB REPO EXISTS
-        run: |
-          LEANPUB_REPO_EXISTS=$(git ls-remote https://github.com/$LEANPUB_REPO > /dev/null 2>&1)
-          FALSE=false
-          if [ "$?" -ne 0 ]; then
-            LEANPUB_REPO_EXISTS=false
-            echo "'$LEANPUB_REPO' does not exist in GitHub; skipping transfer"
-          fi
+          # Get repo check script
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/scripts/git_repo_check.R git_repo_check.R
 
-      - name: Quit if LEANPUB_REPO doesn't exist
-        if: ${{ steps.spell_check_run.outputs.LEANPUB_REPO_EXISTS == steps.spell_check_run.outputs.FALSE }}
-        run:
-          set +e
-          exit 1
-          set -e
+          # Run repo check script
+          results=$(Rscript --vanilla git_repo_check.R "$GITHUB_REPOSITORY")
+          echo $LEANPUB_REPO exists: $results
+
+          echo "::set-output name=git_results::$results"
+          echo "::set-output name=leanpub_repo::$LEANPUB_REPO"
 
       - name: Checkout code from Leanpub repo
+        if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
         uses: actions/checkout@v2
         with:
-          repository: ${{ steps.get_repo_name.outputs.LEANPUB_REPO }}
+          repository: ${{ steps.git_repo_check.outputs.leanpub_repo }}
           token: ${{ secrets.GH_PAT }}
 
       - name: Get files from Bookdown repo
+        if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
-          sudo apt-get install subversion
           sudo apt install r-base
           sudo Rscript -e "install.packages('yaml')"
 
@@ -102,6 +99,7 @@ jobs:
           done < "$input"
 
       - name: Create PR with rendered docs files
+        if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
         uses: peter-evans/create-pull-request@v3
         id: cpr
         with:
@@ -113,6 +111,7 @@ jobs:
           title: 'GHA: Automated transfer of leanbuild-needed files from Bookdown repository'
           body: |
             ### Description:
+             This PR was initiated by: $GITHUB_REF
              Copying over the leanbuild-needed files from Bookdown repository:
                - Rmds listed in the _bookdoown.yml
                - _bookdown.yml
@@ -126,6 +125,7 @@ jobs:
 
       # Write out PR info
       - name: Check outputs
+        if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
           echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
