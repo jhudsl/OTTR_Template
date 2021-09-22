@@ -11,6 +11,8 @@ group:
   files:
     - source: .github/workflows/docker-build-test.yml
       dest: .github/workflows/docker-build-test.yml
+    - source: .github/workflows/transfer-rendered-files.yml
+      dest: .github/workflows/transfer-rendered-files.yml
     - source: .github/workflows/style-and-sp-check.yml
       dest: .github/workflows/style-and-sp-check.yml
     - source: .github/workflows/url-checker.yml
