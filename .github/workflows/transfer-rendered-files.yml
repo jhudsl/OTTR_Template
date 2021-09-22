@@ -24,10 +24,16 @@ jobs:
 
     # Get repository name by dropping Bookdown if it exists but always append _Leanpub
     steps:
+      - name: Get repository name
+        id: get_repo_name
+        shell: bash
+        run: |
+          LEANPUB_REPO=$(echo DaSL_Course_Template_Bookdown | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}')
+
       - name: Checkout code from Leanpub repo
         uses: actions/checkout@v2
         with:
-          repository: ${{ GITHUB_REPOSITORY | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}' }}
+          repository: ${{ steps.get_repo_name.outputs.LEANPUB_REPO }}
           token: ${{ secrets.GH_PAT }}
 
       - name: Get files from Bookdown repo
