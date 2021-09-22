@@ -30,7 +30,7 @@ jobs:
           LEANPUB_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}')
           echo $LEANPUB_REPO
 
-          results=$(Rscript --vanilla scripts/git_repo_check.R ${GITHUB_REPOSITORY})
+          results=$(Rscript --vanilla scripts/git_repo_check.R $GITHUB_REPOSITORY)
           echo $results
           # echo "::set-output name=git_results::$results"
 

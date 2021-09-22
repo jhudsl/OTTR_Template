@@ -4,6 +4,10 @@
 
 repo <- commandArgs(trailingOnly = TRUE)
 
+if (!is.character(repo)) {
+  repo <- as.character(repo)
+}
+
 check_git_repo <- function(repo, silent = TRUE, return_repo = FALSE) {
   # Given a repository name, check with git ls-remote whether the repository 
   # exists and return a TRUE/FALSE
