@@ -4,7 +4,7 @@
 
 # Adapted for this jhudsl repository by Candace Savonen Apr 2021
 
-name: Copy files from Bookdown to Leanpub repo
+name: Bookdown to Leanpub repo copy over
 # Copy rendered notebooks to Leanpub repo
 
 # This workflow will run when there are changes to docs/ files in THIS repo
@@ -39,7 +39,7 @@ jobs:
           # Run repo check script
           results=$(Rscript --vanilla git_repo_check.R "$GITHUB_REPOSITORY")
           echo $LEANPUB_REPO exists: $results
-          # echo "::set-output name=git_results::$results"
+          echo "::set-output name=git_results::$results"
 
       - name: Checkout code from Leanpub repo
         if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
@@ -49,7 +49,7 @@ jobs:
           token: ${{ secrets.GH_PAT }}
 
       - name: Get files from Bookdown repo
-        if: ${{ steps.git_repo_check.outputs.results == 'TRUE' }}
+        if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
@@ -97,7 +97,7 @@ jobs:
           done < "$input"
 
       - name: Create PR with rendered docs files
-        if: ${{ steps.git_repo_check.outputs.results == 'TRUE' }}
+        if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
         uses: peter-evans/create-pull-request@v3
         id: cpr
         with:
@@ -109,6 +109,7 @@ jobs:
           title: 'GHA: Automated transfer of leanbuild-needed files from Bookdown repository'
           body: |
             ### Description:
+             This PR was initiated by: $GITHUB_REF
              Copying over the leanbuild-needed files from Bookdown repository:
                - Rmds listed in the _bookdoown.yml
                - _bookdown.yml
@@ -122,7 +123,7 @@ jobs:
 
       # Write out PR info
       - name: Check outputs
-        if: ${{ steps.git_repo_check.outputs.results == 'TRUE' }}
+        if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
           echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
