@@ -30,6 +30,7 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           sudo apt-get install subversion
+          sudo Rscript -e "install.packages('optparse')"
 
           # What's the LEANPUB repository's name?
           LEANPUB_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}')
