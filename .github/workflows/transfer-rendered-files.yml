@@ -26,8 +26,11 @@ jobs:
     steps:
       - name: Run git repo check
         id: git_repo_check
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           sudo apt-get install subversion
+          sudo Rscript -e "install.packages('optparse')"
 
           # What's the LEANPUB repository's name?
           LEANPUB_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}')
@@ -37,7 +40,7 @@ jobs:
           svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/scripts/git_repo_check.R git_repo_check.R
 
           # Run repo check script
-          results=$(Rscript --vanilla git_repo_check.R "$GITHUB_REPOSITORY")
+          results=$(Rscript --vanilla git_repo_check.R --repo "$GITHUB_REPOSITORY" --git_pat "$GH_PAT")
           echo $LEANPUB_REPO exists: $results
 
           echo "::set-output name=git_results::$results"
@@ -54,7 +57,7 @@ jobs:
         if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
         shell: bash
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           sudo apt install r-base
           sudo Rscript -e "install.packages('yaml')"
@@ -111,8 +114,8 @@ jobs:
           title: 'GHA: Automated transfer of leanbuild-needed files from Bookdown repository'
           body: |
             ### Description:
-             This PR was initiated by: ${GITHUB_REF}
-             Copying over the leanbuild-needed files from Bookdown repository:
+             This PR was initiated by transfer-rendered.yml in the Bookdown repository.
+             It copies over the leanbuild-needed files from Bookdown repository:
                - Rmds listed in the _bookdoown.yml
                - _bookdown.yml
                - docs/*
