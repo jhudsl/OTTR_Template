@@ -5,6 +5,7 @@ name: Check URLs
 
 # This will be run upon PRs to main
 on:
+  workflow_dispatch:
   pull_request:
     branches: [ main ]
 
