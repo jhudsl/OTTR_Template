@@ -14,6 +14,11 @@ These credits are based on our [course contributors table guidelines](https://gi
 |Technical Publishing Stylist|[Carrie Wright](https://carriewright11.github.io/), [Candace Savonen](https://www.cansavvy.com/)|
 |Packages|[John Muschelli](https://johnmuschelli.com/), [Candace Savonen](https://www.cansavvy.com/), [Carrie Wright](https://carriewright11.github.io/)|
 
+### Session info
+```{r}
+devtools::session_info()
+```
+
 <!-- Fill out this table using these instructions: https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/How-to-give-credits
 
 For JHU courses, You will need to add Ira as a credit:
