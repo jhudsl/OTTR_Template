@@ -4,7 +4,8 @@ repo: https://github.com/jhudsl/DaSL_Course_Template_Bookdown/
 rmd_files: ["index.Rmd",
             "01-intro.Rmd",
             "02-chapter_of_course.Rmd",
-            "About.Rmd"]
+            "About.Rmd",
+            "references.Rmd"]
 new_session: yes
 bibliography: [book.bib, packages.bib]
 delete_merged_file: true
