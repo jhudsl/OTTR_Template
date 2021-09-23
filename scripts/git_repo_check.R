@@ -2,6 +2,12 @@
 
 # Written by Candace Savonen Sept 2021
 
+if (!("optparse" %in% installed.packages())){
+  install.packages("optparse")
+}
+
+library(optparse)
+
 option_list <- list(
   optparse::make_option(
     c("--repo"),
