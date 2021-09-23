@@ -53,8 +53,8 @@ check_git_repo <- function(repo, silent = TRUE, return_repo = FALSE) {
 
 
 # Change repo name to its Leanpub equivalent: 
-repo <- gsub("Bookdown", "", repo)
-repo <- paste0(repo, "Leanpub")
+repo <- gsub("_Bookdown", "", repo)
+repo <- paste0(repo, "_Leanpub")
 
 # Print out the result
 write(check_git_repo(repo), stdout())
