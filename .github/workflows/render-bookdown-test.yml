@@ -81,7 +81,7 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             Re-rendered previews from the latest commit:
-            - See [preview of Bookdown here](${{ steps.build-components-body.outputs.bookdown_link }})
-            - See [preview of Coursera version here](${{ steps.build-components-body.outputs.coursera_link }})
-            Updated at ${{ steps.build-components-body.outputs.time }}
+            - See [preview of Bookdown here](${{ steps.build-components.outputs.bookdown_link }})
+            - See [preview of Coursera version here](${{ steps.build-components.outputs.coursera_link }})
+            Updated at ${{ steps.build-components.outputs.time }}
           edit-mode: replace
