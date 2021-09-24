@@ -65,10 +65,11 @@ jobs:
           comment-author: 'github-actions[bot]'
           body-includes: Re-rendered
 
-      - id: build-components
+      - name: Build components of the comment
+        id: build-components
         run: |
-          bookdown_link=$(https://htmlpreview.github.io/?https://raw.githubusercontent.com/${{GITHUB_REPOSITORY}}/preview/index.html)
-          coursera_link=$(https://htmlpreview.github.io/?https://raw.githubusercontent.com/${{GITHUB_REPOSITORY}}/preview/index.html)
+          bookdown_link=$(https://htmlpreview.github.io/?https://raw.githubusercontent.com/$GITHUB_REPOSITORY/preview/index.html)
+          coursera_link=$(https://htmlpreview.github.io/?https://raw.githubusercontent.com/$GITHUB_REPOSITORY/preview/index.html)
           echo ::set-output name=bookdown_link::$bookdown_link
           echo ::set-output name=coursera_link::$coursera_link
           echo ::set-output time::$(date +'%Y-%m-%dT%H:%M:%S')
