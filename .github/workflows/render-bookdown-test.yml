@@ -72,7 +72,7 @@ jobs:
           coursera_link=$(echo "https://htmlpreview.github.io/?https://raw.githubusercontent.com/$GITHUB_REPOSITORY/preview/docs/coursera/index.html")
           echo ::set-output name=bookdown_link::$bookdown_link
           echo ::set-output name=coursera_link::$coursera_link
-          echo ::set-output name=time::$(date +'%Y-%m-%dT%H:%M:%S')
+          echo ::set-output name=time::$(date +'%Y-%m-%dT %H:%M:%S')
 
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v1
@@ -84,5 +84,5 @@ jobs:
             - See [preview of Bookdown here](${{ steps.build-components.outputs.bookdown_link }})
             - See [preview of Coursera version here](${{ steps.build-components.outputs.coursera_link }})
 
-            *Updated at ${{ steps.build-components.outputs.time }}
+            _Updated at ${{ steps.build-components.outputs.time }}_
           edit-mode: replace
