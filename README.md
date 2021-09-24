@@ -23,6 +23,8 @@ _To get started:_
 
 # {Course Name}
 
+[![Course Preview](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/actions/workflows/render-bookdown-test.yml/badge.svg?branch=main&event=pull_request)](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/actions/workflows/render-bookdown-test.yml)
+
 This course was created from [this GitHub template](https://github.com/jhudsl/DaSL_Course_Template_Bookdown).
 
 You can see the rendered course material here: {Link to rendered bookdown and/or to the Leanpub. Will look something like: https://jhudatascience.org/{Course_Name}}
