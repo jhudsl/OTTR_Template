@@ -7,10 +7,9 @@
 
 name: Render Bookdown and Coursera
 
-# Controls when the action will run. Triggers the workflow on push
-# events only for the master branch
+# Controls when the action will run. Triggers the workflow on pull request to main branch
 on:
-  push:
+  pull_request:
     branches: [ main ]
     paths:
       - '**.Rmd'
@@ -32,40 +31,6 @@ jobs:
           # use github PAT
           token: ${{ secrets.GH_PAT }}
 
-###### If you will be making changes to the Docker image to make specific to the
-###### course, then highlight this chunk and uncomment it. #####################
-###### Recommend using short cut -- Command and / works for some editors.#######
-###### START OF DOCKER UPDATE CHUNK
-      # # Login to Dockerhub
-      # - name: Login to DockerHub
-      #   uses: docker/login-action@v1
-      #   with:
-      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
-      #
-      # # Set up Docker build
-      # - name: Set up Docker Build
-      #   uses: docker/setup-buildx-action@v1
-      #
-      # - name: Get Token
-      #   run: echo ${{ secrets.GH_PAT }} > docker/git_token.txt
-      #
-      # # Build docker image
-      # - name: Build Docker image
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     push: false
-      #     load: true
-      #     context: docker
-      #     file: docker/Dockerfile
-      #     tags: jhudsl/course_template
-      #
-      # # Push the Docker image
-      # - name: Push Docker image
-      #   run: docker push jhudsl/course_template
-
-###### END OF DOCKER UPDATE CHUNK ##############################################
-
       # Run bookdown rendering
       - name: Run bookdown render
         run: |
@@ -86,11 +51,23 @@ jobs:
 ##### End of Coursera rendering section ########################################
 
       # Commit the rendered bookdown files
-      - name: Commit rendered bookdown files
+      - name: Commit rendered bookdown files to development branch
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add -A
           git add --force docs/*
           git commit -m 'Render bookdown' || echo "No changes to commit"
-          git push origin main || echo "No changes to push"
+          git push origin dev || echo "No changes to push"
+
+      - uses: mshick/add-pr-comment@v1
+        with:
+          message: |
+            **Please carefully review these changes and decide which are useful for your course.**
+
+            You can see a preview of the bookdown with these changes here:
+            https://htmlpreview.github.io/?https://raw.githubusercontent.com//main/docs/introduction.html
+
+          repo-token: ${{ secrets.GH_PAT }}
+          repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
+          allow-repeats: false # This is the default
