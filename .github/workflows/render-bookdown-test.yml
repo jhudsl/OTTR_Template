@@ -84,4 +84,4 @@ jobs:
             - See [preview of Bookdown here](${{ steps.build-components-body.outputs.bookdown_link }})
             - See [preview of Coursera version here](${{ steps.build-components-body.outputs.coursera_link }})
             Updated at ${{ steps.build-components-body.outputs.time }}
-        edit-mode: replace
+          edit-mode: replace
