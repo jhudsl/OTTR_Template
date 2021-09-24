@@ -5,7 +5,7 @@
 
 # Adapted for this jhudsl repository by Candace Savonen Apr 2021
 
-name: Render Bookdown and Coursera
+name: Render Preview
 
 # Controls when the action will run. Triggers the workflow on pull request to main branch
 on:
@@ -63,10 +63,15 @@ jobs:
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-author: 'github-actions[bot]'
-          body-includes: Build output
+          body-includes: Re-rendered
 
-      - name: Set current date as env variable
-        run: echo "NOW::$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+      - id: build-components
+        run: |
+          bookdown_link=$(https://htmlpreview.github.io/?https://raw.githubusercontent.com/${{GITHUB_REPOSITORY}}/preview/index.html)
+          coursera_link=$(https://htmlpreview.github.io/?https://raw.githubusercontent.com/${{GITHUB_REPOSITORY}}/preview/index.html)
+          echo ::set-output name=bookdown_link::$bookdown_link
+          echo ::set-output name=coursera_link::$coursera_link
+          echo ::set-output time::$(date +'%Y-%m-%dT%H:%M:%S')
 
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v1
@@ -74,10 +79,8 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ${{GITHUB_REPOSITORY}}
-            Re-rendered bookdown from this commit:
-            - See [preview of Bookdown here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/${{GITHUB_REPOSITORY}}/preview/index.html)
-            - See [preview of Coursera version here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/${{GITHUB_REPOSITORY}}/preview/index.html)
-
-            Updated last: ${{NOW}}
+            Re-rendered previews from the latest commit:
+            - See [preview of Bookdown here](${{ steps.build-components-body.outputs.bookdown_link }})
+            - See [preview of Coursera version here](${{ steps.build-components-body.outputs.coursera_link }})
+            Updated at ${{ steps.build-components-body.outputs.time }}
         edit-mode: replace
