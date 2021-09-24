@@ -11,9 +11,6 @@ name: Render Bookdown and Coursera
 on:
   pull_request:
     branches: [ main ]
-    paths:
-      - '**.Rmd'
-      - docker/Dockerfile
 
 jobs:
   # This workflow contains a single job called "build-all"
@@ -53,20 +50,19 @@ jobs:
       # Commit the rendered bookdown files
       - name: Commit rendered bookdown files to development branch
         run: |
+          git checkout -b "preview"
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add -A
-          git add --force docs/*
-          git commit -m 'Render bookdown' || echo "No changes to commit"
-          git push origin dev || echo "No changes to push"
+          git commit -m 'Render bookdown preview' || echo "No changes to commit"
+          git push origin preview || echo "No changes to push"
 
       - uses: mshick/add-pr-comment@v1
         with:
           message: |
-            **Please carefully review these changes and decide which are useful for your course.**
-
-            You can see a preview of the bookdown with these changes here:
-            https://htmlpreview.github.io/?https://raw.githubusercontent.com//main/docs/introduction.html
+            Re-rendered bookdown from this commit.
+            - See [preview of Bookdown here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/preview/index.html)
+            - See [preview of Coursera version here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/preview/index.html)
 
           repo-token: ${{ secrets.GH_PAT }}
           repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
