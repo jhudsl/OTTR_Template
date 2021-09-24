@@ -57,13 +57,27 @@ jobs:
           git commit -m 'Render bookdown preview' || echo "No changes to commit"
           git push origin preview || echo "No changes to push"
 
-      - uses: mshick/add-pr-comment@v1
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
         with:
-          message: |
-            Re-rendered bookdown from this commit.
-            - See [preview of Bookdown here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/preview/index.html)
-            - See [preview of Coursera version here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/preview/index.html)
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Build output
 
-          repo-token: ${{ secrets.GH_PAT }}
-          repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
-          allow-repeats: false # This is the default
+      - name: Set current date as env variable
+        run: echo "NOW::$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ${{GITHUB_REPOSITORY}}
+            Re-rendered bookdown from this commit:
+            - See [preview of Bookdown here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/${{GITHUB_REPOSITORY}}/preview/index.html)
+            - See [preview of Coursera version here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/${{GITHUB_REPOSITORY}}/preview/index.html)
+
+            Updated last: ${{NOW}}
+        edit-mode: replace
