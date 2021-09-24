@@ -1,0 +1,83 @@
+# Candace Savonen Apr 2021
+
+name: Render Preview
+
+# Controls when the action will run. Triggers the workflow on pull request to main branch
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # This workflow contains a single job called "build-all"
+  build-all:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          # get the full repo
+          fetch-depth: 0
+          # use github PAT
+          token: ${{ secrets.GH_PAT }}
+
+      # Run bookdown rendering
+      - name: Run bookdown render
+        run: |
+          docker run \
+          --mount type=bind,target=/home/rstudio,source=$PWD \
+          jhudsl/course_template \
+          Rscript -e "bookdown::render_book('index.Rmd')"
+
+##### If you do not wish to host your course on Coursera, you can delete this section #####
+      # Run Coursera version
+      - name: Run Coursera version of render
+        run: |
+          docker run \
+          --mount type=bind,target=/home/rstudio,source=$PWD \
+          jhudsl/course_template \
+          Rscript -e "leanbuild::render_coursera()"
+
+##### End of Coursera rendering section ########################################
+
+      # Commit the rendered bookdown files
+      - name: Commit rendered bookdown files to development branch
+        run: |
+          git checkout -b "preview"
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add -A
+          git commit -m 'Render bookdown preview' || echo "No changes to commit"
+          git push origin preview || echo "No changes to push"
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Re-rendered
+
+      - name: Build components of the comment
+        id: build-components
+        run: |
+          bookdown_link=$(echo "https://htmlpreview.github.io/?https://raw.githubusercontent.com/$GITHUB_REPOSITORY/preview/docs/index.html")
+          coursera_link=$(echo "https://htmlpreview.github.io/?https://raw.githubusercontent.com/$GITHUB_REPOSITORY/preview/docs/coursera/index.html")
+          echo ::set-output name=bookdown_link::$bookdown_link
+          echo ::set-output name=coursera_link::$coursera_link
+          echo ::set-output name=time::$(date +'%Y-%m-%d %H:%M:%S')
+
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Re-rendered previews from the latest commit:
+            - See [preview of Bookdown here](${{ steps.build-components.outputs.bookdown_link }})
+            - See [preview of Coursera version here](${{ steps.build-components.outputs.coursera_link }})
+
+            _Updated at ${{ steps.build-components.outputs.time }}_
+          edit-mode: replace
