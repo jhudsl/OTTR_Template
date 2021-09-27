@@ -14,5 +14,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Delete preview branch
-        uses: actions/checkout@v2
         run: git branch -D preview-${{ github.event.pull_request.number }}
