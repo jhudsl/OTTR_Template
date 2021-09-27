@@ -70,6 +70,11 @@ jobs:
           # Copy over docs folder
           svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/docs
 
+          if [ -d "docs/coursera" ]
+          then
+            rm -r docs/coursera/*
+          fi
+
           # Copy over book.bib file
           svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/book.bib
 

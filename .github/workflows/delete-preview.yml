@@ -1,0 +1,16 @@
+# Candace Savonen Apr 2021
+
+name: Delete Preview
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  build-all:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Delete preview branch
+        id: build-components
+        run: git branch -D preview-${{ github.event.pull_request.number }} &>/dev/null
