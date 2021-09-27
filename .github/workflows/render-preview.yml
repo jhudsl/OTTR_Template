@@ -79,5 +79,5 @@ jobs:
             - See [preview of Bookdown here](${{ steps.build-components.outputs.bookdown_link }})
             - See [preview of Coursera version here](${{ steps.build-components.outputs.coursera_link }})
 
-            _Updated at ${{ steps.build-components.outputs.time }}_
+            _Updated at ${{ steps.build-components.outputs.time }} with changes from ${{ GITHUB_SHA }}_
           edit-mode: replace
