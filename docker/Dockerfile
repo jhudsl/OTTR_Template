@@ -7,10 +7,10 @@ COPY install_github.R .
 # Install apt-getable packages to start
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils dialog
 
-# These packages are dependencies
 RUN apt-get install -y --no-install-recommends \
     libxt6 \
-    libpoppler-cpp-dev
+    libpoppler-cpp-dev \
+    vim
 
 # Remove old symlinks to old pandoc
 RUN unlink /usr/lib/rstudio-server/bin/pandoc/pandoc
