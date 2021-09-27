@@ -11,4 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Delete preview branch
+        uses: actions/checkout@v2
         run: git branch -D preview-${{ github.event.pull_request.number }}
