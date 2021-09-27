@@ -67,7 +67,7 @@ jobs:
           coursera_link=$(echo "https://htmlpreview.github.io/?https://raw.githubusercontent.com/$GITHUB_REPOSITORY/preview-${{ github.event.pull_request.number }}/docs/coursera/index.html")
           echo ::set-output name=bookdown_link::$bookdown_link
           echo ::set-output name=coursera_link::$coursera_link
-          echo ::set-output name=time::$(date +'%Y-%m-%d %H:%M:%S')
+          echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
 
       - name: Create or update comment
