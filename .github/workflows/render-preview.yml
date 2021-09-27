@@ -50,7 +50,7 @@ jobs:
           git config --local user.name "GitHub Actions"
           git add -A
           git commit -m 'Render bookdown preview' || echo "No changes to commit"
-          git force push origin preview || echo "No changes to push"
+          git push --force origin preview || echo "No changes to push"
 
       - name: Find Comment
         uses: peter-evans/find-comment@v1
