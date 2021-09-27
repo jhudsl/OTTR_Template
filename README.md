@@ -23,7 +23,7 @@ _To get started:_
 
 # {Course Name}
 
-[![Course Preview](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/actions/workflows/render-bookdown-test.yml/badge.svg?branch=main&event=pull_request)](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/actions/workflows/render-bookdown-test.yml)
+[![Render Bookdown and Coursera](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/actions/workflows/render-bookdown.yml/badge.svg)](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/actions/workflows/render-bookdown.yml)
 
 This course was created from [this GitHub template](https://github.com/jhudsl/DaSL_Course_Template_Bookdown).
 
