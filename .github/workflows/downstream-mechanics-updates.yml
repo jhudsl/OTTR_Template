@@ -3,6 +3,9 @@
 name: Sync Files
 on:
   workflow_dispatch:
+  release:
+    types:
+      - created
 
 jobs:
   sync:
