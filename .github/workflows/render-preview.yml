@@ -68,6 +68,7 @@ jobs:
           echo ::set-output name=bookdown_link::$bookdown_link
           echo ::set-output name=coursera_link::$coursera_link
           echo ::set-output name=time::$(date +'%Y-%m-%d %H:%M:%S')
+          echo ::set-output name=commit_id::$GITHUB_SHA
 
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v1
@@ -79,5 +80,5 @@ jobs:
             - See [preview of Bookdown here](${{ steps.build-components.outputs.bookdown_link }})
             - See [preview of Coursera version here](${{ steps.build-components.outputs.coursera_link }})
 
-            _Updated at ${{ steps.build-components.outputs.time }} with changes from ${{ GITHUB_SHA }}_
+            _Updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
