@@ -10,6 +10,8 @@ jobs:
   build-all:
     runs-on: ubuntu-latest
     steps:
-      - name: Delete preview branch
+      - name: Checkout branch
         uses: actions/checkout@v2
+
+      - name: Delete preview branch
         run: git branch -D preview-${{ github.event.pull_request.number }}
