@@ -87,11 +87,11 @@ jobs:
       - name: Get the version
         id: get_version
         run: |
-        echo ::set-output name=version::$(echo $GITHUB_REF | cut -d / -f 3)
+          echo ::set-output name=version::$(echo $GITHUB_REF | cut -d / -f 3)
 
       # Push the Docker image if it is a release
       - name: Push Docker image if release
         if: ${{ github.head_ref != *"tags"* }}
         run: |
-        docker tag ${{ steps.get_version.outputs.version }}
-        docker push jhudsl/course_template
+          docker tag ${{ steps.get_version.outputs.version }}
+          docker push jhudsl/course_template
