@@ -4,9 +4,9 @@
 group:
   # Repositories to recieve changes
   repos: |
-    jhudsl/ITCR_Documentation_and_Usability
-    jhudsl/ITCR_Cancer_Research_Leadership
-    jhudsl/ITCR_Data_Management
+    jhudsl/Documentation_and_Usability
+    jhudsl/Informatics_Research_Leadership
+    jhudsl/Data_Management
 #ADD NEW REPO HERE following the format above#
   files:
     - source: .github/workflows/docker-build-test.yml

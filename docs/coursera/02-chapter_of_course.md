@@ -205,6 +205,7 @@ sessionInfo()
 ##  [9] xfun_0.26       jquerylib_0.1.1 htmltools_0.5.0 ellipsis_0.3.1 
 ## [13] yaml_2.2.1      leanbuild_0.1.2 digest_0.6.25   tibble_3.0.3   
 ## [17] lifecycle_1.0.0 crayon_1.3.4    bookdown_0.24   readr_1.4.0    
-## [21] vctrs_0.3.4     curl_4.3        evaluate_0.14   rmarkdown_2.10 
-## [25] stringi_1.5.3   compiler_4.0.2  pillar_1.4.6    pkgconfig_2.0.3
+## [21] vctrs_0.3.4     fs_1.5.0        curl_4.3        evaluate_0.14  
+## [25] rmarkdown_2.10  stringi_1.5.3   compiler_4.0.2  pillar_1.4.6   
+## [29] pkgconfig_2.0.3
 ```
