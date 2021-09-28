@@ -11,5 +11,3 @@ links-to-files
 links-to-websites
 citation-examples
 print-out-session-info
-about-the-authors
-session-info
