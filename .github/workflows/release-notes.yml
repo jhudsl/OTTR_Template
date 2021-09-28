@@ -6,6 +6,7 @@ on:
   pull_request:
     branches: [ main ]
     types: [ opened ]
+
 jobs:
   pr-comment:
     runs-on: ubuntu-latest
@@ -15,7 +16,7 @@ jobs:
         with:
           message: |
             **Please carefully review these changes and decide which are useful for your course.**
-            See the release notes: https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Release-Notes
+            See the release notes: https://github.com/jhudsl/DaSL_Course_Template_Bookdown/releases
 
             - If you don't want the changes from a particular file, you can always [revert that particular commit](https://git-scm.com/docs/git-revert) before merging the sync PR.
             If you will not want any updates on this file in the future, you may want to remove a file from being synced in your repo [by reconfiguring the sync file](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/blob/main/.github/sync.yml).

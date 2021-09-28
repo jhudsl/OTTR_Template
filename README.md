@@ -39,7 +39,7 @@ This course introduces {info on what this course introduces}
 
 This course will teach learners to:  
 
-- {You can use https://www.bu.edu/cme/forms/RSS_forms/tips_for_writing_objectives.pdf to define some learning objectives here}
+- {You can use https://www.bobpikegroup.com/trainer-blog/5-steps-to-writing-clear-and-measurable-learning-objectives to define some learning objectives here}
 - {More learning objectives}
 
 ## Encountering problems?

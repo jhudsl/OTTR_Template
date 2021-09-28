@@ -9,6 +9,9 @@ name: Test build of Dockerfile
 # Controls when the action will run. Triggers the workflow for a pull request for
 # master
 on:
+  release:
+    types:
+      - created
   pull_request:
     branches:
       - 'main'
@@ -76,7 +79,19 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Push the Docker image
-      - name: Push Docker image
+      # Push the Docker image if set to true from a manual trigger
+      - name: Push Docker image if manual trigger set to true
         if: ${{ github.event.inputs.dockerhubpush != 'false' }}
         run: docker push jhudsl/course_template
+
+      - name: Get the version
+        id: get_version
+        run: |
+          echo ::set-output name=version::$(echo $GITHUB_REF | cut -d / -f 3)
+
+      # Push the Docker image if it is a release
+      - name: Push Docker image if release
+        if: ${{ github.event_name == 'release' }}
+        run: |
+          docker tag ${{ steps.get_version.outputs.version }}
+          docker push jhudsl/course_template
