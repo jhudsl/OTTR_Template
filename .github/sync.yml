@@ -9,6 +9,8 @@ group:
     jhudsl/Data_Management
 #ADD NEW REPO HERE following the format above#
   files:
+    - source: .github/workflows/render-bookdown.yml
+      dest: .github/workflows/render-bookdown.yml
     - source: .github/workflows/docker-build-test.yml
       dest: .github/workflows/docker-build-test.yml
     - source: .github/workflows/transfer-rendered-files.yml
