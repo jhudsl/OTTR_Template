@@ -18,6 +18,8 @@ _This template and guide helps you_:
 - [Documentation and Usability](https://jhudatascience.org/Documentation_and_Usability/)
 - [Leadership for Cancer Informatics Research](https://jhudatascience.org/Informatics_Research_Leadership/)
 
+![](https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=ged733071f0_0_58)
+
 ## To Get Started
 - Go to the [Wiki page](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Getting-started)
 - Please take a look at the [code of conduct](./code_of_conduct.md).
