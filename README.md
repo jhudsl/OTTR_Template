@@ -14,11 +14,11 @@ _This template and guide helps you_:
 - Use [automagic conversion](https://github.com/jhudsl/leanbuild) to ease the lift of prepping the material for different platforms' formats.
 - Use [our Docker image](https://hub.docker.com/repository/docker/jhudsl/course_template) for consistency across authors as well as to help you [avoid dependency hell](https://en.wikipedia.org/wiki/Dependency_hell). 
 
+<img src="https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=ged733071f0_0_58" width="500"/>
+
 ## Courses that have been made using this template:
 - [Documentation and Usability](https://jhudatascience.org/Documentation_and_Usability/)
 - [Leadership for Cancer Informatics Research](https://jhudatascience.org/Informatics_Research_Leadership/)
-
-![](https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=ged733071f0_0_58)
 
 ## To Get Started
 - Go to the [Wiki page](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Getting-started)
