@@ -19,6 +19,8 @@ group:
       dest: .github/workflows/url-checker.yml
     - source: .github/workflows/release-notes.yml
       dest: .github/workflows/release-notes.yml
+    - source: .github/workflows/delete-preview.yml
+      dest: .github/workflows/delete-preview.yml
     - source: scripts/
       dest: scripts/
     - source: docker/
