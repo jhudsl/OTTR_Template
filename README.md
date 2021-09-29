@@ -14,8 +14,6 @@ _This template and guide helps you_:
 - Use [automagic conversion](https://github.com/jhudsl/leanbuild) to ease the lift of prepping the material for different platforms' formats.
 - Use [our Docker image](https://hub.docker.com/repository/docker/jhudsl/course_template) for consistency across authors as well as to help you [avoid dependency hell](https://en.wikipedia.org/wiki/Dependency_hell). 
 
-Go to [Getting Started](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Getting-started) to get started! 😀 
-
 _To get started:_  
 - Go to the [Wiki page](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Getting-started)
 - Please take a look at the [code of conduct](./code_of_conduct.md).
