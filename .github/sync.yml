@@ -7,6 +7,8 @@ group:
     jhudsl/Documentation_and_Usability
     jhudsl/Informatics_Research_Leadership
     jhudsl/Data_Management
+    jhudsl/AnVIL_Book_Getting_Started
+    jhudsl/AnVIL_Book_Teacher_Guide
     #ADD NEW REPO HERE following the format above#
   files:
     - source: .github/workflows/render-bookdown.yml
