@@ -2,7 +2,7 @@
 
 ## DaSL Course Templates
 
-The purpose of this course template (and its [companion template repo](https://github.com/jhudsl/DaSL_Course_Template_Leanpub)) is to make course publishing maintenance across multiple different platforms _less painful_.
+The purpose of this course template and guide is to make course publishing maintenance across multiple different platforms _less painful_.
 
 _This template and guide helps you_:   
 
@@ -14,10 +14,13 @@ _This template and guide helps you_:
 - Use [automagic conversion](https://github.com/jhudsl/leanbuild) to ease the lift of prepping the material for different platforms' formats.
 - Use [our Docker image](https://hub.docker.com/repository/docker/jhudsl/course_template) for consistency across authors as well as to help you [avoid dependency hell](https://en.wikipedia.org/wiki/Dependency_hell). 
 
-_To get started:_  
+## Courses that have been made using this template:
+- [Documentation and Usability](https://jhudatascience.org/Documentation_and_Usability/)
+- [Leadership for Cancer Informatics Research](https://jhudatascience.org/Informatics_Research_Leadership/)
+
+## To Get Started
 - Go to the [Wiki page](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Getting-started)
 - Please take a look at the [code of conduct](./code_of_conduct.md).
-
 - If you encounter any problems or have ideas for improvements to this template repository or this getting started guide, please [file an issue here](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/issues/new/choose)! Your feedback is very much appreciated.
 
 <!--Delete everything above this line upon using the template-->
