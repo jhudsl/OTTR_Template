@@ -15,14 +15,14 @@ _If you are creating any other courses:_
 
 - [ ] `README.md` - Fill in all the `{ }`.
 - [ ] `index.Rmd` - the `author:`, `title:`, and `description:` should be updated.
-- [ ] `About.Rmd` - Replace information with your own author information.
+- [ ] `About.Rmd` - Replace information with your own author information and change the course title in the yaml header!
 - [ ] `01-intro.Rmd` - replace the information there with information pertinent to this new course.
-- [ ] `02-chapter_of_course.Rmd` - This Rmd has examples of how to set things up, if you don't need it as a reference, it be deleted.
-- [ ] `code_output` can be deleted.
+- [ ] `02-chapter_of_course.Rmd` - This Rmd has examples of how to set things up, if you don't need it as a reference, it can be deleted.
+- [ ] `code_output` can be deleted if you don't plan to use code.
 
 ### Files that need to be edited upon adding each new chapter (including upon creating a new course):
 .
-- [ ] `_bookdown.yml` - The Rmd files that need to be rendered need to be updated. See [instructions](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Publishing-with-Bookdown).
+- [ ] `_bookdown.yml` - The list of Rmd files that need to be rendered needs to be updated. See [instructions](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Publishing-with-Bookdown).
 - [ ] `book.bib` - any citations need to be added. See [instructions](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Citations).
 
 ### Files that need to be edited upon adding new packages that the book's code uses:
