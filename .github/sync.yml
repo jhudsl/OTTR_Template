@@ -7,7 +7,7 @@ group:
     jhudsl/Documentation_and_Usability
     jhudsl/Informatics_Research_Leadership
     jhudsl/Data_Management
-#ADD NEW REPO HERE following the format above#
+    #ADD NEW REPO HERE following the format above#
   files:
     - source: .github/workflows/render-bookdown.yml
       dest: .github/workflows/render-bookdown.yml
@@ -27,8 +27,6 @@ group:
       dest: scripts/
     - source: docker/
       dest: docker/
-    - source: .gitignore
-      dest: .gitignore
 
 ###### TO ADD NEW REPOSITORY USE THIS FORMAT; Feel free to add/drop files that
 # you specifically would like synced (or not).
@@ -43,5 +41,3 @@ group:
   #   dest: scripts/
   # - source: docker/
   #   dest: docker/
-  # - source: .gitignore
-  #   dest: .gitignore
