@@ -19,8 +19,4 @@ The course is intended for ...
 
 ## Curriculum  
 
-```{r, fig.alt = "learning objectives", echo = FALSE}
-leanbuild::include_slide("Link to learning objectives slide")
-```
-
 The course covers...
