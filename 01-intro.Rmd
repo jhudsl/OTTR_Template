@@ -9,13 +9,23 @@ leanbuild::set_knitr_image_path()
 
 # Introduction
 
+```{r, fig.alt="Title image", out.width = "100%", echo = FALSE}
+leanbuild::include_slide("Title slide")
+```
+
+
 ## Motivation
-This course will cover
 
-**Target Audience:**  
-The course is intended for
 
-**Curriculum:**  
-The curriculum will cover
 
-This course was funded by
+## Target Audience  
+
+The course is intended for ...
+
+## Curriculum  
+
+```{r, fig.alt = "learning objectives", echo = FALSE}
+leanbuild::include_slide("Link to learning objectives slide")
+```
+
+The course covers...
