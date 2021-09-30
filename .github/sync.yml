@@ -26,10 +26,10 @@ group:
       dest: .github/workflows/release-notes.yml
     - source: .github/workflows/delete-preview.yml
       dest: .github/workflows/delete-preview.yml
+    - source: .github/ISSUE_TEMPLATE/
+      dest: .github/ISSUE_TEMPLATE/
     - source: scripts/
       dest: scripts/
-    - source: docker/
-      dest: docker/
 
 ###### TO ADD NEW REPOSITORY USE THIS FORMAT; Feel free to add/drop files that
 # you specifically would like synced (or not).
