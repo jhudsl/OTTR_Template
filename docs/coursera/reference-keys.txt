@@ -1,5 +1,7 @@
 introduction
 motivation
+target-audience
+curriculum
 learning-objectives
 libraries
 topic-of-section
