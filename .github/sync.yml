@@ -9,6 +9,7 @@ group:
     jhudsl/Data_Management
     jhudsl/AnVIL_Book_Getting_Started
     jhudsl/AnVIL_Book_Teacher_Guide
+    jhudsl/Reproducibility_in_Cancer_Informatics
     #ADD NEW REPO HERE following the format above#
   files:
     - source: .github/workflows/render-bookdown.yml

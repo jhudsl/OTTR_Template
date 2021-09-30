@@ -2,7 +2,6 @@
 title: "Chapter of course"
 ---
 
-
 *If you haven't yet read the getting started Wiki pages; [start there](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Getting-started)
 
 Every chapter needs to start out with this chunk of code:
@@ -17,7 +16,7 @@ leanbuild::set_knitr_image_path()
 
 This chapter will cover:  
 
-- {You can use https://www.bu.edu/cme/forms/RSS_forms/tips_for_writing_objectives.pdf to define some learning objectives here}
+- {You can use https://tips.uark.edu/using-blooms-taxonomy/ to define some learning objectives here}
 - {Another learning objective}
 
 ## Libraries
