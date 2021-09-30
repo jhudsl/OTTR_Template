@@ -9,13 +9,8 @@ leanbuild::set_knitr_image_path()
 
 # Introduction
 
-```{r, fig.alt="Title image", out.width = "100%", echo = FALSE}
-leanbuild::include_slide("Title slide")
-```
-
 
 ## Motivation
-
 
 
 ## Target Audience  
