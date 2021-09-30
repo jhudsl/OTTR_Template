@@ -64,7 +64,8 @@ jobs:
             .github/workflows/downstream-mechanics-updates.yml \
             .github/sync.yml \
             .github/workflows/starting-course.yml \
-            .github/ISSUE_TEMPLATES/config.yml
+            .github/ISSUE_TEMPLATE/course-template-problem-report.md \
+            .github/ISSUE_TEMPLATE/course-template-feature-request.md
 
       # Commit modified files
       - name: Commit deleted files
