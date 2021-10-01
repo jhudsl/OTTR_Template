@@ -10,6 +10,12 @@ group:
     jhudsl/AnVIL_Book_Getting_Started
     jhudsl/AnVIL_Book_Teacher_Guide
     jhudsl/Reproducibility_in_Cancer_Informatics
+    jhudsl/Dissemination_and_Engagement
+    jhudsl/Cancer_Clinical_Informatics
+    jhudsl/Machine_Learning_for_Cancer_Informatics
+    jhudsl/Cancer_Informatics_Data_Visualization
+    jhudsl/Cancer_Genome_Informatics
+    jhudsl/Cancer-Imaging-Informatics
     #ADD NEW REPO HERE following the format above#
   files:
     - source: .github/workflows/render-bookdown.yml
