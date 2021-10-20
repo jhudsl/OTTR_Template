@@ -13,7 +13,10 @@ on:
   workflow_dispatch:
   push:
     branches: [ main ]
-
+    paths:
+      - '**.Rmd'
+      - docker/Dockerfile
+      - assets/*
 jobs:
   # This workflow contains a single job called "build-all"
   build-all:
