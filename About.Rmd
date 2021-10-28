@@ -28,7 +28,7 @@ These credits are based on our [course contributors table guidelines](https://gi
 |Template Publishing Engineers|[Candace Savonen], [Carrie Wright]|
 |Publishing Maintenance Engineer|[Candace Savonen]|
 |Technical Publishing Stylists|[Carrie Wright], [Candace Savonen]|
-|Package Developers ([Leanbuild]|[John Muschelli], [Candace Savonen], [Carrie Wright]|
+|Package Developers ([Leanbuild])|[John Muschelli], [Candace Savonen], [Carrie Wright]|
 |**Art and Design**||
 |Illustrator(s)| Created graphics for the course|
 |Figure Artist(s)| Created figures/plots for course|
