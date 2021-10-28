@@ -1,6 +1,3 @@
----
-title: "Title of Course"
----
 
 # About the Authors {-}
 
