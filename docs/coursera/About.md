@@ -1,6 +1,3 @@
----
-title: "Title of Course"
----
 
 # About the Authors {-}
 
@@ -12,7 +9,7 @@ These credits are based on our [course contributors table guidelines](https://gi
 |Credits|Names|
 |-------|-----|
 |**Pedagogy**||
-|Lead Content Instructor(s)|[FirstName LastName](link to personal website)|
+|Lead Content Instructor(s)|[FirstName LastName]|
 |Lecturer(s) (include chapter name/link in parentheses if only for specific chapters) - make new line if more than one chapter involved| Delivered the course in some way - video or audio|
 |Content Author(s) (include chapter name/link in parentheses if only for specific chapters) - make new line if more than one chapter involved | If any other authors besides lead instructor| 
 |Content Contributor(s) (include section name/link in parentheses) - make new line if more than one section involved|  Wrote less than a chapter|
@@ -25,10 +22,10 @@ These credits are based on our [course contributors table guidelines](https://gi
 |Content Publishing Reviewer(s)| Reviewed overall content and aesthetics on publishing platform|
 |**Technical**||
 |Course Publishing Engineer(s)| Helped with the code for the technical aspects related to the specific course generation|
-|Template Publishing Engineers|[Candace Savonen](https://www.cansavvy.com/), [Carrie Wright](https://carriewright11.github.io/)|
-|Publishing Maintenance Engineer|[Candace Savonen](https://www.cansavvy.com/)|
-|Technical Publishing Stylists|[Carrie Wright](https://carriewright11.github.io/), [Candace Savonen](https://www.cansavvy.com/)|
-|Package Developers ([Leanbuild](https://github.com/jhudsl/leanbuild))|[John Muschelli](https://johnmuschelli.com/), [Candace Savonen](https://www.cansavvy.com/), [Carrie Wright](https://carriewright11.github.io/)|
+|Template Publishing Engineers|[Candace Savonen], [Carrie Wright]|
+|Publishing Maintenance Engineer|[Candace Savonen]|
+|Technical Publishing Stylists|[Carrie Wright], [Candace Savonen]|
+|Package Developers ([Leanbuild])|[John Muschelli], [Candace Savonen], [Carrie Wright]|
 |**Art and Design**||
 |Illustrator(s)| Created graphics for the course|
 |Figure Artist(s)| Created figures/plots for course|
@@ -54,7 +51,7 @@ These credits are based on our [course contributors table guidelines](https://gi
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2021-09-30                  
+##  date     2021-10-28                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
@@ -109,10 +106,22 @@ These credits are based on our [course contributors table guidelines](https://gi
 ## [2] /usr/local/lib/R/library
 ```
 
+<!-- Author information -->
+
+[FirstName LastName]: link to personal website
+[John Muschelli]: https://johnmuschelli.com/
+[Candace Savonen]: https://www.cansavvy.com/
+[Carrie Wright]: https://carriewright11.github.io/
+
+<!-- Links -->
+
+[Leanbuild]: https://github.com/jhudsl/leanbuild
+
 <!-- Fill out this table using these instructions: https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/How-to-give-credits
 
 For JHU courses, You will need to add Ira as a credit:
 
-|Content Publisher|[Ira Gooding](https://publichealth.jhu.edu/faculty/4130/ira-gooding)|
-
+|Content Publisher|[Ira Gooding]|
+...
+[Ira Gooding]: https://publichealth.jhu.edu/faculty/4130/ira-gooding
 -->
