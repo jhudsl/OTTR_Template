@@ -1,6 +1,3 @@
----
-title: "Chapter of course"
----
 
 *If you haven't yet read the getting started Wiki pages; [start there](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Getting-started)
 
