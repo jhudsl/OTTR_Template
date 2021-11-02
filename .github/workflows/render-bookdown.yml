@@ -93,7 +93,7 @@ jobs:
           docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
           jhudsl/course_template \
-          Rscript -e "rmarkdown::render('02-chapter_of_course.Rmd', output_format = 'word_document')"
+          Rscript "scripts/render-docx.R"
 ##### End of docx rendering section ########################################
 
       # Commit the rendered bookdown files
