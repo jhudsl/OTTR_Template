@@ -86,16 +86,6 @@ jobs:
 
 ##### End of Coursera rendering section ########################################
 
-##### If you do not wish to render a docx, you can delete this section #####
-      # Run docx version
-      - name: Run docx version of render
-        run: |
-          docker run \
-          --mount type=bind,target=/home/rstudio,source=$PWD \
-          jhudsl/course_template \
-          Rscript "scripts/render-docx.R"
-##### End of docx rendering section ########################################
-
       # Commit the rendered bookdown files
       - name: Commit rendered bookdown files
         run: |
