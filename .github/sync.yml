@@ -21,6 +21,8 @@ group:
   files:
     - source: .github/workflows/render-bookdown.yml
       dest: .github/workflows/render-bookdown.yml
+    - source: .github/workflows/render-preview.yml
+      dest: .github/workflows/render-preview.yml
     - source: .github/workflows/docker-build-test.yml
       dest: .github/workflows/docker-build-test.yml
     - source: .github/workflows/transfer-rendered-files.yml
@@ -33,8 +35,10 @@ group:
       dest: .github/workflows/release-notes.yml
     - source: .github/workflows/delete-preview.yml
       dest: .github/workflows/delete-preview.yml
-    - source: .github/ISSUE_TEMPLATE/
-      dest: .github/ISSUE_TEMPLATE/
+    - source: .github/ISSUE_TEMPLATE/course-problem-report.md
+      dest: .github/ISSUE_TEMPLATE/course-problem-report.md
+    - source: .github/ISSUE_TEMPLATE/course-content-add.md
+      dest: .github/ISSUE_TEMPLATE/course-content-add.md
     - source: scripts/
       dest: scripts/
     - source: code_of_conduct.md
