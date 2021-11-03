@@ -73,7 +73,7 @@ jobs:
           docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
           jhudsl/course_template \
-          Rscript -e "bookdown::render_book('index.Rmd')"
+          Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all')"
 
 ##### If you do not wish to host your course on Coursera, you can delete this section #####
       # Run Coursera version
