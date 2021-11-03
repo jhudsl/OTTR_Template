@@ -20,8 +20,6 @@ jobs:
         with:
           # get the full repo
           fetch-depth: 0
-          # use github PAT
-          token: ${{ secrets.GH_PAT }}
 
       # Run bookdown rendering
       - name: Run bookdown render
