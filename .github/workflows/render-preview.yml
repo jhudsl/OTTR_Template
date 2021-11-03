@@ -29,7 +29,7 @@ jobs:
           docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
           jhudsl/course_template \
-          Rscript -e "bookdown::render_book('index.Rmd')"
+          Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all')"
 
 ##### If you do not wish to host your course on Coursera, you can delete this section #####
       # Run Coursera version
@@ -41,16 +41,6 @@ jobs:
           Rscript -e "leanbuild::render_coursera()"
 
 ##### End of Coursera rendering section ########################################
-
-##### If you do not wish to render a docx, you can delete this section #####
-      # Run docx version
-      - name: Run docx version of render
-        run: |
-          docker run \
-          --mount type=bind,target=/home/rstudio,source=$PWD \
-          jhudsl/course_template \
-          Rscript "scripts/render-docx.R"
-##### End of docx rendering section ########################################
 
       # Commit the rendered bookdown files
       - name: Commit rendered bookdown files to development branch
