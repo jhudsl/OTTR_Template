@@ -39,8 +39,10 @@ group:
       dest: .github/ISSUE_TEMPLATE/course-problem-report.md
     - source: .github/ISSUE_TEMPLATE/course-content-add.md
       dest: .github/ISSUE_TEMPLATE/course-content-add.md
-    - source: scripts/
-      dest: scripts/
+    - source: scripts/spell-check.R
+      dest: scripts/spell-check.R
+    - source: scripts/git_repo_check.R
+      dest: scripts/git_repo_check.R
     - source: code_of_conduct.md
       dest: code_of_conduct.md
 
