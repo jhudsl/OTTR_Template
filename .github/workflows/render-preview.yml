@@ -73,7 +73,7 @@ jobs:
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
-          token: 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
+          token: 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
           body: |
             Re-rendered previews from the latest commit:
             - See [preview of Bookdown here](${{ steps.build-components.outputs.bookdown_link }})
