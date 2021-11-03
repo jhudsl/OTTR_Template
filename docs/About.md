@@ -51,7 +51,7 @@ These credits are based on our [course contributors table guidelines](https://gi
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2021-10-28                  
+##  date     2021-11-03                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
@@ -70,7 +70,6 @@ These credits are based on our [course contributors table guidelines](https://gi
 ##  fs            1.5.0      2020-07-31 [1] RSPM (R 4.0.3)                    
 ##  glue          1.4.2      2020-08-27 [1] RSPM (R 4.0.3)                    
 ##  htmltools     0.5.0      2020-06-16 [1] RSPM (R 4.0.1)                    
-##  jquerylib     0.1.1      2020-04-30 [1] RSPM (R 4.0.0)                    
 ##  knitr         1.33       2021-09-29 [1] Github (yihui/knitr@a1052d1)      
 ##  lifecycle     1.0.0      2021-02-15 [1] CRAN (R 4.0.2)                    
 ##  magrittr      1.5        2014-11-22 [1] RSPM (R 4.0.0)                    
