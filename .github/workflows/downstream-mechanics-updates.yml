@@ -4,6 +4,7 @@ name: Sync Files
 on:
   workflow_dispatch:
   release:
+    - published
 
 jobs:
   sync:
