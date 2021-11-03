@@ -1,13 +1,14 @@
 # Candace Savonen Aug 2021
 
 name: Sync Files
+
 on:
   release:
     types:
     - published
   workflow_dispatch:
     inputs:
-      pr_tag:
+      prtag:
         description: 'Tag to use?'
         required: true
         default: 'null'
@@ -22,13 +23,13 @@ jobs:
       - name: Get the version
         id: get_tag
         run: |
-          if [ github.event.inputs.pr_tag == 'null' ]
+          if [ github.event.inputs.prtag == 'null' ]
           then
             echo ::set-output name=version::$(echo $GITHUB_REF | cut -d / -f 3)
           fi
-          if [ github.event.inputs.pr_tag != 'null' ]
+          if [ github.event.inputs.prtag != 'null' ]
           then
-            echo ::set-output name=version::${{ github.event.inputs.pr_tag }}
+            echo ::set-output name=version::${{ github.event.inputs.prtag }}
           fi
 
 
