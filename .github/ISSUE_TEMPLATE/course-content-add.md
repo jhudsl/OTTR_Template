@@ -3,7 +3,7 @@ name: New content idea
 about: Suggest an idea for the course
 title: ''
 labels: ''
-assignees: cansavvy
+assignees: 
 
 ---
 
