@@ -1,7 +1,7 @@
 ---
 name: Course Template Problem Report
 about: Create a report to help improve the template and its documentation
-title: problem
+title: [Problem]
 labels: bug
 assignees: cansavvy
 
