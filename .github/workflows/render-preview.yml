@@ -50,8 +50,11 @@ jobs:
       # If the renders didn't complete we don't want to commit the file changes
       - name: Check on render steps
         if: steps.bookdown.outcome != 'success' || steps.coursera.outcome != 'success'
-        run: exit 1
-        
+        run: |
+        echo Bookdown status ${{steps.bookdown.outcome}}
+        echo Coursera status ${{steps.coursera.outcome}}
+        exit 1
+
       # Commit the rendered bookdown files
       - name: Commit rendered bookdown files to development branch
         run: |

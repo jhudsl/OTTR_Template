@@ -15,7 +15,7 @@ on:
     branches: [ main ]
     paths:
       - '**.Rmd'
-      - docker/Dockerfile
+      - docker/*
       - assets/*
 jobs:
   # This workflow contains a single job called "build-all"
