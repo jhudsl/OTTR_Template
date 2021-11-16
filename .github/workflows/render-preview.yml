@@ -92,7 +92,7 @@ jobs:
           echo ${{steps.commit.outputs.changes}}
 
       - name: Create or update comment
-        if: ${{steps.commit.outputs.changes == "changes" }}
+        if: steps.commit.outputs.changes == 'changes'
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -107,7 +107,7 @@ jobs:
           edit-mode: replace
 
       - name: No comment if no changes
-        if: ${{steps.commit.outputs.changes != "changes" }}
+        if: steps.commit.outputs.changes != 'changes'
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
