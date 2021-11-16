@@ -29,6 +29,7 @@ jobs:
 
       # Run bookdown rendering
       - name: Run bookdown render
+        id: bookdown
         run: |
           docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
@@ -38,6 +39,7 @@ jobs:
 ##### If you do not wish to host your course on Coursera, you can delete this section #####
       # Run Coursera version
       - name: Run Coursera version of render
+        id: coursera
         run: |
           docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
