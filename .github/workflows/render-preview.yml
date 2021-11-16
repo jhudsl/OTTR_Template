@@ -64,10 +64,10 @@ jobs:
           git checkout -b "preview-${{ github.event.pull_request.number }}"
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
+          echo ::set-output name=changes::$(git diff --quiet HEAD main -- docs)
           git add -A
           git commit -m 'Render bookdown preview' || echo "No changes to commit"
           git push --force origin "preview-${{ github.event.pull_request.number }}" || echo "No changes to push"
-          echo ::set-output name=changes::$(git diff --exit-code)
 
       - name: Find Comment
         uses: peter-evans/find-comment@v1
