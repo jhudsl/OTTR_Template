@@ -23,6 +23,10 @@ jobs:
           # get the full repo
           fetch-depth: 0
 
+      # We want a fresh run of the renders each time
+      - name: Delete old docs/*
+        run: rm -r docs/*
+        
       # Run bookdown rendering
       - name: Run bookdown render
         run: |

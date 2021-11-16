@@ -67,6 +67,10 @@ jobs:
 
 ###### END OF DOCKER UPDATE CHUNK ##############################################
 
+      # We want a fresh run of the renders each time
+      - name: Delete old docs/*
+        run: rm -r docs/*
+
       # Run bookdown rendering
       - name: Run bookdown render
         run: |
