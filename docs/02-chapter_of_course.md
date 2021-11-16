@@ -52,7 +52,7 @@ And make plots too:
 hist_plot <- hist(iris$Sepal.Length)
 ```
 
-<img src="resources/images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+![](resources/images/02-chapter_of_course_files/figure-docx/unnamed-chunk-4-1.png)<!-- -->
 
 You can also save these plots to file:
 
@@ -100,7 +100,7 @@ dev.off()
 
 How to include a Google slide. It's simplest to use the `leanbuild` package:
 
-<img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
+![](resources/images/02-chapter_of_course_files/figure-docx//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png)
 
 But if you have the slide or some other image locally downloaded you can also use html like this:
 
@@ -116,7 +116,11 @@ You can use `knitr::include_url()` like this:
 knitr::include_url("https://www.youtube.com/embed/VOCYL-FNbr0")
 ```
 
-<iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
+```
+## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+```
+
+<iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="100%" height="400px"></iframe>
 
 OR this works:
 
@@ -126,7 +130,7 @@ OR this works:
 
 This works:
 
-<iframe src="https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf" width="672" height="800px"></iframe>
+<iframe src="https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf" width="100%" height="800px"></iframe>
 
 Or this:
 
@@ -147,7 +151,7 @@ This works:
 knitr::include_url("https://yihui.org")
 ```
 
-<iframe src="https://yihui.org" width="672" height="400px"></iframe>
+<iframe src="https://yihui.org" width="100%" height="400px"></iframe>
 
 OR this:
 
@@ -176,7 +180,7 @@ sessionInfo()
 ```
 ## R version 4.0.2 (2020-06-22)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 20.04.2 LTS
+## Running under: Ubuntu 20.04.3 LTS
 ## 
 ## Matrix products: default
 ## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
@@ -197,8 +201,8 @@ sessionInfo()
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] knitr_1.33      hms_0.5.3       R6_2.4.1        rlang_0.4.10   
-##  [5] httr_1.4.2      stringr_1.4.0   highr_0.8       tools_4.0.2    
-##  [9] xfun_0.26       jquerylib_0.1.1 htmltools_0.5.0 ellipsis_0.3.1 
+##  [5] stringr_1.4.0   highr_0.8       httr_1.4.2      tools_4.0.2    
+##  [9] webshot_0.5.2   xfun_0.26       htmltools_0.5.0 ellipsis_0.3.1 
 ## [13] yaml_2.2.1      leanbuild_0.1.2 digest_0.6.25   tibble_3.0.3   
 ## [17] lifecycle_1.0.0 crayon_1.3.4    bookdown_0.24   readr_1.4.0    
 ## [21] vctrs_0.3.4     fs_1.5.0        curl_4.3        evaluate_0.14  

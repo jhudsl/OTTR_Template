@@ -1,9 +1,17 @@
 # Candace Savonen Aug 2021
 
 name: Sync Files
+
 on:
-  workflow_dispatch:
   release:
+    types:
+    - published
+  workflow_dispatch:
+    inputs:
+      prtag:
+        description: 'Tag to use?'
+        required: true
+        default: 'null'
 
 jobs:
   sync:
@@ -13,12 +21,20 @@ jobs:
         uses: actions/checkout@master
 
       - name: Get the version
-        id: get_version
+        id: get_tag
         run: |
-          echo ::set-output name=version::$(echo $GITHUB_REF | cut -d / -f 3)
+          if [ github.event.inputs.prtag == 'null' ]
+          then
+            echo ::set-output name=version::$(echo $GITHUB_REF | cut -d / -f 3)
+          fi
+          if [ github.event.inputs.prtag != 'null' ]
+          then
+            echo ::set-output name=version::${{ github.event.inputs.prtag }}
+          fi
+
 
       - name: Run Mechanics File Sync
-        uses: BetaHuhn/repo-file-sync-action@v1
+        uses: BetaHuhn/repo-file-sync-action@v1.7.1
         with:
           GH_PAT: ${{ secrets.GH_PAT }}
-          COMMIT_BODY: release-${{ steps.get_version.outputs.version }}
+          COMMIT_BODY: release-${{ steps.get_tag.outputs.version }}

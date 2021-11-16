@@ -54,6 +54,22 @@ jobs:
           content-filepath: .github/automatic-issues/update-enrollment.md
           labels: automated training issue
 
+      # Issue for adding a method of feedback
+      - name: Reminder - Add a method of user feedback
+        uses: peter-evans/create-issue-from-file@v2.3.2
+        with:
+          title: Reminder - Add user feedback method
+          content-filepath: .github/automatic-issues/add-feedback-method.md
+          labels: automated training issue
+
+      # Issue for adding the course to the jhudsl library
+      - name: Reminder - Add to jhudsl library
+        uses: peter-evans/create-issue-from-file@v2.3.2
+        with:
+          title: Reminder - Add to jhudsl library
+          content-filepath: .github/automatic-issues/add-to-library.md
+          labels: automated training issue
+
 ##### Delete Template-specific files that aren't needed for new courses
 
       # Cleanup Template-specific bits
@@ -65,7 +81,18 @@ jobs:
             .github/sync.yml \
             .github/workflows/starting-course.yml \
             .github/ISSUE_TEMPLATE/course-template-problem-report.md \
-            .github/ISSUE_TEMPLATE/course-template-feature-request.md
+            .github/ISSUE_TEMPLATE/course-template-feature-request.md \
+            resources/code_output \
+            resources/screenshots \
+            resources/course_screenshots \
+            resources/gs_slides \
+            resources/image_to_slide_key.tsv \
+            resources/images/02-chapter_of_course_files \
+            resources/images/03-test_cases_files \
+            resources/images/04-figures_files \
+            Course_Name.rds \
+            docs/*.html \
+            docs/*.md
 
       # Commit modified files
       - name: Commit deleted files

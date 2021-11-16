@@ -3,14 +3,18 @@
 
 The following files need to be edited to get this new course started!
 
-_If you are creating an ITCR course:_
+### Picking a style
 
-- [ ] Delete `_output.yml` and `index.Rmd` files
-- [ ] Keep the `_output-itcr.yml` and `index-itcr.Rmd` files but delete the `-itcr` parts of those file names.
+See more [about customizing style on this page in the guide](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Change-Title-&-Customize-style).
+By default this course template will use the jhudsl data science lab style. However, you can customize and switch this to another style set.
 
-_If you are creating any other courses:_
+#### Using a style set
 
-- [ ] Delete the `_output-itcr.yml` and `index-itcr.Rmd` files.
+[Read more about the style sets here](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Change-Title-&-Customize-style#using-a-style-set).
+
+- [ ] On a new branch, copy the `style-sets/<set-name>/index.Rmd` and `style-sets/<set-name>/_output.yml` to the top of the repository to overwrite the default `index.Rmd` and `_output.yml`.
+- [ ] Copy over all the files in the `style-sets/<set-name>/copy-to-assets` to the `assets` folder in the top of the repository.
+- [ ] [Create a pull request](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/About-pull-request-review) with these changes, and double check the rendered preview to make sure that the style is what you are looking for.
 
 ### Files that need edited upon creating a new course.
 

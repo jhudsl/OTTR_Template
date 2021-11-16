@@ -7,6 +7,8 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions: write-all
+
 jobs:
   # This workflow contains a single job called "build-all"
   build-all:
@@ -20,8 +22,6 @@ jobs:
         with:
           # get the full repo
           fetch-depth: 0
-          # use github PAT
-          token: ${{ secrets.GH_PAT }}
 
       # Run bookdown rendering
       - name: Run bookdown render
@@ -29,7 +29,7 @@ jobs:
           docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
           jhudsl/course_template \
-          Rscript -e "bookdown::render_book('index.Rmd')"
+          Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all')"
 
 ##### If you do not wish to host your course on Coursera, you can delete this section #####
       # Run Coursera version
@@ -63,10 +63,13 @@ jobs:
       - name: Build components of the comment
         id: build-components
         run: |
+          course_name=$(head -n 1 _bookdown.yml | cut -d'"' -f 2| tr " " "-")
           bookdown_link=$(echo "https://htmlpreview.github.io/?https://raw.githubusercontent.com/$GITHUB_REPOSITORY/preview-${{ github.event.pull_request.number }}/docs/index.html")
           coursera_link=$(echo "https://htmlpreview.github.io/?https://raw.githubusercontent.com/$GITHUB_REPOSITORY/preview-${{ github.event.pull_request.number }}/docs/coursera/index.html")
+          docx_link=$(echo "https://github.com/$GITHUB_REPOSITORY/raw/preview-${{ github.event.pull_request.number }}/docs/$course_name.docx")
           echo ::set-output name=bookdown_link::$bookdown_link
           echo ::set-output name=coursera_link::$coursera_link
+          echo ::set-output name=docx_link::$docx_link
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
 
@@ -79,6 +82,7 @@ jobs:
             Re-rendered previews from the latest commit:
             - See [preview of Bookdown here](${{ steps.build-components.outputs.bookdown_link }})
             - See [preview of Coursera version here](${{ steps.build-components.outputs.coursera_link }})
+            - Download the [preview of .docx file](${{ steps.build-components.outputs.docx_link }})
 
             _Updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
