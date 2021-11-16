@@ -51,12 +51,13 @@ jobs:
       - name: Check on render steps
         if: steps.bookdown.outcome != 'success' || steps.coursera.outcome != 'success'
         run: |
-        echo Bookdown status ${{steps.bookdown.outcome}}
-        echo Coursera status ${{steps.coursera.outcome}}
-        exit 1
+          echo Bookdown status ${{steps.bookdown.outcome}}
+          echo Coursera status ${{steps.coursera.outcome}}
+          exit 1
 
       # Commit the rendered bookdown files
       - name: Commit rendered bookdown files to development branch
+        id: commit
         run: |
           git checkout -b "preview-${{ github.event.pull_request.number }}"
           git config --local user.email "actions@github.com"
@@ -64,6 +65,7 @@ jobs:
           git add -A
           git commit -m 'Render bookdown preview' || echo "No changes to commit"
           git push --force origin "preview-${{ github.event.pull_request.number }}" || echo "No changes to push"
+          echo ::set-output name=changes::$(git diff --exit-code)
 
       - name: Find Comment
         uses: peter-evans/find-comment@v1
@@ -85,8 +87,10 @@ jobs:
           echo ::set-output name=docx_link::$docx_link
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
+          echo steps.commit.outputs.changes
 
       - name: Create or update comment
+        if: ${{steps.commit.outputs.changes -gt 0 }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -96,6 +100,18 @@ jobs:
             - See [preview of Bookdown here](${{ steps.build-components.outputs.bookdown_link }})
             - See [preview of Coursera version here](${{ steps.build-components.outputs.coursera_link }})
             - Download the [preview of .docx file](${{ steps.build-components.outputs.docx_link }})
+
+            _Updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
+          edit-mode: replace
+
+      - name: No comment if no changes
+        if: ${{steps.commit.outputs.changes -lt 1 }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            The latest commit did not produce rendering changes.
 
             _Updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace

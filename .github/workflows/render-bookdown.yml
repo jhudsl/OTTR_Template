@@ -97,9 +97,9 @@ jobs:
       - name: Check on render steps
         if: steps.bookdown.outcome != 'success' || steps.coursera.outcome != 'success'
         run: |
-        echo Bookdown status ${{steps.bookdown.outcome}}
-        echo Coursera status ${{steps.coursera.outcome}}
-        exit 1
+          echo Bookdown status ${{steps.bookdown.outcome}}
+          echo Coursera status ${{steps.coursera.outcome}}
+          exit 1
 
       # Commit the rendered bookdown files
       - name: Commit rendered bookdown files
