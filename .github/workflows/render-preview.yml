@@ -64,7 +64,7 @@ jobs:
           git checkout -b "preview-${{ github.event.pull_request.number }}"
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          echo ::set-output name=changes::$(git diff --quiet HEAD main -- docs || echo "changes")
+          echo ::set-output name=changes::$(git diff --quiet HEAD main -- docs || echo 'no_changes')
           git add -A
           git commit -m 'Render bookdown preview' || echo "No changes to commit"
           git push --force origin "preview-${{ github.event.pull_request.number }}" || echo "No changes to push"
@@ -92,7 +92,7 @@ jobs:
           echo ${{steps.commit.outputs.changes}}
 
       - name: Create or update comment
-        if: steps.commit.outputs.changes == 'changes'
+        if: steps.commit.outputs.changes != 'no_changes'
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -107,7 +107,7 @@ jobs:
           edit-mode: replace
 
       - name: No comment if no changes
-        if: steps.commit.outputs.changes != 'changes'
+        if: steps.commit.outputs.changes == 'no_changes'
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
