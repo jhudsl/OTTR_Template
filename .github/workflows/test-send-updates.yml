@@ -5,7 +5,7 @@ name: Test Sync Files
 on:
   release:
     types:
-    - [prereleased, published]
+      - [prereleased, published]
   workflow_dispatch:
     inputs:
       prtag:
