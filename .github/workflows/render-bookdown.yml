@@ -15,7 +15,7 @@ on:
     branches: [ main ]
     paths:
       - '**.Rmd'
-      - docker/Dockerfile
+      - docker/*
       - assets/*
 jobs:
   # This workflow contains a single job called "build-all"
@@ -67,8 +67,13 @@ jobs:
 
 ###### END OF DOCKER UPDATE CHUNK ##############################################
 
+      # We want a fresh run of the renders each time
+      - name: Delete old docs/*
+        run: rm -r docs/*
+
       # Run bookdown rendering
       - name: Run bookdown render
+        id: bookdown
         run: |
           docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
@@ -78,6 +83,7 @@ jobs:
 ##### If you do not wish to host your course on Coursera, you can delete this section #####
       # Run Coursera version
       - name: Run Coursera version of render
+        id: coursera
         run: |
           docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
@@ -85,6 +91,15 @@ jobs:
           Rscript -e "leanbuild::render_coursera()"
 
 ##### End of Coursera rendering section ########################################
+
+      # This checks on the steps before it and makes sure that they completed.
+      # If the renders didn't complete we don't want to commit the file changes
+      - name: Check on render steps
+        if: steps.bookdown.outcome != 'success' || steps.coursera.outcome != 'success'
+        run: |
+          echo Bookdown status ${{steps.bookdown.outcome}}
+          echo Coursera status ${{steps.coursera.outcome}}
+          exit 1
 
       # Commit the rendered bookdown files
       - name: Commit rendered bookdown files

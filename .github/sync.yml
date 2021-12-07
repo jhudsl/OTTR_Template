@@ -9,6 +9,8 @@ group:
     jhudsl/Data_Management
     jhudsl/AnVIL_Book_Getting_Started
     jhudsl/AnVIL_Book_Instructor_Guide
+    jhudsl/AnVIL_Book_WDL
+    jhudsl/Adv_Reproducibility_in_Cancer_Informatics
     jhudsl/Reproducibility_in_Cancer_Informatics
     jhudsl/Dissemination_and_Engagement
     jhudsl/Cancer_Clinical_Informatics
