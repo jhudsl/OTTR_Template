@@ -106,6 +106,12 @@ jobs:
             curl --fail -s ${base_url}/${line} > ${line}
           done < "$input"
 
+
+          # Get rid of GA Script spec in output yaml
+          sed 's/GA_Script.Rhtml,//' _output.yml > output.txt
+          cat output.txt > _output.yml
+          rm output.txt
+
       - name: Create PR with rendered docs files
         if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
         uses: peter-evans/create-pull-request@v3
