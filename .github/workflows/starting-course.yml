@@ -77,8 +77,10 @@ jobs:
         run: |
           # Cleanup
           rm -rf \
-            .github/workflows/downstream-mechanics-updates.yml \
+            .github/workflows/send-updates.yml \
+            .github/workflows/test-send-updates.yml \
             .github/sync.yml \
+            .github/test-sync.yml \
             .github/workflows/starting-course.yml \
             .github/ISSUE_TEMPLATE/course-template-problem-report.md \
             .github/ISSUE_TEMPLATE/course-template-feature-request.md \
@@ -92,7 +94,7 @@ jobs:
             resources/images/04-figures_files \
             Course_Name.rds \
             docs/*.html \
-            docs/*.md
+            docs/*.md \
 
       # Commit modified files
       - name: Commit deleted files

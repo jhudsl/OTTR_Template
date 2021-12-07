@@ -1,0 +1,50 @@
+# Candace Savonen Aug 2021
+# For info on how to update this file see: https://github.com/marketplace/actions/repo-file-sync-action#%EF%B8%8F-sync-configuration
+
+group:
+  # Repositories to recieve changes
+  repos: |
+    https://github.com/jhudsl/DaSL_Template_Sync_Test
+
+###ADD NEW REPO HERE following the format above#
+  files:
+    - source: .github/workflows/render-bookdown.yml
+      dest: .github/workflows/render-bookdown.yml
+    - source: .github/workflows/render-preview.yml
+      dest: .github/workflows/render-preview.yml
+    - source: .github/workflows/docker-build-test.yml
+      dest: .github/workflows/docker-build-test.yml
+    - source: .github/workflows/transfer-rendered-files.yml
+      dest: .github/workflows/transfer-rendered-files.yml
+    - source: .github/workflows/style-and-sp-check.yml
+      dest: .github/workflows/style-and-sp-check.yml
+    - source: .github/workflows/url-checker.yml
+      dest: .github/workflows/url-checker.yml
+    - source: .github/workflows/release-notes.yml
+      dest: .github/workflows/release-notes.yml
+    - source: .github/workflows/delete-preview.yml
+      dest: .github/workflows/delete-preview.yml
+    - source: .github/ISSUE_TEMPLATE/course-problem-report.md
+      dest: .github/ISSUE_TEMPLATE/course-problem-report.md
+    - source: .github/ISSUE_TEMPLATE/course-content-add.md
+      dest: .github/ISSUE_TEMPLATE/course-content-add.md
+    - source: scripts/spell-check.R
+      dest: scripts/spell-check.R
+    - source: scripts/git_repo_check.R
+      dest: scripts/git_repo_check.R
+    - source: code_of_conduct.md
+      dest: code_of_conduct.md
+
+###### TO ADD NEW REPOSITORY USE THIS FORMAT; Feel free to add/drop files that
+# you specifically would like synced (or not).
+#
+#  # Repositories to receive changes
+#  repos: |
+#    org/repo_name
+#  # Files which should be updated
+#  - source: .github/workflows/
+  #   dest: .github/workflows/
+  # - source: scripts/
+  #   dest: scripts/
+  # - source: docker/
+  #   dest: docker/
