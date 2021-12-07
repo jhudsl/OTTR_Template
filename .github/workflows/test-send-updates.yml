@@ -37,4 +37,4 @@ jobs:
         with:
           GH_PAT: ${{ secrets.GH_PAT }}
           COMMIT_BODY: release-${{ steps.get_tag.outputs.version }}
-          CONFIG_PATH: test-sync.yml
+          CONFIG_PATH: ./github/workflows/test-sync.yml

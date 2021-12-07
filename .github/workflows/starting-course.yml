@@ -94,7 +94,7 @@ jobs:
             resources/images/04-figures_files \
             Course_Name.rds \
             docs/*.html \
-            docs/*.md \
+            docs/*.md 
 
       # Commit modified files
       - name: Commit deleted files
