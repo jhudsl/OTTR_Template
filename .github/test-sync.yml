@@ -4,7 +4,7 @@
 group:
   # Repositories to recieve changes
   repos: |
-    jhudsl/DaSL_Template_Sync_Test
+    jhudsl/Reproducibility_in_Cancer_Informatics
 
 ###ADD NEW REPO HERE following the format above#
   files:
