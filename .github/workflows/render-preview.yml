@@ -70,11 +70,11 @@ jobs:
           git push --force origin "preview-${{ github.event.pull_request.number }}" || echo "No changes to push"
 
           if [[ -n $changes ]]; then
-            echo ::set-output name=changes::$(echo "no_changes")
-          elfi
-            echo ::set-output name=changes::$(echo "changes")
+            echo ::set-output name=changes::$(echo 'no_changes')
+          else
+            echo ::set-output name=changes::$(echo 'changes')
           fi
-          
+
       - name: Find Comment
         uses: peter-evans/find-comment@v1
         id: fc
@@ -98,7 +98,7 @@ jobs:
           echo ${{steps.commit.outputs.changes}}
 
       - name: Create or update comment
-        if: steps.commit.outputs.changes == "changes"
+        if: steps.commit.outputs.changes == 'changes'
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -113,7 +113,7 @@ jobs:
           edit-mode: replace
 
       - name: No comment if no changes
-        if: steps.commit.outputs.changes == "no_changes"
+        if: steps.commit.outputs.changes == 'no_changes'
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
