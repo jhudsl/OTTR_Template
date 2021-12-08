@@ -92,7 +92,7 @@ jobs:
           echo ${{steps.commit.outputs.changes}}
 
       - name: Create or update comment
-        if: ! -n steps.commit.outputs.changes
+        if: [[! -n steps.commit.outputs.changes]]
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -107,7 +107,7 @@ jobs:
           edit-mode: replace
 
       - name: No comment if no changes
-        if: -n steps.commit.outputs.changes
+        if: [[-n steps.commit.outputs.changes]]
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
