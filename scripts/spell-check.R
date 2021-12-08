@@ -19,9 +19,10 @@ dictionary <- readLines(file.path(root_dir, 'resources', 'dictionary.txt'))
 # Add mysterious emoji joining character
 dictionary <- c(dictionary, spelling::spell_check_text("⬇️")$word)
 
-# Only declare `.Rmd` files
+# Only declare `.Rmd` files but not the ones in the style-sets directory
 files <- list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)
 files <- grep("About.Rmd", files, ignore.case = TRUE, invert = TRUE, value = TRUE)
+files <- grep("style-sets", files, ignore.case = TRUE, invert = TRUE, value = TRUE)
 
 # Run spell check
 sp_errors <- spelling::spell_check_files(files, ignore = dictionary) %>%
