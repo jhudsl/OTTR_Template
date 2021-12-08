@@ -1,6 +1,9 @@
+AnVIL
 BIPOC
 Bloomberg
 Datatrail
+DataTrail
+GDSCN
 impactful
 ITCR
 itcrtraining
@@ -9,6 +12,7 @@ Leanpub
 Markua
 mentorship
 NCI
+NHGRI
 UE
 UE5
 underserved
