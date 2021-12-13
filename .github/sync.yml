@@ -6,7 +6,8 @@ group:
   repos: |
     jhudsl/Documentation_and_Usability
     jhudsl/Informatics_Research_Leadership
-    jhudsl/Data_Management
+    jhudsl/Data_Management_for_Cancer_Research
+    jhudsl/Computing_for_Cancer_Informatics
     jhudsl/AnVIL_Book_Getting_Started
     jhudsl/AnVIL_Book_Instructor_Guide
     jhudsl/AnVIL_Book_WDL
