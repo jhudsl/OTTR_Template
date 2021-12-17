@@ -32,19 +32,19 @@ jobs:
           sudo apt-get install subversion
           sudo Rscript -e "install.packages('optparse')"
 
-          # What's the LEANPUB repository's name?
-          LEANPUB_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Leanpub"}')
-          echo $LEANPUB_REPO
+          # What's the Quizzes repository's name?
+          QUIZ_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Quizzes"}')
+          echo $QUIZ_REPO
 
           # Get repo check script
           svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/scripts/git_repo_check.R git_repo_check.R
 
           # Run repo check script
           results=$(Rscript --vanilla git_repo_check.R --repo "$GITHUB_REPOSITORY" --git_pat "$GH_PAT")
-          echo $LEANPUB_REPO exists: $results
+          echo $QUIZ_REPO exists: $results
 
           echo "::set-output name=git_results::$results"
-          echo "::set-output name=leanpub_repo::$LEANPUB_REPO"
+          echo "::set-output name=leanpub_repo::$QUIZ_REPO"
 
       - name: Checkout code from Leanpub repo
         if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
