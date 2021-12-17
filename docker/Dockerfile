@@ -3,6 +3,7 @@ LABEL maintainer="cansav09@gmail.com"
 WORKDIR /rocker-build/
 
 COPY install_github.R .
+COPY install_bioc.r .
 
 # Install apt-getable packages to start
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils dialog
@@ -36,21 +37,21 @@ RUN apt-get -y --no-install-recommends install \
     python3-pip  python3-dev
 
 # Commonly used R packages
-RUN Rscript -e  "install.packages( \
-    c('bookdown', \
-      'here', \
-      'leanpubr', \
-      'optparse', \
-      'oro.nifti', \
-      'qpdf', \
-      'R.utils', \
-      'rprojroot', \
-      'rgoogleslides', \
-      'servr', \
-      'spelling', \
-      'styler', \
-      'reticulate', \
-      'gitcreds'))"
+RUN ./install_bioc.r \
+    bookdown \
+    gitcreds \
+    here \
+    leanpubr \
+    optparse \
+    oro.nifti \
+    qpdf \
+    R.utils \
+    rprojroot \
+    rgoogleslides \
+    servr \
+    spelling \
+    styler \
+    reticulate
 
 # Copy over git token and package list
 COPY git_token.txt .
