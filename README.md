@@ -1,6 +1,6 @@
 <!--Delete this section below upon using the template-->
 
-## DaSL Course Templates
+## Online Tools for Training Resources - OTTR
 
 The purpose of this course template and guide is to make course publishing maintenance across multiple different platforms _less painful_.
 
