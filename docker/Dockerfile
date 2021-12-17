@@ -49,7 +49,8 @@ RUN Rscript -e  "install.packages( \
       'servr', \
       'spelling', \
       'styler', \
-      'reticulate'))"
+      'reticulate', \
+      'gitcreds'))"
 
 # Copy over git token and package list
 COPY git_token.txt .
