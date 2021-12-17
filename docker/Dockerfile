@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends apt-utils dialo
 RUN apt-get install -y --no-install-recommends \
     libxt6 \
     libpoppler-cpp-dev \
-    vim
+    vim \
+    libglpk40
 
 # Remove old symlinks to old pandoc
 RUN unlink /usr/lib/rstudio-server/bin/pandoc/pandoc
