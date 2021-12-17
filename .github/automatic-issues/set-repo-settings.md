@@ -1,5 +1,5 @@
 
-For more information on these settings see instructions in the [getting started GitHub wiki pages](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Setting-up-your-repository-settings).
+For more information on these settings see instructions in the [getting started GitHub wiki pages](https://github.com/jhudsl/OTTR_Template/wiki/Setting-up-your-repository-settings).
 
 ### Needed settings:
 
