@@ -13,7 +13,7 @@ jobs:
   template-cleanup:
     name: Template Cleanup
     runs-on: ubuntu-latest
-    if: github.event.repository.name != 'DaSL_Course_Template_Bookdown'
+    if: github.event.repository.name != 'OTTR_Template'
     steps:
 
       # Check out current repository

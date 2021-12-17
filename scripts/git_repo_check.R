@@ -13,7 +13,7 @@ option_list <- list(
     c("--repo"),
     type = "character",
     default = NULL,
-    help = "GitHub repository name, e.g. jhudsl/DaSL_Course_Template_Bookdown",
+    help = "GitHub repository name, e.g. jhudsl/OTTR_Template",
   ),
   optparse::make_option(
     c("--git_pat"),
@@ -39,7 +39,7 @@ check_git_repo <- function(repo, git_pat = NULL, silent = TRUE, return_repo = FA
   # exists and return a TRUE/FALSE
 
   # Inputs:
-  # repo: the name of the repository, e.g. jhudsl/DaSL_Course_Template_Bookdown
+  # repo: the name of the repository, e.g. jhudsl/OTTR_Template
   # git_pat: A personal access token from GitHub. Only necessary if the repository being 
   #          checked is a private repository. 
   # silent: TRUE/FALSE of whether the warning from the git ls-remote command
