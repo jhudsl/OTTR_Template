@@ -93,5 +93,5 @@ jobs:
       - name: Push Docker image if release
         if: ${{ github.event_name == 'release' }}
         run: |
-          docker tag jhudsl/course_template jhudsl/course_template:${{ steps.get_version.outputs.version }}
+          docker tag jhudsl/course_template:latest jhudsl/course_template:${{ steps.get_version.outputs.version }}
           docker push jhudsl/course_template:1.0
