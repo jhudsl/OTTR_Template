@@ -52,10 +52,6 @@ jobs:
           echo ::set-output name=commit_id::$GITHUB_SHA
           echo ::set-output name=sp_error_url::$spell_check_url
 
-      - name: Check spell check results - fail if too many errors
-        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
-        run: exit 1
-
       - name: Find Comment
         uses: peter-evans/find-comment@v1
         id: fc
@@ -64,7 +60,7 @@ jobs:
           comment-author: 'github-actions[bot]'
           body-includes: spelling errors
 
-      - name: No spelling errors
+      - name: Spelling errors!
         if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
         uses: peter-evans/create-or-update-comment@v1
         with:
@@ -77,6 +73,10 @@ jobs:
             _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
 
+      - name: Check spell check results - fail if too many errors
+        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
+        run: exit 1
+        
       - name: No spelling errors
         if: ${{ steps.spell_check_run.outputs.sp_chk_results < 3 }}
         uses: peter-evans/create-or-update-comment@v1

@@ -51,7 +51,7 @@ if (httr::http_error(response)) {
 artifacts <- httr::content(response, as = "parsed")$artifacts
 
 # Make it a data frame
-artifacts_df <- do.call(rbind.data.frame, artifacts)
+artifacts_df <- do.call(rbind.data.frame, as.list(artifacts))
 
 # We only care about the spell check results and the most recent one
 the_url <- artifacts_df %>% 
