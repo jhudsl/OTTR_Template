@@ -19,11 +19,10 @@ By default this course template will use the jhudsl data science lab style. Howe
 ### Files that need edited upon creating a new course.
 
 - [ ] `README.md` - Fill in all the `{ }`.
-- [ ] `index.Rmd` - the `author:`, `title:`, and `description:` should be updated.
+- [ ] `index.Rmd` - `title:` should be updated.
 - [ ] `About.Rmd` - Replace information with your own author information and change the course title in the yaml header!
 - [ ] `01-intro.Rmd` - replace the information there with information pertinent to this new course.
 - [ ] `02-chapter_of_course.Rmd` - This Rmd has examples of how to set things up, if you don't need it as a reference, it can be deleted.
-- [ ] `code_output` can be deleted if you don't plan to use code.
 
 ### Files that need to be edited upon adding each new chapter (including upon creating a new course):
 
