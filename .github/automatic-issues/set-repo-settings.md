@@ -3,14 +3,15 @@ For more information on these settings see instructions in the [getting started 
 
 ### Needed settings:
 
-- [ ] Github pages is turned on.
-- [ ] `Enforce HTTPS`has been checked   
+#### Turn on GitHub pages
+- [ ] Go to `Settings` > `Pages`. Underneath `Source`, choose `main` for the branch and select the `docs` folder. Then click `Save`.  
+- [ ] Check `Enforce HTTPS`. 
 
-\* Don't set these settings right away! Wait a few minutes after starting your repository. 
+#### Set protections for main branch
+\* Don't set these settings right away! Wait a few minutes after starting your repository.
 
 - [ ] `main` branch has been set up:
   - [ ] `Require pull request reviews before merging` box is checked.
   - [ ] `Require status checks to pass before merging` box is checked.
     - [ ] Underneath that `Require branches to be up to date before merging` box is checked.
-
-- [ ] All these settings have been saved!
+- [ ] Click `Save` at the bottom of the page!
