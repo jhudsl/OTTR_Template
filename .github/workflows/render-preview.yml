@@ -69,7 +69,7 @@ jobs:
           git add docs/*
           git commit -m 'Render bookdown preview' || echo "No changes to commit"
           git pull origin "preview-${{ github.event.pull_request.number }}"
-          git push origin "preview-${{ github.event.pull_request.number }}" || echo "No changes to push"
+          git push --force origin "preview-${{ github.event.pull_request.number }}" || echo "No changes to push"
 
           if [[ -n $changes ]]; then
             echo ::set-output name=changes::$(echo 'changes')
