@@ -33,6 +33,10 @@ if (!is.character(repo_name)) {
   repo_name <- as.character(repo_name)
 }
 
+if (!is.character(git_pat)) {
+  git_pat <- as.character(git_pat)
+}
+
 # Declare URL
 url <- paste0("https://api.github.com/repos/", repo_name, "/actions/artifacts")
   
@@ -49,6 +53,10 @@ if (httr::http_error(response)) {
   
 # Get content as JSON
 artifacts <- httr::content(response, as = "parsed")$artifacts
+
+if (length(artifacts) < 1) {
+  warning("No results")
+}
 
 # Make it a data frame
 artifacts_df <- do.call(rbind.data.frame, as.list(artifacts))
