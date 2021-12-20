@@ -20,7 +20,6 @@ By default this course template will use the jhudsl data science lab style. Howe
 
 - [ ] `README.md` - Fill in all the `{ }`.
 - [ ] `index.Rmd` - `title:` should be updated.
-- [ ] `About.Rmd` - Replace information with your own author information and change the course title in the yaml header!
 - [ ] `01-intro.Rmd` - replace the information there with information pertinent to this new course.
 - [ ] `02-chapter_of_course.Rmd` - This Rmd has examples of how to set things up, if you don't need it as a reference, it can be deleted.
 
@@ -30,5 +29,6 @@ By default this course template will use the jhudsl data science lab style. Howe
 - [ ] `book.bib` - any citations need to be added. See [instructions](https://github.com/jhudsl/OTTR_Template/wiki/Citations).
 
 ### Files that need to be edited upon adding new packages that the book's code uses:
+
 - `docker/Dockerfile` needs to have the new package added so it will be installed. See [instructions](https://github.com/jhudsl/OTTR_Template/wiki/Using-Docker#starting-a-new-docker-image).
 - The code chunk in `index.Rmd` should be edited to add the new package.
