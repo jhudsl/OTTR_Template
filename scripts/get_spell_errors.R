@@ -33,8 +33,8 @@ opt <- optparse::parse_args(opt_parser)
 repo_name <- opt$repo
 git_pat <- opt$git_pat
 
-if (!is.character(repo)) {
-  repo <- as.character(repo)
+if (!is.character(repo_name)) {
+  repo_name <- as.character(repo_name)
 }
 
 # Declare URL
