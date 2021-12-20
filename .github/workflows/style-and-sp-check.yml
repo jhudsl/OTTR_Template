@@ -45,10 +45,51 @@ jobs:
           name: spell-check-results
           path: spell_check_results.tsv
 
-      # If there are too many spelling errors, this will stop the workflow
+      ############ The items if there's too many spelling errors!
+      - name: Build components of the spell check comment
+        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
+        id: build-components
+        run: |
+          echo ::set-output name=time::$(date +'%Y-%m-%d')
+          echo ::set-output name=commit_id::$GITHUB_SHA
+
+      - name: Comment with spelling errors file
+        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
+        uses: tonyhallett/artifacts-url-comments@v1.1.0
+        env:
+            GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        with:
+            prefix: :warning: There are spelling errors. Download this file to see them.
+            suffix: |
+             [Read more about spell check here](https://github.com/jhudsl/OTTR_Template/wiki/Spell-check).
+
+              _Comment as of ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
+
+            format: name
+            addTo: pullandissues
+
       - name: Check spell check results - fail if too many errors
         if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
         run: exit 1
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: latest commit
+
+      - name: No spelling errors
+        if: ${{ steps.spell_check_run.outputs.sp_chk_results < 3 }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            No spelling errors! :tada:
+            _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
+          edit-mode: replace
 
       - name: Run styler
         run: Rscript -e "styler::style_file(list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE));warnings()"
