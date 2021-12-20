@@ -83,7 +83,7 @@ jobs:
           body: |
             :warning: There are spelling errors that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/Spell-check).
 
-            [Download the errors here.](${{ steps.build-components.outputs.sp_error_url }})
+            [Download the errors here.](${{ steps.build-components.outputs.zip_link }})
             _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
 
