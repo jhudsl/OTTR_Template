@@ -78,7 +78,7 @@ jobs:
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-author: 'github-actions[bot]'
-          body-includes: There are spelling errors
+          body-includes: spelling errors
 
       - name: No spelling errors
         if: ${{ steps.spell_check_run.outputs.sp_chk_results < 3 }}
