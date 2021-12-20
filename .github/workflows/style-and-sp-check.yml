@@ -44,7 +44,6 @@ jobs:
 
       ############ The items if there's too many spelling errors!
       - name: Build components of the spell check comment
-        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
         id: build-components
         run: |
           spell_check_url=$(Rscript --vanilla scripts/get_spell_errors.R --repo "$GITHUB_REPOSITORY" --git_pat "$GH_PAT")
@@ -76,7 +75,7 @@ jobs:
       - name: Check spell check results - fail if too many errors
         if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
         run: exit 1
-        
+
       - name: No spelling errors
         if: ${{ steps.spell_check_run.outputs.sp_chk_results < 3 }}
         uses: peter-evans/create-or-update-comment@v1
