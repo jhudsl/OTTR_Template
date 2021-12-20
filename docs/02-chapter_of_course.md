@@ -170,7 +170,24 @@ but they need a ; separator [@rmarkdown2021; @Xie2018].
 
 In text, we can put citations like this @rmarkdown2021.
 
+### FYI boxes
+
+::: {.fyi}
+Please click on the subsection headers in the left hand
+navigation bar (e.g., 2.1, 4.3) a second time to expand the
+table of contents and enable the `scroll_highlight` feature
+([see more](introduction.html#scroll-highlight)).
+:::
+
+### Dropdown summaries
+
+<details><summary> You can hide additional information in a dropdown menu </summary>
+Here's more words that are hidden
+</details>
+
 ## Print out session info
+
+You should print out session info when you have code for [reproducibility purposes](https://jhudatascience.org/Reproducibility_in_Cancer_Informatics/managing-package-versions.html).
 
 
 ```r
