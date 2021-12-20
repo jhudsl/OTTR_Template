@@ -45,6 +45,8 @@ jobs:
       ############ The items if there's too many spelling errors!
       - name: Build components of the spell check comment
         id: build-components
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           spell_check_url=$(Rscript --vanilla scripts/get_spell_errors.R --repo "$GITHUB_REPOSITORY" --git_pat "$GH_PAT")
           echo ::set-output name=time::$(date +'%Y-%m-%d')
