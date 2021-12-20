@@ -44,10 +44,9 @@ jobs:
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          zip_link=$(Rscript --vanilla scripts/get_spell_errors.R --repo "$GITHUB_REPOSITORY" --git_pat "$GH_PAT")
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
-          echo ::set-output name=sp_error_url::$sp_error_url
+          echo ::set-output name=sp_error_url::$(Rscript --vanilla scripts/get_spell_errors.R --repo "$GITHUB_REPOSITORY" --git_pat "$GH_PAT")
 
       # Handle the commenting
       - name: Find Comment
@@ -67,7 +66,7 @@ jobs:
           body: |
             :warning: There are spelling errors that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/Spell-check).
 
-            [Download the errors here.](${{ steps.build-components.outputs.zip_link }})
+            [Download the errors here.](${{ steps.build-components.outputs.sp_error_url }})
             _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
 
