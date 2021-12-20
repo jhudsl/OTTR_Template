@@ -26,9 +26,6 @@ option_list <- list(
 opt_parser <- optparse::OptionParser(option_list = option_list)
 opt <- optparse::parse_args(opt_parser)
 
-opt$repo <- "jhudsl/OTTR_Template" 
-opt$git_pat <- "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"
-
 repo_name <- opt$repo
 git_pat <- opt$git_pat
 
