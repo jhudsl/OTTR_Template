@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
   # Only run after the render finishes running
   workflow_run:
-    workflows: [ "Bookdown to Leanpub repo copy over" ]
+    workflows: [ "Render Bookdown and Coursera" ]
     branches: [ main ]
     types:
       - completed
