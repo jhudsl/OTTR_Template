@@ -1,9 +1,5 @@
 
-# This code was originally written by Josh Shapiro and Candace Savonen
-# for the Childhood Cancer Data Lab, an initiative of Alexs Lemonade Stand Foundation.
-# https://github.com/AlexsLemonade/refinebio-examples/blob/33cdeff66d57f9fe8ee4fcb5156aea4ac2dce07f/.github/workflows/style-and-sp-check.yml#L1
-
-# Adapted for this jhudsl repository by Candace Savonen Apr 2021
+# Candace Savonen Dec 2021
 
 name: Style and spell check R markdowns
 
@@ -48,23 +44,10 @@ jobs:
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          Rscript --vanilla scripts/get_spell_errors.R --repo "$GITHUB_REPOSITORY" --git_pat "$GH_PAT"
+          zip_link=$(Rscript --vanilla scripts/get_spell_errors.R --repo "$GITHUB_REPOSITORY" --git_pat "$GH_PAT")
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
           echo ::set-output name=sp_error_url::$sp_error_url
-          zip_link=$(echo "https://github.com/$GITHUB_REPOSITORY/raw/preview-${{ github.event.pull_request.number }}/spell-check-results.zip")
-
-      # Commit the rendered bookdown files
-      - name: Add spell check file to preview branch
-        id: commit
-        run: |
-          git checkout -b "preview-${{ github.event.pull_request.number }}"
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add spell-check-results.zip
-          git commit -m 'Add spell check'
-          git pull origin "preview-${{ github.event.pull_request.number }}" --allow-unrelated-histories
-          git push --force "preview-${{ github.event.pull_request.number }}"
 
       # Handle the commenting
       - name: Find Comment

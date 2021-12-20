@@ -73,5 +73,5 @@ response <- httr::GET(
   httr::add_headers(Authorization = paste0("token ", git_pat))
 )
 
-# Download it
-download.file(response$url, destfile = "spell-check-results.zip")
+# Print out download url 
+write(response$url, stdout())
