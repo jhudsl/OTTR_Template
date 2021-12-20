@@ -52,7 +52,20 @@ jobs:
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
           echo ::set-output name=sp_error_url::$sp_error_url
+          zip_link=$(echo "https://github.com/$GITHUB_REPOSITORY/raw/preview-${{ github.event.pull_request.number }}/spell-check-results.zip")
 
+      # Commit the rendered bookdown files
+      - name: Add spell check file to preview branch
+        id: commit
+        run: |
+          git checkout -b "preview-${{ github.event.pull_request.number }}"
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add spell-check-results.zip
+          git commit -m 'Add spell check'
+          git push --force origin "preview-${{ github.event.pull_request.number }}"
+
+      # Handle the commenting
       - name: Find Comment
         uses: peter-evans/find-comment@v1
         id: fc
