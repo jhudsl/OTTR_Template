@@ -63,7 +63,7 @@ jobs:
           git config --local user.name "GitHub Actions"
           git add spell-check-results.zip
           git commit -m 'Add spell check'
-          git push --force origin "preview-${{ github.event.pull_request.number }}"
+          git push origin "preview-${{ github.event.pull_request.number }}"
 
       # Handle the commenting
       - name: Find Comment
