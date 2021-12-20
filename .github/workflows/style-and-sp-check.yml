@@ -20,7 +20,7 @@ jobs:
   style-n-check:
     runs-on: ubuntu-latest
     container:
-      image: rocker/tidyverse:4.0.2
+      image: jhudsl/course_template
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -28,9 +28,6 @@ jobs:
         # What branch to commit to: the one from the pull request
         with:
           ref: ${{ github.event.pull_request.head.ref }}
-
-      - name: Install packages
-        run: Rscript -e "install.packages(c('styler', 'spelling'))"
 
       - name: Run spell check
         id: spell_check_run
@@ -76,6 +73,7 @@ jobs:
           body: |
             :warning: There are spelling errors that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/Spell-check).
 
+            [Download the errors here.]($spell_check_url)
             _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
 

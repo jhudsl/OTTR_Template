@@ -4,10 +4,6 @@
 
 # Ran by GitHub actions, given a repository name and a GitHub PAT, get the most recent spell check results.
 
-if (!("optparse" %in% installed.packages())){
-  install.packages("optparse")
-}
-
 library(magrittr)
 library(optparse)
 
