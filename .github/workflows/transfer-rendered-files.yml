@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
   # Only run after the render finishes running
   workflow_run:
-    workflows: [ "Build, Render, and Push" ]
+    workflows: [ "Bookdown to Leanpub repo copy over" ]
     branches: [ main ]
     types:
       - completed
