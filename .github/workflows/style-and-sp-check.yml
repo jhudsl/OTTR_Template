@@ -50,23 +50,10 @@ jobs:
         if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
         id: build-components
         run: |
+          spell_check_url=$(Rscript --vanilla get_spell_errors.R --repo "$GITHUB_REPOSITORY" --git_pat "$GH_PAT")
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
-
-      - name: Comment with spelling errors file
-        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
-        uses: tonyhallett/artifacts-url-comments@v1.1.0
-        env:
-            GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-        with:
-          prefix: There are spelling errors. Download this file to see them.
-          suffix: |
-            [Read more about spell check here](https://github.com/jhudsl/OTTR_Template/wiki/Spell-check).
-
-            _Comment as of ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
-
-          format: name
-          addTo: pullandissues
+          echo ::set-output name=sp_error_url::$spell_check_url
 
       - name: Check spell check results - fail if too many errors
         if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
@@ -81,6 +68,18 @@ jobs:
           body-includes: spelling errors
 
       - name: No spelling errors
+        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            :warning: There are spelling errors that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/Spell-check).
+              
+            _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
+          edit-mode: replace
+
+      - name: No spelling errors
         if: ${{ steps.spell_check_run.outputs.sp_chk_results < 3 }}
         uses: peter-evans/create-or-update-comment@v1
         with:
@@ -88,6 +87,7 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             No spelling errors! :tada:
+
             _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
 
