@@ -68,6 +68,7 @@ jobs:
           changes=$(git diff --name-only origin/main -- docs)
           git add docs/*
           git commit -m 'Render bookdown preview' || echo "No changes to commit"
+          git pull "preview-${{ github.event.pull_request.number }}"
           git push origin "preview-${{ github.event.pull_request.number }}" || echo "No changes to push"
 
           if [[ -n $changes ]]; then
