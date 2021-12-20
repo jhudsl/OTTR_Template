@@ -59,14 +59,14 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         with:
-            prefix: :warning: There are spelling errors. Download this file to see them.
-            suffix: |
-             [Read more about spell check here](https://github.com/jhudsl/OTTR_Template/wiki/Spell-check).
+          prefix: There are spelling errors. Download this file to see them.
+          suffix: |
+            [Read more about spell check here](https://github.com/jhudsl/OTTR_Template/wiki/Spell-check).
 
-              _Comment as of ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
+            _Comment as of ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
 
-            format: name
-            addTo: pullandissues
+          format: name
+          addTo: pullandissues
 
       - name: Check spell check results - fail if too many errors
         if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
