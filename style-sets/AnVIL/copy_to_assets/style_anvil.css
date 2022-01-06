@@ -24,7 +24,7 @@ pre code {
   top: 0;
   left: 0;
   right: 0;
-  height: 200px;
+  height: 100px;
   /*background-image: url("images/books.jpg");*/
   /*background-color: #193a5c;*/
 }
@@ -36,7 +36,7 @@ pre code {
 }
 
 .page-inner {
-  padding-top: 140px !important;
+  padding-top: 60px !important;
 }
 
 
@@ -64,7 +64,7 @@ h1, h2, h3, h4 {
 .book .book-body .page-wrapper .page-inner section.normal h4, 
 .book .book-body .page-wrapper .page-inner section.normal h5, 
 .book .book-body .page-wrapper .page-inner section.normal h6 {
-    margin-top: 2.275em;
+    margin-top: 1em;
     margin-bottom: 1em;
 }
 
