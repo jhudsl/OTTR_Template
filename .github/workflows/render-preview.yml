@@ -19,9 +19,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: checkout
         uses: actions/checkout@v2
-        with:
-          # get the full repo
-          fetch-depth: 0
 
       # We want a fresh run of the renders each time
       - name: Delete old docs/*
