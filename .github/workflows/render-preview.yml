@@ -59,16 +59,16 @@ jobs:
       - name: Commit rendered bookdown files to development branch
         id: commit
         run: |
-          git checkout -b "preview-${{ github.event.pull_request.number }}"
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           changes=$(git diff --name-only origin/main -- docs)
-          git add -A
-          git commit -m 'Render bookdown preview' || echo "No changes to commit"
-          git push --force origin "preview-${{ github.event.pull_request.number }}" || echo "No changes to push"
 
           if [[ -n $changes ]]; then
             echo ::set-output name=changes::$(echo 'changes')
+            git add -A
+            git checkout -b "preview-${{ github.event.pull_request.number }}"
+            git commit -m 'Render bookdown preview'
+            git push --force origin "preview-${{ github.event.pull_request.number }}"
           else
             echo ::set-output name=changes::$(echo 'no_changes')
           fi
