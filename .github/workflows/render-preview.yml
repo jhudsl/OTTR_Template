@@ -61,7 +61,7 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          changes=$(git diff --name-only main origin/main -- docs)
+          changes=$(git diff --name-only `git log --format="%H" -n 1 origin/main` -- docs)
 
           if [[ -n $changes ]]; then
             echo ::set-output name=changes::$(echo 'changes')
