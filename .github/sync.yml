@@ -22,7 +22,6 @@ group:
     jhudsl/GDSCN_Book_SARS_Galaxy_on_AnVIL
     abyzovlab/CNVpytor_course
     opencasestudies/OCS_Guide
-    
 ###ADD NEW REPO HERE following the format above#
   files:
     - source: .github/workflows/render-bookdown.yml
