@@ -6,7 +6,8 @@ group:
   repos: |
     jhudsl/Documentation_and_Usability
     jhudsl/Informatics_Research_Leadership
-    jhudsl/Data_Management
+    jhudsl/Data_Management_for_Cancer_Research
+    jhudsl/Computing_for_Cancer_Informatics
     jhudsl/AnVIL_Book_Getting_Started
     jhudsl/AnVIL_Book_Instructor_Guide
     jhudsl/AnVIL_Book_WDL
@@ -19,6 +20,8 @@ group:
     jhudsl/Cancer_Genome_Informatics
     jhudsl/Cancer-Imaging-Informatics
     jhudsl/GDSCN_Book_SARS_Galaxy_on_AnVIL
+    abyzovlab/CNVpytor_course
+    
 ###ADD NEW REPO HERE following the format above#
   files:
     - source: .github/workflows/render-bookdown.yml
@@ -43,6 +46,8 @@ group:
       dest: .github/ISSUE_TEMPLATE/course-content-add.md
     - source: scripts/spell-check.R
       dest: scripts/spell-check.R
+    - source: scripts/get_spell_errors.R
+      dest: scripts/get_spell_errors.R
     - source: scripts/git_repo_check.R
       dest: scripts/git_repo_check.R
     - source: code_of_conduct.md

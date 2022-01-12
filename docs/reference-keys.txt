@@ -12,4 +12,6 @@ video-examples
 links-to-files
 links-to-websites
 citation-examples
+fyi-boxes
+dropdown-summaries
 print-out-session-info

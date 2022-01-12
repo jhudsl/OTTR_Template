@@ -1,7 +1,7 @@
 
 **Note these steps are only pertinent if you are setting up this course outside of the jhudsl organization**
 
-For more information on these settings see instructions in the [getting started GitHub wiki pages](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Setting-up-GitHub-secrets).
+For more information on these settings see instructions in the [getting started GitHub wiki pages](https://github.com/jhudsl/OTTR_Template/wiki/Setting-up-GitHub-secrets).
 
 It's important that these are set up and named exactly what they are below in order for Github actions to work correctly.
 
@@ -23,4 +23,4 @@ For each new secret, click the `New repository secret` button and set each as fo
 Underneath `Select scopes`, check both `repo` and `workflow`.
 Then copy the PAT and save as the value.
 
-- [ ] (Optionally) Set up your [`Leanpub` repository link to it](https://github.com/jhudsl/DaSL_Course_Template_Bookdown/wiki/Publishing-on-Leanpub)
+- [ ] (Optionally) Set up your [`Leanpub` repository link to it](https://github.com/jhudsl/OTTR_Template/wiki/Publishing-on-Leanpub)

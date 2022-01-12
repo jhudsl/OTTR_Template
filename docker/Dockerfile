@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends apt-utils dialo
 RUN apt-get install -y --no-install-recommends \
     libxt6 \
     libpoppler-cpp-dev \
-    vim
+    vim \
+    libglpk40
 
 # Remove old symlinks to old pandoc
 RUN unlink /usr/lib/rstudio-server/bin/pandoc/pandoc
@@ -54,6 +55,9 @@ RUN Rscript -e  "install.packages( \
 # Copy over git token and package list
 COPY git_token.txt .
 COPY github_package_list.tsv .
+
+# cow needs this dependency:
+RUN Rscript -e  "devtools::install_version('gitcreds', version = '0.1.1', repos = 'http://cran.us.r-project.org')"
 
 # Didactr needs this dependency:
 RUN Rscript -e  "devtools::install_version('lifecycle', version = '1.0.0', repos = 'http://cran.us.r-project.org')"

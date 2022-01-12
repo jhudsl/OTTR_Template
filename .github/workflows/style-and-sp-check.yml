@@ -1,9 +1,5 @@
 
-# This code was originally written by Josh Shapiro and Candace Savonen
-# for the Childhood Cancer Data Lab, an initiative of Alexs Lemonade Stand Foundation.
-# https://github.com/AlexsLemonade/refinebio-examples/blob/33cdeff66d57f9fe8ee4fcb5156aea4ac2dce07f/.github/workflows/style-and-sp-check.yml#L1
-
-# Adapted for this jhudsl repository by Candace Savonen Apr 2021
+# Candace Savonen Dec 2021
 
 name: Style and spell check R markdowns
 
@@ -20,17 +16,11 @@ jobs:
   style-n-check:
     runs-on: ubuntu-latest
     container:
-      image: rocker/tidyverse:4.0.2
+      image: jhudsl/course_template
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
-        # What branch to commit to: the one from the pull request
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-
-      - name: Install packages
-        run: Rscript -e "install.packages(c('styler', 'spelling'))"
 
       - name: Run spell check
         id: spell_check_run
@@ -45,10 +35,53 @@ jobs:
           name: spell-check-results
           path: spell_check_results.tsv
 
-      # If there are too many spelling errors, this will stop the workflow
+      ############ The items if there's too many spelling errors!
+      - name: Build components of the spell check comment
+        id: build-components
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          echo ::set-output name=time::$(date +'%Y-%m-%d')
+          echo ::set-output name=commit_id::$GITHUB_SHA
+          echo ::set-output name=sp_error_url::$(Rscript --vanilla scripts/get_spell_errors.R --repo "$GITHUB_REPOSITORY" --git_pat "$GH_PAT")
+
+      # Handle the commenting
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: spelling errors
+
+      - name: Spelling errors!
+        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            :warning: There are spelling errors that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/Spell-check).
+
+            [Download the errors here.](${{ steps.build-components.outputs.sp_error_url }})
+            _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
+          edit-mode: replace
+
       - name: Check spell check results - fail if too many errors
         if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
         run: exit 1
+
+      - name: No spelling errors
+        if: ${{ steps.spell_check_run.outputs.sp_chk_results < 3 }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            No spelling errors! :tada:
+
+            _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
+          edit-mode: replace
 
       - name: Run styler
         run: Rscript -e "styler::style_file(list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE));warnings()"
