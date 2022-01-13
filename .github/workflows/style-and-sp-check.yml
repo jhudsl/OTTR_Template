@@ -60,7 +60,7 @@ jobs:
           body-includes: spelling errors
 
       - name: Spelling errors!
-        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
+        if: ${{ steps.spell_check_run.outputs.sp_chk_results >= 3 }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
