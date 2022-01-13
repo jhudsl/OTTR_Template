@@ -41,6 +41,17 @@ jobs:
           name: spell-check-results
           path: resources/spell_check_results.tsv
 
+      - name: Spell check errors
+        run: |
+          # Get on the preview branch if it exists. If it doesn't create it.
+          branch_name='preview-${{ github.event.pull_request.number }}''
+          git rev-parse --quiet --verify refs/heads/$branch_name >/dev/null && exists=true || exists=false
+          if $exists; then git checkout $branch_name; else git checkout -b $branch_name; fi
+
+          git add resources/spell_check_results.tsv
+          git commit -m 'add spell check file'
+          git push origin || echo "No changes to commit"
+
       - name: Build components of the spell check comment
         id: build-components
         env:
@@ -93,7 +104,7 @@ jobs:
       - name: Run styler
         run: Rscript -e "styler::style_file(list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE));warnings()"
 
-      - name: Commit
+      - name: Commit styled files
         run: |
           git add \*.Rmd
           git add resources/spell_check_results.tsv
