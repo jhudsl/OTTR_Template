@@ -56,7 +56,7 @@ jobs:
           fi
 
           git add --force resources/spell_check_results.tsv
-          git commit -m 'add spell check file'
+          git commit -m 'Add spell check file'
           git push --force --set-upstream origin $branch_name
 
       - name: Build components of the spell check comment
