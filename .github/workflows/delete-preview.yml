@@ -10,6 +10,7 @@ jobs:
   build-all:
     runs-on: ubuntu-latest
     steps:
+
       # This is because if a PR is closed before a render finishes it won't find it.
       - name: Sleep for 5 minutes
         run: sleep 300s

@@ -20,7 +20,13 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v2
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: login as jhudsl-robot
+        run: |
+          git config --local user.email "itcrtrainingnetwork@gmail.com"
+          git config --local user.name "jhudsl-robot"
 
       - name: Run spell check
         id: spell_check_run
@@ -35,7 +41,6 @@ jobs:
           name: spell-check-results
           path: spell_check_results.tsv
 
-      ############ The items if there's too many spelling errors!
       - name: Build components of the spell check comment
         id: build-components
         env:
@@ -55,7 +60,7 @@ jobs:
           body-includes: spelling errors
 
       - name: Spelling errors!
-        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
+        if: ${{ steps.spell_check_run.outputs.sp_chk_results >= 3 }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -68,7 +73,7 @@ jobs:
           edit-mode: replace
 
       - name: Check spell check results - fail if too many errors
-        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
+        if: ${{ steps.spell_check_run.outputs.sp_chk_results >= 3 }}
         run: exit 1
 
       - name: No spelling errors
@@ -88,8 +93,6 @@ jobs:
 
       - name: Commit
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
           git add \*.Rmd
           git commit -m 'Style Rmds' || echo "No changes to commit"
           git push origin || echo "No changes to commit"

@@ -19,6 +19,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@master
 
+      - name: login as jhudsl-robot
+        run: |
+          git config --local user.email "itcrtrainingnetwork@gmail.com"
+          git config --local user.name "jhudsl-robot"
+
       - name: Get the version
         id: get_tag
         run: |
