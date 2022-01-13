@@ -48,7 +48,7 @@ jobs:
           git rev-parse --quiet --verify refs/heads/$branch_name >/dev/null && exists=true || exists=false
           if $exists; then git checkout $branch_name; else git checkout -b $branch_name; fi
 
-          git add resources/spell_check_results.tsv
+          git add --force resources/spell_check_results.tsv
           git commit -m 'add spell check file'
           git push origin || echo "No changes to commit"
 
