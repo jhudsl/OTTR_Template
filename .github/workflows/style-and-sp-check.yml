@@ -50,8 +50,10 @@ jobs:
 
           git add --force resources/spell_check_results.tsv
           git commit -m 'add spell check file'
+
+          git branch --set-upstream-to=origin/$branch_name $branch_name
           git pull
-          git push --set-upstream origin $branch_name
+          git push
 
       - name: Build components of the spell check comment
         id: build-components
