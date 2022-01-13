@@ -24,11 +24,6 @@ jobs:
 
     # Get repository name by dropping Bookdown if it exists but always append _Leanpub
     steps:
-      - name: login as jhudsl-robot
-        run: |
-          git config --local user.email "itcrtrainingnetwork@gmail.com"
-          git config --local user.name "jhudsl-robot"
-          
       - name: Run git repo check
         id: git_repo_check
         env:
