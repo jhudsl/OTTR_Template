@@ -20,7 +20,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: checkout repo
+      - name: Checkout files
         uses: actions/checkout@v2
 
       - name: login as jhudsl-robot
