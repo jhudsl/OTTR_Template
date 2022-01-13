@@ -11,11 +11,6 @@ jobs:
   pr-comment:
     runs-on: ubuntu-latest
     steps:
-      - name: login as jhudsl-robot
-        run: |
-          git config --local user.email "itcrtrainingnetwork@gmail.com"
-          git config --local user.name "jhudsl-robot"
-
       - uses: mshick/add-pr-comment@v1
         if: ${{ github.head_ref == 'repo-sync/OTTR_Template/default' }}
         with:
