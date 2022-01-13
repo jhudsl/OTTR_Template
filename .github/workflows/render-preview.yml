@@ -32,8 +32,6 @@ jobs:
           git rev-parse --quiet --verify $branch_name >/dev/null && exists=true || exists=false
           if $exists; then git checkout $branch_name; else git checkout -b $branch_name; fi
 
-          git branch --set-upstream-to=origin/$branch_name $branch_name
-
           # Clear out old docs files and start fresh
           rm -r docs/*
 
