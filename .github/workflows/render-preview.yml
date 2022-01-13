@@ -33,8 +33,9 @@ jobs:
           if [[ $exists == true ]];
           then
             git checkout $branch_name
+            git pull --set-upstream origin $branch_name --allow-unrelated-histories
           else
-            git checkout -b $branch_name;
+            git checkout -b $branch_name
           fi
 
           rm -r docs/*
