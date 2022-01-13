@@ -15,9 +15,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@master
-        
+      - name: checkout repo
+        uses: actions/checkout@v2
+
       - name: login as jhudsl-robot
         run: |
           git config --local user.email "itcrtrainingnetwork@gmail.com"

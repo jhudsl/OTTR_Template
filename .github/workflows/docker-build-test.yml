@@ -32,9 +32,9 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@master
-        
+      - name: checkout repo
+        uses: actions/checkout@v2
+
       - name: login as jhudsl-robot
         run: |
           git config --local user.email "itcrtrainingnetwork@gmail.com"

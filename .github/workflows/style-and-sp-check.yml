@@ -41,7 +41,6 @@ jobs:
           name: spell-check-results
           path: spell_check_results.tsv
 
-      ############ The items if there's too many spelling errors!
       - name: Build components of the spell check comment
         id: build-components
         env:
@@ -74,7 +73,7 @@ jobs:
           edit-mode: replace
 
       - name: Check spell check results - fail if too many errors
-        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
+        if: ${{ steps.spell_check_run.outputs.sp_chk_results >= 3 }}
         run: exit 1
 
       - name: No spelling errors
