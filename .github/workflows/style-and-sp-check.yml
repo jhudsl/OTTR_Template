@@ -20,7 +20,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: checkout repo
+      - name: Checkout files
         uses: actions/checkout@v2
 
       - name: login as jhudsl-robot
@@ -33,22 +33,42 @@ jobs:
         run: |
           results=$(Rscript "scripts/spell-check.R")
           echo "::set-output name=sp_chk_results::$results"
-          cat spell_check_results.tsv
+          cat resources/spell_check_results.tsv
 
       - name: Archive spelling errors
         uses: actions/upload-artifact@v2
         with:
           name: spell-check-results
-          path: spell_check_results.tsv
+          path: resources/spell_check_results.tsv
+
+      - name: Spell check errors
+        run: |
+          # Get on the preview branch if it exists. If it doesn't create it.
+          branch_name='preview-${{ github.event.pull_request.number }}'
+          git rev-parse --quiet --verify $branch_name >/dev/null && exists=true || exists=false
+
+          if [[ $exists == true ]];
+          then
+            git checkout $branch_name
+            git pull --set-upstream origin $branch_name --allow-unrelated-histories
+          else
+            git checkout -b $branch_name
+          fi
+
+          git add --force resources/spell_check_results.tsv
+          git commit -m 'Add spell check file'
+          git push --force --set-upstream origin $branch_name
 
       - name: Build components of the spell check comment
         id: build-components
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
+          branch_name='preview-${{ github.event.pull_request.number }}'
+          sp_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/spell_check_results.tsv
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
-          echo ::set-output name=sp_error_url::$(Rscript --vanilla scripts/get_spell_errors.R --repo "$GITHUB_REPOSITORY" --git_pat "$GH_PAT")
+          echo ::set-output name=sp_error_url::$sp_error_url
 
       # Handle the commenting
       - name: Find Comment
@@ -91,8 +111,9 @@ jobs:
       - name: Run styler
         run: Rscript -e "styler::style_file(list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE));warnings()"
 
-      - name: Commit
+      - name: Commit styled files
         run: |
           git add \*.Rmd
+          git add resources/spell_check_results.tsv
           git commit -m 'Style Rmds' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
