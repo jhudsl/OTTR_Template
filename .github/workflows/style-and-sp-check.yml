@@ -45,7 +45,7 @@ jobs:
         run: |
           # Get on the preview branch if it exists. If it doesn't create it.
           branch_name='preview-${{ github.event.pull_request.number }}'
-          git rev-parse --quiet --verify refs/heads/$branch_name >/dev/null && exists=true || exists=false
+          git rev-parse --quiet --verify $branch_name >/dev/null && exists=true || exists=false
           if $exists; then git checkout $branch_name; else git checkout -b $branch_name; fi
 
           git add --force resources/spell_check_results.tsv
