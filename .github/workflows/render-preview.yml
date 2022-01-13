@@ -76,7 +76,7 @@ jobs:
             echo ::set-output name=changes::$(echo 'changes')
             git add . --force
             git commit -m 'Render bookdown preview'
-            git push --force origin "preview-${{ github.event.pull_request.number }}"
+            git push --set-upstream origin "preview-${{ github.event.pull_request.number }}"
           else
             echo ::set-output name=changes::$(echo 'no_changes')
           fi
