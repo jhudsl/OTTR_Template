@@ -41,6 +41,11 @@ jobs:
 
           rm -r docs/*
 
+      # Add remote if this is a fork
+      - name: Commit rendered bookdown files to preview branch
+        if: github.event.repository.name == 'OTTR_Template'
+        run: git remote add jhudsl git@github.com:jhudsl/OTTR_Template.git
+
       # Run bookdown rendering
       - name: Run bookdown render
         id: bookdown
@@ -71,8 +76,9 @@ jobs:
           echo Coursera status ${{steps.coursera.outcome}}
           exit 1
 
-      # Commit the rendered bookdown files
-      - name: Commit rendered bookdown files to preview branch
+      # Commit the rendered bookdown files if this isn't to the OTTR Template
+      - name: Commit rendered bookdown
+        if: github.event.repository.name != 'OTTR_Template'
         id: commit
         run: |
           changes=$(git diff --name-only `git log --format="%H" -n 1 origin/main` -- docs)
