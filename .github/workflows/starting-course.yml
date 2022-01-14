@@ -107,7 +107,7 @@ jobs:
 
       # Issue for adding the course to the jhudsl library
       - name: Reminder - Add to jhudsl library
-        if: ${{'jhudsl' == $(dirname ${{ github.repository }})}}
+        if: ${{ 'jhudsl' == $(dirname github.repository) }}
         uses: peter-evans/create-issue-from-file@v2.3.2
         with:
           title: Reminder - Add to jhudsl library
