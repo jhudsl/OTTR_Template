@@ -44,7 +44,13 @@ jobs:
       # Add remote if this is a fork
       - name: Add remote if its a fork
         if: github.event.repository.name == 'OTTR_Template'
-        run: git remote add jhudsl git@github.com:jhudsl/OTTR_Template.git
+        run: |
+          org_name=$(dirname ${{github.repository}})
+          echo ::set-output name=org_name::$org_name
+          echo $org_name
+
+          git remote add $org_name https://github.com/$org_name/OTTR_Template
+          git fetch $org_name
 
       # Run bookdown rendering
       - name: Run bookdown render

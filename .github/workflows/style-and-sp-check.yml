@@ -47,8 +47,12 @@ jobs:
       - name: Add remote if its a fork
         if: github.event.repository.name == 'OTTR_Template'
         run: |
-          git remote add jhudsl https://github.com/jhudsl/OTTR_Template
-          git fetch jhudsl
+          org_name=$(dirname ${{github.repository}})
+          echo ::set-output name=org_name::$org_name
+          echo $org_name
+
+          git remote add $org_name https://github.com/$org_name/OTTR_Template
+          git fetch $org_name
 
       - name: Spell check errors
         run: |
