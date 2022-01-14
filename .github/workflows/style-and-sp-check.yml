@@ -10,8 +10,6 @@ on:
   pull_request:
     branches: [ main ]
 
-permissions: write-all
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "style and check"
@@ -43,24 +41,11 @@ jobs:
           name: spell-check-results
           path: resources/spell_check_results.tsv
 
-      # Add remote if this is a fork
-      - name: Add remote if its a fork
-        if: github.event.repository.name == 'OTTR_Template'
-        run: |
-          org_name=$(dirname ${{github.repository}})
-          echo ::set-output name=org_name::$org_name
-          echo $org_name
-
-          git remote add $org_name https://github.com/$org_name/OTTR_Template
-          git fetch $org_name
-
       - name: Spell check errors
         run: |
           # Get on the preview branch if it exists. If it doesn't create it.
           branch_name='preview-${{ github.event.pull_request.number }}'
           git rev-parse --quiet --verify $branch_name >/dev/null && exists=true || exists=false
-
-          git remote add jhudsl git@github.com:jhudsl/OTTR_Template.git
 
           if [[ $exists == true ]];
           then
