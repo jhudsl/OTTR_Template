@@ -2,7 +2,7 @@
 # For info on how to update this file see: https://github.com/marketplace/actions/repo-file-sync-action#%EF%B8%8F-sync-configuration
 
 group:
-  # Repositories to recieve changes
+  # Repositories to receive changes
   repos: |
     jhudsl/Documentation_and_Usability
     jhudsl/Informatics_Research_Leadership
@@ -22,7 +22,6 @@ group:
     jhudsl/GDSCN_Book_SARS_Galaxy_on_AnVIL
     abyzovlab/CNVpytor_course
     opencasestudies/OCS_Guide
-    
 ###ADD NEW REPO HERE following the format above#
   files:
     - source: .github/workflows/render-bookdown.yml
