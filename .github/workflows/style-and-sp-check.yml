@@ -56,6 +56,8 @@ jobs:
           branch_name='preview-${{ github.event.pull_request.number }}'
           git rev-parse --quiet --verify $branch_name >/dev/null && exists=true || exists=false
 
+          git remote add jhudsl git@github.com:jhudsl/OTTR_Template.git
+
           if [[ $exists == true ]];
           then
             git checkout $branch_name
