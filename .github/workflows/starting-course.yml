@@ -62,8 +62,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           branch: main
-          github_token: ${{ secrets.GH_PAT }}
-          
+
 ##### Filing issues!
 
       # Issue for what repository settings need to be set
