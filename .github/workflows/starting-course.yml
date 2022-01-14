@@ -105,9 +105,16 @@ jobs:
           content-filepath: .github/automatic-issues/add-feedback-method.md
           labels: automated training issue
 
+      - name: Get organization name
+        id: get_org_name
+        run: |
+          org_name=$(dirname ${{github.repository}})
+          echo ::set-output name=org_name::$org_name
+          echo $org_name
+
       # Issue for adding the course to the jhudsl library
       - name: Reminder - Add to jhudsl library
-        if: ${{ 'jhudsl' == $(dirname github.repository) }}
+        if: ${{ steps.get_org_name.outputs.org_name == 'jhudsl' }}
         uses: peter-evans/create-issue-from-file@v2.3.2
         with:
           title: Reminder - Add to jhudsl library
