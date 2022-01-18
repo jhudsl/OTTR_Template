@@ -38,7 +38,6 @@ jobs:
             git pull $branch_name --allow-unrelated-histories
           else
             git checkout -b $branch_name
-            git remote add origin $branch_name
             git fetch --unshallow origin
           fi
 
