@@ -50,10 +50,11 @@ jobs:
           if [[ $exists == true ]];
           then
             git checkout $branch_name
-            git branch -u origin/$branch_name
+            git branch -u $branch_name origin/$branch_name
             git pull --allow-unrelated-histories
           else
-            git checkout -b $branch_name --set-upstream origin $branch_name
+            git checkout -b $branch_name
+            git branch -u $branch_name origin/$branch_name
           fi
 
           git add --force resources/spell_check_results.tsv
