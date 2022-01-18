@@ -34,11 +34,13 @@ jobs:
           if [[ $exists == true ]];
           then
             git checkout $branch_name
-            git branch -u $branch_name origin/$branch_name
+            git remote add origin $branch_name
+            git fetch --unshallow origin
             git pull $branch_name --allow-unrelated-histories
           else
             git checkout -b $branch_name
-            git branch -u $branch_name origin/$branch_name
+            git remote add origin $branch_name
+            git fetch --unshallow origin
           fi
 
           rm -r docs/*
@@ -84,7 +86,7 @@ jobs:
             git add . --force
             git commit -m 'Render bookdown preview'
             git pull "preview-${{ github.event.pull_request.number }}" --allow-unrelated-histories
-            git push --force
+            git push --force --set-upstream origin $branch_name
           else
             echo ::set-output name=changes::$(echo 'no_changes')
           fi

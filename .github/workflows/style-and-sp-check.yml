@@ -50,16 +50,18 @@ jobs:
           if [[ $exists == true ]];
           then
             git checkout $branch_name
-            git branch -u $branch_name origin/$branch_name
+            git remote add origin $branch_name
+            git fetch --unshallow origin
             git pull --allow-unrelated-histories
           else
             git checkout -b $branch_name
-            git branch -u $branch_name origin/$branch_name
+            git remote add origin $branch_name
+            git fetch --unshallow origin
           fi
 
           git add --force resources/spell_check_results.tsv
           git commit -m 'Add spell check file'
-          git push --force
+          git push --force --set-upstream origin $branch_name
 
       - name: Build components of the spell check comment
         id: build-components
