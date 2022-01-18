@@ -59,7 +59,7 @@ jobs:
           fi
 
           git add --force resources/spell_check_results.tsv
-          git commit -m 'Add spell check file'
+          git diff-index --quiet HEAD || (git commit -a -m 'Add spell check file' --allow-empty && git push -f)
           git push --force --set-upstream origin $branch_name
 
       - name: Build components of the spell check comment
