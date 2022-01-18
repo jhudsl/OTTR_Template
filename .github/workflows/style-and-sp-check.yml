@@ -58,6 +58,7 @@ jobs:
             git push --set-upstream origin $branch_name
           fi
 
+          git pull origin $branch_name --allow-unrelated-histories
           git add --force resources/spell_check_results.tsv
           git diff-index --quiet HEAD || (git commit -a -m 'Add spell check file' --allow-empty && git push -f)
           git push --force --set-upstream origin $branch_name
