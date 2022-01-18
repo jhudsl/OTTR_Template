@@ -50,7 +50,6 @@ jobs:
           if [[ $exists == true ]];
           then
             git checkout $branch_name
-            git remote add origin $branch_name
             git fetch --unshallow origin
             git pull --allow-unrelated-histories
           else
