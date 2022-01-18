@@ -51,7 +51,7 @@ jobs:
           then
             git checkout $branch_name
             git fetch --unshallow origin
-            git pull --allow-unrelated-histories
+            git pull origin $branch_name --allow-unrelated-histories
           else
             git checkout -b $branch_name
             git fetch --unshallow origin
