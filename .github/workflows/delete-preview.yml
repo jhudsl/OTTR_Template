@@ -22,3 +22,15 @@ jobs:
         with:
           github_token: ${{ secrets.GH_PAT }}
           branches: preview-${{ github.event.pull_request.number }}
+
+      - name: Delete gist
+        id: gist
+        run: |
+          echo ${{ secrets.GH_PAT }} > docker/git_token.txt
+          gist_key=${GITHUB_REPOSITORY}_spell_check_${{ github.event.pull_request.number }}
+          gist_url=$(Rscript --vanilla scripts/get_the_gist.R \
+            --git_pat docker/git_token.txt \
+            --gist_key $gist_key \
+            --file resources/spell_check_results.tsv \
+            --delete)
+          rm docker/git_token.txt

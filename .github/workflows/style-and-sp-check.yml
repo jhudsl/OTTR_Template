@@ -41,31 +41,23 @@ jobs:
           name: spell-check-results
           path: resources/spell_check_results.tsv
 
-      - name: Spell check errors
+      - name: Upload to Gist
+        id: gist
         run: |
-          # Get on the preview branch if it exists. If it doesn't create it.
-          branch_name='preview-${{ github.event.pull_request.number }}'
-          git rev-parse --quiet --verify $branch_name >/dev/null && exists=true || exists=false
-
-          if [[ $exists == true ]];
-          then
-            git checkout $branch_name
-            git pull --set-upstream origin $branch_name --allow-unrelated-histories
-          else
-            git checkout -b $branch_name
-          fi
-
-          git add --force resources/spell_check_results.tsv
-          git commit -m 'Add spell check file'
-          git push --force --set-upstream origin $branch_name
+          echo ${{ secrets.GH_PAT }} > docker/git_token.txt
+          gist_key=${GITHUB_REPOSITORY}_spell_check_${{ github.event.pull_request.number }}
+          gist_url=$(Rscript --vanilla scripts/get_the_gist.R \
+            --git_pat docker/git_token.txt \
+            --gist_key $gist_key \
+            --file resources/spell_check_results.tsv)
+          echo "::set-output name=gist_url::$gist_url"
+          rm docker/git_token.txt
 
       - name: Build components of the spell check comment
         id: build-components
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          branch_name='preview-${{ github.event.pull_request.number }}'
-          sp_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/spell_check_results.tsv
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
           echo ::set-output name=sp_error_url::$sp_error_url
@@ -88,7 +80,7 @@ jobs:
           body: |
             :warning: There are spelling errors that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/Spell-check).
 
-            [Download the errors here.](${{ steps.build-components.outputs.sp_error_url }})
+            [Download the errors here.](${{ steps.gist.outputs.gist_url }})
             _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
 
@@ -114,6 +106,5 @@ jobs:
       - name: Commit styled files
         run: |
           git add \*.Rmd
-          git add resources/spell_check_results.tsv
           git commit -m 'Style Rmds' || echo "No changes to commit"
           git push origin || echo "No changes to commit"

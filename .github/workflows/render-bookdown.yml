@@ -19,9 +19,10 @@ on:
       - assets/*
 jobs:
   # This workflow contains a single job called "build-all"
-  build-all:
-    # The type of runner that the job will run on
+  render-main:
     runs-on: ubuntu-latest
+    container:
+      image: jhudsl/course_template
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -74,21 +75,13 @@ jobs:
       # Run bookdown rendering
       - name: Run bookdown render
         id: bookdown
-        run: |
-          docker run \
-          --mount type=bind,target=/home/rstudio,source=$PWD \
-          jhudsl/course_template \
-          Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all')"
+        run: Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all')"
 
 ##### If you do not wish to host your course on Coursera, you can delete this section #####
       # Run Coursera version
       - name: Run Coursera version of render
         id: coursera
-        run: |
-          docker run \
-          --mount type=bind,target=/home/rstudio,source=$PWD \
-          jhudsl/course_template \
-          Rscript -e "leanbuild::render_coursera()"
+        run: Rscript -e "leanbuild::render_coursera()"
 
 ##### End of Coursera rendering section ########################################
 
