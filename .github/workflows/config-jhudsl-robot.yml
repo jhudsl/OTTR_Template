@@ -26,7 +26,7 @@ jobs:
           echo $repo_list
 
       - name: Do the secret sync
-        uses: google/secrets-sync-action
+        uses: google/secrets-sync-action@v1.7.0
         with:
           SECRETS: GH_PAT
           REPOSITORIES: ${{ steps.repo_list.outputs.repo_list }}
