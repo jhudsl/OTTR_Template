@@ -1,6 +1,7 @@
 #!/usr/bin/env Rscript
 
-# Written by Candace Savonen Sept 2021
+# This script switches the repo entry for the yaml file to whatever is specified
+# Written by Candace Savonen Jan 2022
 
 if (!("optparse" %in% installed.packages())){
   install.packages("optparse")
@@ -13,7 +14,7 @@ option_list <- list(
     c("--repo"),
     type = "character",
     default = "jhudsl/OTTR_Template_Test",
-    help = "GitHub repository name, e.g. jhudsl/OTTR_Template",
+    help = "GitHub repository name, e.g. jhudsl/OTTR_Template_Test",
   )
 )
 
