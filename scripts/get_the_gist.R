@@ -2,9 +2,12 @@
 
 library(magrittr)
 
+# Find .git root directory
+root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
+
 option_list <- list(
   optparse::make_option(
-    c("--gist_key"),
+    opt_str = c("--gist_key"),
     type = "character",
     default = NULL,
     help = "The key for what the spell check file for this pull request and repository is 
@@ -14,7 +17,7 @@ option_list <- list(
     c("--file"),
     type = "character",
     default = NULL,
-    help = "The file to be stored in the gist",
+    help = "The file to be stored in the gist. Must be relative to base git repository",
   ), 
   optparse::make_option(
     opt_str = "--delete", type = "character",
@@ -24,12 +27,12 @@ option_list <- list(
     c("--git_pat"),
     type = "character",
     default = NULL,
-    help = "GitHub personal access token",
+    help = "GitHub personal access token stored in a text file",
   ), 
   optparse::make_option(
-    opt_str = c("-v", "verbose"), type = "character",
+    opt_str = c("-v", "--verbose"), type = "character",
     default = "FALSE", help = "Needs a 'TRUE/FALSE' whether more messages should be printed"
-  ),
+  )
 )
 
 # Read the arguments passed
@@ -37,13 +40,15 @@ opt_parser <- optparse::OptionParser(option_list = option_list)
 opt <- optparse::parse_args(opt_parser)
 opt$delete <- as.logical(opt$delete)
 opt$verbose <- as.logical(opt$verbose)
+opt$file <- file.path(root_dir, opt$file)
+
 
 if (!file.exists(opt$file) && !opt$delete) {
-  stop(paste0("Specified file:", opt$file, "does not exist"))
+  stop(paste("Specified file:", opt$file, "does not exist"))
 }
 
 # Make sure we can login before we continue
-system(paste("gh auth login --with-token", opt$git_pat))
+system(paste("gh auth login --with-token <", opt$git_pat))
 
 get_the_gist <- function(user = "jhudsl-robot",
                          verbose = TRUE) {

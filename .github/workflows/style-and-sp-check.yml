@@ -44,12 +44,14 @@ jobs:
       - name: Upload to Gist
         id: gist
         run: |
+          echo ${{ secrets.GH_PAT }} > docker/git_token.txt
           gist_key=${{ github.repo }}_spell_check_${{ github.event.pull_request.number }}
-          $(Rscript --vanilla scripts/spell-check.R \
-            --git_pat ${{secrets.GH_PAT}} \
+          gist_url=$(Rscript --vanilla scripts/get_the_gist.R \
+            --git_pat docker/git_token.txt \
             --gist_key $gist_key \
-            --file resources/spell_check.tsv
+            --file resources/spell_check_results.tsv
           echo "::set-output name=gist_url::$gist_url"
+          rm docker/git_token.txt
 
       - name: Build components of the spell check comment
         id: build-components
