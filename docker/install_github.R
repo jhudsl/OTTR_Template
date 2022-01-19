@@ -1,5 +1,9 @@
 #!/usr/bin/env Rscript
 
+if (!"optparse" %in% installed.packages()) {
+  install.packages("optparse")
+}
+
 library(optparse)
 
 ################################ Set up options ################################
