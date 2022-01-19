@@ -110,6 +110,6 @@ if (nrow(gist_target) < 1 ) {
   } else {
     # Or update it
     message(paste("Updating gist:", opt$gist_key))
-    system(paste("gh gist edit", gist_target$id, "-f", opt$file))    
+    system(paste("gh gist edit", gist_target$id, "-f", opt$file, "--add", opt$file))    
   }
 }
