@@ -43,28 +43,15 @@ jobs:
 
       - name: Spell check errors
         run: |
-          # Get on the preview branch if it exists. If it doesn't create it.
-          branch_name='preview-${{ github.event.pull_request.number }}'
-          git rev-parse --quiet --verify $branch_name >/dev/null && exists=true || exists=false
-
-          if [[ $exists == true ]];
-          then
-            git checkout $branch_name
-            git pull --set-upstream origin $branch_name --allow-unrelated-histories
-          else
-            git checkout -b $branch_name
-          fi
-
-          git add --force resources/spell_check_results.tsv
-          git commit -m 'Add spell check file'
-          git push --force --set-upstream origin $branch_name
+          gist_name=spell_check_gist_${{ github.event.pull_request.number }}
+          gh auth login --with-token ${{secrets.GH_PAT}}
+          gh gist create -d "Spell check Gist" -f resources/spell_check_results.tsv  $gist_name
 
       - name: Build components of the spell check comment
         id: build-components
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          branch_name='preview-${{ github.event.pull_request.number }}'
           sp_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/spell_check_results.tsv
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
