@@ -43,9 +43,12 @@ jobs:
 
       - name: Upload to Gist
         run: |
-          gist_name=spell_check_gist_${{ github.event.pull_request.number }}
-          gh auth login --with-token ${{secrets.GH_PAT}}
-          gist_url=$(gh gist create --public resources/spell_check_results.tsv  -d "$gist_name")
+          curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/users/jhudsl-robot/gists
+          gist_key=${{ github.repo }}_spell_check_${{ github.event.pull_request.number }}
+          $(Rscript --vanilla scripts/spell-check.R \
+            --git_pat ${{secrets.GH_PAT}} \
+            --gist_key $gist_key \
+            --file resources/spell_
           echo "::set-output name=gist_url::$gist_url"
 
       - name: Build components of the spell check comment
