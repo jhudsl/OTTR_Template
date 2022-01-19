@@ -38,11 +38,6 @@ opt <- optparse::parse_args(opt_parser)
 opt$delete <- as.logical(opt$delete)
 opt$verbose <- as.logical(opt$verbose)
 
-opt$gist_key <- "jhudsl/OTTR_Template_spell_check_405"
-opt$file <- "resources/spell_check_results.tsv"
-opt$git_pat <- "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"
-opt$delete <- FALSE
-
 if (!file.exists(opt$file) && !opt$delete) {
   stop(paste0("Specified file:", opt$file, "does not exist"))
 }

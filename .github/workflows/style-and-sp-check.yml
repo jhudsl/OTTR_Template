@@ -42,13 +42,13 @@ jobs:
           path: resources/spell_check_results.tsv
 
       - name: Upload to Gist
+        id: gist
         run: |
-          curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/users/jhudsl-robot/gists
           gist_key=${{ github.repo }}_spell_check_${{ github.event.pull_request.number }}
           $(Rscript --vanilla scripts/spell-check.R \
             --git_pat ${{secrets.GH_PAT}} \
             --gist_key $gist_key \
-            --file resources/spell_
+            --file resources/spell_check.tsv
           echo "::set-output name=gist_url::$gist_url"
 
       - name: Build components of the spell check comment
@@ -56,7 +56,6 @@ jobs:
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          sp_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/spell_check_results.tsv
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
           echo ::set-output name=sp_error_url::$sp_error_url
@@ -79,7 +78,7 @@ jobs:
           body: |
             :warning: There are spelling errors that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/Spell-check).
 
-            [Download the errors here.](${{ steps.build-components.outputs.sp_error_url }})
+            [Download the errors here.](${{ steps.gist.outputs.gist_url }})
             _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
 
