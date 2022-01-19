@@ -5,11 +5,6 @@ leanbuild::set_knitr_image_path()
 
 # Introduction
 
-qwertyyy
-
-qwewrty
-
-qwetyty
 
 ## Motivation
 
