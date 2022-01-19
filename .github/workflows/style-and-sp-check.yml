@@ -45,7 +45,7 @@ jobs:
         id: gist
         run: |
           echo ${{ secrets.GH_PAT }} > docker/git_token.txt
-          gist_key=${{ github.repo }}_spell_check_${{ github.event.pull_request.number }}
+          gist_key=${GITHUB_REPOSITORY}_spell_check_${{ github.event.pull_request.number }}
           gist_url=$(Rscript --vanilla scripts/get_the_gist.R \
             --git_pat docker/git_token.txt \
             --gist_key $gist_key \
