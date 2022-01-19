@@ -6,8 +6,8 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
-     container:
-       image: r-base
+      container:
+        image: r-base
     steps:
       - name: Checkout Repository
         uses: actions/checkout@master
