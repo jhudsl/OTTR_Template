@@ -29,7 +29,7 @@ jobs:
         run: |
           cp .github/sync.yml .github/test-sync.yml
           # Switch out repo argument
-          Rscript -vanilla scripts/switch_sync_repo.R --repo ${{ github.event.inputs.repo }}
+          Rscript --vanilla scripts/switch_sync_repo.R --repo ${{ github.event.inputs.repo }}
 
       - name: Run Mechanics File Sync
         uses: BetaHuhn/repo-file-sync-action@v1.7.1
