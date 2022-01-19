@@ -11,7 +11,7 @@ permissions: write-all
 
 jobs:
   # This workflow contains a single job called "build-all"
-  build-all:
+  render-preview:
     runs-on: ubuntu-latest
     container:
       image: jhudsl/course_template
