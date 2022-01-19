@@ -106,6 +106,5 @@ jobs:
       - name: Commit styled files
         run: |
           git add \*.Rmd
-          git add resources/spell_check_results.tsv
           git commit -m 'Style Rmds' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
