@@ -13,8 +13,8 @@ on:
 jobs:
   test-sync:
     runs-on: ubuntu-latest
-      container:
-        image: jhudsl/course_template
+    container:
+      image: jhudsl/course_template
 
     steps:
       - name: Checkout Repository
