@@ -12,8 +12,7 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    container:
-      image: r-base
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@master
@@ -26,6 +25,7 @@ jobs:
       - name: Get repo list
         id: repo_list
         run: |
+          sudo apt -y install r-base
           Rscript -e "install.packages('yaml')"
           repo_list=$(Rscript -e "cat(yaml::yaml.load_file('.github/sync.yml')$group$repos)")
           echo "::set-output name=repo_list::$repo_list"
