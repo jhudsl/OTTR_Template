@@ -49,7 +49,7 @@ jobs:
           gist_url=$(Rscript --vanilla scripts/get_the_gist.R \
             --git_pat docker/git_token.txt \
             --gist_key $gist_key \
-            --file resources/spell_check_results.tsv
+            --file resources/spell_check_results.tsv)
           echo "::set-output name=gist_url::$gist_url"
           rm docker/git_token.txt
 
