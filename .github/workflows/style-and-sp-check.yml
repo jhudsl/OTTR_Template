@@ -41,11 +41,12 @@ jobs:
           name: spell-check-results
           path: resources/spell_check_results.tsv
 
-      - name: Spell check errors
+      - name: Upload to Gist
         run: |
           gist_name=spell_check_gist_${{ github.event.pull_request.number }}
           gh auth login --with-token ${{secrets.GH_PAT}}
-          gh gist create -d "Spell check Gist" -f resources/spell_check_results.tsv  $gist_name
+          gist_url=$(gh gist create --public resources/spell_check_results.tsv  -d "$gist_name")
+          echo "::set-output name=gist_url::$gist_url"
 
       - name: Build components of the spell check comment
         id: build-components
