@@ -28,7 +28,7 @@ jobs:
         id: repo_list
         run: |
           Rscript -e "install.packages('yaml')"
-          repo_list=$(Rscript -e "cat(yaml::yaml.load_file('.github/sync.yml')$group$repos)")
+          repo_list=$(Rscript -e "cat(unlist(yaml::yaml.load_file('.github/sync.yml')$group$repos))")
           echo "::set-output name=repo_list::$repo_list"
           echo $repo_list
 
