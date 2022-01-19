@@ -110,6 +110,17 @@ if (nrow(gist_target) < 1 ) {
   } else {
     # Or update it
     message(paste("Updating gist:", opt$gist_key))
-    system(paste("gh gist edit", gist_target$id, "-f", opt$file))    
+    system(paste("gh gist edit", gist_target$id, "-f", opt$file, "--add", opt$file))    
   }
 }
+
+
+if (!opt$delete) {
+  # Print out the url
+  gist_target <- get_the_gist() %>% 
+      dplyr::filter(description_key == opt$gist_key) %>% 
+      dplyr::pull(gist_urls)
+
+  write(gist_target, stdout())
+}
+

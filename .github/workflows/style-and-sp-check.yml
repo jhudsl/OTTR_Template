@@ -45,11 +45,11 @@ jobs:
         id: gist
         run: |
           echo ${{ secrets.GH_PAT }} > docker/git_token.txt
-          gist_key=${{ github.repo }}_spell_check_${{ github.event.pull_request.number }}
+          gist_key=${GITHUB_REPOSITORY}_spell_check_${{ github.event.pull_request.number }}
           gist_url=$(Rscript --vanilla scripts/get_the_gist.R \
             --git_pat docker/git_token.txt \
             --gist_key $gist_key \
-            --file resources/spell_check_results.tsv
+            --file resources/spell_check_results.tsv)
           echo "::set-output name=gist_url::$gist_url"
           rm docker/git_token.txt
 
@@ -106,6 +106,5 @@ jobs:
       - name: Commit styled files
         run: |
           git add \*.Rmd
-          git add resources/spell_check_results.tsv
           git commit -m 'Style Rmds' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
