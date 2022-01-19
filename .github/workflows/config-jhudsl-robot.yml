@@ -25,7 +25,8 @@ jobs:
           echo "::set-output name=repo_list::$repo_list"
           echo $repo_list
 
-      - uses: google/secrets-sync-action
+      - name: Do the secret sync
+        uses: google/secrets-sync-action
         with:
           SECRETS: GH_PAT
           REPOSITORIES: ${{ steps.repo_list.outputs.repo_list }}
