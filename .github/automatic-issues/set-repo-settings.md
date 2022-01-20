@@ -3,9 +3,11 @@ For more information on these settings see instructions in the [getting started 
 
 ### Needed settings:
 
+- [ ] [Add the `jhudsl-robot` as a collaborator to your repository.](https://github.com/jhudsl/OTTR_Template/wiki/Setting-up-your-repository-settings#add-jhudsl-robot-as-a-collaborator).
+
 #### Turn on GitHub pages
 - [ ] Go to `Settings` > `Pages`. Underneath `Source`, choose `main` for the branch and select the `docs` folder. Then click `Save`.  
-- [ ] Check `Enforce HTTPS`. 
+- [ ] Check `Enforce HTTPS`.
 
 #### Set protections for main branch
 \* Don't set these settings right away! Wait a few minutes after starting your repository.

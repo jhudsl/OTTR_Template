@@ -32,8 +32,13 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: login as jhudsl-robot
+        run: |
+          git config --local user.email "itcrtrainingnetwork@gmail.com"
+          git config --local user.name "jhudsl-robot"
 
       - name: Don't re-test if this is a sync branch
         if: ${{ github.head_ref == 'repo-sync/OTTR_Template/default' }}

@@ -10,6 +10,10 @@
 
 library(magrittr)
 
+if (!("spelling" %in% installed.packages())){
+  install.packages("spelling")
+}
+
 # Find .git root directory
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 
@@ -33,5 +37,9 @@ sp_errors <- spelling::spell_check_files(files, ignore = dictionary) %>%
 # Print out how many spell check errors
 write(nrow(sp_errors), stdout())
 
+if (!dir.exists("resources")) {
+  dir.create("resources")
+}
+
 # Save spell errors to file temporarily
-readr::write_tsv(sp_errors, 'spell_check_results.tsv')
+readr::write_tsv(sp_errors, file.path('resources', 'spell_check_results.tsv'))

@@ -20,22 +20,39 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout files
+        uses: actions/checkout@v2
+
+      - name: login as jhudsl-robot
+        run: |
+          git config --local user.email "itcrtrainingnetwork@gmail.com"
+          git config --local user.name "jhudsl-robot"
 
       - name: Run spell check
         id: spell_check_run
         run: |
           results=$(Rscript "scripts/spell-check.R")
           echo "::set-output name=sp_chk_results::$results"
-          cat spell_check_results.tsv
+          cat resources/spell_check_results.tsv
 
       - name: Archive spelling errors
         uses: actions/upload-artifact@v2
         with:
           name: spell-check-results
-          path: spell_check_results.tsv
+          path: resources/spell_check_results.tsv
 
-      ############ The items if there's too many spelling errors!
+      - name: Upload to Gist
+        id: gist
+        run: |
+          echo ${{ secrets.GH_PAT }} > docker/git_token.txt
+          gist_key=${GITHUB_REPOSITORY}_spell_check_${{ github.event.pull_request.number }}
+          gist_url=$(Rscript --vanilla scripts/get_the_gist.R \
+            --git_pat docker/git_token.txt \
+            --gist_key $gist_key \
+            --file resources/spell_check_results.tsv)
+          echo "::set-output name=gist_url::$gist_url"
+          rm docker/git_token.txt
+
       - name: Build components of the spell check comment
         id: build-components
         env:
@@ -43,7 +60,7 @@ jobs:
         run: |
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
-          echo ::set-output name=sp_error_url::$(Rscript --vanilla scripts/get_spell_errors.R --repo "$GITHUB_REPOSITORY" --git_pat "$GH_PAT")
+          echo ::set-output name=sp_error_url::$sp_error_url
 
       # Handle the commenting
       - name: Find Comment
@@ -55,7 +72,7 @@ jobs:
           body-includes: spelling errors
 
       - name: Spelling errors!
-        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
+        if: ${{ steps.spell_check_run.outputs.sp_chk_results >= 3 }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -63,12 +80,12 @@ jobs:
           body: |
             :warning: There are spelling errors that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/Spell-check).
 
-            [Download the errors here.](${{ steps.build-components.outputs.sp_error_url }})
+            [Download the errors here.](${{ steps.gist.outputs.gist_url }})
             _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
 
       - name: Check spell check results - fail if too many errors
-        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 3 }}
+        if: ${{ steps.spell_check_run.outputs.sp_chk_results >= 3 }}
         run: exit 1
 
       - name: No spelling errors
@@ -86,10 +103,8 @@ jobs:
       - name: Run styler
         run: Rscript -e "styler::style_file(list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE));warnings()"
 
-      - name: Commit
+      - name: Commit styled files
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
           git add \*.Rmd
           git commit -m 'Style Rmds' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
