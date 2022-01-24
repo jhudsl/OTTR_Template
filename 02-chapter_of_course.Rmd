@@ -1,4 +1,6 @@
 
+# A new chapter 
+
 *If you haven't yet read the getting started Wiki pages; [start there](https://github.com/jhudsl/OTTR_Template/wiki/Getting-started)
 
 Every chapter needs to start out with this chunk of code:
@@ -140,7 +142,7 @@ table of contents and enable the `scroll_highlight` feature
 ### Dropdown summaries
 
 <details><summary> You can hide additional information in a dropdown menu </summary>
-Here's more words that are hidden
+Here's more words that are hidden.
 </details>
 
 ## Print out session info
@@ -148,5 +150,5 @@ Here's more words that are hidden
 You should print out session info when you have code for [reproducibility purposes](https://jhudatascience.org/Reproducibility_in_Cancer_Informatics/managing-package-versions.html).
 
 ```{r}
-sessionInfo()
+devtools::session_info()
 ```
