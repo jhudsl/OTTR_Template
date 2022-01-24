@@ -44,7 +44,7 @@ jobs:
           # Get on the preview branch if it exists. If it doesn't create it.
           branch_name='preview-${{ github.event.pull_request.number }}'
           git rev-parse --quiet --verify $branch_name >/dev/null && exists=true || exists=false
-          if [[ $exists == true ]];
+          if [ $exists == true ];
           then
             git checkout $branch_name
             git pull --set-upstream origin $branch_name --allow-unrelated-histories
@@ -65,7 +65,7 @@ jobs:
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
           echo ::set-output name=sp_error_url::$sp_error_url
-          
+
       # Handle the commenting
       - name: Find Comment
         uses: peter-evans/find-comment@v1

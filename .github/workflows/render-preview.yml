@@ -58,7 +58,7 @@ jobs:
         run: |
           changes=$(git diff --name-only -- docs)
 
-          if [[ -z $changes ]]; then
+          if [ -z $changes ]; then
             echo ::set-output name=changes::$(echo 'no_changes')
           else
             echo ::set-output name=changes::$(echo 'changes')
