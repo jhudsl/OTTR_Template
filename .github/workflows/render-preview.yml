@@ -56,7 +56,7 @@ jobs:
       - name: Commit rendered bookdown files to preview branch
         id: commit
         run: |
-          changes=$(git diff --name-only main -- docs)
+          changes=$(git diff --name-only -- docs)
 
           if [[ -z $changes ]]; then
             echo ::set-output name=changes::$(echo 'no_changes')
