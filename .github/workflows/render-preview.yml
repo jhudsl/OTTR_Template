@@ -56,12 +56,12 @@ jobs:
       - name: Commit rendered bookdown files to preview branch
         id: commit
         run: |
+          git add . --force
+          git commit -m 'Render bookdown preview'
           changes=$(git diff --name-only `git log --format="%H" -n 1 origin/main` -- docs)
 
           if [[ -n $changes ]]; then
             echo ::set-output name=changes::$(echo 'changes')
-            git add . --force
-            git commit -m 'Render bookdown preview'
             git push --force origin "preview-${{ github.event.pull_request.number }}"
           else
             echo ::set-output name=changes::$(echo 'no_changes')
