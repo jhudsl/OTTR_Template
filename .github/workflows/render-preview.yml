@@ -70,9 +70,7 @@ jobs:
           branch_name='check-${{ github.event.pull_request.number }}'
           git diff $branch_name origin/main -- docs >/dev/null && changes=true || changes=false
           echo $changes
-          if -z $changes; then
-            echo ::set-output name=changes::$(echo 'no_changes')
-          else
+          if $changes == true; then
             echo ::set-output name=changes::$(echo 'changes')
             git add . --force
             git commit -m 'Render bookdown preview'

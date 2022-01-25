@@ -31,8 +31,7 @@ jobs:
           branch_name='check-${{ github.event.pull_request.number }}'
           git ls-remote https://${{ secrets.GH_PAT }}@github.com/$GITHUB_REPOSITORY $branch_name >/dev/null && exists=true || exists=false
           echo $exists
-          if $exists == true
-          then
+          if $exists == true; then
             git checkout $branch_name
           else
             git checkout -b $branch_name
