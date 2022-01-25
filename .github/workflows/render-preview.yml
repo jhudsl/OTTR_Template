@@ -68,10 +68,9 @@ jobs:
         id: commit
         run: |
           branch_name='check-${{ github.event.pull_request.number }}'
-          changes=$(git diff $branch_name origin/main -- docs)
+          git diff $branch_name origin/main -- docs >/dev/null && changes=true || changes=false
           echo $changes
-          if [-z $changes]
-          then
+          if -z $changes; then
             echo ::set-output name=changes::$(echo 'no_changes')
           else
             echo ::set-output name=changes::$(echo 'changes')
@@ -80,6 +79,7 @@ jobs:
             git pull --set-upstream origin $branch_name --allow-unrelated-histories
             git push
           fi
+        shell: bash
 
       - name: Find Comment
         uses: peter-evans/find-comment@v1

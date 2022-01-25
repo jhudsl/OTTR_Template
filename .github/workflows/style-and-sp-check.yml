@@ -38,6 +38,7 @@ jobs:
             git checkout -b $branch_name
             git push --set-upstream origin $branch_name
           fi
+        shell: bash
 
       - name: Run spell check
         id: spell_check_run
@@ -55,9 +56,9 @@ jobs:
       - name: Commit spell check errors
         run: |
           branch_name='check-${{ github.event.pull_request.number }}'
-          changes=$(git diff $branch_name origin/main -- resources/spell_check_results.tsv)
+          git diff $branch_name origin/main -- resources/spell_check_results.tsv >/dev/null && changes=true || changes=false
           echo $changes
-          if [-z $changes]
+          if -z $changes;
           then
             echo 'No spelling errors to commit'
           else
@@ -66,6 +67,7 @@ jobs:
             git pull --set-upstream origin $branch_name --allow-unrelated-histories
             git push origin $branch_name
           fi
+        shell: bash
 
       - name: Build components of the spell check comment
         id: build-components
