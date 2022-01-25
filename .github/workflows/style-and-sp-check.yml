@@ -54,13 +54,14 @@ jobs:
 
       - name: Commit spell check errors
         run: |
-          changes=$(git diff --name-only -- docs)
+          branch_name='check-${{ github.event.pull_request.number }}'
+          changes=$(git diff $branch_name origin/main -- resources/spell_check_results.tsv)
+
           if -z $changes
           then
             echo 'No spelling errors to commit'
           else
-            branch_name='check-${{ github.event.pull_request.number }}'
-            git add --force spell_check_results.tsv
+            git add --force resources/spell_check_results.tsv
             git commit -m 'Add spell check file'
             git pull --set-upstream origin $branch_name --allow-unrelated-histories
             git push origin $branch_name

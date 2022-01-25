@@ -67,7 +67,8 @@ jobs:
       - name: Commit rendered bookdown files to preview branch
         id: commit
         run: |
-          changes=$(git diff --name-only -- docs)
+          branch_name='check-${{ github.event.pull_request.number }}'
+          changes=$(git diff $branch_name origin/main -- docs)
 
           if -z $changes
           then
