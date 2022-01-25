@@ -17,13 +17,12 @@ jobs:
     container:
       image: jhudsl/course_template
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Checkout files
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          
+
       - name: login as jhudsl-robot
         run: |
           git config --local user.email "itcrtrainingnetwork@gmail.com"
@@ -35,6 +34,7 @@ jobs:
           results=$(Rscript "scripts/spell-check.R")
           echo "::set-output name=sp_chk_results::$results"
           cat resources/spell_check_results.tsv
+
       - name: Archive spelling errors
         uses: actions/upload-artifact@v2
         with:
@@ -49,12 +49,12 @@ jobs:
           if $exists == true
           then
             git checkout $branch_name
-            git pull --set-upstream origin $branch_name --allow-unrelated-histories
           else
             git checkout -b $branch_name
           fi
           git add --force resources/spell_check_results.tsv
           git commit -m 'Add spell check file'
+          if $exists; then git pull --set-upstream origin $branch_name --allow-unrelated-histories fi
           git push --force --set-upstream origin $branch_name
 
       - name: Build components of the spell check comment

@@ -59,6 +59,7 @@ jobs:
         id: commit
         run: |
           changes=$(git diff --name-only -- docs)
+          git pull
 
           if -z $changes
           then
@@ -67,6 +68,7 @@ jobs:
             echo ::set-output name=changes::$(echo 'changes')
             git add . --force
             git commit -m 'Render bookdown preview'
+            git pull --set-upstream origin $branch_name --allow-unrelated-histories
             git push --force origin "preview-${{ github.event.pull_request.number }}"
           fi
 
