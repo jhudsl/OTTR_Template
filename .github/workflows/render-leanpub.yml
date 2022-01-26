@@ -1,0 +1,57 @@
+
+# This code was originally written by Josh Shapiro and Candace Savonen
+# for the Childhood Cancer Data Lab, an initiative of Alexs Lemonade Stand Foundation.
+# https://github.com/AlexsLemonade/refinebio-examples/blob/33cdeff66d57f9fe8ee4fcb5156aea4ac2dce07f/.github/workflows/style-and-sp-check.yml#L1
+
+# Adapted for this jhudsl repository by Candace Savonen Apr 2021
+
+name: Render and publish Leanpub
+
+# Controls when the action will run. Triggers the workflow on push
+# events only for the master branch
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [closed]
+
+jobs:
+  publish:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          # get the full repo
+          fetch-depth: 0
+          # use github PAT
+          token: ${{ secrets.GH_PAT }}
+
+#      # Run leanbuild checks
+#      - name: Run leanbuild checks
+#        run: |
+#          docker run \
+#          --mount type=bind,target=/home/rstudio,source=$PWD \
+#          jhudsl/course_template \
+#          Rscript --vanilla scipts/leanbuild_checks.R
+
+      # Run leanpub rendering
+      - name: Run leanbuild::bookdown_to_leanpub
+        run: |
+          docker run \
+          --mount type=bind,target=/home/rstudio,source=$PWD \
+          jhudsl/course_template \
+          Rscript -e "leanbuild::bookdown_to_leanpub(footer_text = '*Please provide any feedback with [this form!](https://forms.gle/hc8Xt3Y2Znjb6M4Y7) We appreciate your thoughts.*');
+          leanbuild::render_coursera(convert_quizzes = TRUE)"
+
+      # Commit the rendered leanpub files
+      - name: Commit rendered leanpub files
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add -A
+          git add --force manuscript/*
+          git commit -m 'Render leanpub' || echo "No changes to commit"
+          git push origin main || echo "No changes to push"
