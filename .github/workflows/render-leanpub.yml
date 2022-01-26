@@ -7,13 +7,21 @@ name: Render and publish Leanpub
 # events only for the master branch
 on:
   workflow_dispatch:
-  pull_request:
-    types: [closed]
+#  pull_request:
+#    branches: [ main ]
+#    types: [closed]
+#    paths:
+#      - '**.Rmd'
+#      - docker/*
+#      - assets/*
+#      - quizzes/*
 
 jobs:
-  publish:
-    # The type of runner that the job will run on
+  # This workflow contains a single job called "build-all"
+  render-main:
     runs-on: ubuntu-latest
+    container:
+      image: jhudsl/course_template
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -28,10 +36,7 @@ jobs:
       # Run leanpub rendering
       - name: Run leanbuild::bookdown_to_leanpub
         run: |
-          docker run \
-          --mount type=bind,target=/home/rstudio,source=$PWD \
-          jhudsl/course_template \
-          Rscript -e "leanbuild::bookdown_to_leanpub(footer_text = '*Please provide any feedback with [this form!](https://forms.gle/hc8Xt3Y2Znjb6M4Y7) We appreciate your thoughts.*');
+          Rscript -e "leanbuild::bookdown_to_leanpub(make_book_txt = TRUE);
           leanbuild::render_coursera(convert_quizzes = TRUE)"
 
       # Commit the rendered leanpub files

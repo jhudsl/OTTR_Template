@@ -4,10 +4,12 @@
 name: Check Leanpub Quizzes
 
 on:
-  pull_request:
-    branches: [ main, staging]
-    paths:
-      - 'quizzes/*'
+  workflow_dispatch:
+#  pull_request:
+#    branches: [ main, staging]
+#    paths:
+#      - 'quizzes/*'
+
 jobs:
   check-quizzes:
     runs-on: ubuntu-latest
