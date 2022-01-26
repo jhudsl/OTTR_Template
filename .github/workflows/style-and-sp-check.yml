@@ -54,7 +54,7 @@ jobs:
 
       - name: Commit spell check errors
         run: |
-          branch_name='check-${{ github.event.pull_request.number }}'
+          branch_name='preview-${{ github.event.pull_request.number }}'
           git diff --name-only origin/main -- resources/spell_check_results.tsv >/dev/null && changes=true || changes=false
           echo $changes
           if $changes == true; then
