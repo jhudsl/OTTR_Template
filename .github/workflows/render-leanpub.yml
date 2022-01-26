@@ -5,6 +5,7 @@ name: Render and publish Leanpub
 
 on:
   workflow_dispatch:
+### UNCOMMENT THIS SECTION IF YOU WISH PREPARE YOUR COURSE FOR LEANPUB AUTOMATICALLY
 #  pull_request:
 #    branches: [ main ]
 #    types: [closed]
@@ -13,7 +14,7 @@ on:
 #      - docker/*
 #      - assets/*
 #      - quizzes/*
-
+######### END OF SECTION #########
 jobs:
   # This workflow contains a single job called "build-all"
   render-main:

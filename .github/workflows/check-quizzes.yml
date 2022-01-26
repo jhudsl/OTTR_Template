@@ -5,11 +5,12 @@ name: Check Leanpub Quizzes
 
 on:
   workflow_dispatch:
+### UNCOMMENT THIS SECTION IF YOU WISH PREPARE YOUR COURSE QUIZZES FOR LEANPUB AUTOMATICALLY
 #  pull_request:
 #    branches: [ main, staging]
 #    paths:
 #      - 'quizzes/*'
-
+######### END OF SECTION #########
 jobs:
   check-quizzes:
     runs-on: ubuntu-latest
