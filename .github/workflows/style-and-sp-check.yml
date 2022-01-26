@@ -30,14 +30,12 @@ jobs:
 
           branch_name='check-${{ github.event.pull_request.number }}'
           git ls-remote https://${{ secrets.GH_PAT }}@github.com/$GITHUB_REPOSITORY $branch_name >/dev/null && exists=true || exists=false
-          echo $exists
           if $exists == true; then
             git checkout $branch_name
+            git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
           else
             git checkout -b $branch_name
-            git push --set-upstream origin $branch_name
           fi
-        shell: bash
 
       - name: Run spell check
         id: spell_check_run
@@ -55,18 +53,18 @@ jobs:
       - name: Commit spell check errors
         run: |
           branch_name='check-${{ github.event.pull_request.number }}'
-          git diff $branch_name origin/main -- resources/spell_check_results.tsv >/dev/null && changes=true || changes=false
+          git diff --name-only origin/main -- resources/spell_check_results.tsv >/dev/null && changes=true || changes=false
           echo $changes
-          if -z $changes;
-          then
-            echo 'No spelling errors to commit'
-          else
-            git add --force resources/spell_check_results.tsv
-            git commit -m 'Add spell check file'
-            git pull --set-upstream origin $branch_name --allow-unrelated-histories
-            git push origin $branch_name
+          if $changes == true; then
+            git diff --name-only origin/$branch_name -- resources/spell_check_results.tsv >/dev/null && changes=true || changes=false
+            echo $changes
+            if $changes == true; then
+              git add --force resources/spell_check_results.tsv
+              git diff-index --quiet HEAD || git commit -m 'Add spell check file'
+              git pull --set-upstream origin $branch_name --allow-unrelated-histories
+              git push --force origin $branch_name
+            fi
           fi
-        shell: bash
 
       - name: Build components of the spell check comment
         id: build-components

@@ -34,9 +34,9 @@ jobs:
           if $exists == true
           then
             git checkout $branch_name
+            git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
           else
             git checkout -b $branch_name
-            git push --set-upstream origin $branch_name
           fi
 
           rm -r docs/*
@@ -68,14 +68,18 @@ jobs:
         id: commit
         run: |
           branch_name='check-${{ github.event.pull_request.number }}'
-          git diff $branch_name origin/main -- docs >/dev/null && changes=true || changes=false
+          git diff --name-only origin/main -- docs >/dev/null && changes=true || changes=false
           echo $changes
           if $changes == true; then
             echo ::set-output name=changes::$(echo 'changes')
-            git add . --force
-            git commit -m 'Render bookdown preview'
-            git pull --set-upstream origin $branch_name --allow-unrelated-histories
-            git push
+            git diff --name-only origin/$branch_name -- docs/ >/dev/null && changes=true || changes=false
+            echo $changes
+            if $changes == true; then
+              git add . --force
+              git commit -m 'Render bookdown preview'
+              git pull --set-upstream origin $branch_name --allow-unrelated-histories
+              git push
+            fi
           fi
         shell: bash
 
