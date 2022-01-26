@@ -37,6 +37,7 @@ jobs:
           else
             echo branch doesnt exist
             git checkout -b $branch_name
+            git push -u
           fi
 
       - name: Run spell check
