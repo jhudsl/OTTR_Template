@@ -42,6 +42,7 @@ jobs:
           fi
 
           rm -r docs/*
+        shell: bash
 
       # Run bookdown rendering
       - name: Run bookdown render

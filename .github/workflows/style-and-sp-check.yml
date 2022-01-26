@@ -39,6 +39,7 @@ jobs:
             git checkout -b $branch_name
             git push --set-upstream origin $branch_name
           fi
+        shell: bash
 
       - name: Run spell check
         id: spell_check_run
