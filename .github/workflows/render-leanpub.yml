@@ -1,0 +1,48 @@
+
+# Jan 2022 Candace Savonen
+
+name: Render and publish Leanpub
+
+on:
+  workflow_dispatch:
+#  pull_request:
+#    branches: [ main ]
+#    types: [closed]
+#    paths:
+#      - '**.Rmd'
+#      - docker/*
+#      - assets/*
+#      - quizzes/*
+
+jobs:
+  # This workflow contains a single job called "build-all"
+  render-main:
+    runs-on: ubuntu-latest
+    container:
+      image: jhudsl/course_template
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          # get the full repo
+          fetch-depth: 0
+          # use github PAT
+          token: ${{ secrets.GH_PAT }}
+
+      # Run leanpub rendering
+      - name: Run leanbuild::bookdown_to_leanpub
+        run: |
+          Rscript -e "leanbuild::bookdown_to_leanpub(make_book_txt = TRUE);
+          leanbuild::render_coursera(convert_quizzes = TRUE)"
+
+      # Commit the rendered leanpub files
+      - name: Commit rendered leanpub files
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add -A
+          git add --force manuscript/*
+          git commit -m 'Render leanpub' || echo "No changes to commit"
+          git push origin main || echo "No changes to push"
