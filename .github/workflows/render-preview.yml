@@ -29,7 +29,18 @@ jobs:
           git config --local user.email "itcrtrainingnetwork@gmail.com"
           git config --local user.name "jhudsl-robot"
 
-          git checkout -b "preview-${{ github.event.pull_request.number }}"
+          branch_name='preview-${{ github.event.pull_request.number }}'
+          exists=$(git ls-remote https://${{ secrets.GH_PAT }}@github.com/$GITHUB_REPOSITORY $branch_name | wc -l | xargs)
+          if [[ $exists -gt 0 ]];then
+            echo branch does exist
+            git checkout $branch_name
+            git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
+          else
+            echo branch doesnt exist
+            git checkout -b $branch_name
+            git push --set-upstream origin $branch_name
+          fi
+
           rm -r docs/*
 
       # Run bookdown rendering
@@ -58,17 +69,21 @@ jobs:
       - name: Commit rendered bookdown files to preview branch
         id: commit
         run: |
-          changes=$(git diff --name-only -- docs)
-
-          if -z $changes
-          then
-            echo ::set-output name=changes::$(echo 'no_changes')
-          else
+          branch_name='preview-${{ github.event.pull_request.number }}'
+          git diff --name-only origin/main -- docs >/dev/null && changes=true || changes=false
+          echo $changes
+          if $changes == true; then
             echo ::set-output name=changes::$(echo 'changes')
-            git add . --force
-            git commit -m 'Render bookdown preview'
-            git push --force origin "preview-${{ github.event.pull_request.number }}"
+            git diff --name-only origin/$branch_name -- docs/ >/dev/null && changes=true || changes=false
+            echo $changes
+            if $changes == true; then
+              git add . --force
+              git commit -m 'Render bookdown preview'
+              git pull --set-upstream origin $branch_name --allow-unrelated-histories
+              git push
+            fi
           fi
+        shell: bash
 
       - name: Find Comment
         uses: peter-evans/find-comment@v1
