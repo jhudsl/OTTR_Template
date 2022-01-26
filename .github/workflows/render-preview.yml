@@ -32,7 +32,6 @@ jobs:
           branch_name='preview-${{ github.event.pull_request.number }}'
           exists=$(git ls-remote https://${{ secrets.GH_PAT }}@github.com/$GITHUB_REPOSITORY $branch_name)
           if -z $exists; then
-          then
             echo branch doesnt exist
             git checkout -b $branch_name
           else
