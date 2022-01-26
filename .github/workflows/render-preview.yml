@@ -31,14 +31,14 @@ jobs:
 
           branch_name='preview-${{ github.event.pull_request.number }}'
           exists=$(git ls-remote https://${{ secrets.GH_PAT }}@github.com/$GITHUB_REPOSITORY $branch_name | wc -l | xargs)
-          if [[ $exists -gt 0 ]];then
-            echo branch does exist
-            git checkout $branch_name
-            git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
-          else
+          if [[ $exists == 0 ]];then
             echo branch doesnt exist
             git checkout -b $branch_name
             git push --set-upstream origin $branch_name
+          else
+            echo branch does exist
+            git checkout $branch_name
+            git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
           fi
 
           rm -r docs/*
