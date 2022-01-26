@@ -5,7 +5,7 @@ name: Check Leanpub Quizzes
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ main, staging]
     paths:
       - 'quizzes/*'
 jobs:

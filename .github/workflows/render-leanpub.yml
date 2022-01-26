@@ -25,14 +25,6 @@ jobs:
           # use github PAT
           token: ${{ secrets.GH_PAT }}
 
-#      # Run leanbuild checks
-#      - name: Run leanbuild checks
-#        run: |
-#          docker run \
-#          --mount type=bind,target=/home/rstudio,source=$PWD \
-#          jhudsl/course_template \
-#          Rscript --vanilla scipts/leanbuild_checks.R
-
       # Run leanpub rendering
       - name: Run leanbuild::bookdown_to_leanpub
         run: |
