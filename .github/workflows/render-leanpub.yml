@@ -1,9 +1,5 @@
 
-# This code was originally written by Josh Shapiro and Candace Savonen
-# for the Childhood Cancer Data Lab, an initiative of Alexs Lemonade Stand Foundation.
-# https://github.com/AlexsLemonade/refinebio-examples/blob/33cdeff66d57f9fe8ee4fcb5156aea4ac2dce07f/.github/workflows/style-and-sp-check.yml#L1
-
-# Adapted for this jhudsl repository by Candace Savonen Apr 2021
+# Jan 2022 Candace Savonen
 
 name: Render and publish Leanpub
 
