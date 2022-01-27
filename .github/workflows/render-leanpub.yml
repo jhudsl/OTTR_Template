@@ -54,7 +54,7 @@ jobs:
           mkdir -p manuscript/chapt_screen_images
           cd manuscript/chapt_screen_images
 
-          xdocker run --rm -it -v ${PWD}:/tmp/ nutellinoit/pageres $chapt_urls 900x600
+          docker run --rm -it -v ${PWD}:/tmp/ nutellinoit/pageres $chapt_urls 900x600
 
       # Commit the rendered leanpub files
     #  - name: Commit rendered leanpub files
