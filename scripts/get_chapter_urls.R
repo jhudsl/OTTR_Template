@@ -25,7 +25,9 @@ opt <- optparse::parse_args(opt_parser)
 # Find .git root directory
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 
-chapt_df <- cow::get_chapters(opt$repo, retrieve_keywords = FALSE)
+chapt_df <- cow::get_chapters(repo_name = opt$repo, 
+                              git_pat = opt$git_pat,
+                              retrieve_keywords = FALSE)
 
 urls <- unique(chapt_df$url)
 
