@@ -5,6 +5,8 @@ name: Render and publish Leanpub
 
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [ main ]
 ### UNCOMMENT THIS SECTION IF YOU WISH PREPARE YOUR COURSE FOR LEANPUB AUTOMATICALLY
 #  pull_request:
 #    branches: [ main ]
@@ -34,19 +36,32 @@ jobs:
           token: ${{ secrets.GH_PAT }}
 
       # Run leanpub rendering
-      - name: Run leanbuild::bookdown_to_leanpub
-        run: Rscript -e "leanbuild::bookdown_to_leanpub(make_book_txt = TRUE)"
+#      - name: Run leanbuild::bookdown_to_leanpub
+#        run: Rscript -e "leanbuild::bookdown_to_leanpub(make_book_txt = TRUE)"
 
       # Convert quizzes to Coursera format
-      - name: Convert quizzes to coursera
-        run: Rscript -e "leanbuild::render_coursera(convert_quizzes = TRUE)"
+#      - name: Convert quizzes to coursera
+#        run: Rscript -e "leanbuild::render_coursera(convert_quizzes = TRUE)"
+
+      # Create pngs of chapters
+      - name: Create pngs of chapters
+        run: |
+        chapt_urls=$(Rscript --vanilla scripts/get_chapter_urls.R \
+          --git_pat ${{ secrets.GH_PAT }} \
+          --gist_key $GITHUB_REPOSITORY)
+        echo $chapt_urls
+
+        mkdir -p manuscript/chapt_screen_images
+        cd manuscript/chapt_screen_images
+
+        docker run --rm -it -v ${PWD}:/tmp/ nutellinoit/pageres $chapt_urls 900x600
 
       # Commit the rendered leanpub files
-      - name: Commit rendered leanpub files
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add -A
-          git add --force manuscript/*
-          git commit -m 'Render leanpub' || echo "No changes to commit"
-          git push origin main || echo "No changes to push"
+    #  - name: Commit rendered leanpub files
+        #run: |
+        #  git config --local user.email "actions@github.com"
+        #  git config --local user.name "GitHub Actions"
+        #  git add -A
+        #  git add --force manuscript/*
+        #  git commit -m 'Render leanpub' || echo "No changes to commit"
+        #  git push origin main || echo "No changes to push"
