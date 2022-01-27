@@ -48,7 +48,7 @@ jobs:
         run: |
           chapt_urls=$(Rscript --vanilla scripts/get_chapter_urls.R \
             --git_pat ${{ secrets.GH_PAT }} \
-            --gist_key $GITHUB_REPOSITORY)
+            --repo $GITHUB_REPOSITORY)
           echo $chapt_urls
 
           mkdir -p manuscript/chapt_screen_images
