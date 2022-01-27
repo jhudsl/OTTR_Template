@@ -22,8 +22,7 @@ jobs:
   # This workflow contains a single job called "build-all"
   render-main:
     runs-on: ubuntu-latest
-    container:
-      image: jhudsl/course_template
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -42,19 +41,24 @@ jobs:
       # Convert quizzes to Coursera format
 #      - name: Convert quizzes to coursera
 #        run: Rscript -e "leanbuild::render_coursera(convert_quizzes = TRUE)"
+      - name: Create pngs of chapters
+        id: chapt_urls
+        run: |
+          chapt_urls=$(docker run \
+          --mount type=bind,target=/home/rstudio,source=$PWD \
+          jhudsl/course_template \
+          Rscript --vanilla scripts/get_chapter_urls.R \
+            --git_pat ${{ secrets.GH_PAT }} \
+            --repo $GITHUB_REPOSITORY)
+
+          echo ::set-output name=chapt_urls::$chapt_urls
 
       # Create pngs of chapters
       - name: Create pngs of chapters
         run: |
-          chapt_urls=$(Rscript --vanilla scripts/get_chapter_urls.R \
-            --git_pat ${{ secrets.GH_PAT }} \
-            --repo $GITHUB_REPOSITORY)
-          echo $chapt_urls
-
           mkdir -p manuscript/chapt_screen_images
           cd manuscript/chapt_screen_images
-
-          docker run --rm -it -v ${PWD}:/tmp/ nutellinoit/pageres $chapt_urls 900x600
+          docker run --rm -it -v ${PWD}:/tmp/ nutellinoit/pageres ${{ steps.chapt_urls.outputs.chapt_urls }} 900x600
 
       # Commit the rendered leanpub files
     #  - name: Commit rendered leanpub files
