@@ -11,6 +11,7 @@ on:
 #    paths:
 #      - 'quizzes/*'
 ######### END OF SECTION #########
+
 jobs:
   check-quizzes:
     runs-on: ubuntu-latest

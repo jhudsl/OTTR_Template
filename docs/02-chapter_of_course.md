@@ -54,7 +54,7 @@ And make plots too:
 hist_plot <- hist(iris$Sepal.Length)
 ```
 
-![](resources/images/02-chapter_of_course_files/figure-docx/unnamed-chunk-4-1.png)<!-- -->
+<img src="resources/images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 You can also save these plots to file:
 
@@ -102,7 +102,7 @@ dev.off()
 
 How to include a Google slide. It's simplest to use the `leanbuild` package:
 
-![](resources/images/02-chapter_of_course_files/figure-docx//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png)
+<img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
 
 But if you have the slide or some other image locally downloaded you can also use html like this:
 
@@ -118,11 +118,7 @@ You can use `knitr::include_url()` like this:
 knitr::include_url("https://www.youtube.com/embed/VOCYL-FNbr0")
 ```
 
-```
-## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
-```
-
-<iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="100%" height="400px"></iframe>
+<iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
 
 OR this works:
 
@@ -132,7 +128,7 @@ OR this works:
 
 This works:
 
-<iframe src="https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf" width="100%" height="800px"></iframe>
+<iframe src="https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf" width="672" height="800px"></iframe>
 
 Or this:
 
@@ -153,7 +149,7 @@ This works:
 knitr::include_url("https://yihui.org")
 ```
 
-<iframe src="https://yihui.org" width="100%" height="400px"></iframe>
+<iframe src="https://yihui.org" width="672" height="400px"></iframe>
 
 OR this:
 
@@ -207,13 +203,13 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2022-01-24                  
+##  date     2022-01-26                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
 ##  assertthat    0.2.1      2019-03-21 [1] RSPM (R 4.0.3)                    
 ##  backports     1.1.10     2020-09-15 [1] RSPM (R 4.0.2)                    
-##  bookdown      0.24       2022-01-19 [1] Github (rstudio/bookdown@88bc4ea) 
+##  bookdown      0.24       2022-01-26 [1] Github (rstudio/bookdown@88bc4ea) 
 ##  callr         3.4.4      2020-09-07 [1] RSPM (R 4.0.2)                    
 ##  cli           2.0.2      2020-02-28 [1] RSPM (R 4.0.0)                    
 ##  crayon        1.3.4      2017-09-16 [1] RSPM (R 4.0.0)                    
@@ -225,13 +221,13 @@ devtools::session_info()
 ##  evaluate      0.14       2019-05-28 [1] RSPM (R 4.0.3)                    
 ##  fansi         0.4.1      2020-01-08 [1] RSPM (R 4.0.0)                    
 ##  fs            1.5.0      2020-07-31 [1] RSPM (R 4.0.3)                    
-##  glue          1.6.0      2021-12-17 [1] CRAN (R 4.0.2)                    
+##  glue          1.6.1      2022-01-22 [1] CRAN (R 4.0.2)                    
 ##  highr         0.8        2019-03-20 [1] RSPM (R 4.0.3)                    
 ##  hms           0.5.3      2020-01-08 [1] RSPM (R 4.0.0)                    
 ##  htmltools     0.5.0      2020-06-16 [1] RSPM (R 4.0.1)                    
 ##  httr          1.4.2      2020-07-20 [1] RSPM (R 4.0.3)                    
-##  knitr         1.33       2022-01-19 [1] Github (yihui/knitr@a1052d1)      
-##  leanbuild     0.1.2      2022-01-19 [1] Github (jhudsl/leanbuild@1d387e1) 
+##  knitr         1.33       2022-01-26 [1] Github (yihui/knitr@a1052d1)      
+##  leanbuild     0.1.2      2022-01-26 [1] Github (jhudsl/leanbuild@1d387e1) 
 ##  lifecycle     1.0.0      2021-02-15 [1] CRAN (R 4.0.2)                    
 ##  magrittr    * 1.5        2014-11-22 [1] RSPM (R 4.0.0)                    
 ##  memoise       1.1.0      2017-04-21 [1] RSPM (R 4.0.0)                    
@@ -246,20 +242,18 @@ devtools::session_info()
 ##  R6            2.4.1      2019-11-12 [1] RSPM (R 4.0.0)                    
 ##  readr         1.4.0      2020-10-05 [1] RSPM (R 4.0.2)                    
 ##  remotes       2.2.0      2020-07-21 [1] RSPM (R 4.0.3)                    
-##  rlang         0.4.10     2022-01-19 [1] Github (r-lib/rlang@f0c9be5)      
-##  rmarkdown     2.10       2022-01-19 [1] Github (rstudio/rmarkdown@02d3c25)
+##  rlang         0.4.10     2022-01-26 [1] Github (r-lib/rlang@f0c9be5)      
+##  rmarkdown     2.10       2022-01-26 [1] Github (rstudio/rmarkdown@02d3c25)
 ##  rprojroot     1.3-2      2018-01-03 [1] RSPM (R 4.0.0)                    
 ##  sessioninfo   1.1.1      2018-11-05 [1] RSPM (R 4.0.3)                    
 ##  stringi       1.5.3      2020-09-09 [1] RSPM (R 4.0.3)                    
 ##  stringr       1.4.0      2019-02-10 [1] RSPM (R 4.0.3)                    
-##  testthat      3.0.1      2022-01-19 [1] Github (R-lib/testthat@e99155a)   
+##  testthat      3.0.1      2022-01-26 [1] Github (R-lib/testthat@e99155a)   
 ##  tibble        3.0.3      2020-07-10 [1] RSPM (R 4.0.2)                    
-##  usethis       2.1.5.9000 2022-01-19 [1] Github (r-lib/usethis@3c4ab66)    
+##  usethis       2.1.5.9000 2022-01-26 [1] Github (r-lib/usethis@57b109a)    
 ##  vctrs         0.3.4      2020-08-29 [1] RSPM (R 4.0.2)                    
-##  webshot       0.5.2      2019-11-22 [1] RSPM (R 4.0.3)                    
 ##  withr         2.3.0      2020-09-22 [1] RSPM (R 4.0.2)                    
-##  xfun          0.26       2022-01-19 [1] Github (yihui/xfun@74c2a66)       
-##  yaml          2.2.1      2020-02-01 [1] RSPM (R 4.0.3)                    
+##  xfun          0.26       2022-01-26 [1] Github (yihui/xfun@74c2a66)       
 ## 
 ## [1] /usr/local/lib/R/site-library
 ## [2] /usr/local/lib/R/library
