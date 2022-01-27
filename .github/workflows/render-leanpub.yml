@@ -37,6 +37,7 @@ jobs:
       # Run leanpub rendering
       - name: Install packages we need
         run: |
+          Rscript -e "install.packages('remotes')"
           Rscript -e "remotes::install_github("jhudsl/cow", auth_token = ${{ secrets.GH_PAT }})"
           Rscript -e "install.packages(optparse)"
 
