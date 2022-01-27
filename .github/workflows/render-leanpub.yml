@@ -37,6 +37,8 @@ jobs:
       # Run leanpub rendering
       - name: Install packages we need
         run: |
+          sudo apt install dirmngr gnupg apt-transport-https ca-certificates software-properties-common
+          sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/'
           sudo apt install r-base
           Rscript -e "install.packages('devtools')"
           Rscript -e "devtools::install_github("jhudsl/cow", auth_token = ${{ secrets.GH_PAT }})"
