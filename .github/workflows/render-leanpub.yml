@@ -35,6 +35,12 @@ jobs:
           token: ${{ secrets.GH_PAT }}
 
       # Run leanpub rendering
+      - name: Install packages we need
+        run: |
+          Rscript -e "remotes::install_github("jhudsl/cow", auth_token = ${{ secrets.GH_PAT }})"
+          Rscript -e "install.packages(optparse)"
+
+      # Run leanpub rendering
 #      - name: Run leanbuild::bookdown_to_leanpub
 #        run: Rscript -e "leanbuild::bookdown_to_leanpub(make_book_txt = TRUE)"
 
@@ -44,21 +50,9 @@ jobs:
       - name: Create pngs of chapters
         id: chapt_urls
         run: |
-          chapt_urls=$(docker run \
-          --mount type=bind,target=/home/rstudio,source=$PWD \
-          jhudsl/course_template \
           Rscript --vanilla scripts/get_chapter_urls.R \
             --git_pat ${{ secrets.GH_PAT }} \
             --repo $GITHUB_REPOSITORY)
-
-          echo ::set-output name=chapt_urls::$chapt_urls
-
-      # Create pngs of chapters
-      - name: Create pngs of chapters
-        run: |
-          mkdir -p manuscript/chapt_screen_images
-          cd manuscript/chapt_screen_images
-          docker run --rm -it -v ${PWD}:/tmp/ nutellinoit/pageres ${{ steps.chapt_urls.outputs.chapt_urls }} 900x600
 
       # Commit the rendered leanpub files
     #  - name: Commit rendered leanpub files

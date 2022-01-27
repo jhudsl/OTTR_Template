@@ -25,11 +25,21 @@ opt <- optparse::parse_args(opt_parser)
 # Find .git root directory
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 
-chapt_df <- cow::get_chapters(repo_name = opt$repo, 
+chapt_df <- cow::get_chapters(repo_name = opt$repo,
                               git_pat = opt$git_pat,
                               retrieve_keywords = FALSE)
 
 urls <- unique(chapt_df$url)
 
-# Print out download url 
+output_folder <- file.path(root_dir, "manuscript", "chapt_screen_images")
+
+if (!dir.exists(output_folder)) {
+  dir.create(output_folder, recursive = TRUE)
+}
+
+lapply(urls, function(url) {
+  system(paste0("docker run --rm -it -v ", output_folder, ":/tmp/ nutellinoit/pageres ", url))
+  })
+
+# Print out download url
 write(urls, stdout())
