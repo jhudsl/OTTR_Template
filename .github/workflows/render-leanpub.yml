@@ -37,7 +37,7 @@ jobs:
       # Run leanpub rendering
       - name: Install packages we need
         run: |
-          echo "R_LIBS=/usr/local/lib/R/site-library" > .Renviron
+          sudo apt install r-base
           Rscript -e "install.packages('devtools')"
           Rscript -e "devtools::install_github("jhudsl/cow", auth_token = ${{ secrets.GH_PAT }})"
           Rscript -e "install.packages(optparse)"
