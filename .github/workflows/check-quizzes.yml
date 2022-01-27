@@ -5,10 +5,12 @@ name: Check Leanpub Quizzes
 
 on:
   workflow_dispatch:
+### UNCOMMENT THIS SECTION IF YOU WISH PREPARE YOUR COURSE QUIZZES FOR LEANPUB AUTOMATICALLY
 #  pull_request:
 #    branches: [ main, staging]
 #    paths:
 #      - 'quizzes/*'
+######### END OF SECTION #########
 
 jobs:
   check-quizzes:
@@ -35,6 +37,7 @@ jobs:
             git push --set-upstream origin $branch_name
           else
             echo branch does exist
+            git fetch --all
             git checkout $branch_name
             git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
           fi

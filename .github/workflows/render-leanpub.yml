@@ -5,6 +5,7 @@ name: Render and publish Leanpub
 
 on:
   workflow_dispatch:
+### UNCOMMENT THIS SECTION IF YOU WISH PREPARE YOUR COURSE FOR LEANPUB AUTOMATICALLY
 #  pull_request:
 #    branches: [ main ]
 #    types: [closed]
@@ -13,6 +14,7 @@ on:
 #      - docker/*
 #      - assets/*
 #      - quizzes/*
+######### END OF SECTION #########
 
 jobs:
   # This workflow contains a single job called "build-all"
@@ -33,9 +35,11 @@ jobs:
 
       # Run leanpub rendering
       - name: Run leanbuild::bookdown_to_leanpub
-        run: |
-          Rscript -e "leanbuild::bookdown_to_leanpub(make_book_txt = TRUE);
-          leanbuild::render_coursera(convert_quizzes = TRUE)"
+        run: Rscript -e "leanbuild::bookdown_to_leanpub(make_book_txt = TRUE)"
+
+      # Convert quizzes to Coursera format
+      - name: Convert quizzes to coursera
+        run: Rscript -e "leanbuild::render_coursera(convert_quizzes = TRUE)"
 
       # Commit the rendered leanpub files
       - name: Commit rendered leanpub files
