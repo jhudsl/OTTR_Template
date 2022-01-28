@@ -39,7 +39,6 @@ jobs:
       # Run leanpub rendering
       - name: Run the screenshot creation
         run: |
-          chapt_urls=$(Rscript --vanilla home/rstudio/scripts/get_chapter_urls.R \
             --git_pat ${{ secrets.GH_PAT }} \
             --repo $GITHUB_REPOSITORY)
 
