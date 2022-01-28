@@ -31,14 +31,14 @@ RUN apt-get autoremove
 RUN npm install --global nightmare xvfb pageres-cli --unsafe-perm
 
 # Install R
-RUN apt-get update && apt-get install -y r-base
+RUN apt-get update && apt-get install -y r-base curl
 
 # Install R packages
-RUN Rscript -e "install.packages(c('optparse', 'devtools'), repos = 'http://cran.us.r-project.org')"
+RUN Rscript -e "install.packages(c('optparse', 'remotes', 'curl'), repos = 'http://cran.us.r-project.org')"
 
 # Copy over git token and package list
 COPY git_token.txt .
 
 # Install cow
-RUN Rscript -e "devtools::install_github('jhudsl/cow', auth_token = readLines(git_token.txt))"
+RUN Rscript -e "remotes::install_github('jhudsl/cow', auth_token = readLines('git_token.txt'))"
 RUN rm git_token.txt
