@@ -37,12 +37,12 @@ jobs:
           token: ${{ secrets.GH_PAT }}
 
       # Run leanpub rendering
-      - name: Install packages we need
+      - name: Run the screenshot creation
         run: |
           chapt_urls=$(Rscript --vanilla home/rstudio/scripts/get_chapter_urls.R \
             --git_pat ${{ secrets.GH_PAT }} \
             --repo $GITHUB_REPOSITORY)
-            
+
       # Run leanpub rendering
 #      - name: Run leanbuild::bookdown_to_leanpub
 #        run: Rscript -e "leanbuild::bookdown_to_leanpub(make_book_txt = TRUE)"
