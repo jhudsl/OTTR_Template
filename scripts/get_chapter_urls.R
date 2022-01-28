@@ -1,12 +1,12 @@
 #!/usr/bin/env Rscript
 # Written by Candace Savonen Jan 2022
 
-if (!'devtools' %in% installed.packages()) {
-  install.packages("devtools")
+if (!('devtools' %in% installed.packages())) {
+  install.packages("devtools", repos = "http://cran.us.r-project.org")
 }
 
-if (!'optparse' %in% installed.packages()) {
-  install.packages("optparse")
+if (!('optparse' %in% installed.packages())) {
+  install.packages("optparse", repos = "http://cran.us.r-project.org")
 }
 
 library(optparse)
@@ -30,8 +30,8 @@ option_list <- list(
 opt_parser <- optparse::OptionParser(option_list = option_list)
 opt <- optparse::parse_args(opt_parser)
 
-if (!'cow' %in% installed.packages()) {
-  devtools::install_github('jhudsl/cow', auth_token = opt$git_pat); \
+if (!('cow' %in% installed.packages())) {
+  devtools::install_github('jhudsl/cow', auth_token = opt$git_pat)
 }
 
 # Find .git root directory
