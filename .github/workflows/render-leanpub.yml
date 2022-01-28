@@ -40,9 +40,9 @@ jobs:
           docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
           rocker/r-base \
-          Rscript -e "install.packages('devtools'); \
-          devtools::install_github('jhudsl/cow', auth_token = ${{ secrets.GH_PAT }}); \
-          install.packages(optparse)"
+          Rscript --vanilla scripts/get_chapter_urls.R \
+            --git_pat ${{ secrets.GH_PAT }} \
+            --repo $GITHUB_REPOSITORY)
 
       # Run leanpub rendering
 #      - name: Run leanbuild::bookdown_to_leanpub
@@ -51,12 +51,6 @@ jobs:
       # Convert quizzes to Coursera format
 #      - name: Convert quizzes to coursera
 #        run: Rscript -e "leanbuild::render_coursera(convert_quizzes = TRUE)"
-      - name: Create pngs of chapters
-        id: chapt_urls
-        run: |
-          Rscript --vanilla scripts/get_chapter_urls.R \
-            --git_pat ${{ secrets.GH_PAT }} \
-            --repo $GITHUB_REPOSITORY)
 
       # Commit the rendered leanpub files
     #  - name: Commit rendered leanpub files
