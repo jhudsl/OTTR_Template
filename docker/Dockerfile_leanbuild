@@ -1,7 +1,16 @@
 FROM rocker/tidyverse
 LABEL maintainer="cansav09@gmail.com"
 
-RUN apt-get update && apt-get install -y wkhtmltopdf
+# Install apt-getable packages to start
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils dialog
+
+RUN apt-get install -y --no-install-recommends \
+    libxt6 \
+    libpoppler-cpp-dev \
+    vim \
+    libglpk40 \
+    curl \
+    gpg
 
 # Install R
 RUN apt-get update && apt-get install -y r-base curl
@@ -21,11 +30,11 @@ RUN Rscript -e  "install.packages( \
       'xml2', \
       'knitr', \
       'igraph', \
-      'rprojroot'))"
+      'rprojroot', \
+      'webshot'))"
 
-# Copy over git token and package list
-COPY git_token.txt .
+# Install phantomjs
+RUN Rscript -e "webshot::install_phantomjs()"
 
 # Install cow
-RUN Rscript -e "remotes::install_github('jhudsl/cow', auth_token = readLines('git_token.txt'))"
-RUN rm git_token.txt
+RUN Rscript -e "install.packages('https://github.com/jhudsl/cow/raw/main/package_bundles/cow_0.0.0.9000.tgz', repos = NULL)"
