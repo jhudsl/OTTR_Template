@@ -22,6 +22,8 @@ jobs:
   # This workflow contains a single job called "build-all"
   render-main:
     runs-on: ubuntu-latest
+    container:
+      image: jhudsl/leanbuild
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -37,17 +39,13 @@ jobs:
       # Run leanpub rendering
       - name: Install packages we need
         run: |
-          chapt_urls=$(docker run --mount type=bind,target=/home/rstudio/,source=$PWD rocker/tidyverse \
-          Rscript --vanilla home/rstudio/scripts/get_chapter_urls.R \
+          chapt_urls=$(Rscript --vanilla home/rstudio/scripts/get_chapter_urls.R \
             --git_pat ${{ secrets.GH_PAT }} \
             --repo $GITHUB_REPOSITORY)
 
           mkdir -p manuscript/chapt_screen_images
-          
-          for url in "${chapt_urls[@]}"
-          do
-            docker run --rm -it -v manuscript/chapt_screen_images:/tmp/ nutellinoit/pageres "$url"
-          done
+
+
 
       # Run leanpub rendering
 #      - name: Run leanbuild::bookdown_to_leanpub

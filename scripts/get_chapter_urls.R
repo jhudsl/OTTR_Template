@@ -40,5 +40,14 @@ chapt_df <- cow::get_chapters(repo_name = opt$repo,
 
 urls <- unique(chapt_df$url)
 
+output_folder <- file.path(root_dir, "manuscript", "chapt_screen_images")
+if (!dir.exists(output_folder)) {
+  dir.create(output_folder, recursive = TRUE)
+}
+
+lapply(urls, function(url) {
+  system(paste("wkhtmltopdf", url, file.path(output_folder, basename(url))))
+})
+
 # Print out download url
 write(urls, stdout())
