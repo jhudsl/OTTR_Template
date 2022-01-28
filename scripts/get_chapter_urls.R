@@ -1,6 +1,14 @@
 #!/usr/bin/env Rscript
+# Written by Candace Savonen Jan 2022
 
-# Written by Candace Savonen Dec 2021
+if (!'devtools' %in% installed.packages()) {
+  install.packages("devtools")
+}
+
+if (!'optparse' %in% installed.packages()) {
+  install.packages("optparse")
+}
+
 library(optparse)
 
 option_list <- list(
@@ -22,6 +30,10 @@ option_list <- list(
 opt_parser <- optparse::OptionParser(option_list = option_list)
 opt <- optparse::parse_args(opt_parser)
 
+if (!'cow' %in% installed.packages()) {
+  devtools::install_github('jhudsl/cow', auth_token = opt$git_pat); \
+}
+
 # Find .git root directory
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 
@@ -36,10 +48,6 @@ output_folder <- file.path(root_dir, "manuscript", "chapt_screen_images")
 if (!dir.exists(output_folder)) {
   dir.create(output_folder, recursive = TRUE)
 }
-
-lapply(urls, function(url) {
-  system(paste0("docker run --rm -it -v ", output_folder, ":/tmp/ nutellinoit/pageres ", url))
-  })
 
 # Print out download url
 write(urls, stdout())

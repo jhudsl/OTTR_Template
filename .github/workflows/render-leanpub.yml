@@ -37,12 +37,17 @@ jobs:
       # Run leanpub rendering
       - name: Install packages we need
         run: |
-          docker run \
+          chapt_urls=$(docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
           rocker/r-base \
           Rscript --vanilla scripts/get_chapter_urls.R \
             --git_pat ${{ secrets.GH_PAT }} \
             --repo $GITHUB_REPOSITORY)
+
+          for i in "${chapt_urls[@]}"
+          do
+            docker run --rm -it -v manuscript/chapt_screen_images:/tmp/ nutellinoit/pageres  "$i"
+          done
 
       # Run leanpub rendering
 #      - name: Run leanbuild::bookdown_to_leanpub
