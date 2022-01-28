@@ -9,6 +9,8 @@ if (!('optparse' %in% installed.packages())) {
   # install.packages("optparse", repos = "http://cran.us.r-project.org")
 }
 
+webshot::install_phantomjs()
+
 library(optparse)
 
 option_list <- list(
