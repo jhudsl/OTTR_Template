@@ -42,11 +42,7 @@ jobs:
           chapt_urls=$(Rscript --vanilla home/rstudio/scripts/get_chapter_urls.R \
             --git_pat ${{ secrets.GH_PAT }} \
             --repo $GITHUB_REPOSITORY)
-
-          mkdir -p manuscript/chapt_screen_images
-
-
-
+            
       # Run leanpub rendering
 #      - name: Run leanbuild::bookdown_to_leanpub
 #        run: Rscript -e "leanbuild::bookdown_to_leanpub(make_book_txt = TRUE)"

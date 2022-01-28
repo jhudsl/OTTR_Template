@@ -2,11 +2,11 @@
 # Written by Candace Savonen Jan 2022
 
 if (!('devtools' %in% installed.packages())) {
-  install.packages("devtools", repos = "http://cran.us.r-project.org")
+  # install.packages("remotes", repos = "http://cran.us.r-project.org")
 }
 
 if (!('optparse' %in% installed.packages())) {
-  install.packages("optparse", repos = "http://cran.us.r-project.org")
+  # install.packages("optparse", repos = "http://cran.us.r-project.org")
 }
 
 library(optparse)
@@ -31,7 +31,7 @@ opt_parser <- optparse::OptionParser(option_list = option_list)
 opt <- optparse::parse_args(opt_parser)
 
 if (!('cow' %in% installed.packages())) {
-  devtools::install_github('jhudsl/cow', auth_token = opt$git_pat)
+  # remotes::install_github('jhudsl/cow', auth_token = opt$git_pat)
 }
 
 chapt_df <- cow::get_chapters(repo_name = opt$repo,

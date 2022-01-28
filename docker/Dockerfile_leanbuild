@@ -1,4 +1,4 @@
-FROM rocker/r-base
+FROM rocker/tidyverse
 LABEL maintainer="cansav09@gmail.com"
 
 RUN apt-get update && apt-get install -y wkhtmltopdf
@@ -7,7 +7,21 @@ RUN apt-get update && apt-get install -y wkhtmltopdf
 RUN apt-get update && apt-get install -y r-base curl
 
 # Install R packages
-RUN Rscript -e "install.packages(c('optparse', 'remotes', 'curl'), repos = 'http://cran.us.r-project.org')"
+RUN Rscript -e  "install.packages( \
+    c('curl', \
+      'optparse', \
+      'gitcreds', \
+      'htm2txt', \
+      'httr', \
+      'jsonlite', \
+      'rvest', \
+      'stringi', \
+      'textrank', \
+      'udpipe', \
+      'xml2', \
+      'knitr', \
+      'igraph', \
+      'rprojroot'))"
 
 # Copy over git token and package list
 COPY git_token.txt .
