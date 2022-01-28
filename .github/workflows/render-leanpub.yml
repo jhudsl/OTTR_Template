@@ -42,6 +42,8 @@ jobs:
             --git_pat ${{ secrets.GH_PAT }} \
             --repo $GITHUB_REPOSITORY)
 
+          mkdir -p manuscript/chapt_screen_images
+          
           for url in "${chapt_urls[@]}"
           do
             docker run --rm -it -v manuscript/chapt_screen_images:/tmp/ nutellinoit/pageres "$url"
