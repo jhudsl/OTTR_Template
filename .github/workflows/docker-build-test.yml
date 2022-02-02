@@ -15,7 +15,7 @@ on:
   pull_request:
     branches:
       - 'main'
-    paths: [ docker/Dockerfile_leanbuild, docker/github_package_list.tsv ]
+    paths: [ docker/Dockerfile, docker/github_package_list.tsv ]
   workflow_dispatch:
     inputs:
       dockerhubpush:
@@ -73,8 +73,8 @@ jobs:
           push: false
           load: true
           context: docker
-          file: docker/Dockerfile_leanbuild
-          tags: jhudsl/leanbuild
+          file: docker/Dockerfile
+          tags: jhudsl/course_template
 
       # Login to Dockerhub
       - name: Login to DockerHub
