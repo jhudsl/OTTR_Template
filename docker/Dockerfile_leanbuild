@@ -1,4 +1,4 @@
-FROM rocker/tidyverse
+FROM jhudsl/course_template
 LABEL maintainer="cansav09@gmail.com"
 
 # Install apt-getable packages to start
@@ -16,22 +16,7 @@ RUN apt-get install -y --no-install-recommends \
 RUN apt-get update && apt-get install -y r-base curl
 
 # Install R packages
-RUN Rscript -e  "install.packages( \
-    c('curl', \
-      'optparse', \
-      'gitcreds', \
-      'htm2txt', \
-      'httr', \
-      'jsonlite', \
-      'rvest', \
-      'stringi', \
-      'textrank', \
-      'udpipe', \
-      'xml2', \
-      'knitr', \
-      'igraph', \
-      'rprojroot', \
-      'webshot'))"
+RUN Rscript -e  "install.packages('curl')"
 
 # Install phantomjs
 RUN apt-get update && apt-get install build-essential chrpath libssl-dev libxft-dev -y \
@@ -42,6 +27,3 @@ RUN apt-get update && apt-get install build-essential chrpath libssl-dev libxft-
   && sudo mv $PHANTOM_JS /usr/local/share \
   && sudo ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin \
   && phantomjs --version
-
-# Install cow
-RUN Rscript -e "install.packages('https://github.com/jhudsl/cow/raw/main/package_bundles/cow_0.0.0.9000.tgz', repos = NULL)"
