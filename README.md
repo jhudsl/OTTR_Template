@@ -19,6 +19,8 @@ _This template and guide helps you_:
 ## Courses that have been made using this template:
 - [Documentation and Usability](https://jhudatascience.org/Documentation_and_Usability/)
 - [Leadership for Cancer Informatics Research](https://jhudatascience.org/Informatics_Research_Leadership/)
+- [Reproducibility in Cancer Informatics](https://jhudatascience.org/Reproducibility_in_Cancer_Informatics/)
+- [Advanced Reproducibility in Cancer Informatics](https://jhudatascience.org/Adv_Reproducibility_in_Cancer_Informatics/)
 
 ## To Get Started
 - Go to the [Wiki page](https://github.com/jhudsl/OTTR_Template/wiki/Getting-started)
