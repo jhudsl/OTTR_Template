@@ -1,6 +1,6 @@
 
 ```{r, include = FALSE}
-leanbuild::set_knitr_image_path()
+ottr::set_knitr_image_path()
 ```
 
 # Introduction

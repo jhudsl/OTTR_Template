@@ -21,7 +21,8 @@ jobs:
   render-main:
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/course_template
+      image: jhudsl/ottr
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -34,12 +35,19 @@ jobs:
           token: ${{ secrets.GH_PAT }}
 
       # Run leanpub rendering
-      - name: Run leanbuild::bookdown_to_leanpub
-        run: Rscript -e "leanbuild::bookdown_to_leanpub(make_book_txt = TRUE)"
+      - name: Run the screenshot creation
+        run: |
+          chapt_urls=$(Rscript --vanilla scripts/get_chapter_urls.R \
+            --git_pat ${{ secrets.GH_PAT }} \
+            --repo $GITHUB_REPOSITORY)
+
+      # Run leanpub rendering
+      - name: Run ottr::bookdown_to_leanpub
+        run: Rscript -e "ottr::bookdown_to_leanpub(make_book_txt = TRUE)"
 
       # Convert quizzes to Coursera format
       - name: Convert quizzes to coursera
-        run: Rscript -e "leanbuild::render_coursera(convert_quizzes = TRUE)"
+        run: Rscript -e "ottr::render_coursera(convert_quizzes = TRUE)"
 
       # Commit the rendered leanpub files
       - name: Commit rendered leanpub files

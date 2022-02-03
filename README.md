@@ -11,7 +11,7 @@ _This template and guide helps you_:
   - [Bookdown](https://bookdown.org/)
   - [Coursera](https://www.coursera.org/)
 - Have [Github action robots](https://github.com/jhudsl/OTTR_Template/wiki/How-to-set-up-and-customize-GitHub-actions-robots) do your repetitive tasks like spell check and re-rendering. 
-- Use [automagic conversion](https://github.com/jhudsl/leanbuild) to ease the lift of prepping the material for different platforms' formats.
+- Use [automagic conversion](https://github.com/jhudsl/ottr) to ease the lift of prepping the material for different platforms' formats.
 - Use [our Docker image](https://hub.docker.com/repository/docker/jhudsl/course_template) for consistency across authors as well as to help you [avoid dependency hell](https://en.wikipedia.org/wiki/Dependency_hell). 
 
 <img src="https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=gf4fcf6569c_2_29" width="500"/>

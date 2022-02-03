@@ -122,11 +122,11 @@ jobs:
           signoff: false
           branch: auto_copy_rendered_files
           delete-branch: true
-          title: 'GHA: Automated transfer of leanbuild-needed files from Bookdown repository'
+          title: 'GHA: Automated transfer of ottr-needed files from Bookdown repository'
           body: |
             ### Description:
              This PR was initiated by transfer-rendered.yml in the Bookdown repository.
-             It copies over the leanbuild-needed files from Bookdown repository:
+             It copies over the ottr-needed files from Bookdown repository:
                - Rmds listed in the _bookdoown.yml
                - _bookdown.yml
                - docs/*
