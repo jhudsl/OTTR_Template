@@ -22,6 +22,7 @@ group:
     jhudsl/GDSCN_Book_SARS_Galaxy_on_AnVIL
     abyzovlab/CNVpytor_course
     opencasestudies/OCS_Guide
+    tmm211/dsp-terra-mooc-test2
 ###ADD NEW REPO HERE following the format above#
   files:
     - source: .github/workflows/render-bookdown.yml
