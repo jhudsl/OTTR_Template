@@ -14,7 +14,7 @@ option_list <- list(
     default = "github_package_list.tsv" ,
     help = "Path to a TSV with a list of packages to be installed through Github, 
     where file where the first column is the github package name e.g. 
-    jhudsl/leanbuild and the second column is the commit ID to be installed 
+    jhudsl/ottr and the second column is the commit ID to be installed 
     (to be supplied to the ref argument).
     ",
     metavar = "character"

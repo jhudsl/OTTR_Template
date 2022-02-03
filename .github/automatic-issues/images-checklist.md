@@ -12,7 +12,7 @@ See [Setting Up Images and Graphics](https://github.com/jhudsl/OTTR_Template/wik
 - [ ] The color palette choices of the slide are contrasted in a way that is friendly to those with color vision deficiencies.
 You can check this using [Color Oracle](https://colororacle.org/).
 
-- [ ] Every image is [inserted into the text](https://github.com/jhudsl/OTTR_Template/wiki/Setting-up-images-and-graphics#adding-images-and-graphics-in-text) using one of these options: `leanbuild::include_slide()`, `knitr::include_image()`, or this format: `<img src="blah.png" alt="SOMETHING">`.
+- [ ] Every image is [inserted into the text](https://github.com/jhudsl/OTTR_Template/wiki/Setting-up-images-and-graphics#adding-images-and-graphics-in-text) using one of these options: `ottr::include_slide()`, `knitr::include_image()`, or this format: `<img src="blah.png" alt="SOMETHING">`.
 
 - [ ] Every image has [alternative text added to it](https://github.com/jhudsl/OTTR_Template/wiki/Setting-up-images-and-graphics#adding-images-and-graphics-in-text).
 
@@ -20,6 +20,6 @@ You can check this using [Color Oracle](https://colororacle.org/).
 
 `````
 ```{r, include = FALSE}
-leanbuild::set_knitr_image_path()
+ottr::set_knitr_image_path()
 ```
 `````
