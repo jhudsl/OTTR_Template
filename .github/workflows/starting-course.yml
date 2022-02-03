@@ -98,14 +98,6 @@ jobs:
           content-filepath: .github/automatic-issues/templates-to-edit.md
           labels: automated training issue
 
-      # Issue for what github secrets that need to be set
-      - name: New Course - Set Github Secrets
-        uses: peter-evans/create-issue-from-file@v2.3.2
-        with:
-          title: New Course - Set Github Secrets
-          content-filepath: .github/automatic-issues/git-secrets.md
-          labels: automated training issue
-
       # Issue for how to enroll repo for updates
       - name: New Course - Template Update Enrollment
         uses: peter-evans/create-issue-from-file@v2.3.2
