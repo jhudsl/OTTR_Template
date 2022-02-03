@@ -48,7 +48,7 @@ if (!dir.exists(output_folder)) {
 }
 
 lapply(urls, function(url) {
-  file_name <- gsub(".png", ".pdf", file.path(output_folder, basename(url)))
+  file_name <- gsub(".html", ".pdf", file.path(output_folder, basename(url)))
   webshot::webshot(url, file_name)
   message(paste("Screenshot saved:", file_name))
 })
