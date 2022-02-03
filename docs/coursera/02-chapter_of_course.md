@@ -1,5 +1,5 @@
 
-# A new chapter 
+# A new chapter
 
 *If you haven't yet read the getting started Wiki pages; [start there](https://github.com/jhudsl/OTTR_Template/wiki/Getting-started)
 
@@ -99,7 +99,6 @@ dev.off()
 
 ### Image example
 
-
 How to include a Google slide. It's simplest to use the `leanbuild` package:
 
 <img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
@@ -108,15 +107,15 @@ But if you have the slide or some other image locally downloaded you can also us
 
 <img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
 
-
 ### Video examples
 
-You can use `knitr::include_url()` like this:
+To show videos in your course, you can use markdown syntax like this:
 
+[A video we want to show](https://www.youtube.com/embed/VOCYL-FNbr0)
 
-```r
-knitr::include_url("https://www.youtube.com/embed/VOCYL-FNbr0")
-```
+Alternatively, you can use `knitr::include_url()` like this:
+Note that we are using `echo=FALSE` in the code chunk because we don't want the code part of this to show up.
+If you are unfamiliar with [how R Markdown code chunks work, read this](https://rmarkdown.rstudio.com/lesson-3.html).
 
 <iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
 
@@ -143,11 +142,6 @@ Or this:
 Examples of including a website link.
 
 This works:
-
-
-```r
-knitr::include_url("https://yihui.org")
-```
 
 <iframe src="https://yihui.org" width="672" height="400px"></iframe>
 
@@ -203,7 +197,7 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2022-02-02                  
+##  date     2022-02-03                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
