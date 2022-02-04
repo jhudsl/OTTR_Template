@@ -6,14 +6,15 @@ name: Render and publish Leanpub
 on:
   workflow_dispatch:
 ### UNCOMMENT THIS SECTION IF YOU WISH PREPARE YOUR COURSE FOR LEANPUB AUTOMATICALLY
-  # pull_request:
-  #   branches: [ main ]
-  #   type: [closed]
-  #   paths:
-  #     - '**.Rmd'
-  #     - docker/*
-  #     - assets/*
-  #     - quizzes/*
+    # workflows: [ "Render Bookdown and Coursera" ]
+    # branches: [ main ]
+    # types:
+    #   - completed
+    # paths:
+    #   - '**.Rmd'
+    #   - docker/*
+    #   - assets/*
+    #   - quizzes/*
 ######### END OF SECTION #########
 
 jobs:

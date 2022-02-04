@@ -78,13 +78,8 @@ jobs:
           docker run \
           --mount type=bind,target=/home/rstudio,source=$PWD \
           jhudsl/course_template \
-          Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all')"
-
-      # We want a fresh run of the renders each time
-      - name: Copy over assets
-        run: |
-          chmod -R 755 assets
-          cp -r assets/ docs/assets/
+          Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all');
+          file.copy(from = 'assets', to = 'docs/assets', overwrite = TRUE)"
 
 ##### If you do not wish to host your course on Coursera, you can delete this section #####
       # Run Coursera version
