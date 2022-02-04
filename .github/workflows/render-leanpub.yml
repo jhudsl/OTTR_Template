@@ -43,6 +43,7 @@ jobs:
       # Run leanpub rendering
       - name: Run ottr::bookdown_to_embed_leanpub
         run: |
+          rm -r manuscript
           Rscript -e "ottr::bookdown_to_embed_leanpub( \
             chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
             make_book_txt = TRUE)"
