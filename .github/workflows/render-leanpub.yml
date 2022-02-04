@@ -42,7 +42,10 @@ jobs:
 
       # Run leanpub rendering
       - name: Run ottr::bookdown_to_embed_leanpub
-        run: Rscript -e "ottr::bookdown_to_embed_leanpub(chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv')"
+        run: |
+          Rscript -e "ottr::bookdown_to_embed_leanpub( \
+            chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
+            make_book_txt = TRUE)"
 
       - name: Create PR Render Leanpub
         uses: peter-evans/create-pull-request@v3
