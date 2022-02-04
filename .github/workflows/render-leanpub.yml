@@ -41,7 +41,7 @@ jobs:
             --repo $GITHUB_REPOSITORY)
 
       # Run leanpub rendering
-      - name: Run ottr::bookdown_to_leanpub
+      - name: Run ottr::bookdown_to_embed_leanpub
         run: Rscript -e "ottr::bookdown_to_embed_leanpub(chapt_img_key = "resources/chapt_screen_images/chapter_urls.tsv")
 
       - name: Create PR Render Leanpub
