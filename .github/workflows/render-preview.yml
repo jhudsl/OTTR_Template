@@ -54,7 +54,7 @@ jobs:
       # Run Coursera version
       - name: Run Coursera version of render
         id: coursera
-        run: Rscript -e "leanbuild::render_coursera()"
+        run: Rscript -e "ottr::render_coursera()"
 
 ##### End of Coursera rendering section ########################################
 
