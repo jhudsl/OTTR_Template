@@ -51,7 +51,7 @@ if (!dir.exists(output_folder)) {
 }
 
 if (is.null(opt$base_url)) {
-  base_url <- ottr::get_chapters(repo_name = opt$repo, git_pat = opt$git_pat)
+  base_url <- cow::get_pages_url(repo_name = opt$repo, git_pat = opt$git_pat)
 }
 
 chapt_df <- ottr::get_chapters(base_url = base_url)
