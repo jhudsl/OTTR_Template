@@ -63,4 +63,5 @@ jobs:
              See the files in `manuscript/` directory.
           labels: |
             automated
+          base: main
           reviewers: $GITHUB_ACTOR
