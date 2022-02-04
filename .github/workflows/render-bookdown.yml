@@ -82,7 +82,9 @@ jobs:
 
       # We want a fresh run of the renders each time
       - name: Copy over assets
-        run: cp -r assets/ docs/assets/
+        run: |
+          chmod -R 755 assets
+          cp -r assets/ docs/assets/
 
 ##### If you do not wish to host your course on Coursera, you can delete this section #####
       # Run Coursera version
