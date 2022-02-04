@@ -6,14 +6,14 @@ name: Render and publish Leanpub
 on:
   workflow_dispatch:
 ### UNCOMMENT THIS SECTION IF YOU WISH PREPARE YOUR COURSE FOR LEANPUB AUTOMATICALLY
-#  pull_request:
-#    branches: [ main ]
-#    types: [closed]
-#    paths:
-#      - '**.Rmd'
-#      - docker/*
-#      - assets/*
-#      - quizzes/*
+  # pull_request:
+  #   branches: [ main ]
+  #   type: [closed]
+  #   paths:
+  #     - '**.Rmd'
+  #     - docker/*
+  #     - assets/*
+  #     - quizzes/*
 ######### END OF SECTION #########
 
 jobs:
@@ -37,13 +37,17 @@ jobs:
       # Run leanpub rendering
       - name: Run the screenshot creation
         run: |
-          chapt_urls=$(Rscript --vanilla scripts/get_chapter_urls.R \
+          chapt_urls=$(Rscript --vanilla scripts/make_screenshots.R \
             --git_pat ${{ secrets.GH_PAT }} \
             --repo $GITHUB_REPOSITORY)
 
-      # Run leanpub rendering
-      - name: Run ottr::bookdown_to_leanpub
-        run: Rscript -e "ottr::bookdown_to_leanpub(make_book_txt = TRUE)"
+      # Run Leanpub rendering
+      - name: Run ottr::bookdown_to_embed_leanpub
+        run: |
+          rm -r manuscript
+          Rscript -e "ottr::bookdown_to_embed_leanpub( \
+            chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
+            make_book_txt = TRUE)"
 
       # Convert quizzes to Coursera format
       - name: Convert quizzes to coursera
@@ -56,5 +60,5 @@ jobs:
           git config --local user.name "GitHub Actions"
           git add -A
           git add --force manuscript/*
-          git commit -m 'Render leanpub' || echo "No changes to commit"
+          git commit -m 'Render Leanpub' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
