@@ -44,14 +44,15 @@ jobs:
         if: ${{ github.head_ref == 'repo-sync/OTTR_Template/default' }}
         run: |
           echo This was tested on OTTR_Template no need to re-run
-          exit 1
 
       # Set up Docker build
       - name: Set up Docker Buildx
+        if: ${{ github.head_ref != 'repo-sync/OTTR_Template/default' }}
         uses: docker/setup-buildx-action@v1
 
       # Setup layer cache
       - name: Cache Docker layers
+        if: ${{ github.head_ref != 'repo-sync/OTTR_Template/default' }}
         uses: actions/cache@v2
         with:
           path: /tmp/.buildx-cache
@@ -61,13 +62,16 @@ jobs:
 
       # Set up Docker build
       - name: Set up Docker Build
+        if: ${{ github.head_ref != 'repo-sync/OTTR_Template/default' }}
         uses: docker/setup-buildx-action@v1
 
       - name: Get token
+        if: ${{ github.head_ref != 'repo-sync/OTTR_Template/default' }}
         run: echo ${{ secrets.GH_PAT }} > docker/git_token.txt
 
       # Build docker image
       - name: Build Docker image
+        if: ${{ github.head_ref != 'repo-sync/OTTR_Template/default' }}
         uses: docker/build-push-action@v2
         with:
           push: false
@@ -90,6 +94,7 @@ jobs:
         run: docker push jhudsl/course_template
 
       - name: Get the version
+        if: ${{ github.head_ref != 'repo-sync/OTTR_Template/default' }}
         id: get_version
         run: |
           echo ::set-output name=version::$(echo $GITHUB_REF | cut -d / -f 3)
@@ -99,4 +104,4 @@ jobs:
         if: ${{ github.event_name == 'release' }}
         run: |
           docker tag jhudsl/course_template:latest jhudsl/course_template:${{ steps.get_version.outputs.version }}
-          docker push jhudsl/course_template:1.0
+          docker push jhudsl/course_template:${{ steps.get_version.outputs.version }}

@@ -6,7 +6,6 @@ COPY install_github.R .
 
 # Install apt-getable packages to start
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils dialog
-
 RUN apt-get install -y --no-install-recommends \
     libxt6 \
     libpoppler-cpp-dev \
