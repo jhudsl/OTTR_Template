@@ -26,11 +26,17 @@ option_list <- list(
     type = "character",
     default = NULL,
     help = "GitHub personal access token",
-  ), 
+  ),
   optparse::make_option(
     c("--output_dir"),
     type = "character",
     default = "resources/chapt_screen_images",
+    help = "Output directory where the chapter's screen images should be stored",
+  ),
+  optparse::make_option(
+    c("--base_url"),
+    type = "character",
+    default = NULL,
     help = "Output directory where the chapter's screen images should be stored",
   )
 )
@@ -44,9 +50,11 @@ if (!dir.exists(output_folder)) {
   dir.create(output_folder, recursive = TRUE)
 }
 
-if (!('cow' %in% installed.packages())) {
-  remotes::install_github('jhudsl/cow', auth_token = opt$git_pat)
+if (is.null(opt$base_url)) {
+  base_url <- get_chapters(repo_name = opt$repo, git_pat = opt$git_pat)
 }
+
+chapt_df <- ottr::get_chapters(base_url = base_url)
 
 file_names <- lapply(chapt_df$url, function(url) {
   file_name <- gsub(".html", ".png", file.path(output_folder, basename(url)))
@@ -56,6 +64,6 @@ file_names <- lapply(chapt_df$url, function(url) {
 })
 
 # Save file of chapter urls and file_names
-chapt_df %>% 
+chapt_df %>%
   dplyr::mutate(img_path = unlist(file_names)) %>%
   readr::write_tsv(file.path(output_folder, "chapter_urls.tsv"))
