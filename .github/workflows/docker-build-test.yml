@@ -69,16 +69,16 @@ jobs:
         if: ${{ github.head_ref != 'repo-sync/OTTR_Template/default' }}
         run: echo ${{ secrets.GH_PAT }} > docker/git_token.txt
 
-      # Build docker image
-      - name: Build Docker image
-        if: ${{ github.head_ref != 'repo-sync/OTTR_Template/default' }}
-        uses: docker/build-push-action@v2
-        with:
-          push: false
-          load: true
-          context: docker
-          file: docker/Dockerfile
-          tags: jhudsl/course_template
+      # # Build docker image
+      # - name: Build Docker image
+      #   if: ${{ github.head_ref != 'repo-sync/OTTR_Template/default' }}
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     push: false
+      #     load: true
+      #     context: docker
+      #     file: docker/Dockerfile
+      #     tags: jhudsl/course_template
 
       # Login to Dockerhub
       - name: Login to DockerHub
