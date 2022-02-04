@@ -69,28 +69,28 @@ jobs:
         if: ${{ github.head_ref != 'repo-sync/OTTR_Template/default' }}
         run: echo ${{ secrets.GH_PAT }} > docker/git_token.txt
 
-      # # Build docker image
-      # - name: Build Docker image
-      #   if: ${{ github.head_ref != 'repo-sync/OTTR_Template/default' }}
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     push: false
-      #     load: true
-      #     context: docker
-      #     file: docker/Dockerfile
-      #     tags: jhudsl/course_template
+      # Build docker image
+      - name: Build Docker image
+        if: ${{ github.head_ref != 'repo-sync/OTTR_Template/default' }}
+        uses: docker/build-push-action@v2
+        with:
+          push: false
+          load: true
+          context: docker
+          file: docker/Dockerfile
+          tags: jhudsl/course_template
 
-      # # Login to Dockerhub
-      # - name: Login to DockerHub
-      #   if: ${{ github.event.inputs.dockerhubpush != 'false' }}
-      #   uses: docker/login-action@v1
-      #   with:
-      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+      # Login to Dockerhub
+      - name: Login to DockerHub
+        if: ${{ github.event.inputs.dockerhubpush != 'false' }}
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # Push the Docker image if set to true from a manual trigger
       - name: Push Docker image if manual trigger set to true
-        if: ${{ github.event.inputs.dockerhubpush != 'false' }} && ${{ github.head_ref != 'repo-sync/OTTR_Template/default' }}
+        if: ${{ github.event.inputs.dockerhubpush != 'false' }}
         run: docker push jhudsl/course_template
 
       - name: Get the version
@@ -101,7 +101,7 @@ jobs:
 
       # Push the Docker image if it is a release
       - name: Push Docker image if release
-        if: ${{ github.event_name == 'release' }} && ${{ github.head_ref != 'repo-sync/OTTR_Template/default' }}
+        if: ${{ github.event_name == 'release' }}
         run: |
           docker tag jhudsl/course_template:latest jhudsl/course_template:${{ steps.get_version.outputs.version }}
           docker push jhudsl/course_template:${{ steps.get_version.outputs.version }}
