@@ -45,16 +45,10 @@ if (!dir.exists(output_folder)) {
 }
 
 if (!('cow' %in% installed.packages())) {
-  # remotes::install_github('jhudsl/cow', auth_token = opt$git_pat)
+  remotes::install_github('jhudsl/cow', auth_token = opt$git_pat)
 }
 
-chapt_df <- cow::get_chapters(repo_name = opt$repo,
-                              git_pat = opt$git_pat,
-                              retrieve_keywords = FALSE)
-
-urls <- unique(chapt_df$url)
-
-file_names <- lapply(urls, function(url) {
+file_names <- lapply(chapt_df$url, function(url) {
   file_name <- gsub(".html", ".png", file.path(output_folder, basename(url)))
   webshot::webshot(url, file_name)
   message(paste("Screenshot saved:", file_name))
@@ -62,5 +56,6 @@ file_names <- lapply(urls, function(url) {
 })
 
 # Save file of chapter urls and file_names
-data.frame(urls, file_names = unlist(file_names)) %>%
+chapt_df %>% 
+  dplyr::mutate(img_path = unlist(file_names)) %>%
   readr::write_tsv(file.path(output_folder, "chapter_urls.tsv"))

@@ -21,20 +21,43 @@ option_list <- list(
 opt_parser <- optparse::OptionParser(option_list = option_list)
 opt <- optparse::parse_args(opt_parser)
 
+# Read in the file
 key_df <- readr::read_tsv(opt$input_key_file)
 
-url <- key_df$urls[1]
-img <- key_df$file_names[1]
-
-make_markdown <- function(img, url) {
-  chapt_file_name <- gsub("\\.html$", "", basename(url))
-
+make_markdown <- function(url, chapt_name, img_path) {
+  # Arguments: 
+  #   url: The url to the chapter
+  #   chapt_name: The title of the chapter to be used as a header
+  #   img_path: file path to the image to be used in the preview 
+  #
+  # Returns: A markdown document ready for Leanpub and the image copied to the manuscript folder
+  
+  chapt_file_name <- gsub(" ", "-", chapt_name)
+  
+  # Declare output file
+  output_file <- file.path("manuscript", paste0(chapt_file_name , ".md"))
+                           
   file_contents <- c(
-   paste0("{type: iframe, title:", chapt_file_name, "width: 400, height: 400, poster:", img, "}"), 
+    paste("#", chapt_name),
+    " ",
+    paste0("{type: iframe, title:", chapt_name, " width: 400, height: 400, poster:", img, "}"), 
     paste0("![](", url, ")")
   )
 
-  write(file_contents, file.path("manuscript", paste0(chapt_file_name, ".md")))
+  write(file_contents, file = output_file)
+  
+  manuscript_dir <- file.path("manuscript", dirname(img)) 
+  
+  if (!dir.exists(manuscript_dir)) {
+    dir.create(manuscript_dir, recursive = TRUE)
+  }
+  
+  file.copy(from = img, to = file.path("manuscript", img), overwrite = TRUE)
+  
+  message(paste0("Output saved to: ", output_file))
+  
+  return(output_file)
 }
 
-
+# Run it on each row
+output_files <- purrr::pmap(key_df, ~ make_markdown(url = ..1, chapt_name = ..2, img = ..3))
