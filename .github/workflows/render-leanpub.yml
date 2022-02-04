@@ -8,7 +8,6 @@ on:
 ### UNCOMMENT THIS SECTION IF YOU WISH PREPARE YOUR COURSE FOR LEANPUB AUTOMATICALLY
   pull_request:
     branches: [ main ]
-    types: [closed]
     paths:
       - '**.Rmd'
       - docker/*
@@ -45,12 +44,19 @@ jobs:
       - name: Run ottr::bookdown_to_leanpub
         run: Rscript -e "ottr::bookdown_to_embed_leanpub(chapt_img_key = "resources/chapt_screen_images/chapter_urls.tsv")
 
-      # Commit the rendered leanpub files
-      - name: Commit rendered leanpub files
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add -A
-          git add --force manuscript/*
-          git commit -m 'Render leanpub' || echo "No changes to commit"
-          git push origin main || echo "No changes to push"
+      - name: Create PR Render Leanpub
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GH_PAT }}
+          commit-message: Render Leanpub
+          signoff: false
+          branch: render-leanpub
+          delete-branch: true
+          title: 'GHA: Automatic Render Leanpub Files'
+          body: |
+            ### Description:
+             This PR was initiated by render-leanpub.yml. It prepares the file changes for publishing on Leanpub.
+             See the files in `manuscript/` directory.
+          labels: |
+            automated
+          reviewers: $GITHUB_ACTOR
