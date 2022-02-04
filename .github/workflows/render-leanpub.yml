@@ -6,14 +6,14 @@ name: Render and publish Leanpub
 on:
   workflow_dispatch:
 ### UNCOMMENT THIS SECTION IF YOU WISH PREPARE YOUR COURSE FOR LEANPUB AUTOMATICALLY
-#  pull_request:
-#    branches: [ main ]
-#    types: [closed]
-#    paths:
-#      - '**.Rmd'
-#      - docker/*
-#      - assets/*
-#      - quizzes/*
+  pull_request:
+    branches: [ main ]
+    types: [closed]
+    paths:
+      - '**.Rmd'
+      - docker/*
+      - assets/*
+      - quizzes/*
 ######### END OF SECTION #########
 
 jobs:
@@ -39,7 +39,7 @@ jobs:
         run: |
           chapt_urls=$(Rscript --vanilla scripts/make_screenshots.R \
             --git_pat ${{ secrets.GH_PAT }} \
-            --repo $GITHUB_REPOSITORY) 
+            --repo $GITHUB_REPOSITORY)
 
       # Run leanpub rendering
       - name: Run ottr::bookdown_to_leanpub
