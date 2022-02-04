@@ -6,13 +6,14 @@ name: Render and publish Leanpub
 on:
   workflow_dispatch:
 ### UNCOMMENT THIS SECTION IF YOU WISH PREPARE YOUR COURSE FOR LEANPUB AUTOMATICALLY
-  pull_request:
-    branches: [ main ]
-    paths:
-      - '**.Rmd'
-      - docker/*
-      - assets/*
-      - quizzes/*
+  # pull_request:
+  #   branches: [ main ]
+  #   types: [closed]
+  #   paths:
+  #     - '**.Rmd'
+  #     - docker/*
+  #     - assets/*
+  #     - quizzes/*
 ######### END OF SECTION #########
 
 jobs:
@@ -55,7 +56,7 @@ jobs:
           signoff: false
           branch: render-leanpub
           delete-branch: true
-          title: 'GHA: Automatic Render Leanpub Files'
+          title: 'GHA: Automatic Render of Leanpub Files'
           body: |
             ### Description:
              This PR was initiated by render-leanpub.yml. It prepares the file changes for publishing on Leanpub.
