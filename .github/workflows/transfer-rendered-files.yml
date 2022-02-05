@@ -70,6 +70,12 @@ jobs:
           # Copy over docs folder
           svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/docs
 
+          # Copy over render-leanpub.yml
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/.github/workflows/render-leanpub.yml
+
+          # Copy over make-screenshots.R script
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/scripts/make_screenshots.R
+
           if [ -d "docs/coursera" ]
           then
             rm -r docs/coursera/*
