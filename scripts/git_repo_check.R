@@ -40,8 +40,8 @@ check_git_repo <- function(repo, git_pat = NULL, silent = TRUE, return_repo = FA
 
   # Inputs:
   # repo: the name of the repository, e.g. jhudsl/OTTR_Template
-  # git_pat: A personal access token from GitHub. Only necessary if the repository being 
-  #          checked is a private repository. 
+  # git_pat: A personal access token from GitHub. Only necessary if the repository being
+  #          checked is a private repository.
   # silent: TRUE/FALSE of whether the warning from the git ls-remote command
   #         should be echoed back if it does fail.
   # return_repo: TRUE/FALSE of whether or not the output from git ls-remote
@@ -90,8 +90,8 @@ check_git_repo <- function(repo, git_pat = NULL, silent = TRUE, return_repo = FA
 }
 
 # Change repo name to its Leanpub equivalent:
-repo <- gsub("_Bookdown", "", repo)
-repo <- paste0(repo, "_Leanpub")
+repo <- gsub("_Template", "", repo)
+repo <- paste0(repo, "_Quizzes")
 
 # Print out the result
 write(check_git_repo(repo, git_pat = git_pat), stdout())
