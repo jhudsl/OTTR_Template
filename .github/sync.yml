@@ -29,6 +29,8 @@ group:
       dest: .github/workflows/render-bookdown.yml
     - source: .github/workflows/render-preview.yml
       dest: .github/workflows/render-preview.yml
+    - source: .github/workflows/render-leanpub.yml
+      dest: .github/workflows/render-leanpub.yml
     - source: .github/workflows/docker-build-test.yml
       dest: .github/workflows/docker-build-test.yml
     - source: .github/workflows/transfer-rendered-files.yml
@@ -45,6 +47,8 @@ group:
       dest: .github/ISSUE_TEMPLATE/course-problem-report.md
     - source: .github/ISSUE_TEMPLATE/course-content-add.md
       dest: .github/ISSUE_TEMPLATE/course-content-add.md
+    - source: scripts/make_screenshots.R
+      dest: scripts/make_screenshots.R
     - source: scripts/spell-check.R
       dest: scripts/spell-check.R
     - source: scripts/get_spell_errors.R
