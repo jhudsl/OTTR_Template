@@ -67,3 +67,5 @@ file_names <- lapply(chapt_df$url, function(url) {
 chapt_df %>%
   dplyr::mutate(img_path = unlist(file_names)) %>%
   readr::write_tsv(file.path(output_folder, "chapter_urls.tsv"))
+
+message(paste("Image Chapter key written to: ", file.path(output_folder, "chapter_urls.tsv")))
