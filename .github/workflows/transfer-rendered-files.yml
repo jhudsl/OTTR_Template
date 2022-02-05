@@ -33,7 +33,7 @@ jobs:
           sudo Rscript -e "install.packages('optparse')"
 
           # What's the Quizzes repository's name?
-          QUIZ_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Quizzes"}')
+          QUIZ_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | sed "s/_Template/ /g" | awk '{print $1"_Quizzes"}')
           echo $QUIZ_REPO
 
           # Get repo check script
