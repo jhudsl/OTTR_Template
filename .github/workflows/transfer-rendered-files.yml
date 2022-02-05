@@ -68,13 +68,13 @@ jobs:
             rm -r docs/*
           fi
           # Copy over docs folder
-          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/docs
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/docs docs
 
           # Copy over render-leanpub.yml
-          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/.github/workflows/render-leanpub.yml
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/.github/workflows/render-leanpub.yml .github/workflows/render-leanpub.yml
 
           # Copy over make-screenshots.R script
-          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/scripts/make_screenshots.R
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/scripts/make_screenshots.R scripts/make_screenshots.R
 
           if [ -d "docs/coursera" ]
           then
