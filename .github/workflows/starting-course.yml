@@ -45,9 +45,11 @@ jobs:
             resources/images/02-chapter_of_course_files \
             resources/images/03-test_cases_files \
             resources/images/04-figures_files \
+            resources/chapt_screen_images \
             Course_Name.rds \
             docs/*.html \
-            docs/*.md
+            docs/*.md \
+            manuscript/*
 
       # Commit modified files
       - name: Commit deleted files
