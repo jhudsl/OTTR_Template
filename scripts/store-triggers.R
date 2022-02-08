@@ -12,12 +12,18 @@ github_actions_files <- list.files(github_actions_dir, pattern = "\\.yml$",
                                    full.names = TRUE)
 
 # Read in all files
-all_gha <- lapply(github_actions_files, yaml::yaml.load_file)
+all_gha <- lapply(github_actions_files, readLines)
 names(all_gha) <- basename(github_actions_files)
 
-# Extract trigger criteria
-gha_triggers <- lapply(1:length(all_gha), function(gha) purrr::pluck(all_gha, gha, "TRUE"))
-names(gha_triggers) <- basename(github_actions_files)
+# Make extract trigger function
+extract_trigger <- function(gha_contents) {
+  # Extract trigger criteria
+  trigger_start <- grep("TRIGGER-START", gha_contents)
+  trigger_end <- grep("TRIGGER-END", gha_contents)
 
+  return(gha_contents[trigger_start:trigger_end])
+}
 
-yaml::write_yaml(gha_triggers, file.path(root_dir, ".github", "gha-triggers.yml"))
+on_triggers <- lapply(all_gha, extract_trigger)
+
+readr::write_rds(on_triggers, file.path(root_dir, ".github", "on-triggers.rds"))
