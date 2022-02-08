@@ -45,23 +45,42 @@ jobs:
             resources/images/02-chapter_of_course_files \
             resources/images/03-test_cases_files \
             resources/images/04-figures_files \
+            resources/chapt_screen_images \
             Course_Name.rds \
             docs/*.html \
-            docs/*.md
+            docs/*.md \
+            manuscript/*
 
       # Commit modified files
       - name: Commit deleted files
+        id: commit_it
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
           git commit -m "Template cleanup"
+          pushed_it=true
+          git push || pushed_it=false
+          echo ::set-output name=pushed_it::$pushed_it
 
-      # Push changes
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+      # If main is already protected, then file a PR
+      - name: Create PR with deleted files
+        if: steps.commit_it.outputs.pushed_it == 'false'
+        uses: peter-evans/create-pull-request@v3
+        id: pr
         with:
-          branch: main
+          commit-message: Delete unnecessary files
+          signoff: false
+          branch: auto_copy_rendered_files
+          delete-branch: true
+          title: 'Automatic course set up'
+          body: |
+            ### Description:
+             This PR was initiated by the github actions. It helps set up this repository to be ready to write your course.
+             It deletes some remnant files you don't need for your course but were used when this was a template.
+          labels: |
+            automated
+          reviewers: $GITHUB_ACTOR
 
 ##### Filing issues!
 
@@ -79,14 +98,6 @@ jobs:
         with:
           title: New Course - Templates to Edit
           content-filepath: .github/automatic-issues/templates-to-edit.md
-          labels: automated training issue
-
-      # Issue for what github secrets that need to be set
-      - name: New Course - Set Github Secrets
-        uses: peter-evans/create-issue-from-file@v2.3.2
-        with:
-          title: New Course - Set Github Secrets
-          content-filepath: .github/automatic-issues/git-secrets.md
           labels: automated training issue
 
       # Issue for how to enroll repo for updates

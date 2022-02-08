@@ -1,0 +1,64 @@
+
+# Jan 2022 Candace Savonen
+
+name: Render and publish Leanpub
+
+on:
+  workflow_dispatch:
+### UNCOMMENT THIS SECTION IF YOU WISH PREPARE YOUR COURSE FOR LEANPUB AUTOMATICALLY
+    # workflows: [ "Render Bookdown and Coursera" ]
+    # branches: [ main ]
+    # types:
+    #   - completed
+    # paths:
+    #   - '**.Rmd'
+    #   - docker/*
+    #   - assets/*
+    #   - quizzes/*
+######### END OF SECTION #########
+
+jobs:
+  # This workflow contains a single job called "build-all"
+  render-main:
+    runs-on: ubuntu-latest
+    container:
+      image: jhudsl/ottr
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          # get the full repo
+          fetch-depth: 0
+          # use github PAT
+          token: ${{ secrets.GH_PAT }}
+
+      # Run leanpub rendering
+      - name: Run the screenshot creation
+        run: |
+          chapt_urls=$(Rscript --vanilla scripts/make_screenshots.R \
+            --git_pat ${{ secrets.GH_PAT }} \
+            --repo $GITHUB_REPOSITORY)
+
+      # Run Leanpub rendering
+      - name: Run ottr::bookdown_to_embed_leanpub
+        run: |
+          rm -rf manuscript
+          Rscript -e "ottr::bookdown_to_embed_leanpub( \
+            chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
+            make_book_txt = TRUE)"
+
+      # Convert quizzes to Coursera format
+      - name: Convert quizzes to coursera
+        run: Rscript -e "ottr::render_coursera(convert_quizzes = TRUE)"
+
+      # Commit the rendered leanpub files
+      - name: Commit rendered leanpub files
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add --force manuscript/*
+          git commit -m 'Render Leanpub' || echo "No changes to commit"
+          git push --force origin main || echo "No changes to push"

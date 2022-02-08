@@ -22,12 +22,15 @@ group:
     jhudsl/GDSCN_Book_SARS_Galaxy_on_AnVIL
     abyzovlab/CNVpytor_course
     opencasestudies/OCS_Guide
+    tmm211/dsp-terra-mooc-test2
 ###ADD NEW REPO HERE following the format above#
   files:
     - source: .github/workflows/render-bookdown.yml
       dest: .github/workflows/render-bookdown.yml
     - source: .github/workflows/render-preview.yml
       dest: .github/workflows/render-preview.yml
+    - source: .github/workflows/render-leanpub.yml
+      dest: .github/workflows/render-leanpub.yml
     - source: .github/workflows/docker-build-test.yml
       dest: .github/workflows/docker-build-test.yml
     - source: .github/workflows/transfer-rendered-files.yml
@@ -44,6 +47,8 @@ group:
       dest: .github/ISSUE_TEMPLATE/course-problem-report.md
     - source: .github/ISSUE_TEMPLATE/course-content-add.md
       dest: .github/ISSUE_TEMPLATE/course-content-add.md
+    - source: scripts/make_screenshots.R
+      dest: scripts/make_screenshots.R
     - source: scripts/spell-check.R
       dest: scripts/spell-check.R
     - source: scripts/get_spell_errors.R
@@ -54,6 +59,15 @@ group:
       dest: code_of_conduct.md
     - source: style-sets
       dest: style-sets
+
+  repos: |
+    jhudsl/OTTR_Template_Website
+  - source: .github/workflows/style-and-sp-check.yml
+    dest: .github/workflows/style-and-sp-check.yml
+  - source: .github/workflows/url-checker.yml
+    dest: .github/workflows/url-checker.yml
+  - source: scripts/spell-check.R
+    dest: scripts/spell-check.R
 
 ###### TO ADD NEW REPOSITORY USE THIS FORMAT; Feel free to add/drop files that
 # you specifically would like synced (or not).
