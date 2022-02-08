@@ -20,12 +20,10 @@ root_dir <- rprojroot::find_root(rprojroot::has_dir(".github"))
 on_triggers <- readr::read_rds(file.path(root_dir, ".github", "on-triggers.rds"))
 
 # Same off trigger for all
-off_trigger <- c("",
-                 "#---TRIGGER-START---#", 
+off_trigger <- c("#---TRIGGER-START---#", 
                  "on:", 
                  "  workflow_dispatch:", 
-                 "#---TRIGGER-END----#", 
-                 "")
+                 "#---TRIGGER-END----#")
 
 ### Read in and set up config automation yaml
 
