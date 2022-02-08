@@ -20,11 +20,12 @@ root_dir <- rprojroot::find_root(rprojroot::has_dir(".github"))
 on_triggers <- readr::read_rds(file.path(root_dir, ".github", "on-triggers.rds"))
 
 # Same off trigger for all
-off_trigger <- c("#---TRIGGER-START---#", 
+off_trigger <- c("",
+                 "#---TRIGGER-START---#", 
                  "on:", 
                  "  workflow_dispatch:", 
                  "#---TRIGGER-END----#", 
-                 " ")
+                 "")
 
 ### Read in and set up config automation yaml
 
@@ -68,7 +69,7 @@ all_gha <- lapply(github_actions_files, function(gha_file) {
    }
   
   # Remove current trigger
-  yaml_contents <- yaml_contents[-trigger_indices]
+  yaml_contents <- yaml_contents[-trigger_indices[2:length(trigger_indices)]]
   
   # Put new trigger in
   yaml_contents <- append(yaml_contents, trigger, after = trigger_indices[1])
