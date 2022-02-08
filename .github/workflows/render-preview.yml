@@ -2,12 +2,12 @@
 
 name: Render Preview
 
+
 #---TRIGGER-START---#
 on:
   pull_request:
     branches: [ main ]
 #---TRIGGER-END----#
-
 permissions: write-all
 
 jobs:

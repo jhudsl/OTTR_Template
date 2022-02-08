@@ -3,6 +3,7 @@
 
 name: Check Leanpub Quizzes
 
+
 #---TRIGGER-START---#
 on:
   workflow_dispatch:
@@ -11,7 +12,6 @@ on:
       paths:
         - 'quizzes/*'
 #---TRIGGER-END----#
-
 jobs:
   check-quizzes:
     runs-on: ubuntu-latest

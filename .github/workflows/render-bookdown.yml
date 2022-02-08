@@ -3,6 +3,7 @@
 
 name: Render Bookdown and Coursera
 
+
 #---TRIGGER-START---#
 on:
   workflow_dispatch:
@@ -13,7 +14,6 @@ on:
       - docker/*
       - assets/*
 #---TRIGGER-END----#
-
 jobs:
   # This workflow contains a single job called "build-all"
   render-main:

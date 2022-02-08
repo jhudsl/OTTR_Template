@@ -3,13 +3,13 @@
 # This github actions tests URLs in the Rmd files, README, and CONTRIBUTING.md
 name: Check URLs
 
+
 #---TRIGGER-START---#
 on:
   workflow_dispatch:
     pull_request:
       branches: [ main ]
 #---TRIGGER-END----#
-
 jobs:
   build:
     runs-on: ubuntu-latest

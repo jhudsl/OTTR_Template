@@ -3,21 +3,11 @@
 
 name: Render and publish Leanpub
 
+
 #---TRIGGER-START---#
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: [ "Render Bookdown and Coursera" ]
-    branches: [ main ]
-    types:
-      - completed
-    paths:
-      - '**.Rmd'
-      - docker/*
-      - assets/*
-      - quizzes/*
 #---TRIGGER-END----#
-
 jobs:
   # This workflow contains a single job called "build-all"
   render-main:
