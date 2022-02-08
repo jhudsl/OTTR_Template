@@ -17,8 +17,8 @@ jobs:
       image: jhudsl/course_template
     defaults:
       run:
-        working-directory: ../
-        
+        working-directory: ../..
+
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout files
