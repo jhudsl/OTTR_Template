@@ -6,7 +6,7 @@ library(magrittr)
 extract_trigger <- function(gha_contents) {
   # Extract trigger criteria
   trigger_start <- grep("TRIGGER-START", gha_contents)
-  trigger_end <- grep("TRIGGER-END", gha_contents)
+  trigger_end <- grep("TRIGGER-END", gha_contents) - 1
   
   return(trigger_start:trigger_end)
 }
