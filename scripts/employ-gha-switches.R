@@ -6,7 +6,7 @@ library(magrittr)
 extract_trigger <- function(gha_contents) {
   # Extract trigger criteria
   trigger_start <- grep("TRIGGER-START", gha_contents)
-  trigger_end <- grep("TRIGGER-END", gha_contents) - 1
+  trigger_end <- grep("TRIGGER-END", gha_contents)
   
   return(trigger_start:trigger_end)
 }
@@ -72,7 +72,7 @@ all_gha <- lapply(github_actions_files, function(gha_file) {
   yaml_contents <- yaml_contents[-trigger_indices]
   
   # Put new trigger in
-  yaml_contents <- append(yaml_contents, trigger, after = trigger_indices[1])
+  yaml_contents <- append(yaml_contents, trigger, after = trigger_indices[1] - 1)
          
   writeLines(yaml_contents, gha_file)
   }
