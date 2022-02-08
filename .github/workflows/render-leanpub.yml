@@ -6,15 +6,15 @@ name: Render and publish Leanpub
 on:
   workflow_dispatch:
   workflow_run:
-  workflows: [ "Render Bookdown and Coursera" ]
-    branches: [ main ]
-    types:
-      - completed
-    paths:
-      - '**.Rmd'
-      - docker/*
-      - assets/*
-      - quizzes/*
+    workflows: [ "Render Bookdown and Coursera" ]
+      branches: [ main ]
+      types:
+        - completed
+      paths:
+        - '**.Rmd'
+        - docker/*
+        - assets/*
+        - quizzes/*
 
 jobs:
   # This workflow contains a single job called "build-all"
