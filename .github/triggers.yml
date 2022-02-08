@@ -1,0 +1,82 @@
+check-quizzes.yml:
+  workflow_dispatch:
+    pull_request:
+      branches:
+      - main
+      - staging
+      paths: quizzes/*
+delete-preview.yml:
+  pull_request:
+    types: closed
+docker-build-test.yml:
+  release:
+    types: created
+  pull_request:
+    branches: main
+    paths:
+    - docker/Dockerfile
+    - docker/github_package_list.tsv
+  workflow_dispatch:
+    inputs:
+      dockerhubpush:
+        description: Push to Dockerhub?
+        required: yes
+        default: 'false'
+release-notes.yml:
+  pull_request:
+    branches: main
+    types: opened
+render-bookdown.yml:
+  workflow_dispatch: ~
+  push:
+    branches: main
+    paths:
+    - '**.Rmd'
+    - docker/*
+    - assets/*
+render-leanpub.yml:
+  workflow_dispatch:
+    workflows: Render Bookdown and Coursera
+    branches: main
+    types: completed
+    paths:
+    - '**.Rmd'
+    - docker/*
+    - assets/*
+    - quizzes/*
+render-preview.yml:
+  pull_request:
+    branches: main
+send-updates.yml:
+  release:
+    types: published
+  workflow_dispatch:
+    inputs:
+      prtag:
+        description: Tag to use?
+        required: yes
+        default: 'null'
+starting-course.yml:
+  push:
+    branches: main
+  workflow_dispatch: ~
+style-and-sp-check.yml:
+  pull_request:
+    branches: main
+test-send-updates.yml:
+  workflow_dispatch:
+    inputs:
+      repo:
+        description: What repo to test on e.g. jhudsl/OTTR_Template_Test
+        required: yes
+        default: jhudsl/OTTR_Template_Test
+transfer-rendered-files.yml:
+  workflow_dispatch: ~
+  workflow_run:
+    workflows: Render Bookdown and Coursera
+    branches: main
+    types: completed
+url-checker.yml:
+  workflow_dispatch: ~
+  pull_request:
+    branches: main

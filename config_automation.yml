@@ -1,0 +1,16 @@
+# PR Checks
+check-quizzes: yes
+url-checker: yes
+render-preview: yes
+style-and-sp-check: yes
+
+# Docker specific
+docker-build-test: no
+
+# Rendering
+render-bookdown: yes
+render-leanpub: no
+
+# Don't need to touch these
+transfer-rendered-files: yes
+delete-preview: yes
