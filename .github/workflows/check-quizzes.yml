@@ -1,8 +1,6 @@
-
 # Candace Savonen Jan 2022
 
 name: Check Leanpub Quizzes
-
 
 #---TRIGGER-START---#
 on:
