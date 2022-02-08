@@ -5,6 +5,7 @@ name: Render and publish Leanpub
 
 on:
   workflow_dispatch:
+  workflow_run:
   workflows: [ "Render Bookdown and Coursera" ]
     branches: [ main ]
     types:

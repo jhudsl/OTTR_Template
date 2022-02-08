@@ -32,7 +32,7 @@ gha_file <- github_actions_files[1]
 
 # Read in all files
 all_gha <- lapply(github_actions_files, function(gha_file) {
-  yaml_contents <- yaml::yaml.load_file(gha_file)
+  yaml_contents <- yaml::yaml.load(gha_file, eval.expr = FALSE)
   
   status <- config_yaml %>% 
     dplyr::filter(basename(gha_file) == gha_files) %>% 
