@@ -69,7 +69,7 @@ all_gha <- lapply(github_actions_files, function(gha_file) {
    }
   
   # Remove current trigger
-  yaml_contents <- yaml_contents[-trigger_indices[2:length(trigger_indices)]]
+  yaml_contents <- yaml_contents[-trigger_indices]
   
   # Put new trigger in
   yaml_contents <- append(yaml_contents, trigger, after = trigger_indices[1])
