@@ -14,6 +14,7 @@ on:
       - docker/*
       - assets/*
 #---TRIGGER-END----#
+
 jobs:
   # This workflow contains a single job called "build-all"
   render-main:

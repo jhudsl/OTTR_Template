@@ -3,10 +3,21 @@
 name: Test build of Dockerfile
 
 
-
 #---TRIGGER-START---#
 on:
+  release:
+    types:
+      - created
+  pull_request:
+    branches:
+      - 'main'
+    paths: [ docker/Dockerfile, docker/github_package_list.tsv ]
   workflow_dispatch:
+    inputs:
+      dockerhubpush:
+        description: 'Push to Dockerhub?'
+        required: true
+        default: 'false'
 #---TRIGGER-END----#
 
 jobs:

@@ -11,6 +11,7 @@ on:
         required: true
         default: 'jhudsl/OTTR_Template_Test'
 #---TRIGGER-END----#
+
 jobs:
   test-sync:
     runs-on: ubuntu-latest

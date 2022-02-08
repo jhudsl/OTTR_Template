@@ -8,6 +8,7 @@ on:
   pull_request:
     branches: [ main ]
 #---TRIGGER-END---#
+
 jobs:
   # This workflow contains a single job called "style and check"
   style-n-check:

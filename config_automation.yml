@@ -5,8 +5,8 @@ render-preview: yes
 style-and-sp-check: yes
 
 # Docker specific
-docker-build-test: no
+docker-build-test: yes
 
 # Rendering
 render-bookdown: yes
-render-leanpub: no
+render-leanpub: yes
