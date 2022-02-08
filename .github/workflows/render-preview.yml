@@ -73,11 +73,11 @@ jobs:
         id: commit
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          git diff --name-only origin/main -- docs >/dev/null && changes=true || changes=false
+          git diff origin/main -- docs >/dev/null && changes=true || changes=false
           echo $changes
           if $changes == true; then
             echo ::set-output name=changes::$(echo 'changes')
-            git diff --name-only origin/$branch_name -- docs/ >/dev/null && changes=true || changes=false
+            git diff origin/$branch_name -- docs/ >/dev/null && changes=true || changes=false
             echo $changes
             if $changes == true; then
               git add . --force

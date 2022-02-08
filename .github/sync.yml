@@ -68,8 +68,6 @@ group:
     dest: .github/workflows/url-checker.yml
   - source: scripts/spell-check.R
     dest: scripts/spell-check.R
-  - source: scripts/get_spell_errors.R
-    dest: scripts/get_spell_errors.R
   - source: scripts/git_repo_check.R
     dest: scripts/git_repo_check.R
 
