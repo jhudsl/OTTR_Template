@@ -3,10 +3,12 @@
 name: Test build of Dockerfile
 
 
+
 #---TRIGGER-START---#
 on:
   workflow_dispatch:
 #---TRIGGER-END----#
+
 jobs:
   build:
     runs-on: ubuntu-latest
