@@ -58,11 +58,13 @@ all_gha <- lapply(github_actions_files, function(gha_file) {
     dplyr::filter(basename(gha_file) == gha_files) %>% 
     dplyr::pull("on_or_off")
   
-  if (status) {
-    trigger <- on_triggers[[basename(gha_file)]]
-  } else {
-    trigger <- off_trigger
-  }
+  if (length(status) == 1) {
+    message(paste("Turning trigger on:", status, "for", basename(gha_file)))
+    if (status) {
+      trigger <- on_triggers[[basename(gha_file)]]
+    } else {
+     trigger <- off_trigger
+   }
   
   # Remove current trigger
   yaml_contents <- yaml_contents[-trigger_indices]
@@ -71,4 +73,5 @@ all_gha <- lapply(github_actions_files, function(gha_file) {
   yaml_contents <- append(yaml_contents, trigger, after = trigger_indices[1])
          
   writeLines(yaml_contents, gha_file)
+  }
 })
