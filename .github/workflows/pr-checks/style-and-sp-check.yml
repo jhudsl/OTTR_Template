@@ -15,7 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: jhudsl/course_template
-
+    defaults:
+      run:
+        working-directory: ../
+        
     steps:
       - name: Checkout files
         uses: actions/checkout@v2
