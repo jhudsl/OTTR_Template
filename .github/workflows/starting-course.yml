@@ -39,6 +39,8 @@ jobs:
             .github/sync.yml \
             .github/test-sync.yml \
             .github/workflows/starting-course.yml \
+            # For now, getting rid of this since it adds more confusion than helpfulness
+            .github/workflows/docker-build-test.yml \
             .github/ISSUE_TEMPLATE/course-template-problem-report.md \
             .github/ISSUE_TEMPLATE/course-template-feature-request.md \
             resources/code_output \
@@ -54,6 +56,7 @@ jobs:
             docs/*.html \
             docs/*.md \
             manuscript/*
+
 
       # Commit modified files
       - name: Commit deleted files
