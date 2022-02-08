@@ -2,10 +2,11 @@
 
 name: Render Preview
 
-# Controls when the action will run. Triggers the workflow on pull request to main branch
+#---TRIGGER-START---#
 on:
   pull_request:
     branches: [ main ]
+#---TRIGGER-END----#
 
 permissions: write-all
 

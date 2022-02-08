@@ -7,7 +7,7 @@
 name: Bookdown to Leanpub repo copy over
 # Copy rendered notebooks to Leanpub repo
 
-# This workflow will run when there are changes to docs/ files in THIS repo
+#---TRIGGER-START---#
 on:
   workflow_dispatch:
   # Only run after the render finishes running
@@ -16,6 +16,7 @@ on:
     branches: [ main ]
     types:
       - completed
+#---TRIGGER-END----#
 
 jobs:
   file-bookdown-pr:

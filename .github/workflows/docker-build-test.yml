@@ -1,13 +1,8 @@
-# This code was originally written by Josh Shapiro
-# for the Childhood Cancer Data Lab, an initiative of Alexs Lemonade Stand Foundation.
-# https://github.com/AlexsLemonade/refinebio-examples/blob/33cdeff66d57f9fe8ee4fcb5156aea4ac2dce07f/.github/workflows/style-and-sp-check.yml#L1
-
-# Adapted for this jhudsl repository by Candace Savonen Apr 2021
+# Candace Savonen Apr 2021
 
 name: Test build of Dockerfile
 
-# Controls when the action will run. Triggers the workflow for a pull request for
-# master
+#---TRIGGER-START---#
 on:
   release:
     types:
@@ -22,15 +17,12 @@ on:
         description: 'Push to Dockerhub?'
         required: true
         default: 'false'
+#---TRIGGER-END----#
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: checkout repo
         uses: actions/checkout@v2

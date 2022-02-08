@@ -1,14 +1,9 @@
 
-# This code was originally written by Josh Shapiro and Candace Savonen
-# for the Childhood Cancer Data Lab, an initiative of Alexs Lemonade Stand Foundation.
-# https://github.com/AlexsLemonade/refinebio-examples/blob/33cdeff66d57f9fe8ee4fcb5156aea4ac2dce07f/.github/workflows/style-and-sp-check.yml#L1
-
-# Adapted for this jhudsl repository by Candace Savonen Apr 2021
+# Candace Savonen Apr 2021
 
 name: Render Bookdown and Coursera
 
-# Controls when the action will run. Triggers the workflow on push
-# events only for the master branch
+#---TRIGGER-START---#
 on:
   workflow_dispatch:
   push:
@@ -17,7 +12,8 @@ on:
       - '**.Rmd'
       - docker/*
       - assets/*
-      
+#---TRIGGER-END----#
+
 jobs:
   # This workflow contains a single job called "build-all"
   render-main:

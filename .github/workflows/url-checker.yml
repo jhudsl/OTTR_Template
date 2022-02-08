@@ -3,13 +3,13 @@
 # This github actions tests URLs in the Rmd files, README, and CONTRIBUTING.md
 name: Check URLs
 
-# This will be run upon PRs to main
+#---TRIGGER-START---#
 on:
   workflow_dispatch:
     pull_request:
       branches: [ main ]
+#---TRIGGER-END----#
 
-# Here's the main action of checking URLs
 jobs:
   build:
     runs-on: ubuntu-latest
