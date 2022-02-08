@@ -10,7 +10,3 @@ style-and-sp-check: yes
 # Rendering
 render-bookdown: yes
 render-leanpub: no
-
-# Don't need to touch these
-transfer-rendered-files: yes
-delete-preview: yes
