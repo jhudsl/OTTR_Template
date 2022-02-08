@@ -11,6 +11,9 @@ github_actions_dir <- file.path(root_dir, ".github", "workflows")
 github_actions_files <- list.files(github_actions_dir, pattern = "\\.yml$", 
                                    full.names = TRUE)
 
+# Don't manage the manager
+github_actions_files <- grep("manage-gha.yml", github_actions_files, value = TRUE, invert = TRUE)
+
 # Read in all files
 all_gha <- lapply(github_actions_files, readLines)
 names(all_gha) <- basename(github_actions_files)

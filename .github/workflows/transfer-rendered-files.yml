@@ -14,7 +14,7 @@ on:
   # Only run after the render finishes running
   workflow_run:
     workflows: [ "Render Bookdown and Coursera" ]
-    branches: [ main ]
+    branches: [ main, staging ]
     types:
       - completed
 #---TRIGGER-END----#

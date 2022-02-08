@@ -1,14 +1,14 @@
 
 # Jan 2022 Candace Savonen
 
-name: Render and publish Leanpub
+name: Render Leanpub
 
 #---TRIGGER-START---#
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: [ "Render Bookdown and Coursera" ]
-    branches: [ main ]
+    workflows: [ "Render Coursera" ]
+    branches: [ main, staging ]
     types:
       - completed
 #---TRIGGER-END----#
@@ -45,10 +45,6 @@ jobs:
           Rscript -e "ottr::bookdown_to_embed_leanpub( \
             chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
             make_book_txt = TRUE)"
-
-      # Convert quizzes to Coursera format
-      - name: Convert quizzes to coursera
-        run: Rscript -e "ottr::render_coursera(convert_quizzes = TRUE)"
 
       # Commit the rendered leanpub files
       - name: Commit rendered leanpub files

@@ -6,7 +6,7 @@ name: Render Preview
 #---TRIGGER-START---#
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ main, staging ]
 #---TRIGGER-END----#
 
 permissions: write-all

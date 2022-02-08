@@ -1,0 +1,56 @@
+
+# Candace Savonen Apr 2021
+
+name: Render Coursera
+
+#---TRIGGER-START---#
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [ "Render Bookdown" ]
+    branches: [ main, staging ]
+    types:
+      - completed
+#---TRIGGER-END----#
+
+jobs:
+  render-main:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+
+      # Run Coursera version
+      - name: Run Coursera version of render
+        id: coursera
+        run: |
+          docker run \
+          --mount type=bind,target=/home/rstudio,source=$PWD \
+          --user "$(id -u):$(id -g)" \
+          jhudsl/course_template \
+          Rscript -e "ottr::render_coursera()"
+
+      # Convert quizzes to Coursera format
+      - name: Convert quizzes to coursera
+        run: Rscript -e "ottr::render_coursera(convert_quizzes = TRUE)"
+
+      # This checks on the steps before it and makes sure that they completed.
+      # If the renders didn't complete we don't want to commit the file changes
+      - name: Check on render steps
+        if: steps.coursera.outcome != 'success'
+        run: |
+          echo Coursera status ${{steps.coursera.outcome}}
+          exit 1
+
+      # Commit the rendered bookdown files
+      - name: Commit rendered Coursera files
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add --force docs/coursera/*
+          git commit -m 'Render Coursera' || echo "No changes to commit"
+          git push origin main || echo "No changes to push"

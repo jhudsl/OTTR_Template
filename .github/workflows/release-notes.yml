@@ -5,7 +5,7 @@ name: Release note PR comment
 #---TRIGGER-START---#
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ main, staging ]
     types: [ opened ]
 #---TRIGGER-END----#
 

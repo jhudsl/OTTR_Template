@@ -7,8 +7,7 @@ name: Starting a new course
 #---TRIGGER-START---#
 on:
   push:
-    branches:
-      - main
+    branches: [ main, staging ]
   workflow_dispatch:
 #---TRIGGER-END---#
 

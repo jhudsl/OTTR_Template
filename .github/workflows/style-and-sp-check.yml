@@ -6,7 +6,7 @@ name: Style and spell check R markdowns
 #---TRIGGER-START---#
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ main, staging ]
 #---TRIGGER-END---#
 
 jobs:
