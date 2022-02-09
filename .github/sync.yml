@@ -23,6 +23,7 @@ group:
     abyzovlab/CNVpytor_course
     opencasestudies/OCS_Guide
     tmm211/dsp-terra-mooc-test2
+    jhudsl/Intro_to_OTTR
 ###ADD NEW REPO HERE following the format above#
   files:
     - source: .github/workflows/render-bookdown.yml
