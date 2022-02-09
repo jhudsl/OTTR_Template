@@ -33,6 +33,5 @@ jobs:
           if $changes == true; then
             git add . --force
             git commit -m 'Update GHA switches'
-            git pull --set-upstream origin ${{ github.head_ref }} --allow-unrelated-histories
             git push
           fi
