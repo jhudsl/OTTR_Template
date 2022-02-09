@@ -22,12 +22,15 @@ jobs:
         uses: doughepi/yaml-env-action@v1.0.0
         with:
             files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
-      - run: echo "${{ env.CHECK_QUIZZES }}"
-        if: ${{ env.CHECK_QUIZZES == 'yes' }}
+      - run: echo "${{ env.STYLE_AND_SP_CHECK }}"
+        if: ${{ env.STYLE_AND_SP_CHECK == 'yes' }}
+    outputs:
+      toggle: "${{ env.STYLE_AND_SP_CHECK }}"
   
   style-n-check:
     needs: yaml-check
     runs-on: ubuntu-latest
+    if: ${{needs.yaml-check.outputs.toggle == 'yes'}} 
     container:
       image: jhudsl/course_template
 
@@ -36,9 +39,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          
-      - name: check that the file carries over
-        run: echo ${{needs.yaml-check.steps.env.CHECK_QUIZZES}}
 
       - name: Configure git
         run: |
