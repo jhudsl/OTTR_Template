@@ -1,0 +1,13 @@
+# PR Checks
+check-quizzes: yes
+url-checker: yes
+render-preview: yes
+style-and-sp-check: yes
+
+# Rendering
+render-bookdown: yes
+render-leanpub: yes
+render-coursera: yes
+
+# Docker specific
+docker-build-test: yes
