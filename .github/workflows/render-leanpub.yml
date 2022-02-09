@@ -14,34 +14,32 @@ on:
 #---TRIGGER-END----#
 
 jobs:
-  # This workflow contains a single job called "build-all"
-  render-main:
+  render-leanpub:
     runs-on: ubuntu-latest
     container:
       image: jhudsl/ottr
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: checkout
         uses: actions/checkout@v2
         with:
-          # get the full repo
           fetch-depth: 0
-          # use github PAT
           token: ${{ secrets.GH_PAT }}
 
-      # Run leanpub rendering
+      # Create screenshots
       - name: Run the screenshot creation
         run: |
           chapt_urls=$(Rscript --vanilla scripts/make_screenshots.R \
             --git_pat ${{ secrets.GH_PAT }} \
             --repo $GITHUB_REPOSITORY)
 
+      # We want a fresh run of the renders each time
+      - name: Delete old manuscript/
+        run: rm -rf manuscript/
+
       # Run Leanpub rendering
       - name: Run ottr::bookdown_to_embed_leanpub
         run: |
-          rm -rf manuscript
           Rscript -e "ottr::bookdown_to_embed_leanpub( \
             chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
             make_book_txt = TRUE)"

@@ -14,8 +14,10 @@ on:
 #---TRIGGER-END----#
 
 jobs:
-  render-main:
+  render-coursera:
     runs-on: ubuntu-latest
+    container:
+      image: jhudsl/course_template
 
     steps:
       - name: checkout
@@ -27,15 +29,6 @@ jobs:
       # Run Coursera version
       - name: Run Coursera version of render
         id: coursera
-        run: |
-          docker run \
-          --mount type=bind,target=/home/rstudio,source=$PWD \
-          --user "$(id -u):$(id -g)" \
-          jhudsl/course_template \
-          Rscript -e "ottr::render_coursera()"
-
-      # Convert quizzes to Coursera format
-      - name: Convert quizzes to coursera
         run: Rscript -e "ottr::render_coursera(convert_quizzes = TRUE)"
 
       # This checks on the steps before it and makes sure that they completed.

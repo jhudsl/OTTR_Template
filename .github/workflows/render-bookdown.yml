@@ -14,19 +14,16 @@ on:
 #---TRIGGER-END----#
 
 jobs:
-  # This workflow contains a single job called "build-all"
-  render-main:
+  render-bookdown:
     runs-on: ubuntu-latest
+    container:
+      image: jhudsl/course_template
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: checkout
         uses: actions/checkout@v2
         with:
-          # get the full repo
           fetch-depth: 0
-          # use github PAT
           token: ${{ secrets.GH_PAT }}
 
       # We want a fresh run of the renders each time
@@ -37,10 +34,6 @@ jobs:
       - name: Run bookdown render
         id: bookdown
         run: |
-          docker run \
-          --mount type=bind,target=/home/rstudio,source=$PWD \
-          --user "$(id -u):$(id -g)" \
-          jhudsl/course_template \
           Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all');
           file.copy(from = 'assets', to = 'docs/assets', overwrite = TRUE)"
 
