@@ -30,7 +30,7 @@ jobs:
           cleanup: true
 
           # A comma-separated list of file types to cover in the URL checks
-          file_types: .Rmd, .md
+          file_types: .Rmd,.md
 
           # Choose whether to include file with no URLs in the prints.
           print_all: false
