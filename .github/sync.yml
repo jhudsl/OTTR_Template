@@ -27,10 +27,12 @@ group:
   files:
     - source: .github/workflows/render-bookdown.yml
       dest: .github/workflows/render-bookdown.yml
-    - source: .github/workflows/render-preview.yml
-      dest: .github/workflows/render-preview.yml
+    - source: .github/workflows/render-coursera.yml
+      dest: .github/workflows/render-coursera.yml
     - source: .github/workflows/render-leanpub.yml
       dest: .github/workflows/render-leanpub.yml
+    - source: .github/workflows/render-preview.yml
+      dest: .github/workflows/render-preview.yml
     - source: .github/workflows/docker-build-test.yml
       dest: .github/workflows/docker-build-test.yml
     - source: .github/workflows/transfer-rendered-files.yml
