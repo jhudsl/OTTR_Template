@@ -2,12 +2,14 @@
 
 name: Delete Preview
 
+#---TRIGGER-START---#
 on:
   pull_request:
     types: [closed]
+#---TRIGGER-END---#
 
 jobs:
-  build-all:
+  delete-preview:
     runs-on: ubuntu-latest
     steps:
 

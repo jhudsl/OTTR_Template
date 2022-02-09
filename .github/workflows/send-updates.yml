@@ -2,6 +2,7 @@
 
 name: Sync Files
 
+#---TRIGGER-START---#
 on:
   release:
     types:
@@ -12,6 +13,7 @@ on:
         description: 'Tag to use?'
         required: true
         default: 'null'
+#---TRIGGER-END----#
 
 jobs:
   sync:
@@ -20,7 +22,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@master
 
-      - name: login as jhudsl-robot
+      - name: Login as jhudsl-robot
         run: |
           git config --local user.email "itcrtrainingnetwork@gmail.com"
           git config --local user.name "jhudsl-robot"
