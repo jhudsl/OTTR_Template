@@ -30,6 +30,6 @@ jobs:
         id: commit_it
         run: |
           branch_name=$(git rev-parse --abbrev-ref HEAD)
-          git add . --force
+          git add .github/workflows --force
           git commit -m 'Update GHA switches' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
