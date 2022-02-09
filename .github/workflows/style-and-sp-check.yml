@@ -11,7 +11,7 @@ on:
 jobs:
 
   yaml-check:
-    name: "Check user automation preferences"
+    name: "Confirm user automation choices"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,6 +26,8 @@ jobs:
         if: ${{ env.CHECK_QUIZZES == 'yes' }}
   
   style-n-check:
+    if: ${{ env.CHECK_QUIZZES == 'yes' }}
+    needs: yaml-check
     runs-on: ubuntu-latest
     container:
       image: jhudsl/course_template
