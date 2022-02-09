@@ -29,7 +29,8 @@ jobs:
       - name: Commit updated workflows to current branch
         id: commit_it
         run: |
-          git diff origin/${{ github.head_ref }} -- .github/workflows >/dev/null && changes=true || changes=false
+          branch_name=$(git rev-parse --abbrev-ref HEAD)
+          git diff origin/$branch_name -- .github/workflows >/dev/null && changes=true || changes=false
           if $changes == true; then
             git add . --force
             git commit -m 'Update GHA switches'
