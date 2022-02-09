@@ -1,16 +1,15 @@
-
 # Candace Savonen Jan 2022
 
 name: Check Leanpub Quizzes
 
+#---TRIGGER-START---#
 on:
   workflow_dispatch:
-### UNCOMMENT THIS SECTION IF YOU WISH PREPARE YOUR COURSE QUIZZES FOR LEANPUB AUTOMATICALLY
-#  pull_request:
-#    branches: [ main, staging]
-#    paths:
-#      - 'quizzes/*'
-######### END OF SECTION #########
+    pull_request:
+      branches: [ main, staging ]
+      paths:
+        - 'quizzes/*'
+#---TRIGGER-END----#
 
 jobs:
   check-quizzes:

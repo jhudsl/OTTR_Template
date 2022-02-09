@@ -2,15 +2,13 @@
 
 name: Style and spell check R markdowns
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the main branch
+#---TRIGGER-START---#
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ main, staging ]
+#---TRIGGER-END---#
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "style and check"
   style-n-check:
     runs-on: ubuntu-latest
     container:
@@ -57,18 +55,10 @@ jobs:
       - name: Commit spell check errors
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          git diff --name-only origin/main -- resources/spell_check_results.tsv >/dev/null && changes=true || changes=false
-          echo $changes
-          if $changes == true; then
-            git diff --name-only origin/$branch_name -- resources/spell_check_results.tsv >/dev/null && changes=true || changes=false
-            echo $changes
-            if $changes == true; then
-              git add --force resources/spell_check_results.tsv
-              git diff-index --quiet HEAD || git commit -m 'Add spell check file'
-              git pull --set-upstream origin $branch_name --allow-unrelated-histories
-              git push --force origin $branch_name
-            fi
-          fi
+          git add --force resources/spell_check_results.tsv
+          git commit -m 'Add spell check file' || echo "No changes to commit"
+          git pull --set-upstream origin $branch_name --allow-unrelated-histories
+          git push --force origin $branch_name || echo "No changes to commit"
 
       - name: Build components of the spell check comment
         id: build-components
