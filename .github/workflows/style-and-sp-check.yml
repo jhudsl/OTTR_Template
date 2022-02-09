@@ -21,7 +21,7 @@ jobs:
       - name: Load environment from YAML
         uses: doughepi/yaml-env-action@v1.0.0
         with:
-            files: params.yaml # Pass a space-separated list of configuration files. Rightmost files take precedence.
+            files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
       - run: echo "${{ env.CHECK_QUIZZES }}"
         if: ${{ env.CHECK_QUIZZES == 'yes' }}
   
