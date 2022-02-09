@@ -68,19 +68,10 @@ jobs:
         id: commit
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          git diff origin/main -- docs >/dev/null && changes=true || changes=false
-          echo $changes
-          if $changes == true; then
-            echo ::set-output name=changes::$(echo 'changes')
-            git diff origin/$branch_name -- docs/ >/dev/null && changes=true || changes=false
-            echo $changes
-            if $changes == true; then
-              git add . --force
-              git commit -m 'Render bookdown preview'
-              git pull --set-upstream origin $branch_name --allow-unrelated-histories
-              git push --force
-            fi
-          fi
+          git add . --force
+          git commit -m 'Render bookdown preview' || echo "No changes to commit"
+          git pull --set-upstream origin $branch_name --allow-unrelated-histories
+          git push --force || echo "No changes to commit"
         shell: bash
 
       - name: Find Comment
