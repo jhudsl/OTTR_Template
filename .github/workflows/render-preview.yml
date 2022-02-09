@@ -78,7 +78,7 @@ jobs:
               git add . --force
               git commit -m 'Render bookdown preview'
               git pull --set-upstream origin $branch_name --allow-unrelated-histories
-              git push
+              git push --force
             fi
           fi
         shell: bash
