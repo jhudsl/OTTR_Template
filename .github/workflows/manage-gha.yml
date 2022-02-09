@@ -9,7 +9,6 @@ on:
 
 jobs:
   update-triggers:
-    name: Manage GHA
     runs-on: ubuntu-latest
     container:
       image: jhudsl/course_template
