@@ -4,8 +4,8 @@ name: Update Github Actions Switches
 
 on:
   push:
-    path:
-      - config_automation.yml
+    paths:
+      - 'config_automation.yml'
 
 jobs:
   update-triggers:
