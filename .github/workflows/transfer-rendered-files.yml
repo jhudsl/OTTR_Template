@@ -7,22 +7,22 @@
 name: Bookdown to Leanpub repo copy over
 # Copy rendered notebooks to Leanpub repo
 
-# This workflow will run when there are changes to docs/ files in THIS repo
+
+#---TRIGGER-START---#
 on:
   workflow_dispatch:
   # Only run after the render finishes running
   workflow_run:
     workflows: [ "Render Bookdown and Coursera" ]
-    branches: [ main ]
+    branches: [ main, staging ]
     types:
       - completed
+#---TRIGGER-END----#
 
 jobs:
   file-bookdown-pr:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Get repository name by dropping Bookdown if it exists but always append _Leanpub
     steps:
       - name: Run git repo check
         id: git_repo_check

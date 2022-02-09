@@ -2,22 +2,21 @@
 
 name: Render Preview
 
-# Controls when the action will run. Triggers the workflow on pull request to main branch
+#---TRIGGER-START---#
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ main, staging ]
+#---TRIGGER-END----#
 
 permissions: write-all
 
 jobs:
-  # This workflow contains a single job called "build-all"
   render-preview:
     runs-on: ubuntu-latest
     container:
       image: jhudsl/course_template
-    # Steps represent a sequence of tasks that will be executed as part of the job
+
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout files
         uses: actions/checkout@v2
         with:
@@ -50,13 +49,10 @@ jobs:
         id: bookdown
         run: Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all')"
 
-##### If you do not wish to host your course on Coursera, you can delete this section #####
       # Run Coursera version
       - name: Run Coursera version of render
         id: coursera
         run: Rscript -e "ottr::render_coursera()"
-
-##### End of Coursera rendering section ########################################
 
       # This checks on the steps before it and makes sure that they completed.
       # If the renders didn't complete we don't want to commit the file changes
@@ -72,19 +68,10 @@ jobs:
         id: commit
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          git diff --name-only origin/main -- docs >/dev/null && changes=true || changes=false
-          echo $changes
-          if $changes == true; then
-            echo ::set-output name=changes::$(echo 'changes')
-            git diff --name-only origin/$branch_name -- docs/ >/dev/null && changes=true || changes=false
-            echo $changes
-            if $changes == true; then
-              git add . --force
-              git commit -m 'Render bookdown preview'
-              git pull --set-upstream origin $branch_name --allow-unrelated-histories
-              git push
-            fi
-          fi
+          git add . --force
+          git commit -m 'Render bookdown preview' || echo "No changes to commit"
+          git pull --set-upstream origin $branch_name --allow-unrelated-histories
+          git push --force || echo "No changes to commit"
         shell: bash
 
       - name: Find Comment
