@@ -2,7 +2,7 @@
 check-quizzes: yes
 url-checker: yes
 render-preview: yes
-style-and-sp-check: no
+style-and-sp-check: yes
 
 # Rendering
 render-bookdown: yes
