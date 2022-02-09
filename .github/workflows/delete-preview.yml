@@ -9,7 +9,7 @@ on:
 #---TRIGGER-END---#
 
 jobs:
-  build-all:
+  delete-preview:
     runs-on: ubuntu-latest
     steps:
 

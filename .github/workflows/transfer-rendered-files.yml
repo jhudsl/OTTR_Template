@@ -21,10 +21,8 @@ on:
 
 jobs:
   file-bookdown-pr:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Get repository name by dropping Bookdown if it exists but always append _Leanpub
     steps:
       - name: Run git repo check
         id: git_repo_check

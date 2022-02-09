@@ -10,7 +10,6 @@ on:
 #---TRIGGER-END---#
 
 jobs:
-  # This workflow contains a single job called "style and check"
   style-n-check:
     runs-on: ubuntu-latest
     container:
