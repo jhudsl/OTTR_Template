@@ -26,7 +26,7 @@ jobs:
         if: ${{ env.CHECK_QUIZZES == 'yes' }}
   
   style-n-check:
-    if: ${{ env.CHECK_QUIZZES == 'yes' }}
+    if: ${{ CHECK_QUIZZES == 'yes' }}
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
