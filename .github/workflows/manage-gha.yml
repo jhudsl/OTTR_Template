@@ -30,9 +30,6 @@ jobs:
         id: commit_it
         run: |
           branch_name=$(git rev-parse --abbrev-ref HEAD)
-          git diff origin/$branch_name -- .github/workflows >/dev/null && changes=true || changes=false
-          if $changes == true; then
-            git add . --force
-            git commit -m 'Update GHA switches'
-            git push
-          fi
+          git add . --force
+          git commit -m 'Update GHA switches' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
