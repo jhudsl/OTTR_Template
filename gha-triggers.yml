@@ -1,0 +1,149 @@
+check-quizzes.yml:
+  status: on
+  on-trigger:
+    workflow_dispatch:
+      pull_request:
+        branches: [ main, staging ]
+        paths:
+          - 'quizzes/*'
+  off-trigger:
+    workflow_dispatch:
+delete-preview.yml: render-preview.yml
+  status: on
+  on-trigger:
+    pull_request:
+      types: [closed]
+  off-trigger:
+    workflow_dispatch:
+docker-build-test.yml:
+  status: on
+  on-trigger:
+    release:
+      types:
+        - created
+    pull_request:
+      branches: [ main, staging ]
+      paths: [ docker/Dockerfile, docker/github_package_list.tsv ]
+    workflow_dispatch:
+      inputs:
+        dockerhubpush:
+          description: 'Push to Dockerhub?'
+          required: true
+          default: 'false'
+  off-trigger:
+    workflow_dispatch:
+      inputs:
+        dockerhubpush:
+          description: 'Push to Dockerhub?'
+          required: true
+          default: 'false'
+release-notes.yml:
+  status: on
+  on-trigger:
+    pull_request:
+      branches: [ main, staging ]
+      types: [ opened ]
+  off-trigger:
+render-bookdown.yml:
+  status: on
+  on-trigger:
+    workflow_dispatch:
+    push:
+      branches: [ main, staging ]
+      paths:
+        - '**.Rmd'
+        - assets/*
+  off-trigger:
+    workflow_dispatch:
+render-coursera.yml: render-bookdown.yml
+  status: on
+  on-trigger:
+      workflow_dispatch:
+      workflow_run:
+        workflows: [ "Render Bookdown" ]
+        branches: [ main, staging ]
+        types:
+          - completed
+  off-trigger:
+    workflow_dispatch:
+render-leanpub.yml: render-coursera.yml
+  status: on
+  on-trigger:
+    workflow_dispatch:
+    workflow_run:
+      workflows: [ "Render Coursera" ]
+      branches: [ main, staging ]
+      types:
+        - completed
+  off-trigger:
+    workflow_dispatch:
+render-preview.yml:
+  status: on
+  on-trigger:
+    pull_request:
+      branches: [ main, staging ]
+  off-trigger:
+    workflow_dispatch:
+send-updates.yml:
+  status: on
+  on-trigger:
+    release:
+      types:
+      - published
+    workflow_dispatch:
+      inputs:
+        prtag:
+          description: 'Tag to use?'
+          required: true
+          default: 'null'
+  off-trigger:
+    workflow_dispatch:
+      inputs:
+        prtag:
+          description: 'Tag to use?'
+          required: true
+          default: 'null'
+starting-course.yml:
+  status: on
+  on-trigger:
+    push:
+      branches: [ main, staging ]
+    workflow_dispatch:
+  off-trigger:
+    workflow_dispatch:
+style-and-sp-check.yml:
+  status: on
+  on-trigger:
+    pull_request:
+      branches: [ main, staging ]
+  off-trigger:
+    workflow_dispatch:
+test-send-updates.yml:
+  status: on
+  on-trigger:
+  off-trigger:
+    workflow_dispatch:
+      inputs:
+        repo:
+          description: 'What repo to test on e.g. jhudsl/OTTR_Template_Test'
+          required: true
+          default: 'jhudsl/OTTR_Template_Test'
+transfer-rendered-files.yml: render-bookdown.yml
+  status: on
+  on-trigger:
+    workflow_dispatch:
+    workflow_run:
+      workflows: [ "Render Bookdown" ]
+      branches: [ main, staging ]
+      types:
+        - completed
+  off-trigger:
+    workflow_dispatch:
+url-checker.yml:
+  status: on
+  on-trigger:
+    workflow_dispatch:
+    pull_request:
+      branches: [ main, staging ]
+  off-trigger:
+    workflow_dispatch:
