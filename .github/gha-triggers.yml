@@ -8,13 +8,14 @@ check-quizzes.yml:
           - 'quizzes/*'
   off-trigger:
     workflow_dispatch:
-delete-preview.yml: render-preview.yml
+delete-preview.yml:
   status: on
   on-trigger:
     pull_request:
       types: [closed]
   off-trigger:
     workflow_dispatch:
+  dependent_on: render-preview.yml
 docker-build-test.yml:
   status: on
   on-trigger:
@@ -55,7 +56,7 @@ render-bookdown.yml:
         - assets/*
   off-trigger:
     workflow_dispatch:
-render-coursera.yml: render-bookdown.yml
+render-coursera.yml:
   status: on
   on-trigger:
       workflow_dispatch:
@@ -66,7 +67,8 @@ render-coursera.yml: render-bookdown.yml
           - completed
   off-trigger:
     workflow_dispatch:
-render-leanpub.yml: render-coursera.yml
+  dependent_on: render-bookdown.yml
+render-leanpub.yml:
   status: on
   on-trigger:
     workflow_dispatch:
@@ -77,6 +79,7 @@ render-leanpub.yml: render-coursera.yml
         - completed
   off-trigger:
     workflow_dispatch:
+  dependent_on: render-coursera.yml
 render-preview.yml:
   status: on
   on-trigger:
@@ -128,7 +131,7 @@ test-send-updates.yml:
           description: 'What repo to test on e.g. jhudsl/OTTR_Template_Test'
           required: true
           default: 'jhudsl/OTTR_Template_Test'
-transfer-rendered-files.yml: render-bookdown.yml
+transfer-rendered-files.yml:
   status: on
   on-trigger:
     workflow_dispatch:
@@ -139,6 +142,7 @@ transfer-rendered-files.yml: render-bookdown.yml
         - completed
   off-trigger:
     workflow_dispatch:
+  dependent_on: render-bookdown.yml
 url-checker.yml:
   status: on
   on-trigger:
