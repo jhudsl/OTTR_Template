@@ -1,7 +1,7 @@
 
 # Candace Savonen Apr 2021
 
-name: Render Bookdown
+name: Render all output courses
 
 on:
   workflow_dispatch:
