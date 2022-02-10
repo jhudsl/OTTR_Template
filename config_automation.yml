@@ -6,8 +6,8 @@ style-and-sp-check: yes
 
 # Rendering
 render-bookdown: yes
-render-leanpub: yes
-render-coursera: yes
+render-leanpub: no  
+render-coursera: no
 
 # Docker specific
 docker-build: yes
