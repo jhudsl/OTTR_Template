@@ -10,4 +10,4 @@ render-leanpub: yes
 render-coursera: yes
 
 # Docker specific
-docker-build-test: yes
+docker-build: yes
