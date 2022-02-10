@@ -38,7 +38,7 @@ jobs:
       dockerfiles_changed: steps.verify-changed-files.outputs.files_changed
 
   style-n-check:
-    name: Style & spell check
+    name: Style & spell check 
     needs: yaml-check
     runs-on: ubuntu-latest
     if: ${{needs.yaml-check.outputs.toggle_spell_check == 'yes'}}
