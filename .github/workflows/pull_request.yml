@@ -3,8 +3,8 @@
 name: Pull Request
 
 on:
+  name: PR
   pull_request:
-    name: PR
     branches: [ main, staging ]
 
 jobs:
