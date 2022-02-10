@@ -7,8 +7,9 @@ LABEL maintainer="your_email.com"
 #    package_name
 
 # Install a package from CRAN
-# RUN Rscript -e  "install.packages( \
-#    c('package_name'))"
+# RUN Rscript -e  "options(warn = 2);install.packages( \
+#    c('package_name'), \
+#    repos = 'https://cloud.r-project.org/')"
 
 # Install a package from Bioconductor
 # RUN Rscript -e "options(warn = 2); BiocManager::install( \
