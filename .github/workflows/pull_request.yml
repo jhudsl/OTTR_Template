@@ -392,6 +392,10 @@ jobs:
     if: ${{needs.yaml-check.outputs.toggle_docker_build == 'yes'}}
 
     steps:
+      - name: checkout repo
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
+        uses: actions/checkout@v2
+
       - name: Verify Dockerfiles changed?
         uses: tj-actions/verify-changed-files@v8.8
         id: verify-changed-files
@@ -399,10 +403,6 @@ jobs:
           files: |
              docker/Dockerfile
              docker/github_package_list.tsv
-
-      - name: checkout repo
-        if: steps.verify-changed-files.outputs.files_changed == 'true'
-        uses: actions/checkout@v2
 
       - name: Login as jhudsl-robot
         if: steps.verify-changed-files.outputs.files_changed == 'true'
