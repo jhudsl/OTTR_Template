@@ -393,7 +393,6 @@ jobs:
 
     steps:
       - name: checkout repo
-        if: steps.verify-changed-files.outputs.files_changed == 'true'
         uses: actions/checkout@v2
 
       - name: Verify Dockerfiles changed?
@@ -447,9 +446,3 @@ jobs:
           context: docker
           file: docker/Dockerfile
           tags: jhudsl/course_template
-
-      - name: Get the version
-        if: ${{ github.head_ref != 'repo-sync/OTTR_Template/default' && steps.verify-changed-files.outputs.files_changed == 'true'}}
-        id: get_version
-        run: |
-          echo ::set-output name=version::$(echo $GITHUB_REF | cut -d / -f 3)
