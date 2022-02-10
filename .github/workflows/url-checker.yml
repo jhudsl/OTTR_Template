@@ -27,32 +27,32 @@ jobs:
     outputs:
       toggle: "${{ env.URL_CHECKER }}"
 
-  style-n-check:
+  url-check:
     needs: yaml-check
     runs-on: ubuntu-latest
     if: ${{needs.yaml-check.outputs.toggle == 'yes'}}
-      - name: checkout repo
-        uses: actions/checkout@v2
+    - name: checkout repo
+      uses: actions/checkout@v2
 
-      - name: Login as jhudsl-robot
-        run: |
-          git config --local user.email "itcrtrainingnetwork@gmail.com"
-          git config --local user.name "jhudsl-robot"
+    - name: Login as jhudsl-robot
+      run: |
+        git config --local user.email "itcrtrainingnetwork@gmail.com"
+        git config --local user.name "jhudsl-robot"
 
-      - name: URLs-checker
-        uses: urlstechie/urlchecker-action@master
-        with:
-          # Delete the cloned repository after running URLchecked (default is false)
-          cleanup: true
+    - name: URLs-checker
+      uses: urlstechie/urlchecker-action@master
+      with:
+        # Delete the cloned repository after running URLchecked (default is false)
+        cleanup: true
 
-          # A comma-separated list of file types to cover in the URL checks
-          file_types: .Rmd,.md
+        # A comma-separated list of file types to cover in the URL checks
+        file_types: .Rmd,.md
 
-          # Choose whether to include file with no URLs in the prints.
-          print_all: false
+        # Choose whether to include file with no URLs in the prints.
+        print_all: false
 
-          # A comma separated links to exclude during URL checks
-          exclude_urls: https://jhudatascience.org/{Course_Name}}
+        # A comma separated links to exclude during URL checks
+        exclude_urls: https://jhudatascience.org/{Course_Name}}
 
-          # choose if the force pass or not
-          force_pass : true
+        # choose if the force pass or not
+        force_pass : true
