@@ -1,8 +1,6 @@
 FROM jhudsl/course_template
 LABEL maintainer="your_email.com"
 
-RUN R -e "options(warn = 2); install.packages(c('OCSdata'), repos='https://cloud.r-project.org/')"
-
 #################### EXAMPLES OF INSTALLING PACKAGES ###########################
 # Install a Linux/Ubuntu package
 # RUN apt-get update && apt-get install -y --no-install-recommends \
