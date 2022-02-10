@@ -11,3 +11,4 @@ render-coursera: yes
 
 # Docker specific
 docker-build: yes
+ 
