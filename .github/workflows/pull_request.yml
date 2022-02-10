@@ -23,9 +23,9 @@ jobs:
         with:
             files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
     outputs:
+      toggle_quiz_check: "${{ env.CHECK_QUIZZES }}"
       toggle_spell_check: "${{ env.STYLE_AND_SP_CHECK }}"
       toggle_url_check: "${{ env.URL_CHECKER }}"
-      toggle_quiz_check: "${{ env.CHECK_QUIZZES }}"
       toggle_render_preview: "${{ env.RENDER_PREVIEW }}"
 
   style-n-check:
@@ -171,6 +171,7 @@ jobs:
         force_pass : true
 
   check-quizzes:
+    needs: yaml-check
     runs-on: ubuntu-latest
     container:
       image: jhudsl/course_template
@@ -274,6 +275,7 @@ jobs:
           edit-mode: replace
 
   render-preview:
+    needs: yaml-check
     runs-on: ubuntu-latest
     container:
       image: jhudsl/course_template
