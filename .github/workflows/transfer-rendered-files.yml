@@ -11,9 +11,8 @@ name: Bookdown to Leanpub repo copy over
 #---TRIGGER-START---#
 on:
   workflow_dispatch:
-  # Only run after the render finishes running
   workflow_run:
-    workflows: [ "Render Bookdown and Coursera" ]
+    workflows: [ "Render Bookdown" ]
     branches: [ main, staging ]
     types:
       - completed
