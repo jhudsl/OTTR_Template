@@ -1,6 +1,6 @@
 # PR Checks
 check-quizzes: yes
-url-checker: yes
+url-checker: no
 render-preview: yes
 style-and-sp-check: yes
 
