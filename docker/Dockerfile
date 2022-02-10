@@ -43,7 +43,7 @@ RUN apt-get -y --no-install-recommends install \
     python3-pip  python3-dev
 
 # Commonly used R packages
-RUN Rscript -e  "install.packages( \
+RUN Rscript -e  "options(warn = 2);install.packages( \
     c('bookdown', \
       'here', \
       'leanpubr', \
@@ -56,7 +56,8 @@ RUN Rscript -e  "install.packages( \
       'servr', \
       'spelling', \
       'styler', \
-      'reticulate'))"
+      'reticulate'), \
+      repos = 'https://cloud.r-project.org/')"
 
 # cow needs this dependency:
 RUN Rscript -e  "devtools::install_version('gitcreds', version = '0.1.1', repos = 'http://cran.us.r-project.org')"
