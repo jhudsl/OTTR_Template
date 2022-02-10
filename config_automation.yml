@@ -1,4 +1,4 @@
-# PR Checks
+# Formatting Checks (run at pull request)
 check-quizzes: yes
 url-checker: yes
 render-preview: yes
