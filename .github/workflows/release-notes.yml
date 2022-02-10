@@ -2,12 +2,10 @@
 
 name: Release note PR comment
 
-#---TRIGGER-START---#
 on:
   pull_request:
     branches: [ main, staging ]
     types: [ opened ]
-#---TRIGGER-END----#
 
 jobs:
   pr-comment:

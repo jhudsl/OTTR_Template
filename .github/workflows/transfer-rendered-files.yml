@@ -8,7 +8,6 @@ name: Bookdown to Leanpub repo copy over
 # Copy rendered notebooks to Leanpub repo
 
 
-#---TRIGGER-START---#
 on:
   workflow_dispatch:
   workflow_run:
@@ -16,7 +15,6 @@ on:
     branches: [ main, staging ]
     types:
       - completed
-#---TRIGGER-END----#
 
 jobs:
   file-bookdown-pr:

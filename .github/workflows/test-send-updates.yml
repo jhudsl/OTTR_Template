@@ -2,7 +2,6 @@
 
 name: Test Sync Files
 
-#---TRIGGER-START---#
 on:
   workflow_dispatch:
     inputs:
@@ -10,7 +9,6 @@ on:
         description: 'What repo to test on e.g. jhudsl/OTTR_Template_Test'
         required: true
         default: 'jhudsl/OTTR_Template_Test'
-#---TRIGGER-END----#
 
 jobs:
   test-sync:
