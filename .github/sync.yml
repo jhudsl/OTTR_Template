@@ -5,7 +5,7 @@ group:
   - files:
       - source: config_automation.yml
         dest: config_automation.yml
-      - source: .github/workflows/
+      - source: workflows/
         dest: .github/workflows/
         deleteOrphaned: true
       - source: scripts/
