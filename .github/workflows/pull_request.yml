@@ -345,8 +345,8 @@ jobs:
         id: commit
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          git diff --name-only origin/main -- docs >/dev/null && changes=true || changes=false
-          echo ::set-output name=changes::$(echo $changes)
+          git diff origin/main -- docs >/dev/null && changes=true || changes=false
+          echo ::set-output name=changes::$changes
           git add . --force
           git commit -m 'Render preview' || echo "No changes to commit"
           git pull --set-upstream origin $branch_name --allow-unrelated-histories
@@ -376,7 +376,7 @@ jobs:
           echo ${{steps.commit.outputs.changes}}
 
       - name: Create or update comment
-        if: steps.commit.outputs.changes == 'changes'
+        if: steps.commit.outputs.changes == 'true'
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -391,7 +391,7 @@ jobs:
           edit-mode: replace
 
       - name: Comment if no changes
-        if: steps.commit.outputs.changes == 'no_changes'
+        if: steps.commit.outputs.changes == 'false'
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
