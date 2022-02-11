@@ -87,7 +87,8 @@ jobs:
     if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes' || needs.yaml-check.outputs.toggle_leanpub == 'yes'}}
 
     steps:
-      # Run TOC-less version
+      # Rendered content for Leanpub and Coursera is very similar.
+      # This job creates a shared scaffold for both.
       - name: Run TOC-less version of render
         id: tocless
         run: Rscript -e "ottr::render_without_toc()"
@@ -102,7 +103,7 @@ jobs:
           git push origin main || echo "No changes to push"
 
   render-leanpub:
-    name: Render Leanpub
+    name: Finish Leanpub prep
     needs: [yaml-check, render-tocless]
     runs-on: ubuntu-latest
     container:
@@ -149,7 +150,7 @@ jobs:
           git push --force origin main || echo "No changes to push"
 
   render-coursera:
-    name: Render Coursera
+    name: Finish Coursera prep
     needs: [yaml-check, render-tocless]
     runs-on: ubuntu-latest
     container:

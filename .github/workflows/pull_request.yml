@@ -327,6 +327,8 @@ jobs:
         run: Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all')"
 
       # Run TOC-less version
+      # Rendered content for Leanpub and Coursera is very similar. 
+      # This job creates a shared scaffold for both.
       - name: Run TOC-less version of render
         id: tocless
         run: Rscript -e "ottr::render_without_toc()"
