@@ -12,8 +12,10 @@ jobs:
     name: Load user automation choices
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout files
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
         # Use the yaml-env-action action.
       - name: Load environment from YAML
@@ -65,11 +67,6 @@ jobs:
       image: jhudsl/course_template
 
     steps:
-      - name: Checkout files
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
       - name: Run spell check
         id: spell_check_run
         run: |
@@ -184,11 +181,6 @@ jobs:
       image: jhudsl/course_template
     if: ${{needs.yaml-check.outputs.toggle_quiz_check == 'yes'}}
     steps:
-      - name: Checkout files
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
       - name: Run quiz check
         id: quiz_check_run
         run: |
@@ -202,18 +194,10 @@ jobs:
       - name: Commit quiz check errors
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          git diff --name-only origin/main -- question_error_report.tsv >/dev/null && changes=true || changes=false
-          echo $changes
-          if $changes == true; then
-            git diff --name-only origin/$branch_name question_error_report.tsv >/dev/null && changes=true || changes=false
-            echo $changes
-            if $changes == true; then
-              git add --force question_error_report.tsv
-              git diff-index --quiet HEAD || git commit -m 'Add question error report file'
-              git pull --set-upstream origin $branch_name --allow-unrelated-histories
-              git push origin $branch_name
-            fi
-          fi
+          git add --force question_error_report.tsv
+          git commit -m 'Add question error report file' || echo "No changes to commit"
+          git pull --set-upstream origin $branch_name --allow-unrelated-histories
+          git push origin $branch_name || echo "No changes to commit"
 
       - name: Build components of the quiz check comment
         id: build-components
@@ -270,11 +254,6 @@ jobs:
       image: jhudsl/course_template
     if: ${{needs.yaml-check.outputs.toggle_render_preview == 'yes'}}
     steps:
-      - name: Checkout files
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
       # Run bookdown rendering
       - name: Run bookdown render
         id: bookdown
@@ -283,7 +262,7 @@ jobs:
           Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all')"
 
       # Run TOC-less version
-      # Rendered content for Leanpub and Coursera is very similar. 
+      # Rendered content for Leanpub and Coursera is very similar.
       # This job creates a shared scaffold for both.
       - name: Run TOC-less version of render
         id: tocless
@@ -304,10 +283,11 @@ jobs:
         run: |
           git config --local user.email "itcrtrainingnetwork@gmail.com"
           git config --local user.name "jhudsl-robot"
-          
+
           branch_name='preview-${{ github.event.pull_request.number }}'
           git diff origin/main -- docs >/dev/null && changes=true || changes=false
           echo ::set-output name=changes::$changes
+
           git add . --force
           git commit -m 'Render preview' || echo "No changes to commit"
           git pull --set-upstream origin $branch_name --allow-unrelated-histories
@@ -397,3 +377,6 @@ jobs:
           context: docker
           file: docker/Dockerfile
           tags: jhudsl/course_template
+
+      - name: Get token
+        run: rm -f docker/git_token.txt
