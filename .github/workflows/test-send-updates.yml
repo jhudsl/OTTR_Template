@@ -32,7 +32,7 @@ jobs:
           Rscript --vanilla scripts/switch_sync_repo.R --repo ${{ github.event.inputs.repo }}
 
       - name: Run Mechanics File Sync
-        uses: BetaHuhn/repo-file-sync-action@v1.7.1
+        uses: BetaHuhn/repo-file-sync-action@v1.17.1
         with:
           GH_PAT: ${{ secrets.GH_PAT }}
           COMMIT_BODY: "test-run"
