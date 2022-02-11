@@ -3,13 +3,10 @@
 
 name: Starting a new course
 
-
-#---TRIGGER-START---#
 on:
   push:
     branches: [ main, staging ]
   workflow_dispatch:
-#---TRIGGER-END---#
 
 jobs:
   # Run cleaning process only if workflow is triggered by not being in the Bookdown template anymore

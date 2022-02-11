@@ -2,7 +2,6 @@
 
 name: Sync Files
 
-#---TRIGGER-START---#
 on:
   release:
     types:
@@ -13,7 +12,6 @@ on:
         description: 'Tag to use?'
         required: true
         default: 'null'
-#---TRIGGER-END----#
 
 jobs:
   sync:
