@@ -2,11 +2,9 @@
 
 name: Delete Preview
 
-#---TRIGGER-START---#
 on:
   pull_request:
     types: [closed]
-#---TRIGGER-END---#
 
 jobs:
   delete-preview:
@@ -19,8 +17,7 @@ jobs:
         shell: bash
 
       # Delete the branch!
-      - name: Delete branch
-        uses: dawidd6/action-delete-branch@v3
-        with:
-          github_token: ${{ secrets.GH_PAT }}
-          branches: preview-${{ github.event.pull_request.number }}
+      - name: Delete branch locally and remotely
+        run: |
+          git branch -d preview-${{ github.event.pull_request.number }} || echo "No branch to delete"
+          git push origin --delete preview-${{ github.event.pull_request.number }} || echo "No branch to delete"
