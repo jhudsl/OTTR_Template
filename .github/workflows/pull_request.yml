@@ -30,15 +30,16 @@ jobs:
              docker/github_package_list.tsv
 
     outputs:
-      toggle_quiz_check: "${{ env.CHECK_QUIZZES }}"
-      toggle_spell_check: "${{ env.STYLE_AND_SP_CHECK }}"
+      toggle_spell_check: "${{ env.SPELL_CHECK }}"
+      toggle_style_code: "${{ env.STYLE_CODE }}"
       toggle_url_check: "${{ env.URL_CHECKER }}"
+      toggle_quiz_check: "${{ env.CHECK_QUIZZES }}"
       toggle_render_preview: "${{ env.RENDER_PREVIEW }}"
       toggle_docker_build: "${{ env.DOCKER_BUILD }}"
       dockerfiles_changed: steps.verify-changed-files.outputs.files_changed
 
-  style-n-check:
-    name: Check style and spelling
+  spell-check:
+    name: Check spelling
     needs: yaml-check
     runs-on: ubuntu-latest
     if: ${{needs.yaml-check.outputs.toggle_spell_check == 'yes'}}
@@ -138,13 +139,26 @@ jobs:
             _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
 
+  style-code:
+    name: Style code
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    if: ${{needs.yaml-check.outputs.toggle_style_code == 'yes'}}
+    container:
+      image: jhudsl/course_template
+
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
       - name: Run styler
         run: Rscript -e "styler::style_file(list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE));warnings()"
 
       - name: Commit styled files
         run: |
           git add \*.Rmd
-          git add resources/spell_check_results.tsv
           git commit -m 'Style Rmds' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
 
@@ -327,7 +341,7 @@ jobs:
         run: Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all')"
 
       # Run TOC-less version
-      # Rendered content for Leanpub and Coursera is very similar. 
+      # Rendered content for Leanpub and Coursera is very similar.
       # This job creates a shared scaffold for both.
       - name: Run TOC-less version of render
         id: tocless
