@@ -199,7 +199,7 @@ jobs:
           git config --local user.email "itcrtrainingnetwork@gmail.com"
           git config --local user.name "jhudsl-robot"
 
-          branch_name='check-${{ github.event.pull_request.number }}'
+          branch_name='preview-${{ github.event.pull_request.number }}'
           exists=$(git ls-remote https://${{ secrets.GH_PAT }}@github.com/$GITHUB_REPOSITORY $branch_name | wc -l | xargs)
           if [[ $exists == 0 ]];then
             echo branch doesnt exist
@@ -225,7 +225,7 @@ jobs:
 
       - name: Commit quiz check errors
         run: |
-          branch_name='check-${{ github.event.pull_request.number }}'
+          branch_name='preview-${{ github.event.pull_request.number }}'
           git diff --name-only origin/main -- question_error_report.tsv >/dev/null && changes=true || changes=false
           echo $changes
           if $changes == true; then
@@ -244,7 +244,7 @@ jobs:
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          branch_name='check-${{ github.event.pull_request.number }}'
+          branch_name='preview-${{ github.event.pull_request.number }}'
           quiz_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/question_error_report.tsv
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA

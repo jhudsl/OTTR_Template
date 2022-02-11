@@ -31,6 +31,7 @@ jobs:
       toggle_leanpub: "${{ env.RENDER_LEANPUB }}"
 
   render-bookdown:
+    name: Render bookdown
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
@@ -78,6 +79,7 @@ jobs:
           git push origin main || echo "No changes to push"
 
   render-coursera:
+    name: Render Coursera
     needs: [yaml-check, render-bookdown]
     runs-on: ubuntu-latest
     container:
@@ -119,6 +121,7 @@ jobs:
           git push origin main || echo "No changes to push"
 
   render-leanpub:
+    name: Render Leanpub
     needs: [yaml-check, render-coursera]
     runs-on: ubuntu-latest
     container:
