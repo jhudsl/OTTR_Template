@@ -4,12 +4,12 @@
 
 # Adapted for this jhudsl repository by Candace Savonen Apr 2021
 
-name: Main template to Quizzes repo copy over
+name: Copy over from main template to _Quizzes repo
 
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: [ "Render Bookdown" ]
+    workflows: [ "Render Coursera", "Render Leanpub" ]
     branches: [ main, staging ]
     types:
       - completed
