@@ -52,7 +52,7 @@ jobs:
 
       # We want a fresh run of the renders each time
       - name: Delete old docs/*
-        run: rm -r docs/*
+        run: rm -rf docs/*
 
       # Run bookdown rendering
       - name: Run bookdown render
@@ -87,6 +87,17 @@ jobs:
     if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes' || needs.yaml-check.outputs.toggle_leanpub == 'yes'}}
 
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Login as jhudsl-robot
+        run: |
+          git config --local user.email "itcrtrainingnetwork@gmail.com"
+          git config --local user.name "jhudsl-robot"
+
       # Rendered content for Leanpub and Coursera is very similar.
       # This job creates a shared scaffold for both.
       - name: Run TOC-less version of render
@@ -168,7 +179,7 @@ jobs:
         run: |
           git config --local user.email "itcrtrainingnetwork@gmail.com"
           git config --local user.name "jhudsl-robot"
-
+          
       # Run Coursera version
       - name: Run Coursera version of render
         id: coursera
