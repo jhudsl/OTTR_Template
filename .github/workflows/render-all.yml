@@ -83,7 +83,7 @@ jobs:
     needs: [yaml-check]
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/ottr
+      image: jhudsl/course_template
     if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes' || needs.yaml-check.outputs.toggle_leanpub == 'yes'}}
 
     steps:
