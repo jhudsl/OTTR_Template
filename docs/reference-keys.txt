@@ -16,3 +16,4 @@ citation-examples
 fyi-boxes
 dropdown-summaries
 print-out-session-info
+references

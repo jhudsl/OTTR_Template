@@ -202,12 +202,12 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2022-02-11                  
+##  date     2022-02-14                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
 ##  assertthat    0.2.1      2019-03-21 [1] RSPM (R 4.0.3)                    
-##  bookdown      0.24       2022-02-10 [1] Github (rstudio/bookdown@88bc4ea) 
+##  bookdown      0.24       2022-02-11 [1] Github (rstudio/bookdown@88bc4ea) 
 ##  callr         3.4.4      2020-09-07 [1] RSPM (R 4.0.2)                    
 ##  cli           2.0.2      2020-02-28 [1] RSPM (R 4.0.0)                    
 ##  crayon        1.3.4      2017-09-16 [1] RSPM (R 4.0.0)                    
@@ -224,11 +224,11 @@ devtools::session_info()
 ##  hms           0.5.3      2020-01-08 [1] RSPM (R 4.0.0)                    
 ##  htmltools     0.5.0      2020-06-16 [1] RSPM (R 4.0.1)                    
 ##  httr          1.4.2      2020-07-20 [1] RSPM (R 4.0.3)                    
-##  knitr         1.33       2022-02-10 [1] Github (yihui/knitr@a1052d1)      
+##  knitr         1.33       2022-02-11 [1] Github (yihui/knitr@a1052d1)      
 ##  lifecycle     1.0.0      2021-02-15 [1] CRAN (R 4.0.2)                    
 ##  magrittr    * 2.0.2      2022-01-26 [1] CRAN (R 4.0.2)                    
 ##  memoise       1.1.0      2017-04-21 [1] RSPM (R 4.0.0)                    
-##  ottr          0.1.2      2022-02-10 [1] Github (jhudsl/ottr@0c1f578)      
+##  ottr          0.1.2      2022-02-11 [1] Github (jhudsl/ottr@2d03822)      
 ##  pillar        1.4.6      2020-07-10 [1] RSPM (R 4.0.2)                    
 ##  pkgbuild      1.1.0      2020-07-13 [1] RSPM (R 4.0.2)                    
 ##  pkgconfig     2.0.3      2019-09-22 [1] RSPM (R 4.0.3)                    
@@ -241,19 +241,19 @@ devtools::session_info()
 ##  R6            2.4.1      2019-11-12 [1] RSPM (R 4.0.0)                    
 ##  readr         1.4.0      2020-10-05 [1] RSPM (R 4.0.2)                    
 ##  remotes       2.2.0      2020-07-21 [1] RSPM (R 4.0.3)                    
-##  rlang         0.4.10     2022-02-10 [1] Github (r-lib/rlang@f0c9be5)      
-##  rmarkdown     2.10       2022-02-10 [1] Github (rstudio/rmarkdown@02d3c25)
+##  rlang         0.4.10     2022-02-11 [1] Github (r-lib/rlang@f0c9be5)      
+##  rmarkdown     2.10       2022-02-11 [1] Github (rstudio/rmarkdown@02d3c25)
 ##  rprojroot     2.0.2      2020-11-15 [1] CRAN (R 4.0.2)                    
 ##  sessioninfo   1.1.1      2018-11-05 [1] RSPM (R 4.0.3)                    
 ##  stringi       1.5.3      2020-09-09 [1] RSPM (R 4.0.3)                    
 ##  stringr       1.4.0      2019-02-10 [1] RSPM (R 4.0.3)                    
-##  testthat      3.0.1      2022-02-10 [1] Github (R-lib/testthat@e99155a)   
+##  testthat      3.0.1      2022-02-11 [1] Github (R-lib/testthat@e99155a)   
 ##  tibble        3.0.3      2020-07-10 [1] RSPM (R 4.0.2)                    
-##  usethis       2.1.5.9000 2022-02-10 [1] Github (r-lib/usethis@57b109a)    
+##  usethis       2.1.5.9000 2022-02-11 [1] Github (r-lib/usethis@57b109a)    
 ##  vctrs         0.3.4      2020-08-29 [1] RSPM (R 4.0.2)                    
 ##  webshot       0.5.2      2019-11-22 [1] RSPM (R 4.0.3)                    
 ##  withr         2.3.0      2020-09-22 [1] RSPM (R 4.0.2)                    
-##  xfun          0.26       2022-02-10 [1] Github (yihui/xfun@74c2a66)       
+##  xfun          0.26       2022-02-11 [1] Github (yihui/xfun@74c2a66)       
 ##  yaml          2.2.1      2020-02-01 [1] RSPM (R 4.0.3)                    
 ## 
 ## [1] /usr/local/lib/R/site-library
