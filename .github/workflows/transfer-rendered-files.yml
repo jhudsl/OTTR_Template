@@ -9,7 +9,7 @@ name: Copy over from main template to _Quizzes repo
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: [ "Render Coursera", "Render Leanpub" ]
+    workflows: [ "Finish Coursera prep", "Finish Leanpub prep" ]
     branches: [ main, staging ]
     types:
       - completed

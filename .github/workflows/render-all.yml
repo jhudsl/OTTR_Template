@@ -147,7 +147,7 @@ jobs:
       - name: Run ottr::bookdown_to_embed_leanpub
         run: |
           Rscript -e "ottr::bookdown_to_embed_leanpub(
-            render = FALSE \
+            render = FALSE, \
             chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
             make_book_txt = TRUE)"
 
@@ -179,7 +179,7 @@ jobs:
         run: |
           git config --local user.email "itcrtrainingnetwork@gmail.com"
           git config --local user.name "jhudsl-robot"
-          
+
       # Run Coursera version
       - name: Run Coursera version of render
         id: coursera
