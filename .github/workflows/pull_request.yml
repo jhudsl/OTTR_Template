@@ -326,7 +326,7 @@ jobs:
         shell: bash
 
       - name: Remove docs/*
-        id: remove docs
+        id: remove
         run: rm -r docs/*
 
       # Run bookdown rendering
