@@ -8,9 +8,7 @@ Every chapter needs to start out with this chunk of code:
 ```{r, include = FALSE}
 ottrpal::set_knitr_image_path()
 ```
-blah
-blah blah
-qwerty
+
 ## Learning Objectives
 
 *Every chapter also needs Learning objectives that will look like this:  
