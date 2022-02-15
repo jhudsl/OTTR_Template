@@ -232,7 +232,7 @@ jobs:
       - name: Run quiz check
         id: quiz_check_run
         run: |
-          Rscript -e "ottr::check_quizzes(quiz_dir = 'quizzes', write_report = TRUE, verbose = TRUE)"
+          Rscript -e "ottr_aide::check_quizzes(quiz_dir = 'quizzes', write_report = TRUE, verbose = TRUE)"
           results=0
           if -f "question_error_report.tsv"; then
             results=$(wc -l < question_error_report.tsv >/dev/null)
@@ -344,7 +344,7 @@ jobs:
       # This job creates a shared scaffold for both.
       - name: Run TOC-less version of render
         id: tocless
-        run: Rscript -e "ottr::render_without_toc()"
+        run: Rscript -e "ottr_aide::render_without_toc()"
 
       # This checks on the steps before it and makes sure that they completed.
       # If the renders didn't complete we don't want to commit the file changes
