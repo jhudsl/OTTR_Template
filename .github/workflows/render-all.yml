@@ -102,7 +102,7 @@ jobs:
       # This job creates a shared scaffold for both.
       - name: Run TOC-less version of render
         id: tocless
-        run: Rscript -e "ottr::render_without_toc()"
+        run: Rscript -e "ottrpal::render_without_toc()"
 
       # Commit the TOC-less version files
       - name: Commit tocless bookdown files
@@ -118,7 +118,7 @@ jobs:
     needs: [yaml-check, render-tocless]
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/ottr
+      image: jhudsl/ottrpal:main
     if: ${{needs.yaml-check.outputs.toggle_leanpub == 'yes'}}
 
     steps:
@@ -144,9 +144,9 @@ jobs:
       - name: Delete old manuscript/
         run: rm -rf manuscript/
 
-      - name: Run ottr::bookdown_to_embed_leanpub
+      - name: Run ottrpal::bookdown_to_embed_leanpub
         run: |
-          Rscript -e "ottr::bookdown_to_embed_leanpub(
+          Rscript -e "ottrpal::bookdown_to_embed_leanpub(
             render = FALSE, \
             chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
             make_book_txt = TRUE)"
@@ -184,7 +184,7 @@ jobs:
       - name: Convert Leanpub quizzes to Coursera
         if: needs.yaml-check.outputs.toggle_leanpub == 'yes'
         id: coursera
-        run: Rscript -e "ottr::convert_coursera_quizzes()"
+        run: Rscript -e "ottrpal::convert_coursera_quizzes()"
 
       # Commit the rendered bookdown files
       - name: Commit rendered Coursera files

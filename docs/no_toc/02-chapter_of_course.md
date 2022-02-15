@@ -99,7 +99,7 @@ dev.off()
 
 ### Image example
 
-How to include a Google slide. It's simplest to use the `ottr` package:
+How to include a Google slide. It's simplest to use the `ottrpal` package:
 
 <img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" width="480" style="display: block; margin: auto;" />
 
@@ -224,7 +224,7 @@ devtools::session_info()
 ##  lifecycle     1.0.0      2021-02-15 [1] CRAN (R 4.0.2)                    
 ##  magrittr    * 2.0.2      2022-01-26 [1] CRAN (R 4.0.2)                    
 ##  memoise       1.1.0      2017-04-21 [1] RSPM (R 4.0.0)                    
-##  ottr          0.1.2      2022-02-11 [1] Github (jhudsl/ottr@2d03822)      
+##  ottrpal          0.1.2      2022-02-11 [1] Github (jhudsl/ottrpal@2d03822)      
 ##  pillar        1.4.6      2020-07-10 [1] RSPM (R 4.0.2)                    
 ##  pkgbuild      1.1.0      2020-07-13 [1] RSPM (R 4.0.2)                    
 ##  pkgconfig     2.0.3      2019-09-22 [1] RSPM (R 4.0.3)                    
