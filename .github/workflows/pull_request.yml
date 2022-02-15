@@ -14,7 +14,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
+        with:
+          fetch-depth: 0
+          
         # Use the yaml-env-action action.
       - name: Load environment from YAML
         uses: doughepi/yaml-env-action@v1.0.0
