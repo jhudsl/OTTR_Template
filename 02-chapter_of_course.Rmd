@@ -6,7 +6,7 @@
 Every chapter needs to start out with this chunk of code:
 
 ```{r, include = FALSE}
-ottr_aide::set_knitr_image_path()
+ottrsidekick::set_knitr_image_path()
 ```
 
 ## Learning Objectives
@@ -63,10 +63,10 @@ dev.off()
 
 ### Image example
 
-How to include a Google slide. It's simplest to use the `ottr_aide` package:
+How to include a Google slide. It's simplest to use the `ottrsidekick` package:
 
 ```{r, fig.align='center', echo = FALSE, fig.alt= "Major point!! example image"}
-ottr_aide::include_slide("https://docs.google.com/presentation/d/1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ/edit#slide=id.gcc4fbee202_0_141")
+ottrsidekick::include_slide("https://docs.google.com/presentation/d/1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ/edit#slide=id.gcc4fbee202_0_141")
 ```
 
 But if you have the slide or some other image locally downloaded you can also use html like this:

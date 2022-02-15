@@ -1,6 +1,6 @@
 
 ```{r, include = FALSE}
-ottr_aide::set_knitr_image_path()
+ottrsidekick::set_knitr_image_path()
 ```
 
 # Introduction
