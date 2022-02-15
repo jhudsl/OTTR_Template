@@ -8,21 +8,13 @@ group:
       - source: .github/workflows/
         dest: .github/workflows/
         deleteOrphaned: true
+        exclude: |
+          send-updates.yml
+          test-send-updates.yml
+          starting-course.yml
       - source: scripts/
         dest: scripts/
         deleteOrphaned: true
-      - source: .github/workflows/pull-request.yml
-        dest: .github/workflows/pull-request.yml
-      - source: .github/workflows/render-all.yml
-        dest: .github/workflows/render-all.yml
-      - source: .github/workflows/docker-build.yml
-        dest: .github/workflows/docker-build.yml
-      - source: .github/workflows/transfer-rendered-files.yml
-        dest: .github/workflows/transfer-rendered-files.yml
-      - source: .github/workflows/release-notes.yml
-        dest: .github/workflows/release-notes.yml
-      - source: .github/workflows/delete-preview.yml
-        dest: .github/workflows/delete-preview.yml
       - source: .github/ISSUE_TEMPLATE/course-problem-report.md
         dest: .github/ISSUE_TEMPLATE/course-problem-report.md
       - source: .github/ISSUE_TEMPLATE/course-content-add.md
@@ -62,6 +54,8 @@ group:
 
 ### This is a custom group for this repo which doesn't want syncing on all the files ###
   - files:
+    - source: config_automation.yml
+      dest: config_automation.yml
     - source: .github/workflows/pull-request.yml
       dest: .github/workflows/pull-request.yml
     - source: scripts/spell-check.R
