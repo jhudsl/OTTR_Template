@@ -118,7 +118,7 @@ jobs:
     needs: [yaml-check, render-tocless]
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/ottrpal
+      image: jhudsl/ottrpal:main
     if: ${{needs.yaml-check.outputs.toggle_leanpub == 'yes'}}
 
     steps:
