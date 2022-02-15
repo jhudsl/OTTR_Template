@@ -181,17 +181,10 @@ jobs:
           git config --local user.name "jhudsl-robot"
 
       # Run Coursera version
-      - name: Run Coursera version of render
+      - name: Convert Leanpub quizzes to Coursera
+        if: needs.yaml-check.outputs.toggle_leanpub == 'yes'
         id: coursera
         run: Rscript -e "ottr::convert_coursera_quizzes()"
-
-      # This checks on the steps before it and makes sure that they completed.
-      # If the renders didn't complete we don't want to commit the file changes
-      - name: Check on render steps
-        if: steps.coursera.outcome != 'success'
-        run: |
-          echo Coursera status ${{steps.coursera.outcome}}
-          exit 1
 
       # Commit the rendered bookdown files
       - name: Commit rendered Coursera files
