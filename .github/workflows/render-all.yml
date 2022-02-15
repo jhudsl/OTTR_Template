@@ -35,7 +35,7 @@ jobs:
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/course_template
+      image: jhudsl/course_template:main
     if: ${{needs.yaml-check.outputs.toggle_bookdown == 'yes'}}
 
     steps:
@@ -83,7 +83,7 @@ jobs:
     needs: [yaml-check]
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/course_template
+      image: jhudsl/course_template:main
     if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes' || needs.yaml-check.outputs.toggle_leanpub == 'yes'}}
 
     steps:
@@ -165,7 +165,7 @@ jobs:
     needs: [yaml-check, render-tocless]
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/course_template
+      image: jhudsl/course_template:main
     if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes'}}
 
     steps:
