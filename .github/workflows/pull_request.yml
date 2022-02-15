@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{needs.yaml-check.outputs.toggle_spell_check == 'yes'}}
     container:
-      image: jhudsl/course_template
+      image: jhudsl/course_template:main
 
     steps:
       - name: Checkout files
@@ -153,7 +153,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{needs.yaml-check.outputs.toggle_style_code == 'yes'}}
     container:
-      image: jhudsl/course_template
+      image: jhudsl/course_template:main
 
     steps:
       - name: Checkout files
@@ -208,7 +208,7 @@ jobs:
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/course_template
+      image: jhudsl/course_template:main
     if: ${{needs.yaml-check.outputs.toggle_quiz_check == 'yes'}}
     steps:
       - name: Checkout files
@@ -305,7 +305,7 @@ jobs:
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/course_template
+      image: jhudsl/course_template:main
     if: ${{needs.yaml-check.outputs.toggle_render_preview == 'yes'}}
     steps:
       - name: Checkout files
