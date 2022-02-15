@@ -165,7 +165,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2" data-path="a-new-chapter.html"><a href="a-new-chapter.html"><i class="fa fa-check"></i><b>2</b> A new chapter</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="a-new-chapter.html"><a href="a-new-chapter.html#libraries"><i class="fa fa-check"></i><b>2.1</b> Libraries</a></li>
+<li class="chapter" data-level="2.1" data-path="a-new-chapter.html"><a href="a-new-chapter.html#learning-objectives"><i class="fa fa-check"></i><b>2.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="2.2" data-path="a-new-chapter.html"><a href="a-new-chapter.html#libraries"><i class="fa fa-check"></i><b>2.2</b> Libraries</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="topic-of-section.html"><a href="topic-of-section.html"><i class="fa fa-check"></i><b>3</b> Topic of Section</a>
 <ul>
@@ -221,18 +222,17 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 2</span> A new chapter</h1>
 <p>*If you haven’t yet read the getting started Wiki pages; <a href="https://github.com/jhudsl/OTTR_Template/wiki/Getting-started">start there</a></p>
 <p>Every chapter needs to start out with this chunk of code:</p>
-<p>blah
-blah blah
-qwerty
-## Learning Objectives</p>
+<div id="learning-objectives" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Learning Objectives</h2>
 <p>*Every chapter also needs Learning objectives that will look like this:</p>
 <p>This chapter will cover:</p>
 <ul>
 <li>{You can use <a href="https://tips.uark.edu/using-blooms-taxonomy/" class="uri">https://tips.uark.edu/using-blooms-taxonomy/</a> to define some learning objectives here}</li>
 <li>{Another learning objective}</li>
 </ul>
-<div id="libraries" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Libraries</h2>
+</div>
+<div id="libraries" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Libraries</h2>
 <p>For this chapter, we’ll need the following packages attached:</p>
 <p>*Remember to add <a href="https://github.com/jhudsl/OTTR_Template/wiki/Using-Docker#starting-a-new-docker-image">any additional packages you need to your course’s own docker image</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="a-new-chapter.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code></pre></div>
