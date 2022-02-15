@@ -322,12 +322,15 @@ jobs:
           branch_name='preview-${{ github.event.pull_request.number }}'
           git fetch --all
           git checkout $branch_name
+
+          # Start fresh and delete these files
+          rm -rf docs/* *.rds
+          git rm docs/*
+          git rm *.rds
+          git commit -m "delete docs"
+
           git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
         shell: bash
-
-      - name: Remove docs/*
-        id: remove
-        run: rm -r docs/*
 
       # Run bookdown rendering
       - name: Run bookdown render
