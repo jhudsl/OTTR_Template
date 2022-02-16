@@ -30,7 +30,8 @@ jobs:
       toggle_coursera: "${{ env.RENDER_COURSERA }}"
       toggle_leanpub: "${{ env.RENDER_LEANPUB }}"
       rendering-docker-image: "${{ env.RENDERING_DOCKER_IMAGE }}"
-      
+      toggle_quiz_check: "${{ env.CHECK_QUIZZES }}"
+
   render-bookdown:
     name: Render bookdown
     needs: yaml-check
@@ -146,6 +147,16 @@ jobs:
         run: rm -rf manuscript/
 
       - name: Run ottrpal::bookdown_to_embed_leanpub
+        if: needs.yaml-check.outputs.toggle_quiz_check == 'no'
+        run: |
+          Rscript -e "ottrpal::bookdown_to_embed_leanpub(
+            render = FALSE, \
+            chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
+            make_book_txt = TRUE, \
+            quiz_dir = null)"
+
+      - name: Run ottrpal::bookdown_to_embed_leanpub
+        if: needs.yaml-check.outputs.toggle_quiz_check == 'yes'
         run: |
           Rscript -e "ottrpal::bookdown_to_embed_leanpub(
             render = FALSE, \
@@ -183,7 +194,7 @@ jobs:
 
       # Run Coursera version
       - name: Convert Leanpub quizzes to Coursera
-        if: needs.yaml-check.outputs.toggle_leanpub == 'yes'
+        if: needs.yaml-check.outputs.toggle_leanpub == 'yes' && needs.yaml-check.outputs.toggle_quiz_check == 'yes'
         id: coursera
         run: Rscript -e "ottrpal::convert_coursera_quizzes()"
 
