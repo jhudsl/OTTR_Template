@@ -29,13 +29,14 @@ jobs:
       toggle_bookdown: "${{ env.RENDER_BOOKDOWN }}"
       toggle_coursera: "${{ env.RENDER_COURSERA }}"
       toggle_leanpub: "${{ env.RENDER_LEANPUB }}"
+      rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
 
   render-bookdown:
     name: Render bookdown
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/course_template:main
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
     if: ${{needs.yaml-check.outputs.toggle_bookdown == 'yes'}}
 
     steps:
@@ -47,6 +48,7 @@ jobs:
 
       - name: Login as jhudsl-robot
         run: |
+
           git config --local user.email "itcrtrainingnetwork@gmail.com"
           git config --local user.name "jhudsl-robot"
 
@@ -83,7 +85,7 @@ jobs:
     needs: [yaml-check]
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/course_template:main
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
     if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes' || needs.yaml-check.outputs.toggle_leanpub == 'yes'}}
 
     steps:
@@ -165,7 +167,7 @@ jobs:
     needs: [yaml-check, render-tocless]
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/course_template:main
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
     if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes'}}
 
     steps:

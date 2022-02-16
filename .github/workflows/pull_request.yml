@@ -54,6 +54,7 @@ jobs:
       toggle_quiz_check: "${{ env.CHECK_QUIZZES }}"
       toggle_render_preview: "${{ env.RENDER_PREVIEW }}"
       toggle_docker_build: "${{ env.DOCKER_BUILD }}"
+      rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
       dockerfiles_changed: steps.verify-changed-files.outputs.files_changed
 
   spell-check:
@@ -307,8 +308,9 @@ jobs:
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/course_template:main
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
     if: ${{needs.yaml-check.outputs.toggle_render_preview == 'yes'}}
+
     steps:
       - name: Checkout files
         uses: actions/checkout@v2
