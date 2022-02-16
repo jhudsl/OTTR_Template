@@ -328,8 +328,8 @@ jobs:
           # Start fresh and delete these files
           rm -rf docs/* || echo "no docs/ folder to delete"
           rm -rf *.rds || echo "no RDS file to delete"
-          git add .
-          git commit -m "delete docs"
+          git add . || echo "no files to add"
+          git commit -m "delete docs" || echo "no files to delete"
 
           git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
         shell: bash
