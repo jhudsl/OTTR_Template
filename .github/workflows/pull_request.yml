@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          
+
         # Use the yaml-env-action action.
       - name: Load environment from YAML
         uses: doughepi/yaml-env-action@v1.0.0
@@ -326,9 +326,9 @@ jobs:
           git checkout $branch_name
 
           # Start fresh and delete these files
-          rm -rf docs/* *.rds
-          git rm docs/*
-          git rm *.rds
+          rm -rf docs/* || echo "no docs/ folder to delete"
+          rm -rf *.rds || echo "no RDS file to delete"
+          git add .
           git commit -m "delete docs"
 
           git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
