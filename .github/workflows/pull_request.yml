@@ -324,7 +324,7 @@ jobs:
           branch_name='preview-${{ github.event.pull_request.number }}'
           git fetch --all
           git checkout $branch_name
-          git merge -s recursive --strategy-option=ours origin/${{ github.head_ref }}
+          git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
         shell: bash
 
       # Run bookdown rendering
