@@ -36,7 +36,7 @@ jobs:
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
-      image: needs.yaml-check.outputs.rendering_docker_image
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
     if: ${{needs.yaml-check.outputs.toggle_bookdown == 'yes'}}
 
     steps:
@@ -84,7 +84,7 @@ jobs:
     needs: [yaml-check]
     runs-on: ubuntu-latest
     container:
-      image: needs.yaml-check.outputs.rendering_docker_image
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
     if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes' || needs.yaml-check.outputs.toggle_leanpub == 'yes'}}
 
     steps:
@@ -166,7 +166,7 @@ jobs:
     needs: [yaml-check, render-tocless]
     runs-on: ubuntu-latest
     container:
-      image: needs.yaml-check.outputs.rendering_docker_image
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
     if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes'}}
 
     steps:
