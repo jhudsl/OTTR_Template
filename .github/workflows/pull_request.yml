@@ -308,7 +308,7 @@ jobs:
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
-      image: needs.yaml-check.outputs.rendering_docker_image
+      image: ${{needs.yaml-check.outputs.rendering_docker_image}}
     if: ${{needs.yaml-check.outputs.toggle_render_preview == 'yes'}}
     steps:
       - name: Checkout files
