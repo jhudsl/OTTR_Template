@@ -154,7 +154,7 @@ jobs:
             render = FALSE, \
             chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
             make_book_txt = TRUE, \
-            quiz_dir = null)"
+            quiz_dir = NULL)"
 
       - name: Run ottrpal::bookdown_to_embed_leanpub
         if: needs.yaml-check.outputs.toggle_quiz_check == 'yes'
