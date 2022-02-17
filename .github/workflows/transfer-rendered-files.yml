@@ -17,6 +17,7 @@ on:
 jobs:
   file-bookdown-pr:
     runs-on: ubuntu-latest
+    if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes' || needs.yaml-check.outputs.toggle_leanpub == 'yes' }}
 
     steps:
       - name: Run git repo check

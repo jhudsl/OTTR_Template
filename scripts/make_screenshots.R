@@ -54,7 +54,7 @@ if (is.null(opt$base_url)) {
   base_url <- cow::get_pages_url(repo_name = opt$repo, git_pat = opt$git_pat)
 }
 
-chapt_df <- ottrpal::get_chapters(base_url = file.path(base_url, "no_toc"))
+chapt_df <- ottrpal::get_chapters(base_url = file.path(base_url, "no_toc/"))
 
 file_names <- lapply(chapt_df$url, function(url) {
   file_name <- gsub(".html", ".png", file.path(output_folder, basename(url)))
