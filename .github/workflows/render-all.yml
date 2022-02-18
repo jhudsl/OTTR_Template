@@ -149,7 +149,8 @@ jobs:
           # Make new screenshots
           chapt_urls=$(Rscript --vanilla scripts/make_screenshots.R \
             --git_pat ${{ secrets.GH_PAT }} \
-            --repo $GITHUB_REPOSITORY)
+            --repo $GITHUB_REPOSITORY \
+            --output_dir resources/chapt_screen_images)
 
       # We want a fresh run of the renders each time
       - name: Delete old manuscript/
