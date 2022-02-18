@@ -15,9 +15,27 @@ on:
       - completed
 
 jobs:
+
+  yaml-check:
+    name: Load user automation choices
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+        # Use the yaml-env-action action.
+      - name: Load environment from YAML
+        uses: doughepi/yaml-env-action@v1.0.0
+        with:
+            files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
+    outputs:
+      toggle_coursera: "${{ env.RENDER_COURSERA }}"
+      toggle_leanpub: "${{ env.RENDER_LEANPUB }}"
+
+
   file-bookdown-pr:
     runs-on: ubuntu-latest
-    if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes' || needs.yaml-check.outputs.toggle_leanpub == 'yes' }}
+    if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes' || needs.yaml-check.outputs.toggle_leanpub == 'yes'}}
 
     steps:
       - name: Run git repo check
