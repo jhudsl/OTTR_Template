@@ -31,7 +31,7 @@ _This template and guide helps you_:
 
 # {Course Name}
 
-[![Render Bookdown and Coursera](https://github.com/jhudsl/OTTR_Template/actions/workflows/render-bookdown.yml/badge.svg)](https://github.com/jhudsl/OTTR_Template/actions/workflows/render-bookdown.yml)
+[![Render Bookdown and Coursera](https://github.com/jhudsl/OTTR_Template/actions/workflows/render-all.yml/badge.svg)](https://github.com/jhudsl/OTTR_Template/actions/workflows/render-all.yml)
 
 This course was created from [this GitHub template](https://github.com/jhudsl/OTTR_Template).
 
