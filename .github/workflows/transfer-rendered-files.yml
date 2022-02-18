@@ -94,7 +94,7 @@ jobs:
              This PR was initiated by transfer-rendered.yml in the Bookdown repository.
              It copies over the ottrpal-needed folder (for the `bookdown_to_embed_leanpub(render = FALSE)` function
              to run properly.
-               - manuscript/resources/chapt_screen_images/*
+               - resources/chapt_screen_images/*
           labels: |
             automated
           reviewers: $GITHUB_ACTOR
