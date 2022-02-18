@@ -75,8 +75,7 @@ jobs:
       # Commit the rendered bookdown files
       - name: Commit rendered bookdown files
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
+          git remote set-url origin https://${secrets.GH_PAT}@github.com/${GITHUB_REPOSITORY}
           git add --force docs/*
           git commit -m 'Render bookdown' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
@@ -110,8 +109,7 @@ jobs:
       # Commit the TOC-less version files
       - name: Commit tocless bookdown files
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
+          git remote set-url origin https://${secrets.GH_PAT}@github.com/${GITHUB_REPOSITORY}
           git add --force docs/no_toc*
           git commit -m 'Render toc-less' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
@@ -171,6 +169,7 @@ jobs:
       # Commit the rendered leanpub files
       - name: Commit rendered leanpub files
         run: |
+          git remote set-url origin https://${secrets.GH_PAT}@github.com/${GITHUB_REPOSITORY}
           git add --force manuscript/*
           git commit -m 'Render Leanpub' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
@@ -204,6 +203,7 @@ jobs:
       # Commit the rendered bookdown files
       - name: Commit rendered Coursera files
         run: |
+          git remote set-url origin https://${secrets.GH_PAT}@github.com/${GITHUB_REPOSITORY}
           git add --force docs/no_toc/*
           git commit -m 'Render Coursera quizzes' || echo "No changes to commit"
           git push origin main || echo "No changes to push"
