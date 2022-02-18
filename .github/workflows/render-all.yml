@@ -80,7 +80,7 @@ jobs:
           git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
           git add --force docs/*
           git commit -m 'Render bookdown' || echo "No changes to commit"
-          git pull --allow-unrelated-histories --strategy-option=theirs
+          git pull --allow-unrelated-histories --strategy-option=ours
           git push origin main || echo "No changes to push"
 
   render-tocless:
@@ -117,7 +117,7 @@ jobs:
           git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
           git add --force docs/no_toc*
           git commit -m 'Render toc-less' || echo "No changes to commit"
-          git pull --allow-unrelated-histories --strategy-option=theirs
+          git pull --allow-unrelated-histories --strategy-option=ours
           git push origin main || echo "No changes to push"
 
   render-leanpub:
@@ -173,8 +173,8 @@ jobs:
             chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
             make_book_txt = TRUE)"
 
-      # Commit the rendered leanpub files
-      - name: Commit rendered leanpub files
+      # Commit the rendered Leanpub files
+      - name: Commit rendered Leanpub files
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
@@ -182,7 +182,7 @@ jobs:
           git add --force manuscript/*
           git add --force resources/*
           git commit -m 'Render Leanpub' || echo "No changes to commit"
-          git pull --allow-unrelated-histories --strategy-option=theirs
+          git pull --allow-unrelated-histories --strategy-option=ours
           git push origin main || echo "No changes to push"
 
   render-coursera:
@@ -219,5 +219,5 @@ jobs:
           git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
           git add --force .
           git commit -m 'Render Coursera quizzes' || echo "No changes to commit"
-          git pull --allow-unrelated-histories --strategy-option=theirs
+          git pull --allow-unrelated-histories --strategy-option=ours
           git push origin main || echo "No changes to push"
