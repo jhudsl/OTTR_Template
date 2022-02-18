@@ -76,7 +76,7 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           # Copy over images folder
-          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/manuscript/resources/chapt_screen_images manuscript/resources/chapt_screen_images
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/resources/chapt_screen_images resources/chapt_screen_images
 
       - name: Create PR with resources files
         if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
