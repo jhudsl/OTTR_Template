@@ -180,6 +180,7 @@ jobs:
         run: |
           git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
           git add --force manuscript/*
+          git add --force resources/*
           git commit -m 'Render Leanpub' || echo "No changes to commit"
           git pull --allow-unrelated-histories --strategy-option=theirs
           git push origin main || echo "No changes to push"
