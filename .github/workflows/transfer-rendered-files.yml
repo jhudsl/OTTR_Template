@@ -33,8 +33,10 @@ jobs:
       toggle_leanpub: "${{ env.RENDER_LEANPUB }}"
 
 
-  file-bookdown-pr:
+  file-quizzes-pr:
+    name: File _Quizzes Transfer PR
     runs-on: ubuntu-latest
+    needs: [yaml-check]
     if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes' || needs.yaml-check.outputs.toggle_leanpub == 'yes'}}
 
     steps:

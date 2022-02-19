@@ -100,7 +100,7 @@ jobs:
           branch_name='preview-${{ github.event.pull_request.number }}'
           git add --force resources/spell_check_results.tsv
           git commit -m 'Add spell check file' || echo "No changes to commit"
-          git pull --set-upstream origin $branch_name --allow-unrelated-histories
+          git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
           git push --force origin $branch_name || echo "No changes to commit"
 
       - name: Build components of the spell check comment
@@ -243,18 +243,10 @@ jobs:
       - name: Commit quiz check errors
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          git diff --name-only origin/main -- question_error_report.tsv >/dev/null && changes=true || changes=false
-          echo $changes
-          if $changes == true; then
-            git diff --name-only origin/$branch_name question_error_report.tsv >/dev/null && changes=true || changes=false
-            echo $changes
-            if $changes == true; then
-              git add --force question_error_report.tsv
-              git diff-index --quiet HEAD || git commit -m 'Add question error report file'
-              git pull --set-upstream origin $branch_name --allow-unrelated-histories
-              git push origin $branch_name
-            fi
-          fi
+          git add --force question_error_report.tsv || echo "No changes to commit"
+          git commit -m 'Add question error report file' || echo "No changes to commit"
+          git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
+          git push origin $branch_name || echo "No changes to commit"
 
       - name: Build components of the quiz check comment
         id: build-components
@@ -359,7 +351,7 @@ jobs:
           echo ::set-output name=changes::$changes
           git add . --force
           git commit -m 'Render preview' || echo "No changes to commit"
-          git pull --set-upstream origin $branch_name --allow-unrelated-histories
+          git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
           git push --force || echo "No changes to commit"
         shell: bash
 
