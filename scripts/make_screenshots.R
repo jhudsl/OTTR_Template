@@ -52,6 +52,7 @@ if (!dir.exists(output_folder)) {
 
 if (is.null(opt$base_url)) {
   base_url <- cow::get_pages_url(repo_name = opt$repo, git_pat = opt$git_pat)
+  base_url <- gsub("/$", "", base_url)
 }
 
 chapt_df <- ottrpal::get_chapters(base_url = file.path(base_url, "no_toc/"))
