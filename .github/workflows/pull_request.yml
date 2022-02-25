@@ -324,7 +324,9 @@ jobs:
       # Run bookdown rendering
       - name: Run bookdown render
         id: bookdown
-        run: Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all')"
+        run: |
+          Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all',
+          bookdown::gitbook(lib_dir = 'https://raw.githubusercontent.com/jhudsl/OTTR_Template/$branch_name/docs/libs/'))"
 
       # Run TOC-less version
       # Rendered content for Leanpub and Coursera is very similar.
