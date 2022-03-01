@@ -34,9 +34,9 @@ files <- grep("style-sets", files, ignore.case = TRUE, invert = TRUE, value = TR
 
 # Run spell check
 sp_errors <- spelling::spell_check_files(files, ignore = dictionary)
-  
+
 if (nrow(sp_errors) > 0) {
-  sp_errors <- 
+  sp_errors <-
     data.frame() %>%
     tidyr::unnest(cols = found) %>%
     tidyr::separate(found, into = c("file", "lines"), sep = ":")
