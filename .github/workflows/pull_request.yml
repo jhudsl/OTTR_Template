@@ -87,9 +87,9 @@ jobs:
         run: |
           results=$(Rscript "scripts/spell-check.R")
           echo "::set-output name=sp_chk_results::$results"
-          cat resources/spell_check_results.tsv
 
       - name: Archive spelling errors
+        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 0 }}
         uses: actions/upload-artifact@v2
         with:
           name: spell-check-results
@@ -98,7 +98,7 @@ jobs:
       - name: Commit spell check errors
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          git add --force resources/spell_check_results.tsv
+          git add --force resources/spell_check_results.tsv || echo "No changes to commit"
           git commit -m 'Add spell check file' || echo "No changes to commit"
           git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
           git push --force origin $branch_name || echo "No changes to commit"
