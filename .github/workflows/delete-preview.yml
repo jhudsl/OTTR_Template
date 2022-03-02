@@ -7,7 +7,7 @@ on:
     types: [closed]
 
 jobs:
-  build-all:
+  delete-preview:
     runs-on: ubuntu-latest
     steps:
 
@@ -16,21 +16,12 @@ jobs:
         run: sleep 300s
         shell: bash
 
-      # Delete the branch!
-      - name: Delete branch
-        uses: dawidd6/action-delete-branch@v3
+      # Check out current repository
+      - name: checkout
+        uses: actions/checkout@v2
         with:
-          github_token: ${{ secrets.GH_PAT }}
-          branches: preview-${{ github.event.pull_request.number }}
+          fetch-depth: 0
 
-      - name: Delete gist
-        id: gist
-        run: |
-          echo ${{ secrets.GH_PAT }} > docker/git_token.txt
-          gist_key=${GITHUB_REPOSITORY}_spell_check_${{ github.event.pull_request.number }}
-          gist_url=$(Rscript --vanilla scripts/get_the_gist.R \
-            --git_pat docker/git_token.txt \
-            --gist_key $gist_key \
-            --file resources/spell_check_results.tsv \
-            --delete)
-          rm docker/git_token.txt
+      # Delete the branch!
+      - name: Delete branch locally and remotely
+        run: git push origin --delete preview-${{ github.event.pull_request.number }} || echo "No branch to delete"

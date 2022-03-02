@@ -6,7 +6,6 @@ COPY install_github.R .
 
 # Install apt-getable packages to start
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils dialog
-
 RUN apt-get install -y --no-install-recommends \
     libxt6 \
     libpoppler-cpp-dev \
@@ -44,7 +43,7 @@ RUN apt-get -y --no-install-recommends install \
     python3-pip  python3-dev
 
 # Commonly used R packages
-RUN Rscript -e  "install.packages( \
+RUN Rscript -e  "options(warn = 2);install.packages( \
     c('bookdown', \
       'here', \
       'leanpubr', \
@@ -57,17 +56,18 @@ RUN Rscript -e  "install.packages( \
       'servr', \
       'spelling', \
       'styler', \
-      'reticulate'))"
-
-# Copy over git token and package list
-COPY git_token.txt .
-COPY github_package_list.tsv .
+      'reticulate'), \
+      repos = 'https://cloud.r-project.org/')"
 
 # cow needs this dependency:
 RUN Rscript -e  "devtools::install_version('gitcreds', version = '0.1.1', repos = 'http://cran.us.r-project.org')"
 
 # Didactr needs this dependency:
 RUN Rscript -e  "devtools::install_version('lifecycle', version = '1.0.0', repos = 'http://cran.us.r-project.org')"
+
+# Copy over git token and package list
+COPY git_token.txt .
+COPY github_package_list.tsv .
 
 # Install packages from github
 RUN Rscript install_github.R \

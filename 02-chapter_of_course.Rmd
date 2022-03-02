@@ -1,10 +1,12 @@
 
+# A new chapter
+
 *If you haven't yet read the getting started Wiki pages; [start there](https://github.com/jhudsl/OTTR_Template/wiki/Getting-started)
 
 Every chapter needs to start out with this chunk of code:
 
 ```{r, include = FALSE}
-leanbuild::set_knitr_image_path()
+ottrpal::set_knitr_image_path()
 ```
 
 ## Learning Objectives
@@ -61,23 +63,27 @@ dev.off()
 
 ### Image example
 
-
-How to include a Google slide. It's simplest to use the `leanbuild` package:
+How to include a Google slide. It's simplest to use the `ottrpal` package:
 
 ```{r, fig.align='center', echo = FALSE, fig.alt= "Major point!! example image"}
-leanbuild::include_slide("https://docs.google.com/presentation/d/1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ/edit#slide=id.gcc4fbee202_0_141")
+ottrpal::include_slide("https://docs.google.com/presentation/d/1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ/edit#slide=id.gcc4fbee202_0_141")
 ```
 
 But if you have the slide or some other image locally downloaded you can also use html like this:
 
 <img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
 
-
 ### Video examples
 
-You can use `knitr::include_url()` like this:
+To show videos in your course, you can use markdown syntax like this:
 
-```{r}
+[A video we want to show](https://www.youtube.com/embed/VOCYL-FNbr0)
+
+Alternatively, you can use `knitr::include_url()` like this:
+Note that we are using `echo=FALSE` in the code chunk because we don't want the code part of this to show up.
+If you are unfamiliar with [how R Markdown code chunks work, read this](https://rmarkdown.rstudio.com/lesson-3.html).
+
+```{r, echo=FALSE}
 knitr::include_url("https://www.youtube.com/embed/VOCYL-FNbr0")
 ```
 
@@ -107,7 +113,7 @@ Examples of including a website link.
 
 This works:
 
-```{r, fig.align="center"}
+```{r, fig.align="center", echo=FALSE}
 knitr::include_url("https://yihui.org")
 ```
 
@@ -140,7 +146,7 @@ table of contents and enable the `scroll_highlight` feature
 ### Dropdown summaries
 
 <details><summary> You can hide additional information in a dropdown menu </summary>
-Here's more words that are hidden
+Here's more words that are hidden.
 </details>
 
 ## Print out session info
@@ -148,5 +154,5 @@ Here's more words that are hidden
 You should print out session info when you have code for [reproducibility purposes](https://jhudatascience.org/Reproducibility_in_Cancer_Informatics/managing-package-versions.html).
 
 ```{r}
-sessionInfo()
+devtools::session_info()
 ```

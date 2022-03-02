@@ -4,25 +4,41 @@
 
 # Adapted for this jhudsl repository by Candace Savonen Apr 2021
 
-name: Bookdown to Leanpub repo copy over
-# Copy rendered notebooks to Leanpub repo
+name: Copy over from main template to _Quizzes repo
 
-# This workflow will run when there are changes to docs/ files in THIS repo
 on:
   workflow_dispatch:
-  # Only run after the render finishes running
   workflow_run:
-    workflows: [ "Render Bookdown and Coursera" ]
-    branches: [ main ]
+    workflows: [ "Render all output courses" ]
+    branches: [ main, staging ]
     types:
       - completed
 
 jobs:
-  file-bookdown-pr:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
 
-    # Get repository name by dropping Bookdown if it exists but always append _Leanpub
+  yaml-check:
+    name: Load user automation choices
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+        # Use the yaml-env-action action.
+      - name: Load environment from YAML
+        uses: doughepi/yaml-env-action@v1.0.0
+        with:
+            files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
+    outputs:
+      toggle_coursera: "${{ env.RENDER_COURSERA }}"
+      toggle_leanpub: "${{ env.RENDER_LEANPUB }}"
+
+
+  file-quizzes-pr:
+    name: File _Quizzes Transfer PR
+    runs-on: ubuntu-latest
+    needs: [yaml-check]
+    if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes' || needs.yaml-check.outputs.toggle_leanpub == 'yes'}}
+
     steps:
       - name: Run git repo check
         id: git_repo_check
@@ -33,7 +49,7 @@ jobs:
           sudo Rscript -e "install.packages('optparse')"
 
           # What's the Quizzes repository's name?
-          QUIZ_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | awk '{print $1"_Quizzes"}')
+          QUIZ_REPO=$(echo ${GITHUB_REPOSITORY} | sed "s/_Bookdown/ /g" | sed "s/_Template/ /g" | awk '{print $1"_Quizzes"}')
           echo $QUIZ_REPO
 
           # Get repo check script
@@ -59,60 +75,10 @@ jobs:
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-          sudo apt install r-base
-          sudo Rscript -e "install.packages('yaml')"
-
-          if [ -d "docs/" ]
-          then
-            # remove old docs/ files and folder
-            rm -r docs/*
-          fi
-          # Copy over docs folder
-          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/docs
-
-          if [ -d "docs/coursera" ]
-          then
-            rm -r docs/coursera/*
-          fi
-
-          # Copy over book.bib file
-          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/book.bib
-
-          # Get assets folder
-          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/assets
-
-          # Copy over _bookdown.yml
-          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/_bookdown.yml
-
-          # Copy over _output.ymls
-          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/_output.yml
-
           # Copy over images folder
-          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/resources/ resources/
+          svn export --force https://github.com/${GITHUB_REPOSITORY}.git/branches/${GITHUB_REF#refs/heads/}/resources/chapt_screen_images resources/chapt_screen_images
 
-          # Get list of Rmds needing to copy
-          Rscript --vanilla scripts/get_rmd_filenames.R
-
-          # the url from this repo where files will be downloaded from
-          base_url=https://${GH_PAT}@raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/heads/}
-
-          # remove old Rmd files
-          rm $(find . -name '*.Rmd'  | grep '.Rmd' )
-
-          input="resources/rmd_list.txt"
-          while IFS= read -r line
-          do
-            echo "$line"
-            curl --fail -s ${base_url}/${line} > ${line}
-          done < "$input"
-
-
-          # Get rid of GA Script spec in output yaml
-          sed 's/GA_Script.Rhtml,//' _output.yml > output.txt
-          cat output.txt > _output.yml
-          rm output.txt
-
-      - name: Create PR with rendered docs files
+      - name: Create PR with resources files
         if: ${{ steps.git_repo_check.outputs.git_results == 'TRUE' }}
         uses: peter-evans/create-pull-request@v3
         id: cpr
@@ -122,17 +88,13 @@ jobs:
           signoff: false
           branch: auto_copy_rendered_files
           delete-branch: true
-          title: 'GHA: Automated transfer of leanbuild-needed files from Bookdown repository'
+          title: 'GHA: Automated transfer of ottrpal-needed files from Bookdown repository'
           body: |
             ### Description:
              This PR was initiated by transfer-rendered.yml in the Bookdown repository.
-             It copies over the leanbuild-needed files from Bookdown repository:
-               - Rmds listed in the _bookdoown.yml
-               - _bookdown.yml
-               - docs/*
-               - book.bib
-               - resources/*
-               - _output.yml
+             It copies over the ottrpal-needed folder (for the `bookdown_to_embed_leanpub(render = FALSE)` function
+             to run properly.
+               - resources/chapt_screen_images/*
           labels: |
             automated
           reviewers: $GITHUB_ACTOR
