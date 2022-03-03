@@ -191,7 +191,7 @@ jobs:
     - name: URLs-checker
       uses: urlstechie/urlchecker-action@master
       with:
-        # Delete the cloned repository after running URLchecked (default is false)
+        # Delete the cloned repository after running URL checked (default is false)
         cleanup: true
 
         # A comma-separated list of file types to cover in the URL checks
@@ -205,6 +205,9 @@ jobs:
 
         # choose if the force pass or not
         force_pass : true
+
+        # A path to a csv file to save results to
+        save: resources/url_checks.tsv
 
   check-quizzes:
     name: Check Leanpub quizzes
