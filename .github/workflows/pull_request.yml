@@ -256,7 +256,7 @@ jobs:
         body-includes: broken URLs
 
     - name: URL errors!
-      if: ${{ steps.quiz_check_run.outputs.url_results > 0 }}
+      if: ${{ steps.url_errors.outputs.url_results > 0 }}
       uses: peter-evans/create-or-update-comment@v1
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -268,11 +268,11 @@ jobs:
         edit-mode: replace
 
     - name: Check URL results - fail if too many errors
-      if: ${{ steps.quiz_check_run.outputs.url_results > 0 }}
+      if: ${{ steps.url_errors.outputs.url_results > 0 }}
       run: exit 1
 
     - name: No URL errors
-      if: ${{ steps.quiz_check_run.outputs.url_results == 0 }}
+      if: ${{ steps.url_errors.outputs.url_results == 0 }}
       uses: peter-evans/create-or-update-comment@v1
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
