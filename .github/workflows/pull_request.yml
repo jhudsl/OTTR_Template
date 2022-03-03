@@ -203,8 +203,19 @@ jobs:
         # A comma separated links to exclude during URL checks
         exclude_urls: https://jhudatascience.org/{Course_Name}}
 
+        force_pass: true
+
         # A path to a csv file to save results to
         save: resources/url_checks.tsv
+
+    - name: Count URL errors
+      id: url_errors
+      run: |
+        results=0
+        if -f "resources/url_checks.tsv"; then
+          results=$(wc -l < resources/url_checks.tsv >/dev/null)
+        fi
+        echo ::set-output name=url_results::$results
 
     - name: Commit URL check
       run: |
@@ -225,22 +236,40 @@ jobs:
         echo ::set-output name=commit_id::$GITHUB_SHA
         echo ::set-output name=url_errors::$url_errors
 
+    # Handle the commenting
     - name: Find Comment
       uses: peter-evans/find-comment@v1
       id: fc
       with:
         issue-number: ${{ github.event.pull_request.number }}
         comment-author: 'github-actions[bot]'
-        body-includes: URL check results
+        body-includes: broken URLs
 
-    - name: URL checks
+    - name: URL errors!
+      if: ${{ steps.quiz_check_run.outputs.url_results > 0 }}
       uses: peter-evans/create-or-update-comment@v1
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
         issue-number: ${{ github.event.pull_request.number }}
         body: |
-          See URL check results here:
-          _Comment updated at ${{ steps.build-components.outputs.url_errors }} with changes from ${{ steps.build-components.outputs.commit_id }}_
+          :warning: There are broken URLs that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/How-to-set-up-and-customize-GitHub-actions-robots#check-for-broken-urls).
+          [Download the errors here.](${{ steps.build-components.outputs.url_errors }})
+          _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
+        edit-mode: replace
+
+    - name: Check URL results - fail if too many errors
+      if: ${{ steps.quiz_check_run.outputs.url_results > 0 }}
+      run: exit 1
+
+    - name: No URL errors
+      if: ${{ steps.quiz_check_run.outputs.url_results > 0 }}
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        comment-id: ${{ steps.fc.outputs.comment-id }}
+        issue-number: ${{ github.event.pull_request.number }}
+        body: |
+          There are no broken URLs detected! :tada:
+          _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
         edit-mode: replace
 
   check-quizzes:
