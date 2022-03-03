@@ -220,11 +220,8 @@ jobs:
     - name: Count URL errors
       id: url_errors
       run: |
-        results=0
-        if [ -f resources/url_checks.csv]; then
-          results=$(wc -l < /resources/url_checks.csv >/dev/null)
-        fi
-        echo ::set-output name=url_results::$results
+        results=$(Rscript "scripts/url-check.R")
+        echo "::set-output name=url_results::$results"
 
     - name: Commit URL check
       run: |
