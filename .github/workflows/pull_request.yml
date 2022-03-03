@@ -180,7 +180,7 @@ jobs:
     if: ${{needs.yaml-check.outputs.toggle_url_check == 'yes'}}
     container:
       image: jhudsl/course_template:main
-      
+
     steps:
     - name: checkout repo
       uses: actions/checkout@v2
@@ -228,7 +228,7 @@ jobs:
     - name: Commit URL check
       run: |
         branch_name='preview-${{ github.event.pull_request.number }}'
-        git add --force resources/url_checks.tsv || echo "No changes to commit"
+        git add --force resources/url_checks.csv || echo "No changes to commit"
         git commit -m 'Add URL check file' || echo "No changes to commit"
         git fetch
         git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
