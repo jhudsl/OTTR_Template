@@ -187,18 +187,16 @@ jobs:
       run: |
         git config --local user.email "itcrtrainingnetwork@gmail.com"
         git config --local user.name "jhudsl-robot"
-
-        branch_name='preview-${{ github.event.pull_request.number }}'
-        git fetch --all
-        git checkout $branch_name
-        git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
       shell: bash
 
     - name: URLs checker
       uses: urlstechie/urlchecker-action@master
       with:
-        # Delete the cloned repository after running URL checked (default is false)
-        cleanup: true
+        # Specify a branch
+        branch: ${{ github.head_ref }}
+
+        # Cleanup
+        cleanup: false
 
         # A comma-separated list of file types to cover in the URL checks
         file_types: .Rmd,.md
@@ -218,8 +216,8 @@ jobs:
       id: url_errors
       run: |
         results=0
-        if -f "resources/url_checks.tsv"; then
-          results=$(wc -l < resources/url_checks.tsv >/dev/null)
+        if -f "/github/workspace/resources/url_checks.tsv"; then
+          results=$(wc -l < /github/workspace/resources/url_checks.tsv >/dev/null)
         fi
         echo ::set-output name=url_results::$results
 
