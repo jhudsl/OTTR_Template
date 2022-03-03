@@ -209,6 +209,43 @@ jobs:
         # A path to a csv file to save results to
         save: resources/url_checks.tsv
 
+      - name: Commit URL check
+        run: |
+          branch_name='preview-${{ github.event.pull_request.number }}'
+          git add --force resources/url_checks.tsv || echo "No changes to commit"
+          git commit -m 'Add URL check file' || echo "No changes to commit"
+          git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
+          git push --force origin $branch_name || echo "No changes to commit"
+
+      - name: Build components of the spell check comment
+        id: build-components
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          branch_name='preview-${{ github.event.pull_request.number }}'
+          url_errors=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/url_checks.tsv
+          echo ::set-output name=time::$(date +'%Y-%m-%d')
+          echo ::set-output name=commit_id::$GITHUB_SHA
+          echo ::set-output name=url_errors::$url_errors
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: URL check results
+
+      - name: URL checks
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            See URL check results here:
+            _Comment updated at ${{ steps.build-components.outputs.url_errors }} with changes from ${{ steps.build-components.outputs.commit_id }}_
+          edit-mode: replace
+
   check-quizzes:
     name: Check Leanpub quizzes
     needs: yaml-check
