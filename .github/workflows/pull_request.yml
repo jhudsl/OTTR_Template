@@ -211,6 +211,8 @@ jobs:
         # Choose whether to include file with no URLs in the prints.
         print_all: false
 
+        exclude_files: .github/PULL_REQUEST_TEMPLATE.md
+
         # A comma separated links to exclude during URL checks
         exclude_urls: https://jhudatascience.org/{Course_Name}}
 
@@ -277,7 +279,7 @@ jobs:
         comment-id: ${{ steps.fc.outputs.comment-id }}
         issue-number: ${{ github.event.pull_request.number }}
         body: |
-          There are no broken URLs detected! :tada:
+          No broken URLs detected! :tada:
           _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
         edit-mode: replace
 
