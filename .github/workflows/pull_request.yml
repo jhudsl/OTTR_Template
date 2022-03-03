@@ -223,7 +223,7 @@ jobs:
       id: url_errors
       run: |
         results=0
-        if -f "/github/workspace/resources/url_checks.tsv"; then
+        if -f "resources/url_checks.tsv"; then
           results=$(wc -l < /github/workspace/resources/url_checks.tsv >/dev/null)
         fi
         echo ::set-output name=url_results::$results
@@ -273,7 +273,7 @@ jobs:
       run: exit 1
 
     - name: No URL errors
-      if: ${{ steps.quiz_check_run.outputs.url_results > 0 }}
+      if: ${{ steps.quiz_check_run.outputs.url_results == 0 }}
       uses: peter-evans/create-or-update-comment@v1
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
