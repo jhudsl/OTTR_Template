@@ -212,6 +212,13 @@ jobs:
         # A path to a csv file to save results to
         save: resources/url_checks.tsv
 
+    - name: Git set up
+      run: |
+        branch_name='preview-${{ github.event.pull_request.number }}'
+        git fetch --all
+        git checkout $branch_name
+        git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
+
     - name: Count URL errors
       id: url_errors
       run: |
