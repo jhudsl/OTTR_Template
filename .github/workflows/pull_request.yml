@@ -221,8 +221,8 @@ jobs:
       id: url_errors
       run: |
         results=0
-        if -f "resources/url_checks.tsv"; then
-          results=$(wc -l < /github/workspace/resources/url_checks.tsv >/dev/null)
+        if [ -f resources/url_checks.tsv]; then
+          results=$(wc -l < /resources/url_checks.tsv >/dev/null)
         fi
         echo ::set-output name=url_results::$results
 
@@ -311,7 +311,7 @@ jobs:
         run: |
           Rscript -e "ottrpal::check_quizzes(quiz_dir = 'quizzes', write_report = TRUE, verbose = TRUE)"
           results=0
-          if -f "question_error_report.tsv"; then
+          if [ -f question_error_report.tsv]; then
             results=$(wc -l < question_error_report.tsv >/dev/null)
           fi
           echo ::set-output name=quiz_chk_results::$results
