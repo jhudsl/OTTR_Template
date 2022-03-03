@@ -193,7 +193,7 @@ jobs:
       uses: urlstechie/urlchecker-action@master
       with:
         # Specify a branch
-        branch: ${{ github.head_ref }}
+        branch: preview-${{ github.event.pull_request.number }}
 
         # Cleanup
         cleanup: false
