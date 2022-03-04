@@ -79,7 +79,7 @@ jobs:
           branch_name='preview-${{ github.event.pull_request.number }}'
           git fetch --all
           git checkout $branch_name
-          git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
+          git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
         shell: bash
 
       - name: Run spell check
@@ -193,7 +193,7 @@ jobs:
         branch_name='preview-${{ github.event.pull_request.number }}'
         git fetch --all
         git checkout $branch_name
-        git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
+        git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
       shell: bash
 
     - name: URLs checker
@@ -233,7 +233,7 @@ jobs:
         git add --force resources/url_checks.csv || echo "No changes to commit"
         git commit -m 'Add URL check file' || echo "No changes to commit"
         git fetch
-        git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
+        git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
         git push --force origin $branch_name || echo "No changes to commit"
 
     - name: Build components of the spell check comment
@@ -304,7 +304,7 @@ jobs:
           branch_name='preview-${{ github.event.pull_request.number }}'
           git fetch --all
           git checkout $branch_name
-          git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
+          git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
         shell: bash
 
       - name: Run quiz check
@@ -395,7 +395,7 @@ jobs:
           branch_name='preview-${{ github.event.pull_request.number }}'
           git fetch --all
           git checkout $branch_name
-          git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }}
+          git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
         shell: bash
 
       # Run bookdown rendering
