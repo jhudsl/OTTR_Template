@@ -33,10 +33,10 @@ group:
       jhudsl/Informatics_Research_Leadership
       jhudsl/Data_Management_for_Cancer_Research
       jhudsl/Computing_for_Cancer_Informatics
-      jhudsl/AnVIL_bookdown_style
       jhudsl/AnVIL_Book_Getting_Started
       jhudsl/AnVIL_Book_Instructor_Guide
       jhudsl/AnVIL_Book_WDL
+      jhudsl/AnVIL_Template
       jhudsl/Adv_Reproducibility_in_Cancer_Informatics
       jhudsl/Reproducibility_in_Cancer_Informatics
       jhudsl/Dissemination_and_Engagement
