@@ -124,7 +124,7 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          if ${{ needs.yaml-check.outputs.public_repository }} == 'public'
+          if ${{ needs.yaml-check.outputs.public_repository }} == 'TRUE'
           then
             sp_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/spell_check_results.tsv
           else
@@ -262,7 +262,7 @@ jobs:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         branch_name='preview-${{ github.event.pull_request.number }}'
-        if ${{ needs.yaml-check.outputs.public_repository }} == 'public'
+        if ${{ needs.yaml-check.outputs.public_repository }} == 'TRUE'
         then
           url_errors=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/url_checks.csv
         else
@@ -356,7 +356,7 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          if ${{ needs.yaml-check.outputs.public_repository }} == 'public'
+          if ${{ needs.yaml-check.outputs.public_repository }} == 'TRUE'
           then
             quiz_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/question_error_report.tsv
           else
