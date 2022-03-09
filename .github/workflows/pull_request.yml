@@ -266,7 +266,7 @@ jobs:
         then
           url_errors=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/url_checks.csv
         else
-          sp_error_url=https://github.com/${GITHUB_REPOSITORY}/blob/$branch_name/resources/url_checks.csv
+          url_errors=https://github.com/${GITHUB_REPOSITORY}/blob/$branch_name/resources/url_checks.csv
         fi
         echo ::set-output name=time::$(date +'%Y-%m-%d')
         echo ::set-output name=commit_id::$GITHUB_SHA
