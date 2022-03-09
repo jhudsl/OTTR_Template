@@ -52,10 +52,10 @@ jobs:
         run: |
           public=$(curl -Is https://github.com/${GITHUB_REPOSITORY} | head -1 | tr -dc '0-9')
           if [ $public -eq 2200 ];then
-            public=FALSE
+            public='true'
             echo 'public repository'
           else
-            public=TRUE
+            public='false'
             echo 'private repository'
           fi
           echo ::set-output name=public::$public
@@ -124,7 +124,7 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          if ${{ needs.yaml-check.outputs.public_repository }} == 'TRUE'
+          if ${{ needs.yaml-check.outputs.public_repository }} == 'true'
           then
             sp_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/spell_check_results.tsv
           else
@@ -262,7 +262,7 @@ jobs:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         branch_name='preview-${{ github.event.pull_request.number }}'
-        if ${{ needs.yaml-check.outputs.public_repository }} == 'TRUE'
+        if ${{ needs.yaml-check.outputs.public_repository }} == 'true'
         then
           url_errors=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/url_checks.csv
         else
@@ -356,7 +356,7 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          if ${{ needs.yaml-check.outputs.public_repository }} == 'TRUE'
+          if ${{ needs.yaml-check.outputs.public_repository }} == 'true'
           then
             quiz_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/question_error_report.tsv
           else
