@@ -47,7 +47,22 @@ jobs:
           fi
         shell: bash
 
+      - name: Check if this is a private repository
+        id: public_repository
+        run: |
+          public=$(curl -Is https://github.com/${GITHUB_REPOSITORY} | head -1 | tr -dc '0-9')
+          if [ $public -eq 2200 ];then
+            public=FALSE
+            echo 'public repository'
+          else
+            public=TRUE
+            echo 'private repository'
+          fi
+          echo ::set-output name=public::$public
+        shell: bash
+
     outputs:
+      public_repository: "${{ steps.public_repository.outputs.public }}"
       toggle_spell_check: "${{ env.SPELL_CHECK }}"
       toggle_style_code: "${{ env.STYLE_CODE }}"
       toggle_url_check: "${{ env.URL_CHECKER }}"
@@ -109,7 +124,12 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          sp_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/spell_check_results.tsv
+          if ${{ needs.yaml-check.outputs.public_repository }} == 'public'
+          then
+            sp_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/spell_check_results.tsv
+          else
+            sp_error_url=https://github.com/${GITHUB_REPOSITORY}/blob/$branch_name/resources/spell_check_results.tsv
+          fi
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
           echo ::set-output name=sp_error_url::$sp_error_url
