@@ -262,7 +262,12 @@ jobs:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         branch_name='preview-${{ github.event.pull_request.number }}'
-        url_errors=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/url_checks.csv
+        if ${{ needs.yaml-check.outputs.public_repository }} == 'public'
+        then
+          url_errors=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/url_checks.csv
+        else
+          sp_error_url=https://github.com/${GITHUB_REPOSITORY}/blob/$branch_name/resources/url_checks.csv
+        fi
         echo ::set-output name=time::$(date +'%Y-%m-%d')
         echo ::set-output name=commit_id::$GITHUB_SHA
         echo ::set-output name=url_errors::$url_errors
@@ -351,7 +356,12 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          quiz_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/question_error_report.tsv
+          if ${{ needs.yaml-check.outputs.public_repository }} == 'public'
+          then
+            quiz_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/question_error_report.tsv
+          else
+            quiz_error_url=https://github.com/${GITHUB_REPOSITORY}/blob/$branch_name/resources/question_error_report.tsv
+          fi
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
           echo ::set-output name=quiz_error_url::$quiz_error_url
