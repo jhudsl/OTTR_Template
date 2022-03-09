@@ -94,7 +94,7 @@ jobs:
           branch_name='preview-${{ github.event.pull_request.number }}'
           git fetch --all
           git checkout $branch_name
-          git merge -s recursive --strategy-option=ours origin/${{ github.head_ref }} --allow-unrelated-histories
+          git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
         shell: bash
 
       - name: Run spell check
@@ -213,7 +213,7 @@ jobs:
         branch_name='preview-${{ github.event.pull_request.number }}'
         git fetch --all
         git checkout $branch_name
-        git merge -s recursive --strategy-option=ours origin/${{ github.head_ref }} --allow-unrelated-histories
+        git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
       shell: bash
 
     - name: URLs checker
@@ -329,7 +329,7 @@ jobs:
           branch_name='preview-${{ github.event.pull_request.number }}'
           git fetch --all
           git checkout $branch_name
-          git merge -s recursive --strategy-option=ours origin/${{ github.head_ref }} --allow-unrelated-histories
+          git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
         shell: bash
 
       - name: Run quiz check
@@ -425,7 +425,7 @@ jobs:
           branch_name='preview-${{ github.event.pull_request.number }}'
           git fetch --all
           git checkout $branch_name
-          git merge -s recursive --strategy-option=ours origin/${{ github.head_ref }} --allow-unrelated-histories
+          git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
         shell: bash
 
       # Run bookdown rendering
