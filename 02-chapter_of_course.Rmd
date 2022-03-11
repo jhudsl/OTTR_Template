@@ -87,7 +87,7 @@ If you are unfamiliar with [how R Markdown code chunks work, read this](https://
 knitr::include_url("https://www.youtube.com/embed/VOCYL-FNbr0")
 ```
 
-OR this works:
+OR this works, if you want to adjust the width or height (or use other html arguments):
 
 <iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
 
