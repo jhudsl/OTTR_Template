@@ -57,6 +57,11 @@ jobs:
       rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
       dockerfiles_changed: steps.verify-changed-files.outputs.files_changed
 
+  call-custom-workflow:
+    name: Custom Workflow
+    needs: yaml-check
+    uses: ./.github/workflows/custom-workflow.yml
+
   spell-check:
     name: Check spelling
     needs: yaml-check

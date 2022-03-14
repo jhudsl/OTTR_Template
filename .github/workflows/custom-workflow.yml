@@ -1,0 +1,19 @@
+
+name: Custom Workflow
+
+on:
+  workflow_call:
+
+jobs:
+  custom-job:
+    runs-on: ubuntu-latest
+    container:
+      image: jhudsl/course_template:main
+
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
+# Add your custom workflow steps here          
