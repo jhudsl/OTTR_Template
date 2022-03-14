@@ -379,7 +379,7 @@ jobs:
 
   render-preview:
     name: Render preview
-    needs: yaml-check
+    needs: [yaml-check, call-custom-workflow]
     runs-on: ubuntu-latest
     container:
       image: ${{needs.yaml-check.outputs.rendering_docker_image}}
