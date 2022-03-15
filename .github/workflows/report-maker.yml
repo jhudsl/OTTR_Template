@@ -30,13 +30,13 @@ jobs:
       - name: Declare variables
         id: declare
         run: |
-          if '${{inputs.check_type}}' == 'spelling' ;then
+          if "${{inputs.check_type}}" == "spelling" ;then
             error_name='spelling errors'
             report_path='resources/spell_check_results.tsv'
-          elif '${{inputs.check_type}}' == 'urls' ;then
+          elif "${{inputs.check_type}}" == "urls" ;then
             error_name='broken URLs'
             report_path='resources/url_checks.csv'
-          elif '${{inputs.check_type}}' ==  'quiz_format' ;then
+          elif "${{inputs.check_type}}" ==  "quiz_format" ;then
             error_name='quiz format errors'
             report_path='resources/question_error_report.tsv'
           fi
