@@ -69,13 +69,8 @@ jobs:
       - name: Checkout files
         uses: jhudsl/OTTR_Actions/./report_maker/report-maker.yml@d7f4262618dc5222963629a17fa0f622402c9f58
           name: "Spelling error"
-            default: Report
           report_path: "resources/spell_check_results.tsv"
-            required: true
-            type: string
           script: "scripts/spell-check.R"
-            required: true
-            type: string
           docker_image:
           fail_threshold: 0
           success_message: "No spelling errors!"
