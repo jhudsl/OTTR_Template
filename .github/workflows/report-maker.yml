@@ -9,9 +9,7 @@ jobs:
 
   spell-check:
     name: Check spelling
-    needs: yaml-check
     runs-on: ubuntu-latest
-    if: ${{needs.yaml-check.outputs.toggle_spell_check == 'yes'}}
     container:
       image: jhudsl/course_template:main
 
