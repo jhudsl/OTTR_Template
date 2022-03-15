@@ -1,0 +1,27 @@
+name: "Run error checker"
+description: "Run a script and put a comment with the error report"
+inputs:
+  name:
+    description: "What the report should be called"
+    required: true
+  report_path:
+    description: "The file path to where the report will print out."
+    required: true
+  script:
+    description: "The script to run that will create that report"
+    required: true
+  docker_image:
+    description: "The docker image that will be used to run this. default is jhudsl/course_template"
+    required: false
+  fail_threshold:
+    description: "How many errors is acceptable?"
+    required: false
+  success_message:
+    description: "What message should be given for a success?"
+    required: false
+  fail_message:
+    description: "What message should be given for a success?"
+    required: false
+  secrets:
+    GH_PAT:
+    required: true

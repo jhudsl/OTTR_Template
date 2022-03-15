@@ -67,7 +67,7 @@ jobs:
 
     steps:
       - name: Checkout files
-        uses: jhudsl/OTTR_Actions/./report_maker/report-maker.yml@fd34011441d963a496096c22fa2a63afc0c4cac0
+        uses: ./.github/report-maker.yml
           report_name: "Spelling error"
           report_path: "resources/spell_check_results.tsv"
           script: "scripts/spell-check.R"
