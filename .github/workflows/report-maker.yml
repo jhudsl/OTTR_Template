@@ -30,10 +30,6 @@ jobs:
       - name: Declare variables
         id: declare
         run: |
-          spelling_string="spelling"
-          urls_string="urls"
-          quiz_format_string="quiz_format"
-
           if ${{inputs.check_type == 'spelling'}} ;then
             error_name='spelling errors'
             report_path='resources/spell_check_results.tsv'
