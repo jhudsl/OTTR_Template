@@ -72,7 +72,7 @@ jobs:
           fetch-depth: 0
 
       - name: Run step
-        uses: ./.github/report-maker.yml
+        uses: ./.github/report-maker
 
   style-code:
     name: Style code
