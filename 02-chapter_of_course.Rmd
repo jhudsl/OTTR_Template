@@ -9,6 +9,12 @@ Every chapter needs to start out with this chunk of code:
 ottrpal::set_knitr_image_path()
 ```
 
+awiugefuaiwge
+agiugwe
+wgeuigwiuefgw
+
+www.notasurpweuigfaiusgdiuf.com
+
 ## Learning Objectives
 
 *Every chapter also needs Learning objectives that will look like this:  
