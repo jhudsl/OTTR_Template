@@ -70,28 +70,23 @@ jobs:
 
       - name: Count URL errors
         if: ${{ inputs.check_type == 'urls' }}
-        id: check_run
         run: |
-          results=$(Rscript "scripts/url-check.R")
-          echo "::set-output name=chk_results::$results"
+          echo "chk_results=$(Rscript scripts/url-check.R)" >> $GITHUB_ENV
 
       - name: Run spelling check
         if: ${{ inputs.check_type == 'spelling' }}
-        id: check_run
         run: |
-          results=$(Rscript "scripts/spell-check.R")
-          echo "::set-output name=chk_results::$results"
+          echo "chk_results=$(Rscript scripts/spell-check.R)" >> $GITHUB_ENV
 
       - name: Run quiz check
         if: ${{ inputs.check_type == 'quiz_format' }}
-        id: check_run
         run: |
           Rscript -e "ottrpal::check_quizzes(quiz_dir = 'quizzes', write_report = TRUE, verbose = TRUE)"
           results=0
           if [ -f question_error_report.tsv ]; then
             results=$(wc -l < question_error_report.tsv >/dev/null)
           fi
-          echo ::set-output name=chk_results::$results
+          echo "chk_results=$results" >> $GITHUB_ENV
 
 ############################# Handle commenting ################################
 
@@ -124,7 +119,7 @@ jobs:
           body-includes: ${{ steps.declare.outputs.error_name }}
 
       - name: There are errors!
-        if: ${{ steps.check_run.outputs.chk_results >= inputs.error_min }}
+        if: ${{ env.chk_results >= inputs.error_min }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -136,11 +131,11 @@ jobs:
           edit-mode: replace
 
       - name: Check check results - fail if too many errors
-        if: ${{ steps.check_run.outputs.chk_results >= inputs.error_min }}
+        if: ${{ env.chk_results >= inputs.error_min }}
         run: exit 1
 
       - name: No errors
-        if: ${{ steps.check_run.outputs.chk_results < inputs.error_min }}
+        if: ${{ env.chk_results < inputs.error_min }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
