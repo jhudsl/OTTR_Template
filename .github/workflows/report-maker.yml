@@ -34,13 +34,13 @@ jobs:
           urls_string="urls"
           quiz_format_string="quiz_format"
 
-          if "${{inputs.check_type}}" == "$spelling_string" ;then
+          if "${{inputs.check_type}}" == "spelling" ;then
             error_name='spelling errors'
             report_path='resources/spell_check_results.tsv'
-          elif "${{inputs.check_type}}" == "$urls_string" ;then
+          elif "${{inputs.check_type}}" == "urls_string" ;then
             error_name='broken URLs'
             report_path='resources/url_checks.csv'
-          elif "${{inputs.check_type}}" ==  "$quiz_format_string" ;then
+          elif "${{inputs.check_type}}" ==  "quiz_format" ;then
             error_name='quiz format errors'
             report_path='resources/question_error_report.tsv'
           fi
