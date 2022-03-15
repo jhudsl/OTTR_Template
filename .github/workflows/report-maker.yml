@@ -5,15 +5,15 @@ name: Run error checker
 on:
   workflow_call:
     inputs:
-      docker_image:
-        default: jhudsl/course_template:main
-        type: string
-      error_name:
-        default: " "
+      check_type:
+        required: true
         type: string
       error_min:
         default: 0
         type: number
+      docker_image:
+        default: jhudsl/course_template:main
+        type: string
 jobs:
 
   error-check:
@@ -27,6 +27,22 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Declare variables
+        id: declare
+        run: |
+          if ${{ inputs.check_type }} == "spelling" ;then
+            error_name="spelling"
+            report_path="resources/spell_check_results.tsv"
+          elif ${{ inputs.check_type }} == "url" ;then
+            error_name="broken urls"
+            report_path="resources/url_checks.csv"
+          elif ${{ inputs.check_type }} ==  "quiz_format" ;then
+            error_name="quiz format"
+            report_path="resources/question_error_report.tsv"
+          fi
+          echo "::set-output name=error_name::$error_name"
+          echo "::set-output name=report_path::$report_path"
+
       - name: Configure git
         run: |
           git config --local user.email "itcrtrainingnetwork@gmail.com"
@@ -38,24 +54,52 @@ jobs:
           git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
         shell: bash
 
-      - name: Run spell check
+###################### Run the appropriate test ################################
+      - name: URLs checker
+        if: ${{ inputs.check_type == "urls"}}
+        uses: urlstechie/urlchecker-action@master
+        with:
+          branch: preview-${{ github.event.pull_request.number }}
+          cleanup: false
+          file_types: .Rmd,.md
+          print_all: false
+          exclude_files: .github/PULL_REQUEST_TEMPLATE.md, docs/*
+          exclude_urls: https://jhudatascience.org/{Course_Name}}
+          force_pass: true
+          save: ${{ steps.declare.outputs.report_path }}
+
+      - name: Count URL errors
+        if: ${{ inputs.check_type == "urls"}}
+        id: url_errors
+        run: |
+          results=$(Rscript "scripts/url-check.R")
+          echo "::set-output name=chk_results::$results"
+
+      - name: Run spelling check
+        if: ${{ inputs.check_type == "spelling"}}
         id: check_run
         run: |
           results=$(Rscript "scripts/spell-check.R")
           echo "::set-output name=chk_results::$results"
 
-      - name: Archive errors
-        if: ${{ steps.check_run.outputs.chk_results > inputs.error_min }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: spell-check-results
-          path: resources/spell_check_results.tsv
+      - name: Run quiz check
+        if: ${{ inputs.check_type == "quiz_format"}}
+        id: check_run
+        run: |
+          Rscript -e "ottrpal::check_quizzes(quiz_dir = 'quizzes', write_report = TRUE, verbose = TRUE)"
+          results=0
+          if [ -f question_error_report.tsv ]; then
+            results=$(wc -l < question_error_report.tsv >/dev/null)
+          fi
+          echo ::set-output name=chk_results::$results
 
-      - name: Commit spell check errors
+############################# Handle commenting ################################
+
+      - name: Commit check errors
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          git add --force resources/spell_check_results.tsv || echo "No changes to commit"
-          git commit -m 'Add spell check file' || echo "No changes to commit"
+          git add --force ${{ steps.declare.outputs.report_path }} || echo "No changes to commit"
+          git commit -m 'Add ${{ steps.declare.outputs.error_name }} check file' || echo "No changes to commit"
           git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
           git push --force origin $branch_name || echo "No changes to commit"
 
@@ -65,7 +109,7 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/spell_check_results.tsv
+          error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/${{ steps.declare.outputs.report_path }}
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
           echo ::set-output name=error_url::$error_url
@@ -77,7 +121,7 @@ jobs:
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-author: 'github-actions[bot]'
-          body-includes: ${{ inputs.error_name }}
+          body-includes: ${{ steps.declare.outputs.error_name }}
 
       - name: There are errors!
         if: ${{ steps.check_run.outputs.chk_results >= inputs.error_min }}
@@ -86,7 +130,7 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            :warning: There are ${{ inputs.error_name }} errors that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/Spell-check).
+            :warning: There are ${{ steps.declare.outputs.error_name }} errors that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/Spell-check).
             [Download the errors here.](${{ steps.build-components.outputs.error_url }})
             _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
@@ -102,6 +146,6 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            No ${{ inputs.error_name }} errors! :tada:
+            No ${{ steps.declare.outputs.error_name }} errors! :tada:
             _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace

@@ -63,8 +63,8 @@ jobs:
     if: ${{needs.yaml-check.outputs.toggle_spell_check == 'yes'}}
     uses: ./.github/workflows/report-maker.yml
     with:
+      check_type: "spelling"
       error_min: 3
-      error_name: "spelling"
 
   style-code:
     name: Style code
@@ -115,26 +115,13 @@ jobs:
     - name: URLs checker
       uses: urlstechie/urlchecker-action@master
       with:
-        # Specify a branch
         branch: preview-${{ github.event.pull_request.number }}
-
-        # Cleanup
         cleanup: false
-
-        # A comma-separated list of file types to cover in the URL checks
         file_types: .Rmd,.md
-
-        # Choose whether to include file with no URLs in the prints.
         print_all: false
-
         exclude_files: .github/PULL_REQUEST_TEMPLATE.md, docs/*
-
-        # A comma separated links to exclude during URL checks
         exclude_urls: https://jhudatascience.org/{Course_Name}}
-
         force_pass: true
-
-        # A path to a csv file to save results to
         save: resources/url_checks.csv
 
     - name: Count URL errors
