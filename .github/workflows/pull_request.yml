@@ -68,9 +68,8 @@ jobs:
     steps:
       - name: Checkout files
         uses: jhudsl/OTTR_Actions/./report_maker/report-maker.yml@d7f4262618dc5222963629a17fa0f622402c9f58
-          inputs:
-            name: "Spelling error"
-              default: Report
+          name: "Spelling error"
+            default: Report
           report_path: "resources/spell_check_results.tsv"
             required: true
             type: string
