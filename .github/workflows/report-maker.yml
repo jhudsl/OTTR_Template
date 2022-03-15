@@ -2,7 +2,8 @@
 
 name: Run error checker
 
-workflow_call:
+on:
+  workflow_call:
     inputs:
       report_name:
         default: Report
