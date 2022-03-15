@@ -61,7 +61,10 @@ jobs:
     name: Check spelling
     needs: yaml-check
     if: ${{needs.yaml-check.outputs.toggle_spell_check == 'yes'}}
-    uses: ./.github/workflows/report-maker.yml  
+    uses: ./.github/workflows/report-maker.yml
+      with:
+        error_min: 3
+        error_name: "spelling"
 
   style-code:
     name: Style code

@@ -13,6 +13,7 @@ on:
         type: string
       error_min:
         default: 0
+        type: number
 jobs:
 
   error-check:
@@ -44,7 +45,7 @@ jobs:
           echo "::set-output name=chk_results::$results"
 
       - name: Archive errors
-        if: ${{ steps.check_run.outputs.chk_results > ${{ inputs.error_min }} }}
+        if: ${{ steps.check_run.outputs.chk_results > inputs.error_min }}
         uses: actions/upload-artifact@v2
         with:
           name: spell-check-results
@@ -79,7 +80,7 @@ jobs:
           body-includes: ${{ inputs.error_name }}
 
       - name: There are errors!
-        if: ${{ steps.check_run.outputs.chk_results >= ${{ inputs.error_min }} }}
+        if: ${{ steps.check_run.outputs.chk_results >= inputs.error_min }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -91,11 +92,11 @@ jobs:
           edit-mode: replace
 
       - name: Check check results - fail if too many errors
-        if: ${{ steps.check_run.outputs.chk_results >= ${{ inputs.error_min }} }}
+        if: ${{ steps.check_run.outputs.chk_results >= inputs.error_min }}
         run: exit 1
 
       - name: No errors
-        if: ${{ steps.check_run.outputs.chk_results < ${{ inputs.error_min }} }}
+        if: ${{ steps.check_run.outputs.chk_results < inputs.error_min }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
