@@ -30,15 +30,15 @@ jobs:
       - name: Declare variables
         id: declare
         run: |
-          if ${{ inputs.check_type }} == "spelling" ;then
-            error_name="spelling errors"
-            report_path="resources/spell_check_results.tsv"
-          elif ${{ inputs.check_type }} == "url" ;then
-            error_name="broken URLs"
-            report_path="resources/url_checks.csv"
-          elif ${{ inputs.check_type }} ==  "quiz_format" ;then
-            error_name="quiz format errors"
-            report_path="resources/question_error_report.tsv"
+          if ${{ inputs.check_type }} == 'spelling' ;then
+            error_name='spelling errors'
+            report_path='resources/spell_check_results.tsv'
+          elif ${{ inputs.check_type }} == 'urls' ;then
+            error_name='broken URLs'
+            report_path='resources/url_checks.csv'
+          elif ${{ inputs.check_type }} ==  'quiz_format' ;then
+            error_name='quiz format errors'
+            report_path='resources/question_error_report.tsv'
           fi
           echo "::set-output name=error_name::$error_name"
           echo "::set-output name=report_path::$report_path"
@@ -55,6 +55,7 @@ jobs:
         shell: bash
 
 ###################### Run the appropriate test ################################
+
       - name: URLs checker
         if: ${{ inputs.check_type == 'urls' }}
         uses: urlstechie/urlchecker-action@master
