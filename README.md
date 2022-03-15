@@ -14,6 +14,8 @@ _This template and guide helps you_:
 - Use [automagic conversion](https://github.com/jhudsl/ottrpal) to ease the lift of prepping the material for different platforms' formats.
 - Use [our Docker image](https://hub.docker.com/repository/docker/jhudsl/course_template) for consistency across authors as well as to help you [avoid dependency hell](https://en.wikipedia.org/wiki/Dependency_hell). 
 
+[See the OTTR pre-print here!](https://arxiv.org/abs/2203.07083)
+
 <img src="https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=gf4fcf6569c_2_29" width="500"/>
 
 ## Courses that have been made using this template:
