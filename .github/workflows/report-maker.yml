@@ -7,7 +7,7 @@ on:
     inputs:
       docker_image:
         default: jhudsl/course_template:main
-        string: TRUE
+        type: string
 
 jobs:
 
