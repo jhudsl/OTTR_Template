@@ -68,13 +68,6 @@ jobs:
     steps:
       - name: Checkout files
         uses: ./.github/report-maker.yml
-          report_name: "Spelling error"
-          report_path: "resources/spell_check_results.tsv"
-          script: "scripts/spell-check.R"
-          docker_image:
-          fail_threshold: 0
-          success_message: "No spelling errors!"
-          fail_message: "Spelling errors need to be addressed!"
 
   style-code:
     name: Style code
