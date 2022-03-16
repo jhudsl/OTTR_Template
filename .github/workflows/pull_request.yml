@@ -61,6 +61,8 @@ jobs:
     name: Custom Workflow
     needs: yaml-check
     uses: ./.github/workflows/custom-workflow.yml
+    with:
+      render-type: 'preview'
 
   spell-check:
     name: Check spelling

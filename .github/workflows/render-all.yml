@@ -32,9 +32,16 @@ jobs:
       rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
       toggle_quiz_check: "${{ env.CHECK_QUIZZES }}"
 
+  call-custom-workflow:
+    name: Custom Workflow
+    needs: yaml-check
+    uses: ./.github/workflows/custom-workflow.yml
+    with:
+      render-type: 'main'
+
   render-bookdown:
     name: Render bookdown
-    needs: yaml-check
+    needs: [yaml-check, call-custom-workflow]
     runs-on: ubuntu-latest
     container:
       image: ${{needs.yaml-check.outputs.rendering_docker_image}}
@@ -85,7 +92,7 @@ jobs:
 
   render-tocless:
     name: Render TOC-less version for Leanpub or Coursera
-    needs: [yaml-check]
+    needs: [yaml-check, call-custom-workflow]
     runs-on: ubuntu-latest
     container:
       image: ${{needs.yaml-check.outputs.rendering_docker_image}}
@@ -122,7 +129,7 @@ jobs:
 
   render-leanpub:
     name: Finish Leanpub prep
-    needs: [yaml-check, render-tocless]
+    needs: [yaml-check, call-custom-workflow, render-tocless]
     runs-on: ubuntu-latest
     container:
       image: jhudsl/ottrpal:main
@@ -187,7 +194,7 @@ jobs:
 
   render-coursera:
     name: Finish Coursera prep
-    needs: [yaml-check, render-tocless]
+    needs: [yaml-check, call-custom-workflow, render-tocless]
     runs-on: ubuntu-latest
     container:
       image: ${{needs.yaml-check.outputs.rendering_docker_image}}
