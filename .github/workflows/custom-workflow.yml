@@ -3,6 +3,12 @@ name: Custom Workflow
 
 on:
   workflow_call:
+    inputs:
+      # render-type is passed through pull-request or render-all workflows.
+      # It allows different branches to be used upon commit / push.
+      render-type: 
+        required: true
+        type: string
 
 jobs:
   custom-job:
@@ -16,4 +22,18 @@ jobs:
         with:
           fetch-depth: 0
           
-# Add your custom workflow steps here          
+      - name: Run if rendering preview
+        # Include the following conditional to only run on pull request
+        if: ${{ inputs.render-type == 'preview' }}
+        run: |
+          echo "preview branch"
+          
+      - name: Run if rendering preview
+        # Include the following conditional to only run on push to staging or
+        # main
+        if: ${{ inputs.render-type == 'preview' }}
+        run: |
+          echo "main branch"
+          
+# Add your custom workflow steps here     
+# For ideas, see https://github.com/jhudsl/AnVIL_Template/blob/main/.github/workflows/custom-workflow.yml
