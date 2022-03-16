@@ -14,8 +14,8 @@ on:
       docker_image:
         default: jhudsl/course_template:main
         type: string
-jobs:
 
+jobs:
   error-check:
     runs-on: ubuntu-latest
     container:
@@ -31,13 +31,13 @@ jobs:
         id: declare
         run: |
           if ${{inputs.check_type == 'spelling'}} ;then
-            error_name='spelling errors'
+            error_name='Spelling errors'
             report_path='resources/spell_check_results.tsv'
           elif ${{inputs.check_type == 'urls'}} ;then
-            error_name='broken URLs'
+            error_name='Broken URLs'
             report_path='resources/url_checks.csv'
           elif ${{inputs.check_type ==  'quiz_format'}} ;then
-            error_name='quiz format errors'
+            error_name='Quiz format errors'
             report_path='resources/question_error_report.tsv'
           fi
           echo $error_name
