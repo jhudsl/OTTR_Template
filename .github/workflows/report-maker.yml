@@ -11,15 +11,12 @@ on:
       error_min:
         default: 0
         type: number
-      docker_image:
-        default: jhudsl/course_template:main
-        type: string
 
 jobs:
   error-check:
     runs-on: ubuntu-latest
     container:
-      image: ${{ inputs.docker_image }}
+      image: jhudsl/course_template:main
 
     steps:
       - name: Checkout files
