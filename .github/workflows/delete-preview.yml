@@ -15,13 +15,9 @@ jobs:
       - name: Sleep for 5 minutes
         run: sleep 300s
         shell: bash
-
-      # Check out current repository
-      - name: checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
+        
       # Delete the branch!
       - name: Delete branch locally and remotely
-        run: git push origin --delete preview-${{ github.event.pull_request.number }} || echo "No branch to delete"
+        run: |
+          git branch -d preview-${{ github.event.pull_request.number }} || echo "No branch to delete"
+          git push origin --delete preview-${{ github.event.pull_request.number }} || echo "No branch to delete"

@@ -9,10 +9,6 @@ on:
         description: 'Push to Dockerhub?'
         required: true
         default: 'false'
-      tag:
-        description: 'What tag to use?'
-        required: true
-        default: 'none'
 jobs:
   build-docker:
     name: Build Docker image
@@ -76,3 +72,4 @@ jobs:
         run: |
           docker tag jhudsl/course_template:latest jhudsl/course_template:$github.event.inputs.tag
           docker push jhudsl/course_template:$github.event.inputs.tag
+
