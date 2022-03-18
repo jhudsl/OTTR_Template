@@ -12,5 +12,3 @@ To set up these repository secrets, on your repository's main Github page, go to
 `value`: A personal access token [following these instructions](https://github.com/jhudsl/OTTR_Template/wiki/Start-a-new-course#6-set-up-your-github-personal-access-token).
 Underneath `Select scopes`, check both `repo` and `workflow`.
 Then copy the PAT and save as the value.
-
-- [ ] (Optionally) Set up your [`Leanpub` repository link to it](https://github.com/jhudsl/OTTR_Template/wiki/Publishing-on-Leanpub)

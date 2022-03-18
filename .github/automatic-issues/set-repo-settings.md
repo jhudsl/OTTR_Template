@@ -21,3 +21,5 @@ For more information on these settings see instructions in the [getting started 
     - [ ] `Require status checks to pass before merging` box is checked.
       - [ ] Underneath that `Require branches to be up to date before merging` box is checked.
   - [ ] Click `Save` at the bottom of the page!
+
+- [ ] [Customize GitHub actions](https://github.com/jhudsl/OTTR_Template/wiki/How-to-set-up-and-customize-GitHub-actions-robots) for what you will need in this course.

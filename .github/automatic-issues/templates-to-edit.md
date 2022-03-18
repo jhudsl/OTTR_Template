@@ -15,7 +15,6 @@ The following files need to be edited to get this new course started!
 - [ ] `_bookdown.yml` - The list of Rmd files that need to be rendered needs to be updated. See [instructions](https://github.com/jhudsl/OTTR_Template/wiki/Publishing-with-Bookdown).
 - [ ] `book.bib` - any citations need to be added. See [instructions](https://github.com/jhudsl/OTTR_Template/wiki/Citations).
 
-
 ### Picking a style
 
 See more [about customizing style on this page in the guide](https://github.com/jhudsl/OTTR_Template/wiki/Change-Title-&-Customize-style).

@@ -9,7 +9,10 @@ on:
         description: 'Push to Dockerhub?'
         required: true
         default: 'false'
-
+      tag:
+        description: 'What tag to use?'
+        required: true
+        default: 'none'
 jobs:
   build-docker:
     name: Build Docker image
@@ -70,9 +73,6 @@ jobs:
       # Push the Docker image if set to true from a manual trigger
       - name: Push Docker image if manual trigger set to true
         if: ${{ github.event.inputs.dockerhubpush != 'false' }}
-        run: docker push jhudsl/course_template
-
-      - name: Get the version
-        id: get_version
         run: |
-          echo ::set-output name=version::$(echo $GITHUB_REF | cut -d / -f 3)
+          docker tag jhudsl/course_template:latest jhudsl/course_template:$github.event.inputs.tag
+          docker push jhudsl/course_template:$github.event.inputs.tag

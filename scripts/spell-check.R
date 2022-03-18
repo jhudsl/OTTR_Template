@@ -20,9 +20,6 @@ root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 # Read in dictionary
 dictionary <- readLines(file.path(root_dir, 'resources', 'dictionary.txt'))
 
-# Add mysterious emoji joining character
-dictionary <- c(dictionary, spelling::spell_check_text("⬇️")$word)
-
 # Only declare `.Rmd` files but not the ones in the style-sets directory
 files <- list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)
 
@@ -36,10 +33,14 @@ files <- grep("About.Rmd", files, ignore.case = TRUE, invert = TRUE, value = TRU
 files <- grep("style-sets", files, ignore.case = TRUE, invert = TRUE, value = TRUE)
 
 # Run spell check
-sp_errors <- spelling::spell_check_files(files, ignore = dictionary) %>%
-  data.frame() %>%
-  tidyr::unnest(cols = found) %>%
-  tidyr::separate(found, into = c("file", "lines"), sep = ":")
+sp_errors <- spelling::spell_check_files(files, ignore = dictionary)
+
+if (nrow(sp_errors) > 0) {
+  sp_errors <- sp_errors %>%
+    data.frame() %>%
+    tidyr::unnest(cols = found) %>%
+    tidyr::separate(found, into = c("file", "lines"), sep = ":")
+}
 
 # Print out how many spell check errors
 write(nrow(sp_errors), stdout())
@@ -48,5 +49,7 @@ if (!dir.exists("resources")) {
   dir.create("resources")
 }
 
+if (nrow(sp_errors) > 0) {
 # Save spell errors to file temporarily
 readr::write_tsv(sp_errors, file.path('resources', 'spell_check_results.tsv'))
+}

@@ -52,13 +52,16 @@ if (!dir.exists(output_folder)) {
 
 if (is.null(opt$base_url)) {
   base_url <- cow::get_pages_url(repo_name = opt$repo, git_pat = opt$git_pat)
+  base_url <- gsub("/$", "", base_url)
 }
 
-chapt_df <- ottr::get_chapters(base_url = file.path(base_url, "coursera/"))
+chapt_df <- ottrpal::get_chapters(base_url = file.path(base_url, "no_toc/"))
 
 file_names <- lapply(chapt_df$url, function(url) {
   file_name <- gsub(".html", ".png", file.path(output_folder, basename(url)))
+  # Get rid of special characters
   webshot::webshot(url, file_name)
+  file_name <- gsub(":|?|!|\\'", "", file_name)
   message(paste("Screenshot saved:", file_name))
   return(file_name)
 })

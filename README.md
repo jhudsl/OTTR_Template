@@ -1,6 +1,6 @@
 <!--Delete this section below upon using the template-->
 
-## Online Tools for Training Resources - OTTR
+## Open-source Tools for Training Resources - OTTR
 
 The purpose of this course template and guide is to make course publishing maintenance across multiple different platforms _less painful_.
 
@@ -11,8 +11,10 @@ _This template and guide helps you_:
   - [Bookdown](https://bookdown.org/)
   - [Coursera](https://www.coursera.org/)
 - Have [Github action robots](https://github.com/jhudsl/OTTR_Template/wiki/How-to-set-up-and-customize-GitHub-actions-robots) do your repetitive tasks like spell check and re-rendering. 
-- Use [automagic conversion](https://github.com/jhudsl/ottr) to ease the lift of prepping the material for different platforms' formats.
+- Use [automagic conversion](https://github.com/jhudsl/ottrpal) to ease the lift of prepping the material for different platforms' formats.
 - Use [our Docker image](https://hub.docker.com/repository/docker/jhudsl/course_template) for consistency across authors as well as to help you [avoid dependency hell](https://en.wikipedia.org/wiki/Dependency_hell). 
+
+[See the OTTR pre-print here!](https://arxiv.org/abs/2203.07083)
 
 <img src="https://docs.google.com/presentation/d/18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU/export/png?id=18k_QN7l6zqZQXoiRfKWzcYFXNXJJEo6j4daYGoc3UcU&pageid=gf4fcf6569c_2_29" width="500"/>
 
@@ -31,7 +33,7 @@ _This template and guide helps you_:
 
 # {Course Name}
 
-[![Render Bookdown and Coursera](https://github.com/jhudsl/OTTR_Template/actions/workflows/render-bookdown.yml/badge.svg)](https://github.com/jhudsl/OTTR_Template/actions/workflows/render-bookdown.yml)
+[![Render Bookdown and Coursera](https://github.com/jhudsl/OTTR_Template/actions/workflows/render-all.yml/badge.svg)](https://github.com/jhudsl/OTTR_Template/actions/workflows/render-all.yml)
 
 This course was created from [this GitHub template](https://github.com/jhudsl/OTTR_Template).
 

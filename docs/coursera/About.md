@@ -25,7 +25,7 @@ These credits are based on our [course contributors table guidelines](https://gi
 |Template Publishing Engineers|[Candace Savonen], [Carrie Wright]|
 |Publishing Maintenance Engineer|[Candace Savonen]|
 |Technical Publishing Stylists|[Carrie Wright], [Candace Savonen]|
-|Package Developers ([ottr])|[John Muschelli], [Candace Savonen], [Carrie Wright]|
+|Package Developers ([ottrpal])|[John Muschelli], [Candace Savonen], [Carrie Wright]|
 |**Art and Design**||
 |Illustrator(s)| Created graphics for the course|
 |Figure Artist(s)| Created figures/plots for course|
@@ -76,7 +76,7 @@ These credits are based on our [course contributors table guidelines](https://gi
 ##  lifecycle     1.0.0      2021-02-15 [1] CRAN (R 4.0.2)                    
 ##  magrittr      1.5        2014-11-22 [1] RSPM (R 4.0.0)                    
 ##  memoise       1.1.0      2017-04-21 [1] RSPM (R 4.0.0)                    
-##  ottr          0.1.2      2022-02-08 [1] Github (jhudsl/ottr@0c1f578)      
+##  ottrpal          0.1.2      2022-02-08 [1] Github (jhudsl/ottrpal@0c1f578)      
 ##  pillar        1.4.6      2020-07-10 [1] RSPM (R 4.0.2)                    
 ##  pkgbuild      1.1.0      2020-07-13 [1] RSPM (R 4.0.2)                    
 ##  pkgconfig     2.0.3      2019-09-22 [1] RSPM (R 4.0.3)                    
@@ -115,7 +115,7 @@ These credits are based on our [course contributors table guidelines](https://gi
 
 <!-- Links -->
 
-[ottr]: https://github.com/jhudsl/ottr
+[ottrpal]: https://github.com/jhudsl/ottrpal
 
 <!-- Fill out this table using these instructions: https://github.com/jhudsl/OTTR_Template/wiki/How-to-give-credits
 
