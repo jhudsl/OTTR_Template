@@ -28,13 +28,10 @@ o) A second optional incorrect answer here
 {choose-answers: 4}
 ? Second question to ask goes here?
 
-C) One correct answer here marked with a "C"
-C) A second correct answer here
 m) Mandatory incorrect answers have an "m"
 m) A second mandatory incorrect answer
 o) An optional incorrect answer here marked with an "o"
 o) A second optional incorrect answer here
-
 
 {choose-answers: 4}
 ? A more complicated example. Note the question mark at the end of the options! Which of the following are correct

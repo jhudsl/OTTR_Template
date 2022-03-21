@@ -57,12 +57,12 @@ jobs:
 
       - name: URLs checker
         if: ${{ inputs.check_type == 'urls' }}
-        uses: urlstechie/urlchecker-action@master
+        uses: urlstechie/urlchecker-action@0.2.31
         with:
           branch: preview-${{ github.event.pull_request.number }}
           cleanup: false
           file_types: .Rmd,.md
-          print_all: false
+          print_all: true
           exclude_files: .github/PULL_REQUEST_TEMPLATE.md, docs/*
           exclude_urls: https://jhudatascience.org/{Course_Name}}
           force_pass: true
