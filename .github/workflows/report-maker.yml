@@ -43,7 +43,7 @@ jobs:
           echo "::set-output name=report_path::$report_path"
 
           # Need to allow for one row because the column names
-          echo "error_min=$(inputs.error_min + 1)" >> $GITHUB_ENV
+          echo "error_min=${{ inputs.error_min + 1}}" >> $GITHUB_ENV
 
       - name: Configure git
         run: |
@@ -69,7 +69,7 @@ jobs:
           exclude_files: .github/PULL_REQUEST_TEMPLATE.md, docs/*
           exclude_urls: https://jhudatascience.org/{Course_Name}}
           force_pass: true
-          save: ${{ steps.declare.outputs.report_path }}
+          save: resources/url_checks.csv
 
       - name: Count URL errors
         if: ${{ inputs.check_type == 'urls' }}
