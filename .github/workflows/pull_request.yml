@@ -61,7 +61,7 @@ jobs:
     name: Check spelling
     needs: yaml-check
     if: ${{needs.yaml-check.outputs.toggle_spell_check == 'yes'}}
-    uses: jhudsl/OTTR_Reports/.github/workflows/report-maker.yml@main
+    uses: jhudsl/OTTR_Template/.github/workflows/report-maker.yml@main
     with:
       check_type: "spelling"
       error_min: 3
@@ -70,7 +70,7 @@ jobs:
     name: Check URLs
     needs: yaml-check
     if: ${{needs.yaml-check.outputs.toggle_url_check == 'yes'}}
-    uses: jhudsl/OTTR_Reports/.github/workflows/report-maker.yml@main
+    uses: jhudsl/OTTR_Template/.github/workflows/report-maker.yml@main
     with:
       check_type: "urls"
       error_min: 0
@@ -79,7 +79,7 @@ jobs:
     name: Check quiz formatting
     if: ${{needs.yaml-check.outputs.toggle_quiz_check == 'yes'}}
     needs: yaml-check
-    uses: jhudsl/OTTR_Reports/.github/workflows/report-maker.yml@main
+    uses: jhudsl/OTTR_Template/.github/workflows/report-maker.yml@main
     with:
       check_type: "quiz_format"
       error_min: 0
