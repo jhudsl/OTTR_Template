@@ -42,9 +42,6 @@ jobs:
           echo "::set-output name=error_name::$error_name"
           echo "::set-output name=report_path::$report_path"
 
-          # Need to allow for one row because the column names
-          echo "error_min=$($inputs.error_min + 1)" >> $GITHUB_ENV
-          
       - name: Configure git
         run: |
           git config --local user.email "itcrtrainingnetwork@gmail.com"
@@ -75,11 +72,13 @@ jobs:
         if: ${{ inputs.check_type == 'urls' }}
         run: |
           echo "chk_results=$(Rscript scripts/url-check.R)" >> $GITHUB_ENV
+          echo "chk_results=$((chk_results-1))" >> $GITHUB_ENV
 
       - name: Run spelling check
         if: ${{ inputs.check_type == 'spelling' }}
         run: |
           echo "chk_results=$(Rscript scripts/spell-check.R)" >> $GITHUB_ENV
+          echo "chk_results=$((chk_results-1))" >> $GITHUB_ENV
 
       - name: Run quiz check
         if: ${{ inputs.check_type == 'quiz_format' }}
@@ -89,7 +88,7 @@ jobs:
           if [ -f question_error_report.tsv ]; then
             results=$(wc -l < question_error_report.tsv >/dev/null)
           fi
-          echo "chk_results=$results" >> $GITHUB_ENV
+          echo "chk_results=$((chk_results-1))" >> $GITHUB_ENV
 
 ############################# Handle commenting ################################
 
