@@ -119,7 +119,7 @@ jobs:
           body-includes: ${{ steps.declare.outputs.error_name }}
 
       - name: There are errors!
-        if: ${{ env.chk_results >= inputs.error_min }}
+        if: ${{ env.chk_results >= inputs.error_min + 1 }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -132,11 +132,11 @@ jobs:
           edit-mode: replace
 
       - name: Check check results - fail if too many errors
-        if: ${{ env.chk_results >= inputs.error_min }}
+        if: ${{ env.chk_results >= inputs.error_min + 1 }}
         run: exit 1
 
       - name: No errors
-        if: ${{ env.chk_results < inputs.error_min }}
+        if: ${{ env.chk_results < inputs.error_min + 1  }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
