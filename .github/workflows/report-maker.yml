@@ -43,8 +43,8 @@ jobs:
           echo "::set-output name=report_path::$report_path"
 
           # Need to allow for one row because the column names
-          echo "error_min=$( $inputs.error_min + 1)" >> $GITHUB_ENV
-
+          echo "error_min=$($inputs.error_min + 1)" >> $GITHUB_ENV
+          
       - name: Configure git
         run: |
           git config --local user.email "itcrtrainingnetwork@gmail.com"
