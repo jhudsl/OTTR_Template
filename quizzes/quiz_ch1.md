@@ -15,11 +15,9 @@ m) A second mandatory incorrect answer
 o) An optional incorrect answer here marked with an "o"
 o) A second optional incorrect answer here
 
-{choose-answers: 4}
+{choose-answers: 8}
 ? Question example with just a question mark?
 
-???
-???
 C) One correct answer here marked with a "C"
 C) A second correct answer here
 m) Mandatory incorrect answers have an "m"
