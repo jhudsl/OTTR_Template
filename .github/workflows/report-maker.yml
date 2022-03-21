@@ -73,6 +73,8 @@ jobs:
         run: |
           chk_results=$(Rscript scripts/url-check.R)
           chk_results="$((chk_results-1))"
+          echo $chk_results
+
           echo "chk_results=$chk_results" >> $GITHUB_ENV
 
       - name: Run spelling check
@@ -80,6 +82,8 @@ jobs:
         run: |
           chk_results=$(Rscript scripts/spell-check.R)
           chk_results="$((chk_results-1))"
+          echo $chk_results
+
           echo "chk_results=$chk_results" >> $GITHUB_ENV
 
       - name: Run quiz check
@@ -91,6 +95,8 @@ jobs:
             chk_results=$(wc -l < question_error_report.tsv >/dev/null)
           fi
           chk_results="$((chk_results-1))"
+          echo $chk_results
+
           echo "chk_results=$chk_results" >> $GITHUB_ENV
 
 ############################# Handle commenting ################################
