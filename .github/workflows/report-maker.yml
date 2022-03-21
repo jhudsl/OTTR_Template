@@ -73,7 +73,7 @@ jobs:
         run: |
           echo "chk_results=$(Rscript scripts/url-check.R)" >> $GITHUB_ENV
           echo "chk_results=$((chk_results-1))" >> $GITHUB_ENV
-          
+
       - name: Run spelling check
         if: ${{ inputs.check_type == 'spelling' }}
         run: |
@@ -121,7 +121,7 @@ jobs:
           body-includes: ${{ steps.declare.outputs.error_name }}
 
       - name: There are errors!
-        if: ${{ (env.chk_results - 1) >= env.error_min }}
+        if: ${{ env.chk_results >= env.error_min }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -134,11 +134,11 @@ jobs:
           edit-mode: replace
 
       - name: Check check results - fail if too many errors
-        if: ${{ (env.chk_results - 1) >= env.error_min }}
+        if: ${{ env.chk_results >= env.error_min }}
         run: exit 1
 
       - name: No errors
-        if: ${{ (env.chk_results- 1) < env.error_min }}
+        if: ${{ env.chk_results < env.error_min }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
