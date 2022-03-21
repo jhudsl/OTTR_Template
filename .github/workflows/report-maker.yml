@@ -62,7 +62,7 @@ jobs:
           branch: preview-${{ github.event.pull_request.number }}
           cleanup: false
           file_types: .Rmd,.md
-          print_all: false
+          print_all: true
           exclude_files: .github/PULL_REQUEST_TEMPLATE.md, docs/*
           exclude_urls: https://jhudatascience.org/{Course_Name}}
           force_pass: true
@@ -90,9 +90,9 @@ jobs:
         if: ${{ inputs.check_type == 'quiz_format' }}
         run: |
           Rscript -e "ottrpal::check_quizzes(quiz_dir = 'quizzes', write_report = TRUE, verbose = TRUE)"
-          results=0
+          chk_results=0
           if [ -f question_error_report.tsv ]; then
-            chk_results=$(wc -l < question_error_report.tsv >/dev/null)
+            chk_results=$(wc -l < question_error_report.tsv)
           fi
           chk_results="$((chk_results-1))"
           echo $chk_results
