@@ -57,6 +57,7 @@ jobs:
       rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
       dockerfiles_changed: steps.verify-changed-files.outputs.files_changed
 
+########################## Make the error reports ##############################
   spell-check:
     name: Check spelling
     needs: yaml-check
@@ -84,6 +85,7 @@ jobs:
       check_type: "quiz_format"
       error_min: 0
 
+############################# Style the code ###################################
   style-code:
     name: Style code
     needs: yaml-check
@@ -106,6 +108,8 @@ jobs:
           git add \*.Rmd
           git commit -m 'Style Rmds' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
+
+############################# Render Preview ###################################
 
   render-preview:
     name: Render preview
@@ -215,6 +219,8 @@ jobs:
 
             _Updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
+
+############################## Build Docker ####################################
 
   build-docker:
     name: Build Docker image
