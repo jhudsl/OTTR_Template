@@ -42,6 +42,9 @@ jobs:
           echo "::set-output name=error_name::$error_name"
           echo "::set-output name=report_path::$report_path"
 
+          # Need to allow for one row because the column names
+          echo "error_min=$(inputs.error_min + 1)" >> $GITHUB_ENV
+
       - name: Configure git
         run: |
           git config --local user.email "itcrtrainingnetwork@gmail.com"
@@ -119,7 +122,7 @@ jobs:
           body-includes: ${{ steps.declare.outputs.error_name }}
 
       - name: There are errors!
-        if: ${{ env.chk_results >= inputs.error_min + 1 }}
+        if: ${{ env.chk_results >= env.error_min }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -132,11 +135,11 @@ jobs:
           edit-mode: replace
 
       - name: Check check results - fail if too many errors
-        if: ${{ env.chk_results >= inputs.error_min + 1 }}
+        if: ${{ env.chk_results >= env.error_min }}
         run: exit 1
 
       - name: No errors
-        if: ${{ env.chk_results < inputs.error_min + 1  }}
+        if: ${{ env.chk_results < env.error_min }}
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
