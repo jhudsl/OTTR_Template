@@ -63,7 +63,7 @@ jobs:
           branch: preview-${{ github.event.pull_request.number }}
           cleanup: false
           file_types: .Rmd,.md
-          print_all: true
+          print_all: false
           exclude_files: .github/PULL_REQUEST_TEMPLATE.md, docs/*
           exclude_urls: https://jhudatascience.org/{Course_Name}}
           force_pass: true
@@ -72,8 +72,6 @@ jobs:
       - name: Count URL errors
         if: ${{ inputs.check_type == 'urls' }}
         run: |
-          ls /github/workspace/
-          mv /github/workspace/resources/url_checks.csv .
           chk_results=$(Rscript scripts/url-check.R)
           chk_results="$((chk_results-1))"
           echo $chk_results
