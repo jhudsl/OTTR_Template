@@ -61,10 +61,11 @@ jobs:
         with:
           branch: preview-${{ github.event.pull_request.number }}
           cleanup: false
+          file_types: ['.md', '.Rmd']
           print_all: false
           force_pass: true
           exclude_urls: https://jhudatascience.org/{Course_Name}}
-          exclude_files: docs/*,manuscript/*,.github/PULL_REQUEST_TEMPLATE.md
+          exclude_files: docs/*
           save: resources/url_checks.csv
 
       - name: Count URL errors
