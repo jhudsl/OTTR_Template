@@ -9,19 +9,49 @@ library(magrittr)
 # Find .git root directory
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 
-# Read in dictionary
-url_checks <- readr::read_csv(file.path(root_dir, 'resources', 'url_checks.csv'))
+output_file <- file.path(root_dir, 'resources', 'url_checks.tsv')
 
-if (nrow(url_checks) > 0) {
-  url_checks <- url_checks %>%
-    data.frame() %>%
-    dplyr::filter(RESULT == "failed")
+# Only declare `.Rmd` files but not the ones in the style-sets directory
+files <- list.files(path = root_dir, pattern = 'md$', full.names = TRUE)
+
+test_url <- function(url) {
+  message(paste0("Testing: ", url))
+  url_status <- try(httr::response(url, as = "text"), silent = TRUE)
+  status <- ifelse(suppressWarnings(grepl("Could not resolve host", url_status)), "failed", "success")
+  return(status)
+}
+
+get_urls <- function(file) {
+  # Read in a file and return the urls from it 
+  content <- readLines(file)
+  content <- grep("http|com$|www", content, value = TRUE)
+  url_pattern <- "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
+  urls <- stringr::str_extract(content, url_pattern)
+  if (length(urls) > 0 ){
+    urls <- gsub(")$|)\\.$", "", urls)
+    urls_status <- sapply(urls, test_url)
+    url_df <- data.frame(urls, urls_status, file)
+    return(url_df)
+  }
+}
+
+# Run this for all Rmds
+all_urls <- lapply(files, get_urls)
+
+# Write the file
+all_urls_df <- dplyr::bind_rows(all_urls)
+
+if (nrow(all_urls_df) > 0) {
+  all_urls_df <- all_urls_df %>% 
+    dplyr::filter(urls_status == "failed") %>% 
+    readr::write_tsv(output_file) 
 }
 
 # Print out how many spell check errors
-write(nrow(url_checks), stdout())
+write(nrow(all_urls_df), stdout())
 
-if (nrow(url_checks) > 0) {
-# Save spell errors to file temporarily
-readr::write_csv(url_checks, file.path('resources', 'url_checks.csv'))
+if (nrow(all_urls_df) > 0) {
+  # Save spell errors to file temporarily
+  readr::write_tsv(all_urls_df, output_file)
 }
+
