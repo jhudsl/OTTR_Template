@@ -1,7 +1,7 @@
 
 ##### Checks run at pull request #####
 # Check quiz formatting
-check-quizzes: yes
+check-quizzes: no
 # Check that urls in the content are not broken
 url-checker: yes
 # Render preview of content with changes (Rmd's and md's are checked)
