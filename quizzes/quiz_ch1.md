@@ -28,6 +28,7 @@ o) A second optional incorrect answer here
 {choose-answers: 4}
 ? Second question to ask goes here?
 
+C) A correct answer here!
 m) Mandatory incorrect answers have an "m"
 m) A second mandatory incorrect answer
 o) An optional incorrect answer here marked with an "o"
