@@ -66,7 +66,6 @@ jobs:
           print_all: false
           exclude_files: .github/PULL_REQUEST_TEMPLATE.md, docs/*
           exclude_urls: https://jhudatascience.org/{Course_Name}}
-          force_pass: true
           save: resources/url_checks.csv
 
       - name: Count URL errors
