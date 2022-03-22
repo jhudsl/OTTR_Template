@@ -32,7 +32,7 @@ jobs:
             report_path='resources/spell_check_results.tsv'
           elif ${{inputs.check_type == 'urls'}} ;then
             error_name='Broken URLs'
-            report_path='resources/url_checks.csv'
+            report_path='resources/url_checks.tsv'
           elif ${{inputs.check_type ==  'quiz_format'}} ;then
             error_name='Quiz format errors'
             report_path='question_error_report.tsv'
@@ -55,7 +55,7 @@ jobs:
 
 ###################### Run the appropriate test ################################
 
-      - name: Count URL errors
+      - name: Run URL checks
         if: ${{ inputs.check_type == 'urls' }}
         run: |
           chk_results=$(Rscript scripts/url-check.R)
