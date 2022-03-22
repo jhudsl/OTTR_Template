@@ -16,8 +16,8 @@ files <- list.files(path = root_dir, pattern = 'md$', full.names = TRUE)
 
 test_url <- function(url) {
   message(paste0("Testing: ", url))
-  url_status <- try(httr::response(url, as = "text"), silent = TRUE)
-  status <- ifelse(suppressWarnings(grepl("Could not resolve host", url_status)), "failed", "success")
+  url_status <- try(httr::GET(url), silent = TRUE)
+  status <- ifelse(suppressMessages(grepl("Could not resolve host", url_status)), "failed", "success")
   return(status)
 }
 
