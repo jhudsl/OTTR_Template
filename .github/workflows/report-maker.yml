@@ -32,7 +32,7 @@ jobs:
             report_path='resources/spell_check_results.tsv'
           elif ${{inputs.check_type == 'urls'}} ;then
             error_name='Broken URLs'
-            report_path='resources/url_checks.csv'
+            report_path='resources/url_checks.tsv'
           elif ${{inputs.check_type ==  'quiz_format'}} ;then
             error_name='Quiz format errors'
             report_path='question_error_report.tsv'
@@ -55,21 +55,7 @@ jobs:
 
 ###################### Run the appropriate test ################################
 
-      - name: URLs checker
-        if: ${{ inputs.check_type == 'urls' }}
-        uses: urlstechie/urlchecker-action@0.2.2
-        with:
-          git_path: https://github.com/${GITHUB_REPOSITORY}
-          branch: preview-${{ github.event.pull_request.number }}
-          cleanup: false
-          file_types: .Rmd,.md
-          print_all: true
-          exclude_files: .github/PULL_REQUEST_TEMPLATE.md, docs/*
-          exclude_urls: https://jhudatascience.org/{Course_Name}}
-          force_pass: true
-          save: resources/url_checks.csv
-
-      - name: Count URL errors
+      - name: Run URL checks
         if: ${{ inputs.check_type == 'urls' }}
         run: |
           chk_results=$(Rscript scripts/url-check.R)
