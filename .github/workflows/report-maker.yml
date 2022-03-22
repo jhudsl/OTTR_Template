@@ -72,6 +72,7 @@ jobs:
       - name: Count URL errors
         if: ${{ inputs.check_type == 'urls' }}
         run: |
+          ls /github/workspace/
           mv /github/workspace/resources/url_checks.csv .
           chk_results=$(Rscript scripts/url-check.R)
           chk_results="$((chk_results-1))"
