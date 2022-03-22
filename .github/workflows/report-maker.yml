@@ -57,7 +57,7 @@ jobs:
 
       - name: URLs checker
         if: ${{ inputs.check_type == 'urls' }}
-        uses: urlstechie/urlchecker-action@0.0.25
+        uses: urlstechie/urlchecker-action@0.2.2
         with:
           git_path: https://github.com/${GITHUB_REPOSITORY}
           branch: preview-${{ github.event.pull_request.number }}
