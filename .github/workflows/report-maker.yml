@@ -35,7 +35,7 @@ jobs:
             report_path='resources/url_checks.csv'
           elif ${{inputs.check_type ==  'quiz_format'}} ;then
             error_name='Quiz format errors'
-            report_path='resources/question_error_report.tsv'
+            report_path='question_error_report.tsv'
           fi
           echo $error_name
           echo $report_path
@@ -59,6 +59,7 @@ jobs:
         if: ${{ inputs.check_type == 'urls' }}
         uses: urlstechie/urlchecker-action@0.2.31
         with:
+          git_path: https://github.com/${GITHUB_REPOSITORY}
           branch: preview-${{ github.event.pull_request.number }}
           cleanup: false
           file_types: .Rmd,.md
@@ -71,24 +72,33 @@ jobs:
       - name: Count URL errors
         if: ${{ inputs.check_type == 'urls' }}
         run: |
-          echo "chk_results=$(Rscript scripts/url-check.R)" >> $GITHUB_ENV
-          echo "chk_results=$((chk_results-1))" >> $GITHUB_ENV
+          chk_results=$(Rscript scripts/url-check.R)
+          chk_results="$((chk_results-1))"
+          echo $chk_results
+
+          echo "chk_results=$chk_results" >> $GITHUB_ENV
 
       - name: Run spelling check
         if: ${{ inputs.check_type == 'spelling' }}
         run: |
-          echo "chk_results=$(Rscript scripts/spell-check.R)" >> $GITHUB_ENV
-          echo "chk_results=$((chk_results-1))" >> $GITHUB_ENV
+          chk_results=$(Rscript scripts/spell-check.R)
+          chk_results="$((chk_results-1))"
+          echo $chk_results
+
+          echo "chk_results=$chk_results" >> $GITHUB_ENV
 
       - name: Run quiz check
         if: ${{ inputs.check_type == 'quiz_format' }}
         run: |
           Rscript -e "ottrpal::check_quizzes(quiz_dir = 'quizzes', write_report = TRUE, verbose = TRUE)"
-          results=0
+          chk_results=0
           if [ -f question_error_report.tsv ]; then
-            results=$(wc -l < question_error_report.tsv >/dev/null)
+            chk_results=$(wc -l < question_error_report.tsv)
           fi
-          echo "chk_results=$((chk_results-1))" >> $GITHUB_ENV
+          chk_results="$((chk_results-1))"
+          echo $chk_results
+
+          echo "chk_results=$chk_results" >> $GITHUB_ENV
 
 ############################# Handle commenting ################################
 
