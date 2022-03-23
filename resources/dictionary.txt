@@ -1,6 +1,8 @@
 AnVIL
 BIPOC
 Bloomberg
+Bookdown
+Coursera
 Datatrail
 DataTrail
 dropdown
