@@ -63,27 +63,27 @@ jobs:
     needs: yaml-check
     if: ${{needs.yaml-check.outputs.toggle_spell_check == 'yes'}}
     uses: jhudsl/error-reports-commenting@main
-      with:
-        check_type: spelling
-        error_min: 3
+    with:
+      check_type: spelling
+      error_min: 3
 
   url-check:
     name: Check URLs
     needs: yaml-check
     if: ${{needs.yaml-check.outputs.toggle_url_check == 'yes'}}
     uses: jhudsl/error-reports-commenting@main
-      with:
-        check_type: urls
-        error_min: 0
+    with:
+      check_type: urls
+      error_min: 0
 
   quiz-check:
     name: Check quiz formatting
     if: ${{needs.yaml-check.outputs.toggle_quiz_check == 'yes'}}
     needs: yaml-check
     uses: jhudsl/error-reports-commenting@main
-      with:
-        check_type: quiz_format
-        error_min: 0
+    with:
+      check_type: quiz_format
+      error_min: 0
 
 ############################# Style the code ###################################
   style-code:
