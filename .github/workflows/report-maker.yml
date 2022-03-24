@@ -45,7 +45,7 @@ jobs:
           check_type: ${{inputs.check_type}}
           error_min: ${{inputs.error_min}}
 
-############################# Handle commenting ################################
+########################## Handle commenting ###################################
 
       - name: Commit check errors
         run: |
