@@ -1,6 +1,8 @@
 AnVIL
 BIPOC
 Bloomberg
+Bookdown
+Coursera
 Datatrail
 DataTrail
 dropdown
@@ -15,6 +17,7 @@ Markua
 mentorship
 NCI
 NHGRI
+ottrpal
 UE
 UE5
 reproducibility
