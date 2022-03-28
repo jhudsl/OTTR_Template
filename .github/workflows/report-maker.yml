@@ -11,7 +11,10 @@ on:
       error_min:
         default: 0
         type: number
-
+    secrets:
+      gh_pat:
+        type: string
+        required: true
 jobs:
   error-check:
     runs-on: ubuntu-latest
@@ -24,6 +27,7 @@ jobs:
         with:
           repository: ${{inputs.github_path}}
           fetch-depth: 0
+          token:
 
       - name: Configure git
         run: |
