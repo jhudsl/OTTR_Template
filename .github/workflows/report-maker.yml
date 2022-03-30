@@ -42,7 +42,7 @@ jobs:
 
 ###################### Run the appropriate test ################################
 
-      - name: Run spelling check
+      - name: Run check
         uses: jhudsl/ottr-reports@main
         id: check_results
         with:
