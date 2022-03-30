@@ -11,7 +11,6 @@ on:
       error_min:
         default: 0
         type: number
-    secrets:
       gh_pat:
         type: string
         required: true
