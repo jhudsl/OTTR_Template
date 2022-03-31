@@ -56,7 +56,7 @@ if (nrow(all_urls_df) > 0) {
 write(nrow(all_urls_df), stdout())
 
 # Save spell errors to file temporarily
-readr::write_tsv(data.frame(all_urls_df), output_file)
+readr::write_tsv(all_urls_df, output_file)
 
 message(paste0("Saved to: ", output_file))
 
