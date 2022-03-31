@@ -47,8 +47,7 @@ all_urls_df <- dplyr::bind_rows(all_urls)
 
 if (nrow(all_urls_df) > 0) {
   all_urls_df <- all_urls_df %>%
-    dplyr::filter(urls_status == "failed") %>%
-    readr::write_tsv(output_file)
+    dplyr::filter(urls_status == "failed")
 } else {
   all_urls_df <- data.frame(errors = NA)
 }
@@ -57,6 +56,9 @@ if (nrow(all_urls_df) > 0) {
 write(nrow(all_urls_df), stdout())
 
 # Save spell errors to file temporarily
-readr::write_tsv(all_urls_df, output_file)
+readr::write_tsv(data.frame(all_urls_df), output_file)
 
 message(paste0("Saved to: ", output_file))
+
+# Print out how many spell check errors
+write(nrow(all_urls_df), stdout())
