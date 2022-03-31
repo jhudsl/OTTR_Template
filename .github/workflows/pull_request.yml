@@ -200,7 +200,6 @@ jobs:
       id: url_errors
       run: |
         chk_results=$(Rscript scripts/url-check.R)
-        chk_results="$((chk_results))"
         echo $chk_results
 
         echo "chk_results=$chk_results" >> $GITHUB_ENV
