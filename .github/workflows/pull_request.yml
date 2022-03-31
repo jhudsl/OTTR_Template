@@ -202,8 +202,7 @@ jobs:
         chk_results=$(Rscript scripts/url-check.R)
         echo $chk_results
 
-        echo "chk_results=$chk_results" >> $GITHUB_ENV
-        echo "::set-output name=url_results::$results"
+        echo "::set-output name=url_results::$chk_results"
 
     - name: Commit URL check
       run: |
