@@ -93,12 +93,12 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: spell-check-results
-          path: report_checks/spell_check_results.tsv
+          path: check_reports/spell_check_results.tsv
 
       - name: Commit spell check errors
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          git add --force report_checks/spell_check_results.tsv || echo "No changes to commit"
+          git add --force check_reports/spell_check_results.tsv || echo "No changes to commit"
           git commit -m 'Add spell check file' || echo "No changes to commit"
           git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
           git push --force origin $branch_name || echo "No changes to commit"
@@ -109,7 +109,7 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          sp_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/report_checks/spell_check_results.tsv
+          sp_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/check_reports/spell_check_results.tsv
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
           echo ::set-output name=sp_error_url::$sp_error_url
@@ -207,7 +207,7 @@ jobs:
     - name: Commit URL check
       run: |
         branch_name='preview-${{ github.event.pull_request.number }}'
-        git add --force report_checks/url_checks.csv || echo "No changes to commit"
+        git add --force check_reports/url_checks.csv || echo "No changes to commit"
         git commit -m 'Add URL check file' || echo "No changes to commit"
         git fetch
         git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
@@ -219,7 +219,7 @@ jobs:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         branch_name='preview-${{ github.event.pull_request.number }}'
-        url_errors=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/report_checks/url_checks.csv
+        url_errors=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/check_reports/url_checks.csv
         echo ::set-output name=time::$(date +'%Y-%m-%d')
         echo ::set-output name=commit_id::$GITHUB_SHA
         echo ::set-output name=url_errors::$url_errors
