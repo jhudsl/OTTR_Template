@@ -197,34 +197,13 @@ jobs:
       shell: bash
 
     - name: URLs checker
-      uses: urlstechie/urlchecker-action@master
-      with:
-        # Specify a branch
-        branch: preview-${{ github.event.pull_request.number }}
-
-        # Cleanup
-        cleanup: false
-
-        # A comma-separated list of file types to cover in the URL checks
-        file_types: .Rmd,.md
-
-        # Choose whether to include file with no URLs in the prints.
-        print_all: false
-
-        exclude_files: .github/PULL_REQUEST_TEMPLATE.md, docs/*
-
-        # A comma separated links to exclude during URL checks
-        exclude_urls: https://jhudatascience.org/{Course_Name}}
-
-        force_pass: true
-
-        # A path to a csv file to save results to
-        save: resources/url_checks.csv
-
-    - name: Count URL errors
       id: url_errors
       run: |
-        results=$(Rscript "scripts/url-check.R")
+        chk_results=$(Rscript scripts/url-check.R)
+        chk_results="$((chk_results-1))"
+        echo $chk_results
+
+        echo "chk_results=$chk_results" >> $GITHUB_ENV
         echo "::set-output name=url_results::$results"
 
     - name: Commit URL check
