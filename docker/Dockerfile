@@ -42,6 +42,10 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
 RUN apt-get -y --no-install-recommends install \
     python3-pip  python3-dev
 
+# Install urlchecker
+RUN pip3 install \
+  "urlchecker==0.0.25"
+
 # Commonly used R packages
 RUN Rscript -e  "options(warn = 2);install.packages( \
     c('bookdown', \
