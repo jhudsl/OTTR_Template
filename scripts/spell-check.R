@@ -26,8 +26,9 @@ if (!dir.exists('check_reports')) {
 dictionary_file <- file.path(root_dir, 'resources', 'dictionary.txt')
 
 if (!file.exists(dictionary_file)) {
-download.file("https://raw.githubusercontent.com/jhudsl/OTTR_Template/main/resources/dictionary.txt",
-              destFile = dictionary_file)
+  message(paste("No dictionary text file found at:", dictionary_file, "downloading one from the main OTTR Template repo"))
+  download.file("https://raw.githubusercontent.com/jhudsl/OTTR_Template/main/resources/dictionary.txt",
+                destfile = dictionary_file)
 }
 
 # Read in dictionary
