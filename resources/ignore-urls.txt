@@ -1,1 +1,2 @@
 https://jhudatascience.org/{Course_Name}}
+http://www.someurl.html
