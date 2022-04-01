@@ -37,11 +37,11 @@ test_url <- function(url) {
 get_urls <- function(file) {
   # Read in a file and return the urls from it
   content <- readLines(file)
-  content <- grep("http[s]?://|ftp", content, value = TRUE)
+  content <- grep("http|com$|www", content, value = TRUE)
   url_pattern <- "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
   urls <- stringr::str_extract(content, url_pattern)
   if (length(urls) > 0 ){
-    urls <- gsub(")$|)\\.|\\),|)$|", "", urls)
+    urls <- gsub(")$|)\\.$", "", urls)
     urls_status <- sapply(urls, test_url)
     url_df <- data.frame(urls, urls_status, file)
     return(url_df)
