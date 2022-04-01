@@ -29,13 +29,13 @@ jobs:
         run: |
           if ${{inputs.check_type == 'spelling'}} ;then
             error_name='Spelling errors'
-            report_path='resources/spell_check_results.tsv'
+            report_path='check_reports/spell_check_results.tsv'
           elif ${{inputs.check_type == 'urls'}} ;then
             error_name='Broken URLs'
-            report_path='resources/url_checks.csv'
+            report_path='check_reports/url_checks.csv'
           elif ${{inputs.check_type ==  'quiz_format'}} ;then
             error_name='Quiz format errors'
-            report_path='question_error_report.tsv'
+            report_path='check_reports/question_error_report.tsv'
           fi
           echo $error_name
           echo $report_path
@@ -76,11 +76,7 @@ jobs:
       - name: Run quiz check
         if: ${{ inputs.check_type == 'quiz_format' }}
         run: |
-          Rscript -e "ottrpal::check_quizzes(quiz_dir = 'quizzes', write_report = TRUE, verbose = TRUE)"
-          chk_results=0
-          if [ -f question_error_report.tsv ]; then
-            chk_results=$(wc -l < question_error_report.tsv)
-          fi
+          chk_results=$(Rscript scripts/quiz-check.R)
           chk_results="$((chk_results-1))"
           echo $chk_results
 

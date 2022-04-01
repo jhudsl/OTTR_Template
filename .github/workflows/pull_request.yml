@@ -93,12 +93,12 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: spell-check-results
-          path: resources/spell_check_results.tsv
+          path: check_reports/spell_check_results.tsv
 
       - name: Commit spell check errors
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          git add --force resources/spell_check_results.tsv || echo "No changes to commit"
+          git add --force check_reports/spell_check_results.tsv || echo "No changes to commit"
           git commit -m 'Add spell check file' || echo "No changes to commit"
           git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
           git push --force origin $branch_name || echo "No changes to commit"
@@ -109,7 +109,7 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          sp_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/spell_check_results.tsv
+          sp_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/check_reports/spell_check_results.tsv
           echo ::set-output name=time::$(date +'%Y-%m-%d')
           echo ::set-output name=commit_id::$GITHUB_SHA
           echo ::set-output name=sp_error_url::$sp_error_url
@@ -197,40 +197,17 @@ jobs:
       shell: bash
 
     - name: URLs checker
-      uses: urlstechie/urlchecker-action@master
-      with:
-        # Specify a branch
-        branch: preview-${{ github.event.pull_request.number }}
-
-        # Cleanup
-        cleanup: false
-
-        # A comma-separated list of file types to cover in the URL checks
-        file_types: .Rmd,.md
-
-        # Choose whether to include file with no URLs in the prints.
-        print_all: false
-
-        exclude_files: .github/PULL_REQUEST_TEMPLATE.md, docs/*
-
-        # A comma separated links to exclude during URL checks
-        exclude_urls: https://jhudatascience.org/{Course_Name}}
-
-        force_pass: true
-
-        # A path to a csv file to save results to
-        save: resources/url_checks.csv
-
-    - name: Count URL errors
       id: url_errors
       run: |
-        results=$(Rscript "scripts/url-check.R")
-        echo "::set-output name=url_results::$results"
+        chk_results=$(Rscript scripts/url-check.R)
+        echo $chk_results
+
+        echo "::set-output name=url_results::$chk_results"
 
     - name: Commit URL check
       run: |
         branch_name='preview-${{ github.event.pull_request.number }}'
-        git add --force resources/url_checks.csv || echo "No changes to commit"
+        git add --force check_reports/url_checks.tsv || echo "No changes to commit"
         git commit -m 'Add URL check file' || echo "No changes to commit"
         git fetch
         git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
@@ -242,7 +219,7 @@ jobs:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         branch_name='preview-${{ github.event.pull_request.number }}'
-        url_errors=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/resources/url_checks.csv
+        url_errors=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/check_reports/url_checks.tsv
         echo ::set-output name=time::$(date +'%Y-%m-%d')
         echo ::set-output name=commit_id::$GITHUB_SHA
         echo ::set-output name=url_errors::$url_errors
