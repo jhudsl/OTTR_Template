@@ -23,8 +23,15 @@ if (!dir.exists('check_reports')) {
   dir.create('check_reports')
 }
 
+dictionary_file <- file.path(root_dir, 'resources', 'dictionary.txt')
+
+if (!file.exists(dictionary_file)) {
+download.file("https://raw.githubusercontent.com/jhudsl/OTTR_Template/main/resources/dictionary.txt",
+              destFile = dictionary_file)
+}
+
 # Read in dictionary
-dictionary <- readLines(file.path(root_dir, 'resources', 'dictionary.txt'))
+dictionary <- readLines(dictionary_file)
 
 # Only declare `.Rmd` files but not the ones in the style-sets directory
 files <- list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)

@@ -9,7 +9,14 @@ library(magrittr)
 # Find .git root directory
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
 
-ignore_urls <- readLines(file.path(root_dir, "resources", "ignore-urls.txt"))
+
+ignore_urls_file <- file.path(root_dir, "resources", "ignore-urls.txt")
+
+if (!file.exists(ignore_urls_file)) {
+download.file("https://raw.githubusercontent.com/jhudsl/OTTR_Template/main/resources/ignore-urls.txt",
+              destFile = ignore_urls_file)
+}
+ignore_urls <- readLines(ignore_urls_file)
 
 output_file <- file.path(root_dir, 'check_reports', 'url_checks.tsv')
 
@@ -55,7 +62,7 @@ if (nrow(all_urls_df) > 0) {
 }
 
 all_urls_df <- all_urls_df %>%
-  dplyr::filter(!(urls %in% ignore_urls)) 
+  dplyr::filter(!(urls %in% ignore_urls))
 
 # Print out how many spell check errors
 write(nrow(all_urls_df), stdout())
