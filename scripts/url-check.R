@@ -38,7 +38,7 @@ get_urls <- function(file) {
   # Read in a file and return the urls from it
   content <- readLines(file)
   content <- grep("http[s]?://", content, value = TRUE)
-  url_pattern <- "http[s]?://.+?[\"|\\)| |,]"
+  url_pattern <- "http[s]?://.+?[\"|\\)| |,|}]"
   urls <- stringr::str_extract(content, url_pattern)
   urls <- urls[!is.na(urls)]
   if (length(urls) > 0 ){
@@ -53,7 +53,7 @@ get_urls <- function(file) {
 all_urls <- lapply(files, get_urls)
 
 # Write the file
-all_urls_df <- dplyr::bind_rows(all_urls) %>% 
+all_urls_df <- dplyr::bind_rows(all_urls) %>%
   dplyr::filter(!is.na(urls))
 
 if (nrow(all_urls_df) > 0) {
