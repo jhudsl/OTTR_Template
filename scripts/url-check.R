@@ -37,11 +37,12 @@ test_url <- function(url) {
 get_urls <- function(file) {
   # Read in a file and return the urls from it
   content <- readLines(file)
-  content <- grep("http[s]?://|com$|www", content, value = TRUE)
-  url_pattern <- "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
+  content <- grep("http[s]?://", content, value = TRUE)
+  url_pattern <- "http[s]?://.+?[\"|\\)| |,]"
   urls <- stringr::str_extract(content, url_pattern)
+  urls <- urls[!is.na(urls)]
   if (length(urls) > 0 ){
-    urls <- gsub(")$|)\\.|\\),|\\)|,", "", urls)
+    urls <- gsub("\\)$|\"|)$", "", urls)
     urls_status <- sapply(urls, test_url)
     url_df <- data.frame(urls, urls_status, file)
     return(url_df)
@@ -52,25 +53,23 @@ get_urls <- function(file) {
 all_urls <- lapply(files, get_urls)
 
 # Write the file
-all_urls_df <- dplyr::bind_rows(all_urls)
+all_urls_df <- dplyr::bind_rows(all_urls) %>% 
+  dplyr::filter(!is.na(urls))
 
 if (nrow(all_urls_df) > 0) {
-  all_urls_df <- all_urls_df %>%
+  failed_urls_df <- all_urls_df %>%
     dplyr::filter(urls_status == "failed")
 } else {
-  all_urls_df <- data.frame(errors = NA)
+  failed_urls_df <- data.frame(errors = NA)
 }
 
-all_urls_df <- all_urls_df %>%
+failed_urls_df <- failed_urls_df %>%
   dplyr::filter(!(urls %in% ignore_urls))
 
-# Print out how many spell check errors
-write(nrow(all_urls_df), stdout())
-
 # Save spell errors to file temporarily
-readr::write_tsv(all_urls_df, output_file)
+readr::write_tsv(failed_urls_df, output_file)
 
 message(paste0("Saved to: ", output_file))
 
 # Print out how many spell check errors
-write(nrow(all_urls_df), stdout())
+write(nrow(failed_urls_df), stdout())
