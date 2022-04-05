@@ -38,7 +38,7 @@ get_urls <- function(file) {
   # Read in a file and return the urls from it
   content <- readLines(file)
   content <- grep("http[s]?://", content, value = TRUE)
-  url_pattern <- "http[s]?://.+?[\"|\\)| |,|}]"
+  url_pattern <- "http[s]?://.+?[\"|\\)| |,|\\}]"
   urls <- stringr::str_extract(content, url_pattern)
   urls <- urls[!is.na(urls)]
   if (length(urls) > 0 ){
