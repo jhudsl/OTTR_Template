@@ -10,9 +10,6 @@ group:
           send-updates.yml
           test-send-updates.yml
           starting-course.yml
-      - source: scripts/
-        dest: scripts/
-        deleteOrphaned: true
       - source: .github/ISSUE_TEMPLATE/course-problem-report.md
         dest: .github/ISSUE_TEMPLATE/course-problem-report.md
       - source: .github/ISSUE_TEMPLATE/course-content-add.md
@@ -21,6 +18,10 @@ group:
         dest: scripts/make_screenshots.R
       - source: scripts/spell-check.R
         dest: scripts/spell-check.R
+      - source: scripts/url-check.R
+        dest: scripts/url-check.R
+      - source: scripts/quiz-check.R
+        dest: scripts/quiz-check.R
       - source: scripts/git_repo_check.R
         dest: scripts/git_repo_check.R
       - source: code_of_conduct.md
@@ -36,6 +37,7 @@ group:
       jhudsl/AnVIL_Book_Getting_Started
       jhudsl/AnVIL_Book_Instructor_Guide
       jhudsl/AnVIL_Book_WDL
+      jhudsl/AnVIL_Template
       jhudsl/Adv_Reproducibility_in_Cancer_Informatics
       jhudsl/Reproducibility_in_Cancer_Informatics
       jhudsl/Dissemination_and_Engagement
