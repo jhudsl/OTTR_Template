@@ -49,6 +49,7 @@ group:
       jhudsl/Cancer_Genome_Informatics
       jhudsl/Cancer-Imaging-Informatics
       jhudsl/GDSCN_Book_SARS_Galaxy_on_AnVIL
+      datatrail-jhu/DataTrail_Template
       abyzovlab/CNVpytor-course
       opencasestudies/OCS_Guide
       tmm211/dsp-terra-mooc-test2
