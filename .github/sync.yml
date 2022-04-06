@@ -28,6 +28,8 @@ group:
         dest: code_of_conduct.md
       - source: style-sets
         dest: style-sets
+      - source: assets/box_images/
+        dest: assets/box_images/
   # Repositories to receive changes
     repos: |
       jhudsl/Documentation_and_Usability
