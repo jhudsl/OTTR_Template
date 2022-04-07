@@ -82,3 +82,29 @@ group:
       dest: scripts/switch_sync_repo.R
     repos: |
       jhudsl/OTTR_Quizzes
+
+  - files:
+      - source: .github/workflows/
+        dest: .github/workflows/
+        exclude: |
+          starting-course.yml
+      - source: .github/ISSUE_TEMPLATE/course-problem-report.md
+        dest: .github/ISSUE_TEMPLATE/course-problem-report.md
+      - source: .github/ISSUE_TEMPLATE/course-content-add.md
+        dest: .github/ISSUE_TEMPLATE/course-content-add.md
+      - source: scripts/make_screenshots.R
+        dest: scripts/make_screenshots.R
+      - source: scripts/spell-check.R
+        dest: scripts/spell-check.R
+      - source: scripts/url-check.R
+        dest: scripts/url-check.R
+      - source: scripts/quiz-check.R
+        dest: scripts/quiz-check.R
+      - source: scripts/git_repo_check.R
+        dest: scripts/git_repo_check.R
+      - source: code_of_conduct.md
+        dest: code_of_conduct.md
+      - source: assets/box_images/
+        dest: assets/box_images/
+    repos: |
+      jhudsl/AnVIL_Template
