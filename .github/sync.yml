@@ -87,6 +87,8 @@ group:
       dest: .github/workflows/
       exclude: |
         starting-course.yml
+    - source: .github/switch_sync_repo.R
+      dest: .github/switch_sync_repo.R
     - source: .github/ISSUE_TEMPLATE/course-problem-report.md
       dest: .github/ISSUE_TEMPLATE/course-problem-report.md
     - source: .github/ISSUE_TEMPLATE/course-content-add.md
