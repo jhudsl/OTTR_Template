@@ -46,6 +46,15 @@ dictionary text
 
 </div>
 
+
+Here is a `<div class = "reflection">` box:
+
+<div class = "reflection">
+
+reflection text
+
+</div>
+
 ## Motivation
 
 
