@@ -153,15 +153,6 @@ Here's more words that are hidden.
 
 You should print out session info when you have code for [reproducibility purposes](https://jhudatascience.org/Reproducibility_in_Cancer_Informatics/managing-package-versions.html).
 
-
-http://aiubhesiugbaw.com
-http://aishdiugbsbguisbibsi.com
-
-
-abuisbgbwieb
-abiebfiuawebfiuaw
-abwuiebgw
-
 ```{r}
 devtools::session_info()
 ```
