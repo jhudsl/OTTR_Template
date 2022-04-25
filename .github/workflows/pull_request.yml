@@ -100,8 +100,8 @@ jobs:
           branch_name='preview-${{ github.event.pull_request.number }}'
           git add --force check_reports/spell_check_results.tsv || echo "No changes to commit"
           git commit -m 'Add spell check file' || echo "No changes to commit"
-          git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
-          git push --force origin $branch_name || echo "No changes to commit"
+          git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=theirs
+          git push origin $branch_name || echo "No changes to commit"
 
       - name: Build components of the spell check comment
         id: build-components
@@ -210,8 +210,7 @@ jobs:
         git add --force check_reports/url_checks.tsv || echo "No changes to commit"
         git commit -m 'Add URL check file' || echo "No changes to commit"
         git fetch
-        git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
-        git push --force origin $branch_name || echo "No changes to commit"
+        git push origin $branch_name || echo "No changes to commit"
 
     - name: Build components of the spell check comment
       id: build-components
@@ -299,7 +298,7 @@ jobs:
           branch_name='preview-${{ github.event.pull_request.number }}'
           git add --force question_error_report.tsv || echo "No changes to commit"
           git commit -m 'Add question error report file' || echo "No changes to commit"
-          git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
+          git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=theirs
           git push origin $branch_name || echo "No changes to commit"
 
       - name: Build components of the quiz check comment
@@ -405,8 +404,8 @@ jobs:
           echo ::set-output name=changes::$changes
           git add . --force
           git commit -m 'Render preview' || echo "No changes to commit"
-          git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
-          git push --force || echo "No changes to commit"
+          git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=theirs
+          git push origin $branch_name || echo "No changes to commit"
         shell: bash
 
       - name: Find Comment
