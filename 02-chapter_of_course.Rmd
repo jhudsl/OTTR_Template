@@ -28,7 +28,7 @@ For this chapter, we'll need the following packages attached:
 library(magrittr)
 ```
 
-# Topic of Section
+## Topic of Section
 
 You can write all your text in sections like this!
 
