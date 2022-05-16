@@ -73,7 +73,7 @@ How to include a Google slide. It's simplest to use the `ottrpal` package:
 ottrpal::include_slide("https://docs.google.com/presentation/d/1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ/edit#slide=id.gcc4fbee202_0_141")
 ```
 
-But if you have the slide or some other image locally downloaded you can also use html like this:
+But if you have the slide or some other image locally downloaded you can also use HTML like this:
 
 <img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
 
@@ -82,7 +82,7 @@ You may also want to embed videos in your course. If alternatively, you just wan
 
 Check out this [link to a video](https://www.youtube.com/embed/VOCYL-FNbr0) using markdown syntax. 
 
-### Using knitr
+### Using `knitr`
 
 To embed videos in your course, you can use `knitr::include_url()` like this:
 Note that you should use `echo=FALSE` in the code chunk because we don't want the code part of this to show up. If you are unfamiliar with [how R Markdown code chunks work, read this](https://rmarkdown.rstudio.com/lesson-3.html).
@@ -92,7 +92,7 @@ Note that you should use `echo=FALSE` in the code chunk because we don't want th
 knitr::include_url("https://www.youtube.com/embed/VOCYL-FNbr0")
 ```
 
-### Using html
+### Using HTML
 
 <iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
 
@@ -104,16 +104,17 @@ You can again use simple markdown syntax to just include a link to a file like s
 
 Alternatively you can embed files like PDFs.
 
-### Using knitr
+### Using `knitr`
 
-```{r, fig.align="center", echo=FALSE}
-knitr::include_url("https://www.bgsu.edu/content/dam/BGSU/center-for-faculty-excellence/docs/TLGuides/TLGuide-Learning-Objectives.pdf", height = "800px")
+```{r, fig.align="center", echo=FALSE, out.width="100%"}
+knitr::include_url("https://academicaffairs.ucsc.edu/events/documents/Microaggressions_Examples_Arial_2014_11_12.pdf")
 ```
 
 
-### Using html
 
-<iframe src="https://www.bgsu.edu/content/dam/BGSU/center-for-faculty-excellence/docs/TLGuides/TLGuide-Learning-Objectives.pdf" width="672" height="800px"></iframe>
+### Using HTML
+
+<iframe src="https://academicaffairs.ucsc.edu/events/documents/Microaggressions_Examples_Arial_2014_11_12.pdf" width="672" height="800px"></iframe>
 
 ## Website Examples
 
@@ -123,7 +124,7 @@ Yet again you can use a link to a website like so:
 
 Or, you can embed some websites.
 
-### Using knitr
+### Using `knitr`
 
 This works:
 
@@ -132,11 +133,11 @@ knitr::include_url("https://yihui.org")
 ```
 
 
-OR this:
+### Using HTML
 
 <iframe src="https://yihui.org" width="672" height="400px"></iframe>
 
-### Citation examples
+## Citation examples
 
 We can put citations at the end of a sentence like this [@rmarkdown2021].
 Or multiple citations [@rmarkdown2021, @Xie2018].
@@ -149,31 +150,58 @@ In text, we can put citations like this @rmarkdown2021.
 
 Occasionally, you might find it useful to emphasize a particular piece of information. To help you do so, we have provided css code and images (no need for you to worry about that!) to create the following stylized boxes. 
 
-You can use these boxes in your course with either of two options: using html code or Pandoc syntax.
+You can use these boxes in your course with either of two options: using HTML code or Pandoc syntax.
+
+### Using `rmarkdown` container syntax
+
+The `rmarkdown` package allows for a different syntax to be converted to the HTML that you just saw and also allows for conversion to LaTeX. See the [Bookdown](https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html) documentation for more information [@Xie2020]. Note that Bookdown uses Pandoc.
+
+
+```
+::: {.notice}
+Note using rmarkdown syntax.
+
+:::
+```
+
+::: {.notice}
+Note using rmarkdown syntax.
+
+:::
+
+As an example you might do something like this:
+
+::: {.notice}
+Please click on the subsection headers in the left hand
+navigation bar (e.g., 2.1, 4.3) a second time to expand the
+table of contents and enable the `scroll_highlight` feature
+([see more](introduction.html#scroll-highlight))
+:::
+
 
 ### Using HTML
 
 To add a warning box like the following use:
 
 ```
-<div class = "warning">
+<div class = "notice">
 Followed by the text you want inside
 </div>
 ```
 
 This will create the following:
 
-<div class = "warning">
+<div class = "notice">
 
 Followed by the text you want inside
 
 </div>
 
-Here is a `<div class = "notice">` box:
+Here is a `<div class = "warning">` box:
 
-<div class = "notice">
+<div class = "warning">
 
-note text
+Note text
 
 </div>
 
@@ -203,29 +231,6 @@ reflection text
 
 </div>
 
-### Using Pandoc div box syntax
-
-Pandoc allows for a different syntax to be converted to the html that you just saw and also allows for conversion to LaTeX. See the [Bookdown](https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html) documentation for more information [@Xie2020].
-
-
-```
-::: {.notice}
-Note using pandoc div conversion.
-
-:::
-```
-
-::: {.notice}
-Note using pandoc div conversion.
-
-:::
-
-<!-- ::: {.notice} -->
-<!-- Please click on the subsection headers in the left hand -->
-<!-- navigation bar (e.g., 2.1, 4.3) a second time to expand the -->
-<!-- table of contents and enable the `scroll_highlight` feature -->
-<!-- ([see more](introduction.html#scroll-highlight)). -->
-<!-- ::: -->
 
 
 ## Dropdown summaries
