@@ -299,35 +299,6 @@ div.reflection{
   background-image: url("../assets/box_images/thinking_face.png");
 }
 
-/* old style boxes - keep for backwards compatibility?*/
-
-div.rstudio-tip, div.tip, div.gotcha, div.design, div.hat{
-  border: 4px #aed6d963;
-  border-style: dashed solid;
-  padding: 1em;
-  margin: 1em 0;
-  padding-left: 100px;
-  background-size: 70px;
-  background-repeat: no-repeat;
-  background-position: 15px center;
-  min-height: 120px;
-  color: #2ea8b3;
-  background-color: #fcfcfc;
-}
-
-div.puzzle, div.fyi, div.demo, div.note {
-  padding: 1em;
-  margin: 1em 0;
-  padding-left: 100px;
-  background-size: 70px;
-  background-repeat: no-repeat;
-  background-position: 15px center;
-  min-height: 120px;
-  color: #1f5386;
-  background-color: #bed3ec;
-  border: solid 5px #dfedff;
-}
-
 
 /* .book .book-body .page-wrapper .page-inner section.normal is needed
    to override the styles produced by gitbook, which are ridiculously
