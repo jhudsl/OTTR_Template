@@ -33,7 +33,7 @@ library(magrittr)
 
 You can write all your text in sections like this, using `##` to indicate a new header. you can use additional pound symbols to create lower levels of headers.
 
-See [here](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) for additional general information about how you can format text within RMarkdown files. In addition, see [here](https://pandoc.org/MANUAL.html#pandocs-markdown)for more in depth and advanced options.
+See [here](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) for additional general information about how you can format text within R Markdown files. In addition, see [here](https://pandoc.org/MANUAL.html#pandocs-markdown)for more in depth and advanced options.
 
 ## Subtopic
 
@@ -143,7 +143,7 @@ In text, we can put citations like this @rmarkdown2021.
 
 Occasionally, you might find it useful to emphasize a particular piece of information. To help you do so, we have provided css code and images (no need for you to worry about that!) to create the following stylized boxes. 
 
-You can use these boxes in your course with either of two options: using html code or ookdown/latc
+You can use these boxes in your course with either of two options: using html code or Pandoc syntax.
 
 #### Using HTML
 
@@ -177,7 +177,7 @@ Here is a `<div class = "github">` box:
 
 <div class = "github">
 
-github text
+GitHub text
 
 </div>
 
@@ -199,17 +199,21 @@ reflection text
 
 </div>
 
-#### Using Pandoc div box sytax
+#### Using Pandoc div box syntax
 
-Pandoc allows for a different sytnax to be converted to the html that you just saw and also allows for conversion to LaTeX. See the [bookdown](https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html) documentation for more information [@Xie2020].
+Pandoc allows for a different syntax to be converted to the html that you just saw and also allows for conversion to LaTeX. See the [Bookdown](https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html) documentation for more information [@Xie2020].
 
+### {.notice}
 
-::: {.fyi}
-Please click on the subsection headers in the left hand
-navigation bar (e.g., 2.1, 4.3) a second time to expand the
-table of contents and enable the `scroll_highlight` feature
-([see more](introduction.html#scroll-highlight)).
-:::
+adfasdf
+
+###
+<!-- ::: {.notice} -->
+<!-- Please click on the subsection headers in the left hand -->
+<!-- navigation bar (e.g., 2.1, 4.3) a second time to expand the -->
+<!-- table of contents and enable the `scroll_highlight` feature -->
+<!-- ([see more](introduction.html#scroll-highlight)). -->
+<!-- ::: -->
 
 
 ### Dropdown summaries
