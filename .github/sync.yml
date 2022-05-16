@@ -41,6 +41,7 @@ group:
       jhudsl/AnVIL_Book_WDL
       jhudsl/Adv_Reproducibility_in_Cancer_Informatics
       jhudsl/Reproducibility_in_Cancer_Informatics
+      jhudsl/Choosing_Genomics_Tools
       jhudsl/Dissemination_and_Engagement
       jhudsl/Cancer_Clinical_Informatics
       jhudsl/Machine_Learning_for_Cancer_Informatics
@@ -48,6 +49,7 @@ group:
       jhudsl/Cancer_Genome_Informatics
       jhudsl/Cancer-Imaging-Informatics
       jhudsl/GDSCN_Book_SARS_Galaxy_on_AnVIL
+      datatrail-jhu/DataTrail_Template
       abyzovlab/CNVpytor-course
       opencasestudies/OCS_Guide
       tmm211/dsp-terra-mooc-test2
@@ -107,5 +109,7 @@ group:
       dest: code_of_conduct.md
     - source: assets/box_images/
       dest: assets/box_images/
+    - source: assets/style.css
+      dest: assets/AnVIL_style/style.css
     repos: |
       jhudsl/AnVIL_Template

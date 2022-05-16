@@ -341,6 +341,24 @@ div.dictionary{
   background-image: url("../assets/box_images/dictionary.png");
 }
 
+div.reflection{
+  border: 4px #193a5c;
+  border-style: solid;
+  padding: 1em;
+  margin: 1em 0;
+  padding-left: 100px;
+  background-size: 90px;
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  min-height: 120px;
+  background-color: #e8ebee;
+}
+
+div.reflection{
+  background-image: url("../assets/box_images/thinking_face.png");
+}
+
+
 div.rstudio-tip, div.tip, div.gotcha, div.design, div.hat{
   border: 4px #aed6d963;
   border-style: dashed solid;
