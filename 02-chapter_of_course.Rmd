@@ -1,9 +1,10 @@
 
 # A new chapter
 
-*If you haven't yet read the getting started Wiki pages; [start there](https://github.com/jhudsl/OTTR_Template/wiki/Getting-started)
+If you haven't yet read the getting started Wiki pages; [start there](https://github.com/jhudsl/OTTR_Template/wiki/Getting-started)
 
 Every chapter needs to start out with this chunk of code:
+
 
 ```{r, include = FALSE}
 ottrpal::set_knitr_image_path()
@@ -11,7 +12,7 @@ ottrpal::set_knitr_image_path()
 
 ## Learning Objectives
 
-*Every chapter also needs Learning objectives that will look like this:  
+Every chapter also needs Learning objectives that will look like this:  
 
 This chapter will cover:  
 
@@ -30,7 +31,9 @@ library(magrittr)
 
 ## Topic of Section
 
-You can write all your text in sections like this!
+You can write all your text in sections like this, using `##` to indicate a new header. you can use additional pound symbols to create lower levels of headers.
+
+See [here](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) for additional general information about how you can format text within RMarkdown files. In addition, see [here](https://pandoc.org/MANUAL.html#pandocs-markdown)for more in depth and advanced options.
 
 ## Subtopic
 
@@ -64,6 +67,8 @@ dev.off()
 ### Image example
 
 How to include a Google slide. It's simplest to use the `ottrpal` package:
+
+
 
 ```{r, fig.align='center', echo = FALSE, fig.alt= "Major point!! example image"}
 ottrpal::include_slide("https://docs.google.com/presentation/d/1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ/edit#slide=id.gcc4fbee202_0_141")
@@ -134,7 +139,70 @@ but they need a ; separator [@rmarkdown2021; @Xie2018].
 
 In text, we can put citations like this @rmarkdown2021.
 
-### FYI boxes
+### Stylized boxes
+
+Occasionally, you might find it useful to emphasize a particular piece of information. To help you do so, we have provided css code and images (no need for you to worry about that!) to create the following stylized boxes. 
+
+You can use these boxes in your course with either of two options: using html code or ookdown/latc
+
+#### Using HTML
+
+To add a warning box like the following use:
+
+`<div class = "warning">`
+
+Followed by the text you want inside/
+
+`</div>`
+
+The line above marks the end of the box.
+
+This will create the following:
+
+<div class = "warning">
+
+Followed by the text you want inside/
+
+</div>
+
+Here is a `<div class = "notice">` box:
+
+<div class = "notice">
+
+note text
+
+</div>
+
+Here is a `<div class = "github">` box:
+
+<div class = "github">
+
+github text
+
+</div>
+
+
+Here is a `<div class = "dictionary">` box:
+
+<div class = "dictionary">
+
+dictionary text
+
+</div>
+
+
+Here is a `<div class = "reflection">` box:
+
+<div class = "reflection">
+
+reflection text
+
+</div>
+
+#### Using Pandoc div box sytax
+
+Pandoc allows for a different sytnax to be converted to the html that you just saw and also allows for conversion to LaTeX. See the [bookdown](https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html) documentation for more information [@Xie2020].
+
 
 ::: {.fyi}
 Please click on the subsection headers in the left hand
@@ -142,6 +210,7 @@ navigation bar (e.g., 2.1, 4.3) a second time to expand the
 table of contents and enable the `scroll_highlight` feature
 ([see more](introduction.html#scroll-highlight)).
 :::
+
 
 ### Dropdown summaries
 
