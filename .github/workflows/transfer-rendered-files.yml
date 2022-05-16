@@ -35,7 +35,7 @@ jobs:
 
   file-quizzes-pr:
     name: File _Quizzes Transfer PR
-    runs-on: jhudsl/ottrpal:latest
+    runs-on: jhudsl/ottrpal
     needs: [yaml-check]
     if: ${{needs.yaml-check.outputs.toggle_coursera == 'yes' || needs.yaml-check.outputs.toggle_leanpub == 'yes'}}
 
