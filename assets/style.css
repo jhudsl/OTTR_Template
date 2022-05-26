@@ -251,7 +251,6 @@ li.appendix span, li.part span { /* for TOC part names */
 /* from r-pkgs.org*/
 
 div.notice, div.warning, div.github, div.dictionary, div.reflection {
-  border-style: solid;
   padding: 1em;
   margin: 1em 0;
   padding-left: 100px;
@@ -261,14 +260,17 @@ div.notice, div.warning, div.github, div.dictionary, div.reflection {
 
 div.notice{
   border: 4px #68ace5;
+  border-style: solid;
   background-size: 70px;
   background-position: 15px center;
   background-color: #e8ebee;
   background-image: url("../assets/box_images/note.png");
 }
 
+
 div.warning{
   border: 4px #e0471c;
+  border-style: solid;
   background-size: 70px;
   background-position: 15px center;
   background-color: #e8ebee;
@@ -277,6 +279,7 @@ div.warning{
 
 div.github{
   border: 4px #000000;
+  border-style: solid;
   background-size: 70px;
   background-position: 15px center;
   background-color: #e8ebee;
@@ -285,6 +288,7 @@ div.github{
 
 div.dictionary{
   border: 4px #68ace5;
+  border-style: solid;
   background-size: 70px;
   background-position: 15px center;
   background-color: #e8ebee;
@@ -293,6 +297,7 @@ div.dictionary{
 
 div.reflection{
   border: 4px #68ace5;
+  border-style: solid;
   background-size: 90px;
   background-position: 15px center;
   background-color: #e8ebee;
