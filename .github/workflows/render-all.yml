@@ -26,41 +26,15 @@ jobs:
         with:
             files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
     outputs:
-      toggle_style_code: "${{ env.STYLE_CODE }}"
       toggle_bookdown: "${{ env.RENDER_BOOKDOWN }}"
       toggle_coursera: "${{ env.RENDER_COURSERA }}"
       toggle_leanpub: "${{ env.RENDER_LEANPUB }}"
       rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
       toggle_quiz_check: "${{ env.CHECK_QUIZZES }}"
-      
-  style-code:
-    name: Style code
-    needs: yaml-check
-    runs-on: ubuntu-latest
-    if: ${{needs.yaml-check.outputs.toggle_style_code == 'yes'}}
-    container:
-      image: jhudsl/course_template:main
-
-    steps:
-      - name: Checkout files
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Run styler
-        run: Rscript -e "styler::style_file(list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE));warnings()"
-
-      - name: Commit styled files
-        run: |
-          git config --local user.email "itcrtrainingnetwork@gmail.com"
-          git config --local user.name "jhudsl-robot"     
-          git add \*.Rmd
-          git commit -m 'Style Rmds' || echo "No changes to commit"
-          git push origin || echo "No changes to commit"
 
   render-bookdown:
     name: Render bookdown
-    needs: [yaml-check, style-code]
+    needs: yaml-check
     runs-on: ubuntu-latest
     container:
       image: ${{needs.yaml-check.outputs.rendering_docker_image}}
@@ -111,7 +85,7 @@ jobs:
 
   render-tocless:
     name: Render TOC-less version for Leanpub or Coursera
-    needs: [yaml-check, style-code]
+    needs: [yaml-check]
     runs-on: ubuntu-latest
     container:
       image: ${{needs.yaml-check.outputs.rendering_docker_image}}
@@ -148,7 +122,7 @@ jobs:
 
   render-leanpub:
     name: Finish Leanpub prep
-    needs: [yaml-check, style-code, render-tocless]
+    needs: [yaml-check, render-tocless]
     runs-on: ubuntu-latest
     container:
       image: jhudsl/ottrpal:main
@@ -213,7 +187,7 @@ jobs:
 
   render-coursera:
     name: Finish Coursera prep
-    needs: [yaml-check, style-code, render-tocless]
+    needs: [yaml-check, render-tocless]
     runs-on: ubuntu-latest
     container:
       image: ${{needs.yaml-check.outputs.rendering_docker_image}}
