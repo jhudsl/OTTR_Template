@@ -5,6 +5,9 @@ ottrpal::set_knitr_image_path()
 
 # Introduction
 
+```{r}
+ugly_code =       c("ugly", "code"   )
+```
 
 ## Motivation
 
