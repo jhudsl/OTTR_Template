@@ -3,6 +3,8 @@
 # This script downloads all the files and sets up the folders you need to
 # OTTR-fy a repository that has markdown or R Markdown files
 
+system("git checkout -b 'robot/ottr-fy'")
+
 library(magrittr)
 
 # Find .git root directory
@@ -23,7 +25,7 @@ needed_files <- c(
   "_bookdown.yml",
   "_output.yml",
   "book.bib",
-  "config_automation.yml", 
+  "config_automation.yml",
   "assets/big-image.html",
   "assets/footer.html"
   )
@@ -32,7 +34,7 @@ needed_files <- c(
 url_to_files <- paste0(base_url, needed_files)
 names(url_to_files) <-  file.path(root_dir, needed_files)
 
-# Download the file in the respective place 
+# Download the file in the respective place
 for (index in 1:length(url_to_files)) {
   dest_folder <- dirname(names(url_to_files)[index])
   if (!dir.exists(dest_folder)){
@@ -41,3 +43,7 @@ for (index in 1:length(url_to_files)) {
   download.file(url = url_to_files[index], destfile = names(url_to_files)[index])
 }
 
+system("git add .")
+system("git config commit.gpgsign false")
+system("git commit -m 'Add ottr-fying files'")
+system("git push --set-upstream origin robot/ottr-fy")
