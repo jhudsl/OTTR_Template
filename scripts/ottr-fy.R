@@ -5,7 +5,23 @@
 
 system("git checkout -b 'robot/ottr-fy'")
 
+if (!('optparse' %in% installed.packages())) {
+  install.packages("optparse")
+}
+library(optparse)
 library(magrittr)
+
+option_list <- list(
+  optparse::make_option(
+    c("--bookdown"),
+    action = "store_true",
+    help = "Is this a bookdown repository already? If used, means bookdown repo.",
+  )
+)
+
+# Read the arguments passed
+opt_parser <- optparse::OptionParser(option_list = option_list)
+opt <- optparse::parse_args(opt_parser)
 
 # Find .git root directory
 root_dir <- rprojroot::find_root(rprojroot::has_dir(".git"))
@@ -29,6 +45,12 @@ needed_files <- c(
   "assets/big-image.html",
   "assets/footer.html"
   )
+
+# If this is bookdown, we don't want to copy over the bookdown.yml or output.yml files
+if (opt$bookdown) {
+  needed_files <- setdiff(needed_files,
+  c("_bookdown.yml", "_output.yml", "assets/big-image.html", "assets/footer.html", "book.bib"))
+}
 
 # Set up a file list with the destination locations as the names
 url_to_files <- paste0(base_url, needed_files)
