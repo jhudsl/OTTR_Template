@@ -10,6 +10,7 @@ group:
           send-updates.yml
           test-send-updates.yml
           starting-course.yml
+          release-notes.yml
       - source: .github/ISSUE_TEMPLATE/course-problem-report.md
         dest: .github/ISSUE_TEMPLATE/course-problem-report.md
       - source: .github/ISSUE_TEMPLATE/course-content-add.md
@@ -85,6 +86,7 @@ group:
       dest: .github/workflows/
       exclude: |
         starting-course.yml
+        release-notes.yml
     - source: .github/switch_sync_repo.R
       dest: .github/switch_sync_repo.R
     - source: .github/ISSUE_TEMPLATE/course-problem-report.md
