@@ -14,7 +14,7 @@ on:
       gh_pat:
         type: string
         required: true
-        
+
 jobs:
   error-check:
     runs-on: ubuntu-latest
@@ -65,7 +65,7 @@ jobs:
           _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
         edit-mode: replace
 
-    - name: Check check results - fail if too many errors
+    - name: Fail if too many errors
       if: ${{ steps.check_results.outputs.error_num >= inputs.error_min }}
       run: exit 1
       shell: bash
