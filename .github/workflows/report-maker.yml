@@ -54,7 +54,7 @@ jobs:
 
     - uses: actions/upload-artifact@v3
       with:
-        name: ${{ basename steps.check_results.outputs.report_path }}
+        name: $(basename ${{ steps.check_results.outputs.report_path }})
         path: ${{ steps.check_results.outputs.report_path }}
 
 ############################# Handle commenting ################################
