@@ -30,6 +30,7 @@ jobs:
         fetch-depth: 0
 
     - name: Make branch if it doesn't exist
+      id: setup
       run: |
         git config --local user.email "itcrtrainingnetwork@gmail.com"
         git config --local user.name "jhudsl-robot"
@@ -43,6 +44,9 @@ jobs:
         else
           echo branch does exist
         fi
+
+        echo ::set-output name=report_name::$(basename ${{ steps.check_results.outputs.report_path }})
+        
       shell: bash
 
     - name: Run the check
@@ -54,7 +58,7 @@ jobs:
 
     - uses: actions/upload-artifact@v3
       with:
-        name: $(basename ${{ steps.check_results.outputs.report_path }})
+        name: ${{ steps.setup.outputs.report_name }}
         path: ${{ steps.check_results.outputs.report_path }}
 
 ############################# Handle commenting ################################
