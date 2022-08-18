@@ -3,10 +3,12 @@ BIPOC
 Bloomberg
 Bookdown
 Coursera
+css
 Datatrail
 DataTrail
 dropdown
 GDSCN
+GitHub
 impactful
 ITCR
 itcrtraining
@@ -18,6 +20,7 @@ mentorship
 NCI
 NHGRI
 ottrpal
+Pandoc
 UE
 UE5
 reproducibility
