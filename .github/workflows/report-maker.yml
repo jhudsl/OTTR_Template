@@ -1,5 +1,7 @@
 # Candace Savonen March 2022
 
+# This calls the report makers but then also handles the commenting
+
 name: Run error checker
 
 on:
