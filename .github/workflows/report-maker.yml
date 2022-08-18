@@ -68,8 +68,8 @@ jobs:
       id: build-components
       run: |
         echo ::set-output name=time::$(date +'%Y-%m-%d')
-        echo ::set-output name=commit_id::$inputs.commit_id
-        echo ::set-output name=error_url::$error_url
+        echo ::set-output name=commit_id::$GITHUB_SHA
+        echo ::set-output name=error_url::https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/${{ steps.check_results.outputs.report_path }}
       shell: bash
 
     - name: Find Comment
