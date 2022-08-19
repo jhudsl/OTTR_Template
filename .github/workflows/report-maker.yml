@@ -49,7 +49,6 @@ jobs:
         elif ${{ contains(inputs.check_type, 'quiz_format') }} ;then
           echo ::set-output name=error_name::'quiz formatting errors'
         fi
-          echo ::set-output name=error_num::$(wc -l ${{ steps.check_results.outputs.report_path }} - 1)
 
     - uses: actions/upload-artifact@v3
       with:
@@ -81,6 +80,8 @@ jobs:
         git fetch
         git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
         git push --force origin $branch_name || echo "No changes to commit"
+
+        echo ::set-output name=error_num::$(wc -l ${{ steps.check_results.outputs.report_path }} - 1)
       shell: bash
 
     - name: Find Comment
