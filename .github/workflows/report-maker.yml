@@ -13,33 +13,27 @@ on:
       error_min:
         default: 0
         type: number
-      environment:
-        type: string
-        description: environment to deploy to
-        required: true
-    secrets:
       gh_pat:
+        type: string
         required: true
+
 jobs:
   error-check:
     runs-on: ubuntu-latest
     container:
       image: jhudsl/course_template:main
-    environment: ${{ inputs.environment }}
 
     steps:
     - name: Checkout
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
-        token: $gh_pat
-      env:
-        gh_pat: ${{ secrets.gh_pat }}
+        token: ${{ inputs.gh_pat }}
 
     - name: Make branch if it doesn't exist
       run: |
         branch_name='preview-${{ github.event.pull_request.number }}'
-        exists=$(git ls-remote https://$gh_pat@github.com/$GITHUB_REPOSITORY $branch_name | wc -l | xargs)
+        exists=$(git ls-remote https://${{ secrets.GH_PAT }}@github.com/$GITHUB_REPOSITORY $branch_name | wc -l | xargs)
         if [[ $exists == 0 ]];then
           echo branch doesnt exist
           git checkout -b $branch_name || echo branch exists
@@ -47,9 +41,8 @@ jobs:
         else
           echo branch does exist
         fi
+
       shell: bash
-      env:
-        gh_pat: ${{ secrets.gh_pat }}
 
     - name: Run the check
       uses: jhudsl/ottr-reports@main
