@@ -1,14 +1,14 @@
 bookdown::gitbook:
-  css: assets/fhdasl_style/style.css
+  css: assets/style.css
   includes:
-    before_body: assets/fhdasl_style/big-image_fhdasl.html
-    after_body: assets/fhdasl_style/footer.html
+    before_body: assets/big-image_fhdasl.html
+    after_body: assets/footer.html
   highlight: tango
   config:
     toc:
       collapse: section
       before: |
-       <a href="https://anvilproject.org/" target="_blank"><img src="assets/fhdasl_style/logo-fhdasl.png" style="width: 80%; padding-left: 15px; padding-top: 8px;"</a>
+       <a href="https://anvilproject.org/" target="_blank"><img src="assets/logo-fhdasl.png" style="width: 80%; padding-left: 15px; padding-top: 8px;"</a>
       after: |
        <p style="text-align:center;"> <a href="https://github.com/jhudsl/OTTR_Template" target="blank" > This content was published with</a> <a href="https://bookdown.org/" target="blank"> bookdown by: </a> </p>
        <p style="text-align:center;"> <a href="http://hutchdatascience.org/"> The Fred Hutch Data Science Lab </a></p>
