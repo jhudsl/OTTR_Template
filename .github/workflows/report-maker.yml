@@ -109,7 +109,15 @@ jobs:
 
     - name: Fail if too many errors
       if: ${{ steps.setup.outputs.error_num > inputs.error_min }}
-      run: exit 1
+      run: |
+        echo ${{ steps.setup.outputs.error_num }}
+        exit 1
+      shell: bash
+
+    - name: Don't fail if not too many errors
+      if: ${{ steps.setup.outputs.error_num <= inputs.error_min }}
+      run: |
+        echo ${{ steps.setup.outputs.error_num }}
       shell: bash
 
     - name: No errors
