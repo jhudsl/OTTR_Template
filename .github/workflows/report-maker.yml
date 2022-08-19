@@ -82,6 +82,17 @@ jobs:
         echo ::set-output name=error_url::https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch_name/${{ steps.check_results.outputs.report_path }}
       shell: bash
 
+      # Commit the rendered bookdown files
+    - name: Commit rendered bookdown files to preview branch
+      id: commit
+      run: |
+        branch_name='preview-${{ github.event.pull_request.number }}'
+        git add check_reports --force
+        git commit -m 'Add ${{ steps.check_results.outputs.report_path }}' || echo "No changes to commit"
+        git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
+        git push --force || echo "No changes to commit"
+      shell: bash
+
     - name: Find Comment
       uses: peter-evans/find-comment@v1
       id: fc
