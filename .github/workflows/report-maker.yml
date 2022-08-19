@@ -81,7 +81,9 @@ jobs:
         git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
         git push --force origin $branch_name || echo "No changes to commit"
 
-        echo ::set-output name=error_num::$(wc -l ${{ steps.check_results.outputs.report_path }} - 1)
+
+        error_num=$(wc -l ${{ steps.check_results.outputs.report_path }})
+        echo ::set-output name=error_num::$(error_num - 1)
       shell: bash
 
     - name: Find Comment
