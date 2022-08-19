@@ -58,11 +58,11 @@ jobs:
       run: |
         echo ::set-output name=report_name::$(basename ${{ steps.check_results.outputs.report_path }})
 
-        if inputs.check_type == "spelling" ;then
+        if "$inputs.check_type" == "spelling" ;then
           echo ::set-output name=error_name::'spelling errors'
-        elif inputs.check_type == "urls" ;then
+        elif "$inputs.check_type" == "urls" ;then
           echo ::set-output name=error_name::'broken urls'
-        elif inputs.check_type == "quiz_format" ;then
+        elif "$inputs.check_type" == "quiz_format" ;then
           echo ::set-output name=error_name::'quiz formatting errors'
         fi
 
