@@ -28,20 +28,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
-
-    - name: Make branch if it doesn't exist
-      run: |
-        branch_name='preview-${{ github.event.pull_request.number }}'
-        exists=$(git ls-remote https://${{ inputs.gh_pat }}@github.com/$GITHUB_REPOSITORY $branch_name | wc -l | xargs)
-        if [[ $exists == 0 ]];then
-          echo branch doesnt exist
-          git checkout -b $branch_name || echo branch exists
-          git push --set-upstream origin $branch_name
-        else
-          echo branch does exist
-        fi
-
-      shell: bash
+        ref: 'preview-${{ github.event.pull_request.number }}'
 
     - name: Run the check
       uses: jhudsl/ottr-reports@main
