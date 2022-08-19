@@ -55,7 +55,16 @@ jobs:
 
     - name: Declare report name
       id: setup
-      run: echo ::set-output name=report_name::$(basename ${{ steps.check_results.outputs.report_path }})
+      run: |
+        echo ::set-output name=report_name::$(basename ${{ steps.check_results.outputs.report_path }})
+
+        if [ "${{ inputs.check_type }}" == "spelling" ];then
+          echo ::set-output name=error_name::'spelling errors'
+        elif [ "${{ inputs.check_type }}" == "urls" ];then
+          echo ::set-output name=error_name::'broken urls'
+        elif [ "${{ inputs.check_type }}" == "quiz_format" ];then
+          echo ::set-output name=error_name::'quiz formatting errors'
+        fi
 
     - uses: actions/upload-artifact@v3
       with:
@@ -67,10 +76,10 @@ jobs:
     - name: Build components of the spell check comment
       id: build-components
       run: |
+        branch_name='preview-${{ github.event.pull_request.number }}'
         echo ::set-output name=time::$(date +'%Y-%m-%d')
         echo ::set-output name=commit_id::$GITHUB_SHA
         echo ::set-output name=error_url::https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch_name/${{ steps.check_results.outputs.report_path }}
-        echo ${{ steps.check_results.outputs.error_name }}
       shell: bash
 
     - name: Find Comment
@@ -79,7 +88,7 @@ jobs:
       with:
         issue-number: ${{ github.event.pull_request.number }}
         comment-author: 'github-actions[bot]'
-        body-includes: ${{ steps.check_results.outputs.error_name }}
+        body-includes: ${{ steps.setup.outputs.error_name }}
 
     - name: There are errors!
       if: ${{ steps.check_results.outputs.error_num >= inputs.error_min }}
@@ -88,8 +97,8 @@ jobs:
         comment-id: ${{ steps.fc.outputs.comment-id }}
         issue-number: ${{ github.event.pull_request.number }}
         body: |
-          :warning: ${{ steps.check_results.outputs.error_name }} :warning:
-          There are ${{ steps.check_results.outputs.error_name }} that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/Most-common-errors-and-pitfalls).
+          :warning: ${{ steps.setup.outputs.error_name }} :warning:
+          There are ${{ steps.setup.outputs.error_name }} that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/Most-common-errors-and-pitfalls).
           [Download the errors here.](${{ steps.build-components.outputs.error_url }})
           _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
         edit-mode: replace
@@ -106,6 +115,6 @@ jobs:
         comment-id: ${{ steps.fc.outputs.comment-id }}
         issue-number: ${{ github.event.pull_request.number }}
         body: |
-          No ${{ steps.check_results.outputs.error_name }}! :tada:
+          No ${{ steps.setup.outputs.error_name }}! :tada:
           _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
         edit-mode: replace
