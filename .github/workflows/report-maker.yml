@@ -83,7 +83,7 @@ jobs:
 
 
         error_num=$(wc -l ${{ steps.check_results.outputs.report_path }})
-        echo ::set-output name=error_num::$(error_num - 1)
+        echo ::set-output name=error_num::$($error_num - 1)
       shell: bash
 
     - name: Find Comment
