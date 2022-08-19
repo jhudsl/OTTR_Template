@@ -66,7 +66,9 @@ jobs:
     with:
       check_type: spelling
       error_min: 3
-      gh_pat: secrets.GH_PAT
+      environment: dev
+    secrets:
+      gh_pat: ${{ secrets.GH_PAT }}
 
   url-check:
     name: Check URLs
@@ -76,7 +78,9 @@ jobs:
     with:
       check_type: urls
       error_min: 0
-      gh_pat: secrets.GH_PAT
+      environment: dev
+    secrets:
+      gh_pat: ${{ secrets.GH_PAT }}
 
   quiz-check:
     name: Check quiz formatting
@@ -86,7 +90,9 @@ jobs:
     with:
       check_type: quiz_format
       error_min: 0
-      gh_pat: secrets.GH_PAT
+      environment: dev
+    secrets:
+      gh_pat: ${{ secrets.GH_PAT }}
 
 ############################# Style the code ###################################
   style-code:
