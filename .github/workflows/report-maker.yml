@@ -49,7 +49,7 @@ jobs:
         elif ${{ contains(inputs.check_type, 'quiz_format') }} ;then
           echo ::set-output name=error_name::'quiz formatting errors'
         fi
-
+          
     - uses: actions/upload-artifact@v3
       with:
         name: ${{ steps.setup.outputs.report_name }}
