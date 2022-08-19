@@ -49,7 +49,8 @@ jobs:
         elif ${{ contains(inputs.check_type, 'quiz_format') }} ;then
           echo ::set-output name=error_name::'quiz formatting errors'
         fi
-          
+          echo ::set-output name=error_num::$(wc -l ${{ steps.check_results.outputs.report_path }} - 1)
+
     - uses: actions/upload-artifact@v3
       with:
         name: ${{ steps.setup.outputs.report_name }}
@@ -91,7 +92,7 @@ jobs:
         body-includes: ${{ steps.setup.outputs.error_name }}
 
     - name: There are errors!
-      if: ${{ steps.check_results.outputs.error_num > inputs.error_min }}
+      if: ${{ steps.setup.outputs.error_num > inputs.error_min }}
       uses: peter-evans/create-or-update-comment@v1
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
@@ -104,12 +105,12 @@ jobs:
         edit-mode: replace
 
     - name: Fail if too many errors
-      if: ${{ steps.check_results.outputs.error_num > inputs.error_min }}
+      if: ${{ steps.setup.outputs.error_num > inputs.error_min }}
       run: exit 1
       shell: bash
 
     - name: No errors
-      if: ${{ steps.check_results.outputs.error_num <= inputs.error_min }}
+      if: ${{ steps.setup.outputs.error_num <= inputs.error_min }}
       uses: peter-evans/create-or-update-comment@v1
       with:
         comment-id: ${{ steps.fc.outputs.comment-id }}
