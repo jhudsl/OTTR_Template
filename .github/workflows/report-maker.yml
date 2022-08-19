@@ -69,7 +69,7 @@ jobs:
       run: |
         echo ::set-output name=time::$(date +'%Y-%m-%d')
         echo ::set-output name=commit_id::$GITHUB_SHA
-        echo ::set-output name=error_url::'https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/${{ steps.check_results.outputs.report_path }}'
+        echo ::set-output name=error_url::https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch_name/${{ steps.check_results.outputs.report_path }}
       shell: bash
 
     - name: Find Comment
@@ -88,7 +88,7 @@ jobs:
         issue-number: ${{ github.event.pull_request.number }}
         body: |
           :warning: ${{ steps.check_results.outputs.error_name }} :warning:
-          There are ${{ steps.check_results.outputs.error_name }} that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/Most-common-errors-and-pitfalls#spell-checkurl-checkquiz-format-fail).
+          There are ${{ steps.check_results.outputs.error_name }} that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/Most-common-errors-and-pitfalls).
           [Download the errors here.](${{ steps.build-components.outputs.error_url }})
           _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
         edit-mode: replace
