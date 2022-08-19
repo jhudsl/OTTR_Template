@@ -81,8 +81,7 @@ jobs:
         git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
         git push --force origin $branch_name || echo "No changes to commit"
 
-
-        error_num=$(wc -l ${{ steps.check_results.outputs.report_path }})
+        error_num=$(cat ${{ steps.check_results.outputs.report_path }} | wc -l)
         error_num="$((error_num-1))"
         echo ::set-output name=error_num::$error_num
       shell: bash
