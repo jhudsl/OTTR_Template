@@ -88,13 +88,6 @@ jobs:
           results=$(Rscript "scripts/spell-check.R")
           echo "::set-output name=sp_chk_results::$results"
 
-      - name: Archive spelling errors
-        if: ${{ steps.spell_check_run.outputs.sp_chk_results > 0 }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: spell-check-results
-          path: check_reports/spell_check_results.tsv
-
       - name: Commit spell check errors
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
