@@ -34,8 +34,10 @@ test_url <- function(url) {
   # Fails if host can't be resolved
   status <- ifelse(suppressMessages(grepl("Could not resolve host", url_status)), "failed", "success")
 
-  # Fails if 404'ed
-  status <- ifelse(httr::status_code(httr::GET(url)) == 404, "failed", "success")
+  if (status == "success") {
+    # Fails if 404'ed
+    status <- ifelse(httr::status_code(httr::GET(url)) == 404, "failed", "success")
+  }
   
   return(status)
 }
