@@ -30,7 +30,12 @@ files <- list.files(path = root_dir, pattern = 'md$', full.names = TRUE)
 test_url <- function(url) {
   message(paste0("Testing: ", url))
   url_status <- try(httr::GET(url), silent = TRUE)
-  status <- ifelse(suppressMessages(grepl("Could not resolve host", url_status)), "failed", "success")
+
+  # Fails if host can't be resolved
+  status <- ifelse(suppressMessages(grepl("Could not resolve host", url_status)), FALSE, TRUE)
+
+  # Fails if 404'ed
+  status <- ifelse(httr::status_code(httr::GET(url)) == 404, FALSE, TRUE)
   return(status)
 }
 
