@@ -61,8 +61,7 @@ jobs:
         echo ::set-output name=error_url::https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$branch_name/${{ steps.check_results.outputs.report_path }}
       shell: bash
 
-      # Commit the rendered bookdown files
-    - name: Commit rendered bookdown files to preview branch
+    - name: Commit check files to branch
       id: commit
       run: |
         branch_name='preview-${{ github.event.pull_request.number }}'
@@ -73,7 +72,7 @@ jobs:
         git add --force . || echo "No changes to commit"
         git commit -m 'Add check file' || echo "No changes to commit"
         git fetch
-        git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
+        git merge -s recursive --strategy-option=ours origin/${{ github.head_ref }} --allow-unrelated-histories
         git push --force origin $branch_name || echo "No changes to commit"
 
         error_num=$(cat ${{ steps.check_results.outputs.report_path }} | wc -l)
