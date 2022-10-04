@@ -21,4 +21,4 @@ For more information on these settings see instructions in [Starting a new OTTR 
       - [ ] Underneath that `Require branches to be up to date before merging` box is checked.
   - [ ] Click `Save` at the bottom of the page!
 
-- [ ] [Customize GitHub actions](https://github.com/jhudsl/OTTR_Template/wiki/How-to-set-up-and-customize-GitHub-actions-robots) for what you will need in this course.
+- [ ] [Customize GitHub actions](https://www.ottrproject.org/customize-robots.html) for what you will need in this course.
