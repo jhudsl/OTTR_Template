@@ -26,7 +26,7 @@ By default this course template will use the jhudsl data science lab style. Howe
 
 - [ ] On a new branch, copy the `style-sets/<set-name>/index.Rmd` and `style-sets/<set-name>/_output.yml` to the top of the repository to overwrite the default `index.Rmd` and `_output.yml`.
 - [ ] Copy over all the files in the `style-sets/<set-name>/copy-to-assets` to the `assets` folder in the top of the repository.
-- [ ] [Create a pull request](https://github.com/jhudsl/OTTR_Template/wiki/Start-editing-your-course#getting-started-with-the-github-workflow) with these changes, and double check the rendered preview to make sure that the style is what you are looking for.
+- [ ] [Create a pull request](https://www.ottrproject.org/writing_content.html#Open_a_pull_request) with these changes, and double check the rendered preview to make sure that the style is what you are looking for.
 
 ### Files that need to be edited upon adding new packages that the book's code uses:
 
