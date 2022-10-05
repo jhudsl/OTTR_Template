@@ -1,5 +1,5 @@
 
-[Follow the Wiki instructions here](https://github.com/jhudsl/OTTR_Template/wiki/Start-editing-your-course) for details on how to complete the items in this issue.
+[Follow the instructions here in ottrproject.org](https://www.ottrproject.org/writing_content.html) for details on how to start editing your OTTR course
 
 The following files need to be edited to get this new course started!
 
