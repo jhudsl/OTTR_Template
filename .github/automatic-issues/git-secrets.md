@@ -9,6 +9,6 @@ To set up these repository secrets, on your repository's main Github page, go to
 
 - [ ] Set `GH_PAT`
 `Name`:  `GH_PAT`
-`value`: A personal access token [following these instructions](https://www.ottrproject.org/getting_started.html#6_Set_up_your_GitHub_personal_access_token).
+`value`: A personal access token [following these instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-token).
 Underneath `Select scopes`, check both `repo` and `workflow`.
 Then copy the PAT and save as the value.
