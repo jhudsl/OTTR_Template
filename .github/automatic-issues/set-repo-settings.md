@@ -14,7 +14,7 @@ For more information on these settings see instructions in [Starting a new OTTR 
   - [ ] Go to `Settings` > `Pages`. Underneath `Source`, choose `main` for the branch and select the `docs` folder. Then click `Save`.  
   - [ ] Check `Enforce HTTPS`.
 
-- [ ] [Set branch protections settings](https://github.com/jhudsl/OTTR_Template/wiki/Start-a-new-course#9-set-up-branch-rules)
+- [ ] [Set branch protections settings](https://www.ottrproject.org/getting_started.html#8_Set_up_branch_rules)
   - [ ] `main` branch has been set up:
     - [ ] `Require pull request reviews before merging` box is checked.
     - [ ] `Require status checks to pass before merging` box is checked.
