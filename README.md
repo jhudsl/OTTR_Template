@@ -14,7 +14,7 @@ _This template and guide helps you_:
   - [Coursera](https://www.coursera.org/)
 - Have [Github action robots](https://github.com/jhudsl/OTTR_Template/wiki/How-to-set-up-and-customize-GitHub-actions-robots) do your repetitive tasks like spell check and re-rendering.
 - Use [automagic conversion](https://github.com/jhudsl/ottrpal) to ease the lift of prepping the material for different platforms' formats.
-- Use [our Docker image](https://hub.docker.com/repository/docker/jhudsl/course_template) for consistency across authors as well as to help you [avoid dependency hell](https://en.wikipedia.org/wiki/Dependency_hell).
+- Use [our Docker image](https://hub.docker.com/repository/docker/jhudsl/base_ottr) for consistency across authors as well as to help you [avoid dependency hell](https://en.wikipedia.org/wiki/Dependency_hell).
 
 [See the OTTR pre-print here!](https://arxiv.org/abs/2203.07083)
 

@@ -1,4 +1,4 @@
-FROM jhudsl/course_template
+FROM jhudsl/base_ottr
 LABEL maintainer="your_email.com"
 
 #################### EXAMPLES OF INSTALLING PACKAGES ###########################
