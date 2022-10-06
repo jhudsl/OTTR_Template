@@ -21,13 +21,10 @@ group:
         dest: scripts/make_screenshots.R
       - source: scripts/spell-check.R
         dest: scripts/spell-check.R
-        deleteOrphaned: true
       - source: scripts/url-check.R
         dest: scripts/url-check.R
-        deleteOrphaned: true
       - source: scripts/quiz-check.R
         dest: scripts/quiz-check.R
-        deleteOrphaned: true
       - source: scripts/git_repo_check.R
         dest: scripts/git_repo_check.R
       - source: code_of_conduct.md
