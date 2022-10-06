@@ -19,16 +19,8 @@ group:
         dest: .github/ISSUE_TEMPLATE/course-content-add.md
       - source: scripts/make_screenshots.R
         dest: scripts/make_screenshots.R
-      - source: scripts/spell-check.R
-        dest: scripts/spell-check.R
-      - source: scripts/url-check.R
-        dest: scripts/url-check.R
-      - source: scripts/quiz-check.R
-        dest: scripts/quiz-check.R
       - source: scripts/git_repo_check.R
         dest: scripts/git_repo_check.R
-      - source: code_of_conduct.md
-        dest: code_of_conduct.md
       - source: style-sets
         dest: style-sets
       - source: assets/box_images/
@@ -76,8 +68,6 @@ group:
       dest: .github/workflows/test-send-updates.yml
     - source: scripts/make_screenshots.R
       dest: scripts/make_screenshots.R
-    - source: scripts/spell-check.R
-      dest: scripts/spell-check.R
     - source: scripts/switch_sync_repo.R
       dest: scripts/switch_sync_repo.R
     repos: |
@@ -97,12 +87,6 @@ group:
       dest: .github/ISSUE_TEMPLATE/course-content-add.md
     - source: scripts/make_screenshots.R
       dest: scripts/make_screenshots.R
-    - source: scripts/spell-check.R
-      dest: scripts/spell-check.R
-    - source: scripts/url-check.R
-      dest: scripts/url-check.R
-    - source: scripts/quiz-check.R
-      dest: scripts/quiz-check.R
     - source: scripts/git_repo_check.R
       dest: scripts/git_repo_check.R
     - source: code_of_conduct.md
