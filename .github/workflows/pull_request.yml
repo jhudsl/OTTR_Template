@@ -95,7 +95,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{needs.yaml-check.outputs.toggle_style_code == 'yes'}}
     container:
-      image: jhudsl/course_template:main
+      image: jhudsl/base_ottr:main
 
     steps:
       - name: Checkout files
@@ -274,4 +274,4 @@ jobs:
           load: true
           context: docker
           file: docker/Dockerfile
-          tags: jhudsl/course_template
+          tags: jhudsl/base_ottr

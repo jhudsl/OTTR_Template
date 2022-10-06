@@ -60,7 +60,7 @@ jobs:
           load: true
           context: docker
           file: docker/Dockerfile
-          tags: jhudsl/course_template
+          tags: jhudsl/base_ottr
 
       # Login to Dockerhub
       - name: Login to DockerHub
@@ -74,5 +74,5 @@ jobs:
       - name: Push Docker image if manual trigger set to true
         if: ${{ github.event.inputs.dockerhubpush != 'false' }}
         run: |
-          docker tag jhudsl/course_template:latest jhudsl/course_template:$github.event.inputs.tag
-          docker push jhudsl/course_template:$github.event.inputs.tag
+          docker tag jhudsl/base_ottr:latest jhudsl/base_ottr:$github.event.inputs.tag
+          docker push jhudsl/base_ottr:$github.event.inputs.tag
