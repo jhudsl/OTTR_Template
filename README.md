@@ -2,6 +2,8 @@
 
 ## Open-source Tools for Training Resources - OTTR
 
+Go to [ottrproject.org](https://www.ottrproject.org/) to get started! :tada:
+
 The purpose of this course template and guide is to make course publishing maintenance across multiple different platforms _less painful_.
 
 _This template and guide helps you_:   
@@ -10,9 +12,9 @@ _This template and guide helps you_:
   - [Leanpub](https://leanpub.com/bookstore?type=course)
   - [Bookdown](https://bookdown.org/)
   - [Coursera](https://www.coursera.org/)
-- Have [Github action robots](https://github.com/jhudsl/OTTR_Template/wiki/How-to-set-up-and-customize-GitHub-actions-robots) do your repetitive tasks like spell check and re-rendering. 
+- Have [Github action robots](https://www.ottrproject.org/customize-robots.html) do your repetitive tasks like spell check and re-rendering.
 - Use [automagic conversion](https://github.com/jhudsl/ottrpal) to ease the lift of prepping the material for different platforms' formats.
-- Use [our Docker image](https://hub.docker.com/repository/docker/jhudsl/course_template) for consistency across authors as well as to help you [avoid dependency hell](https://en.wikipedia.org/wiki/Dependency_hell). 
+- Use [our Docker image](https://hub.docker.com/repository/docker/jhudsl/base_ottr) for consistency across authors as well as to help you [avoid dependency hell](https://en.wikipedia.org/wiki/Dependency_hell).
 
 [See the OTTR pre-print here!](https://arxiv.org/abs/2203.07083)
 
@@ -25,7 +27,8 @@ _This template and guide helps you_:
 - [Advanced Reproducibility in Cancer Informatics](https://jhudatascience.org/Adv_Reproducibility_in_Cancer_Informatics/)
 
 ## To Get Started
-- Go to the [Wiki page](https://github.com/jhudsl/OTTR_Template/wiki/Getting-started)
+- Go to the [ottrproject.org](https://www.ottrproject.org/).
+- Check out the [rendered version of the template](https://jhudatascience.org/OTTR_Template/).
 - Please take a look at the [code of conduct](./code_of_conduct.md).
 - If you encounter any problems or have ideas for improvements to this template repository or this getting started guide, please [file an issue here](https://github.com/jhudsl/OTTR_Template/issues/new/choose)! Your feedback is very much appreciated.
 
@@ -37,7 +40,7 @@ _This template and guide helps you_:
 
 This course was created from [this GitHub template](https://github.com/jhudsl/OTTR_Template).
 
-You can see the rendered course material here: {Link to rendered bookdown and/or to the Leanpub. Will look something like: https://jhudatascience.org/{Course_Name}}
+You can see the rendered course material here: {Link to rendered bookdown and/or to the Leanpub.}
 
 If you would like to contribute to this course material, take a look at the [getting started GitHub wiki pages](https://github.com/jhudsl/OTTR_Template/wiki).
 

@@ -30,6 +30,7 @@ jobs:
         run: |
           # Cleanup
           rm -rf \
+            .github/workflows/report-maker.yml \
             .github/workflows/send-updates.yml \
             .github/workflows/test-send-updates.yml \
             .github/sync.yml \
@@ -87,7 +88,7 @@ jobs:
 
       # Issue for what repository settings need to be set
       - name: New Course - Set Repository Settings
-        uses: peter-evans/create-issue-from-file@v2.3.2
+        uses: peter-evans/create-issue-from-file@v4
         with:
           title: New Course - Set Repository Settings
           content-filepath: .github/automatic-issues/set-repo-settings.md
@@ -95,7 +96,7 @@ jobs:
 
       # Issue for what needs to be edited
       - name: New Course - Templates to Edit
-        uses: peter-evans/create-issue-from-file@v2.3.2
+        uses: peter-evans/create-issue-from-file@v4
         with:
           title: New Course - Templates to Edit
           content-filepath: .github/automatic-issues/templates-to-edit.md
@@ -103,7 +104,7 @@ jobs:
 
       # Issue for how to enroll repo for updates
       - name: New Course - Template Update Enrollment
-        uses: peter-evans/create-issue-from-file@v2.3.2
+        uses: peter-evans/create-issue-from-file@v4
         with:
           title: New Course - Template Update Enrollment
           content-filepath: .github/automatic-issues/update-enrollment.md
@@ -111,7 +112,7 @@ jobs:
 
       # Issue for adding a method of feedback
       - name: Reminder - Add a method of user feedback
-        uses: peter-evans/create-issue-from-file@v2.3.2
+        uses: peter-evans/create-issue-from-file@v4
         with:
           title: Reminder - Add user feedback method
           content-filepath: .github/automatic-issues/add-feedback-method.md
@@ -127,7 +128,7 @@ jobs:
       # Issue for adding the course to the jhudsl library
       - name: Reminder - Add to jhudsl library
         if: ${{ steps.get_org_name.outputs.org_name == 'jhudsl' }}
-        uses: peter-evans/create-issue-from-file@v2.3.2
+        uses: peter-evans/create-issue-from-file@v4
         with:
           title: Reminder - Add to jhudsl library
           content-filepath: .github/automatic-issues/add-to-library.md

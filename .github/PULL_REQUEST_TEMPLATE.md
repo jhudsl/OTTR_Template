@@ -22,17 +22,17 @@
 
 - [ ] New content/chapter is in an Rmd file with [this kind of format and headers](https://github.com/jhudsl/OTTR_Template/blob/main/02-chapter_of_course.Rmd).
 
-- [ ] New content/chapter contains [Learning Objectives and are in the correct format](https://github.com/jhudsl/OTTR_Template/wiki/Setting-up-images-and-graphics#learning-objectives-formatting).
+- [ ] New content/chapter contains learning objectives.
 
 - [ ] [Bookdown successfully re-renders and any new content files have been added to the _bookdown.yml](https://github.com/jhudsl/OTTR_Template/wiki/Publishing-with-Bookdown).
 
-- [ ] Spell check runs successfully in [Github actions style-n-check](https://github.com/jhudsl/OTTR_Template/wiki/How-to-set-up-and-customize-GitHub-actions-robots#spell-check)).
+- [ ] [Spell check runs successfully](https://www.ottrproject.org/customize-robots.html#Spell_checking)).
 
-- [ ] Any newly necessary packages that are needed have been added to the [Dockerfile and image](https://github.com/jhudsl/OTTR_Template/wiki/Using-Docker#adding-packages-to-the-dockerfile).
+- [ ] Any newly necessary packages that are needed have been added to the [Dockerfile and image](https://www.ottrproject.org/customize-docker.html).
 
-- [ ] Images are in the [correct format for rendering](https://github.com/jhudsl/OTTR_Template/wiki/Setting-up-images-and-graphics#adding-images-and-graphics-in-text).
+- [ ] Images are in the [correct format for rendering](https://www.ottrproject.org/writing_content.html#set-up-images).
 
-- [ ] Every new image has [alt text and is in a Google Slide](https://github.com/jhudsl/OTTR_Template/wiki/Setting-up-images-and-graphics#accessibility).
+- [ ] Every new image has [alt text and is in a Google Slide](https://www.ottrproject.org/writing_content.html#Accessibility).
 
 - [ ] Each slide is described in the notes of the slide so learners relying on a screen reader can access the content. See https://lastcallmedia.com/blog/accessible-comics for more guidance on this.
 

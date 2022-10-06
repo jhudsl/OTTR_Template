@@ -8,3 +8,4 @@ spell_check_results.tsv
 .RData
 .httr-oauth
 docker/git_token.txt
+.Rproj.user
