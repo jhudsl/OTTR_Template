@@ -11,6 +11,8 @@ group:
           test-send-updates.yml
           starting-course.yml
           release-notes.yml
+          docker-test.yml
+          docker-build.yml
       - source: .github/ISSUE_TEMPLATE/course-problem-report.md
         dest: .github/ISSUE_TEMPLATE/course-problem-report.md
       - source: .github/ISSUE_TEMPLATE/course-content-add.md
@@ -19,10 +21,13 @@ group:
         dest: scripts/make_screenshots.R
       - source: scripts/spell-check.R
         dest: scripts/spell-check.R
+        deleteOrphaned: true
       - source: scripts/url-check.R
         dest: scripts/url-check.R
+        deleteOrphaned: true
       - source: scripts/quiz-check.R
         dest: scripts/quiz-check.R
+        deleteOrphaned: true
       - source: scripts/git_repo_check.R
         dest: scripts/git_repo_check.R
       - source: code_of_conduct.md
