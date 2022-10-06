@@ -51,8 +51,6 @@ group:
       dest: config_automation.yml
     - source: .github/workflows/pull-request.yml
       dest: .github/workflows/pull-request.yml
-    - source: scripts/spell-check.R
-      dest: scripts/spell-check.R
     repos: |
       jhudsl/OTTR_Template_Website
 
