@@ -99,6 +99,7 @@ jobs:
              It copies over the ottrpal-needed folder (for the `bookdown_to_embed_leanpub(render = FALSE)` function
              to run properly.
                - resources/chapt_screen_images/*
+               - _bookdown.yml
           labels: |
             automated
           reviewers: $GITHUB_ACTOR
