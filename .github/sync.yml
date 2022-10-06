@@ -13,14 +13,13 @@ group:
           release-notes.yml
           docker-test.yml
           docker-build.yml
+      - source: scripts/
+        dest: scripts/
+        deleteOrphaned: true
       - source: .github/ISSUE_TEMPLATE/course-problem-report.md
         dest: .github/ISSUE_TEMPLATE/course-problem-report.md
       - source: .github/ISSUE_TEMPLATE/course-content-add.md
         dest: .github/ISSUE_TEMPLATE/course-content-add.md
-      - source: scripts/make_screenshots.R
-        dest: scripts/make_screenshots.R
-      - source: scripts/git_repo_check.R
-        dest: scripts/git_repo_check.R
       - source: style-sets
         dest: style-sets
       - source: assets/box_images/
