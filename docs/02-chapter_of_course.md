@@ -1,7 +1,7 @@
 
 # A new chapter
 
-If you haven't yet read the getting started Wiki pages; [start there](https://github.com/jhudsl/OTTR_Template/wiki/Getting-started).
+If you haven't yet read the getting started Wiki pages; [start there](https://www.ottrproject.org/getting_started.html).
 
 To see the rendered version of this chapter and the rest of the template, see here: https://jhudatascience.org/OTTR_Template/.
 
@@ -116,7 +116,7 @@ But if you have the slide or some other image locally downloaded you can also us
 ## Video examples
 You may also want to embed videos in your course. If alternatively, you just want to include a link you can do so like this:
 
-Check out this [link to a video](https://www.youtube.com/embed/VOCYL-FNbr0) using markdown syntax. 
+Check out this [link to a video](https://www.youtube.com/embed/VOCYL-FNbr0) using markdown syntax.
 
 ### Using `knitr`
 
@@ -183,7 +183,7 @@ In text, we can put citations like this @rmarkdown2021.
 
 ## Stylized boxes
 
-Occasionally, you might find it useful to emphasize a particular piece of information. To help you do so, we have provided css code and images (no need for you to worry about that!) to create the following stylized boxes. 
+Occasionally, you might find it useful to emphasize a particular piece of information. To help you do so, we have provided css code and images (no need for you to worry about that!) to create the following stylized boxes.
 
 You can use these boxes in your course with either of two options: using HTML code or Pandoc syntax.
 
@@ -294,7 +294,7 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2022-09-07                  
+##  date     2022-10-06                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
