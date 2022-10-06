@@ -39,7 +39,6 @@ group:
       jhudsl/Computing_for_Cancer_Informatics
       jhudsl/Adv_Reproducibility_in_Cancer_Informatics
       jhudsl/Reproducibility_in_Cancer_Informatics
-      jhudsl/Choosing_Genomics_Tools
       jhudsl/Dissemination_and_Engagement
       jhudsl/Cancer_Clinical_Informatics
       jhudsl/Machine_Learning_for_Cancer_Informatics
@@ -50,6 +49,7 @@ group:
       abyzovlab/CNVpytor-course
       opencasestudies/OCS_Guide
       tmm211/dsp-terra-mooc-test2
+      fhdsl/Choosing_Genomics_Tools
 ###ADD NEW REPO HERE following the format above#
 
 ### These are custom groups for syncing -- not all files needs to be synced
