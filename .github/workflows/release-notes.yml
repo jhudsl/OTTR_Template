@@ -36,6 +36,5 @@ jobs:
             You may want to unenroll your repository from the sync GitHub actions by [filing a PR](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) on `OTTR_Template`
             to delete [your repo name from this file](https://github.com/jhudsl/OTTR_Template/blob/main/.github/sync.yml) if this will continue to be the case.
 
-          repo-token: ${{ secrets.GH_PAT }}
           repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
           allow-repeats: false # This is the default
