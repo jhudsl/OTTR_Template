@@ -7,7 +7,6 @@ rmd_files: ["index.Rmd",
             "About.Rmd",
             "References.Rmd"]
 new_session: yes
-bibliography: [book.bib]
 delete_merged_file: true
 language:
   ui:
