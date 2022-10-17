@@ -43,6 +43,7 @@ group:
       opencasestudies/OCS_Guide
       tmm211/dsp-terra-mooc-test2
       fhdsl/Choosing_Genomics_Tools
+      fhdsl/NIH_Data_Sharing
 ###ADD NEW REPO HERE following the format above#
 
 ### These are custom groups for syncing -- not all files needs to be synced
