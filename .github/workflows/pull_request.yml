@@ -72,7 +72,7 @@ jobs:
     name: Check URLs
     needs: yaml-check
     if: ${{needs.yaml-check.outputs.toggle_url_check == 'yes'}}
-    uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@ cansavvy/test-strategy
+    uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@cansavvy/test-strategy
     with:
       check_type: urls
       error_min: 0
@@ -82,7 +82,7 @@ jobs:
     name: Check quiz formatting
     if: ${{needs.yaml-check.outputs.toggle_quiz_check == 'yes'}}
     needs: yaml-check
-    uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@ cansavvy/test-strategy
+    uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@cansavvy/test-strategy
     with:
       check_type: quiz_format
       error_min: 0
