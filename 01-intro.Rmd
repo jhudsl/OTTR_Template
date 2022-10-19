@@ -17,6 +17,13 @@ The course is intended for ...
 
 The course covers...
 
+Shehduayavsvagshs
+Dhhdhsshshsh
+Shshshshxs
+Shducusbshaua
+
+https://hebehxudne.com
+https://hebhdhsusbshshshs.com
 
 ```{r}
 devtools::session_info()
