@@ -8,8 +8,6 @@ ottrpal::set_knitr_image_path()
 
 ## Motivation
 
-https://ksdsdfgsdgbfk
-https://github.com/ksdsdfgsdgbfk
 
 ## Target Audience  
 
