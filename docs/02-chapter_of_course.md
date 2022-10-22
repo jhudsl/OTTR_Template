@@ -159,6 +159,10 @@ Yet again you can use a link to a website like so:
 
 [A Website](https://yihui.org)
 
+You might want to have users open a website in a new tab by default, especially if they need to reference both the course and a resource at once.
+
+[A Website](https://yihui.org){target="_blank"}
+
 Or, you can embed some websites.
 
 ### Using `knitr`
@@ -294,7 +298,7 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2022-10-06                  
+##  date     2022-10-22                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
