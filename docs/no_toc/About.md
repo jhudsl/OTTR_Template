@@ -1,7 +1,7 @@
 
 # About the Authors {-}
 
-These credits are based on our [course contributors table guidelines](https://github.com/jhudsl/OTTR_Template/wiki/How-to-give-credits).
+These credits are based on our [course contributors table guidelines](https://www.ottrproject.org/more_features.html#giving-credits-to-contributors).
 
 &nbsp;
 &nbsp;
@@ -11,7 +11,7 @@ These credits are based on our [course contributors table guidelines](https://gi
 |**Pedagogy**||
 |Lead Content Instructor(s)|[FirstName LastName]|
 |Lecturer(s) (include chapter name/link in parentheses if only for specific chapters) - make new line if more than one chapter involved| Delivered the course in some way - video or audio|
-|Content Author(s) (include chapter name/link in parentheses if only for specific chapters) - make new line if more than one chapter involved | If any other authors besides lead instructor| 
+|Content Author(s) (include chapter name/link in parentheses if only for specific chapters) - make new line if more than one chapter involved | If any other authors besides lead instructor|
 |Content Contributor(s) (include section name/link in parentheses) - make new line if more than one section involved|  Wrote less than a chapter|
 |Content Editor(s)/Reviewer(s) | Checked your content|
 |Content Director(s) | Helped guide the content direction|
@@ -25,7 +25,7 @@ These credits are based on our [course contributors table guidelines](https://gi
 |Template Publishing Engineers|[Candace Savonen], [Carrie Wright]|
 |Publishing Maintenance Engineer|[Candace Savonen]|
 |Technical Publishing Stylists|[Carrie Wright], [Candace Savonen]|
-|Package Developers ([ottrpal])|[John Muschelli], [Candace Savonen], [Carrie Wright]|
+|Package Developers ([ottrpal]) [Candace Savonen], [John Muschelli], [Carrie Wright]|
 |**Art and Design**||
 |Illustrator(s)| Created graphics for the course|
 |Figure Artist(s)| Created figures/plots for course|
@@ -51,12 +51,12 @@ These credits are based on our [course contributors table guidelines](https://gi
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2022-02-14                  
+##  date     2022-10-22                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
 ##  assertthat    0.2.1      2019-03-21 [1] RSPM (R 4.0.3)                    
-##  bookdown      0.24       2022-02-11 [1] Github (rstudio/bookdown@88bc4ea) 
+##  bookdown      0.24       2022-02-15 [1] Github (rstudio/bookdown@88bc4ea) 
 ##  callr         3.4.4      2020-09-07 [1] RSPM (R 4.0.2)                    
 ##  cli           2.0.2      2020-02-28 [1] RSPM (R 4.0.0)                    
 ##  crayon        1.3.4      2017-09-16 [1] RSPM (R 4.0.0)                    
@@ -71,11 +71,11 @@ These credits are based on our [course contributors table guidelines](https://gi
 ##  hms           0.5.3      2020-01-08 [1] RSPM (R 4.0.0)                    
 ##  htmltools     0.5.0      2020-06-16 [1] RSPM (R 4.0.1)                    
 ##  jquerylib     0.1.4      2021-04-26 [1] CRAN (R 4.0.2)                    
-##  knitr         1.33       2022-02-11 [1] Github (yihui/knitr@a1052d1)      
+##  knitr         1.33       2022-02-15 [1] Github (yihui/knitr@a1052d1)      
 ##  lifecycle     1.0.0      2021-02-15 [1] CRAN (R 4.0.2)                    
 ##  magrittr      2.0.2      2022-01-26 [1] CRAN (R 4.0.2)                    
 ##  memoise       1.1.0      2017-04-21 [1] RSPM (R 4.0.0)                    
-##  ottrpal          0.1.2      2022-02-11 [1] Github (jhudsl/ottrpal@2d03822)      
+##  ottrpal       0.1.2      2022-02-15 [1] Github (jhudsl/ottrpal@1018848)   
 ##  pillar        1.4.6      2020-07-10 [1] RSPM (R 4.0.2)                    
 ##  pkgbuild      1.1.0      2020-07-13 [1] RSPM (R 4.0.2)                    
 ##  pkgconfig     2.0.3      2019-09-22 [1] RSPM (R 4.0.3)                    
@@ -87,18 +87,18 @@ These credits are based on our [course contributors table guidelines](https://gi
 ##  R6            2.4.1      2019-11-12 [1] RSPM (R 4.0.0)                    
 ##  readr         1.4.0      2020-10-05 [1] RSPM (R 4.0.2)                    
 ##  remotes       2.2.0      2020-07-21 [1] RSPM (R 4.0.3)                    
-##  rlang         0.4.10     2022-02-11 [1] Github (r-lib/rlang@f0c9be5)      
-##  rmarkdown     2.10       2022-02-11 [1] Github (rstudio/rmarkdown@02d3c25)
+##  rlang         0.4.10     2022-02-15 [1] Github (r-lib/rlang@f0c9be5)      
+##  rmarkdown     2.10       2022-02-15 [1] Github (rstudio/rmarkdown@02d3c25)
 ##  rprojroot     2.0.2      2020-11-15 [1] CRAN (R 4.0.2)                    
 ##  sessioninfo   1.1.1      2018-11-05 [1] RSPM (R 4.0.3)                    
 ##  stringi       1.5.3      2020-09-09 [1] RSPM (R 4.0.3)                    
 ##  stringr       1.4.0      2019-02-10 [1] RSPM (R 4.0.3)                    
-##  testthat      3.0.1      2022-02-11 [1] Github (R-lib/testthat@e99155a)   
+##  testthat      3.0.1      2022-02-15 [1] Github (R-lib/testthat@e99155a)   
 ##  tibble        3.0.3      2020-07-10 [1] RSPM (R 4.0.2)                    
-##  usethis       2.1.5.9000 2022-02-11 [1] Github (r-lib/usethis@57b109a)    
+##  usethis       2.1.5.9000 2022-02-15 [1] Github (r-lib/usethis@57b109a)    
 ##  vctrs         0.3.4      2020-08-29 [1] RSPM (R 4.0.2)                    
 ##  withr         2.3.0      2020-09-22 [1] RSPM (R 4.0.2)                    
-##  xfun          0.26       2022-02-11 [1] Github (yihui/xfun@74c2a66)       
+##  xfun          0.26       2022-02-15 [1] Github (yihui/xfun@74c2a66)       
 ##  yaml          2.2.1      2020-02-01 [1] RSPM (R 4.0.3)                    
 ## 
 ## [1] /usr/local/lib/R/site-library
