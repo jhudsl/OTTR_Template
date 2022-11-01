@@ -38,7 +38,7 @@ jobs:
           fi
 
       - name: Run Mechanics File Sync
-        uses: BetaHuhn/repo-file-sync-action@v1.17.1
+        uses: BetaHuhn/repo-file-sync-action@v1.17.21
         with:
           GH_PAT: ${{ secrets.GH_PAT }}
           COMMIT_BODY: release-${{ steps.get_tag.outputs.version }}

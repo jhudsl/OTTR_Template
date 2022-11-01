@@ -6,9 +6,14 @@ Coursera
 css
 Datatrail
 DataTrail
+Dockerfile
+Dockerhub
 dropdown
+favicon
 GDSCN
 GitHub
+Github
+GH
 impactful
 ITCR
 itcrtraining

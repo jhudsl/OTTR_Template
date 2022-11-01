@@ -237,7 +237,7 @@ div.csl-indent {
 </div>
 <div id="a-new-chapter" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> A new chapter</h1>
-<p>If you haven’t yet read the getting started Wiki pages; <a href="https://github.com/jhudsl/OTTR_Template/wiki/Getting-started">start there</a>.</p>
+<p>If you haven’t yet read the getting started Wiki pages; <a href="https://www.ottrproject.org/getting_started.html">start there</a>.</p>
 <p>To see the rendered version of this chapter and the rest of the template, see here: <a href="https://jhudatascience.org/OTTR_Template/" class="uri">https://jhudatascience.org/OTTR_Template/</a>.</p>
 <p>Every chapter needs to start out with this chunk of code:</p>
 <div id="learning-objectives" class="section level2" number="2.1">
@@ -253,7 +253,7 @@ div.csl-indent {
 <h2><span class="header-section-number">2.2</span> Libraries</h2>
 <p>For this chapter, we’ll need the following packages attached:</p>
 <p>*Remember to add <a href="https://github.com/jhudsl/OTTR_Template/wiki/Using-Docker#starting-a-new-docker-image">any additional packages you need to your course’s own docker image</a>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="a-new-chapter.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="a-new-chapter.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code></pre></div>
 </div>
 <div id="topic-of-section" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> Topic of Section</h2>
@@ -267,16 +267,16 @@ div.csl-indent {
 <div id="code-examples" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Code examples</h2>
 <p>You can demonstrate code like this:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="a-new-chapter.html#cb2-1" aria-hidden="true" tabindex="-1"></a>output_dir <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">&quot;resources&quot;</span>, <span class="st">&quot;code_output&quot;</span>)</span>
-<span id="cb2-2"><a href="a-new-chapter.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(output_dir)) {</span>
-<span id="cb2-3"><a href="a-new-chapter.html#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(output_dir)</span>
-<span id="cb2-4"><a href="a-new-chapter.html#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="a-new-chapter.html#cb4-1" aria-hidden="true" tabindex="-1"></a>output_dir <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">&quot;resources&quot;</span>, <span class="st">&quot;code_output&quot;</span>)</span>
+<span id="cb4-2"><a href="a-new-chapter.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(output_dir)) {</span>
+<span id="cb4-3"><a href="a-new-chapter.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(output_dir)</span>
+<span id="cb4-4"><a href="a-new-chapter.html#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>And make plots too:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="a-new-chapter.html#cb3-1" aria-hidden="true" tabindex="-1"></a>hist_plot <span class="ot">&lt;-</span> <span class="fu">hist</span>(iris<span class="sc">$</span>Sepal.Length)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="a-new-chapter.html#cb5-1" aria-hidden="true" tabindex="-1"></a>hist_plot <span class="ot">&lt;-</span> <span class="fu">hist</span>(iris<span class="sc">$</span>Sepal.Length)</span></code></pre></div>
 <p><img src="resources/images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>You can also save these plots to file:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="a-new-chapter.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="fu">file.path</span>(output_dir, <span class="st">&quot;test_plot.png&quot;</span>))</span>
-<span id="cb4-2"><a href="a-new-chapter.html#cb4-2" aria-hidden="true" tabindex="-1"></a>hist_plot</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="a-new-chapter.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="fu">file.path</span>(output_dir, <span class="st">&quot;test_plot.png&quot;</span>))</span>
+<span id="cb6-2"><a href="a-new-chapter.html#cb6-2" aria-hidden="true" tabindex="-1"></a>hist_plot</span></code></pre></div>
 <pre><code>## $breaks
 ## [1] 4.0 4.5 5.0 5.5 6.0 6.5 7.0 7.5 8.0
 ## 
@@ -298,7 +298,7 @@ div.csl-indent {
 ## 
 ## attr(,&quot;class&quot;)
 ## [1] &quot;histogram&quot;</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="a-new-chapter.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="a-new-chapter.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <pre><code>## png 
 ##   2</code></pre>
 </div>
@@ -346,6 +346,8 @@ Note that you should use <code>echo=FALSE</code> in the code chunk because we do
 <h2><span class="header-section-number">2.8</span> Website Examples</h2>
 <p>Yet again you can use a link to a website like so:</p>
 <p><a href="https://yihui.org">A Website</a></p>
+<p>You might want to have users open a website in a new tab by default, especially if they need to reference both the course and a resource at once.</p>
+<p><a href="https://yihui.org" target="_blank">A Website</a></p>
 <p>Or, you can embed some websites.</p>
 <div id="using-knitr-2" class="section level3" number="2.8.1">
 <h3><span class="header-section-number">2.8.1</span> Using <code>knitr</code></h3>
@@ -428,7 +430,7 @@ Here’s more words that are hidden.
 <div id="print-out-session-info" class="section level2" number="2.12">
 <h2><span class="header-section-number">2.12</span> Print out session info</h2>
 <p>You should print out session info when you have code for <a href="https://jhudatascience.org/Reproducibility_in_Cancer_Informatics/managing-package-versions.html">reproducibility purposes</a>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="a-new-chapter.html#cb10-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="a-new-chapter.html#cb12-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
 ##  version  R version 4.0.2 (2020-06-22)
@@ -439,7 +441,7 @@ Here’s more words that are hidden.
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2022-08-13                  
+##  date     2022-10-22                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            

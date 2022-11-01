@@ -1,15 +1,18 @@
 
 # A new chapter
 
-*If you haven't yet read the getting started Wiki pages; [start there](https://github.com/jhudsl/OTTR_Template/wiki/Getting-started)
+If you haven't yet read the getting started Wiki pages; [start there](https://www.ottrproject.org/getting_started.html).
+
+To see the rendered version of this chapter and the rest of the template, see here: https://jhudatascience.org/OTTR_Template/.
 
 Every chapter needs to start out with this chunk of code:
 
 
 
+
 ## Learning Objectives
 
-*Every chapter also needs Learning objectives that will look like this:  
+Every chapter also needs Learning objectives that will look like this:  
 
 This chapter will cover:  
 
@@ -27,15 +30,17 @@ For this chapter, we'll need the following packages attached:
 library(magrittr)
 ```
 
-# Topic of Section
+## Topic of Section
 
-You can write all your text in sections like this!
+You can write all your text in sections like this, using `##` to indicate a new header. you can use additional pound symbols to create lower levels of headers.
 
-## Subtopic
+See [here](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) for additional general information about how you can format text within R Markdown files. In addition, see [here](https://pandoc.org/MANUAL.html#pandocs-markdown) for more in depth and advanced options.
 
-Here's a subheading and some text in this subsection!
+### Subtopic
 
-### Code examples
+Here's a subheading (using three pound symbols) and some text in this subsection!
+
+## Code examples
 
 You can demonstrate code like this:
 
@@ -97,63 +102,76 @@ dev.off()
 ##   2
 ```
 
-### Image example
+## Image example
 
 How to include a Google slide. It's simplest to use the `ottrpal` package:
 
-<img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" width="480" style="display: block; margin: auto;" />
 
-But if you have the slide or some other image locally downloaded you can also use html like this:
+<img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" width="100%" style="display: block; margin: auto;" />
+
+But if you have the slide or some other image locally downloaded you can also use HTML like this:
 
 <img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" title="Major point!! example image" alt="Major point!! example image" style="display: block; margin: auto;" />
 
-### Video examples
+## Video examples
+You may also want to embed videos in your course. If alternatively, you just want to include a link you can do so like this:
 
-To show videos in your course, you can use markdown syntax like this:
+Check out this [link to a video](https://www.youtube.com/embed/VOCYL-FNbr0) using markdown syntax.
 
-[A video we want to show](https://www.youtube.com/embed/VOCYL-FNbr0)
+### Using `knitr`
 
-Alternatively, you can use `knitr::include_url()` like this:
-Note that we are using `echo=FALSE` in the code chunk because we don't want the code part of this to show up.
-If you are unfamiliar with [how R Markdown code chunks work, read this](https://rmarkdown.rstudio.com/lesson-3.html).
+To embed videos in your course, you can use `knitr::include_url()` like this:
+Note that you should use `echo=FALSE` in the code chunk because we don't want the code part of this to show up. If you are unfamiliar with [how R Markdown code chunks work, read this](https://rmarkdown.rstudio.com/lesson-3.html).
 
-<iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
-
-OR this works:
 
 <iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
 
-### Links to files
+### Using HTML
 
-This works:
+<iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
 
-<iframe src="https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf" width="672" height="800px"></iframe>
+## File examples
 
-Or this:
+You can again use simple markdown syntax to just include a link to a file like so:
 
-[This works](https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf).
+[A file](https://www.bgsu.edu/content/dam/BGSU/center-for-faculty-excellence/docs/TLGuides/TLGuide-Learning-Objectives.pdf).
 
-Or this:
+Alternatively you can embed files like PDFs.
 
-<iframe src="https://www.messiah.edu/download/downloads/id/921/Microaggressions_in_the_Classroom.pdf" width="672" height="800px"></iframe>
+### Using `knitr`
 
-### Links to websites
+<iframe src="https://academicaffairs.ucsc.edu/events/documents/Microaggressions_Examples_Arial_2014_11_12.pdf" width="100%" height="400px"></iframe>
 
-Examples of including a website link.
+
+
+### Using HTML
+
+<iframe src="https://academicaffairs.ucsc.edu/events/documents/Microaggressions_Examples_Arial_2014_11_12.pdf" width="672" height="800px"></iframe>
+
+## Website Examples
+
+Yet again you can use a link to a website like so:
+
+[A Website](https://yihui.org)
+
+You might want to have users open a website in a new tab by default, especially if they need to reference both the course and a resource at once.
+
+[A Website](https://yihui.org){target="_blank"}
+
+Or, you can embed some websites.
+
+### Using `knitr`
 
 This works:
 
 <iframe src="https://yihui.org" width="672" height="400px"></iframe>
 
-OR this:
 
-![Another link](https://yihui.org)
-
-OR this:
+### Using HTML
 
 <iframe src="https://yihui.org" width="672" height="400px"></iframe>
 
-### Citation examples
+## Citation examples
 
 We can put citations at the end of a sentence like this [@rmarkdown2021].
 Or multiple citations [@rmarkdown2021, @Xie2018].
@@ -162,16 +180,94 @@ but they need a ; separator [@rmarkdown2021; @Xie2018].
 
 In text, we can put citations like this @rmarkdown2021.
 
-### FYI boxes
+## Stylized boxes
 
-::: {.fyi}
+Occasionally, you might find it useful to emphasize a particular piece of information. To help you do so, we have provided css code and images (no need for you to worry about that!) to create the following stylized boxes.
+
+You can use these boxes in your course with either of two options: using HTML code or Pandoc syntax.
+
+### Using `rmarkdown` container syntax
+
+The `rmarkdown` package allows for a different syntax to be converted to the HTML that you just saw and also allows for conversion to LaTeX. See the [Bookdown](https://bookdown.org/yihui/rmarkdown-cookbook/custom-blocks.html) documentation for more information [@Xie2020]. Note that Bookdown uses Pandoc.
+
+
+```
+::: {.notice}
+Note using rmarkdown syntax.
+
+:::
+```
+
+::: {.notice}
+Note using rmarkdown syntax.
+
+:::
+
+As an example you might do something like this:
+
+::: {.notice}
 Please click on the subsection headers in the left hand
 navigation bar (e.g., 2.1, 4.3) a second time to expand the
 table of contents and enable the `scroll_highlight` feature
-([see more](introduction.html#scroll-highlight)).
+([see more](introduction.html#scroll-highlight))
 :::
 
-### Dropdown summaries
+
+### Using HTML
+
+To add a warning box like the following use:
+
+```
+<div class = "notice">
+Followed by the text you want inside
+</div>
+```
+
+This will create the following:
+
+<div class = "notice">
+
+Followed by the text you want inside
+
+</div>
+
+Here is a `<div class = "warning">` box:
+
+<div class = "warning">
+
+Note text
+
+</div>
+
+Here is a `<div class = "github">` box:
+
+<div class = "github">
+
+GitHub text
+
+</div>
+
+
+Here is a `<div class = "dictionary">` box:
+
+<div class = "dictionary">
+
+dictionary text
+
+</div>
+
+
+Here is a `<div class = "reflection">` box:
+
+<div class = "reflection">
+
+reflection text
+
+</div>
+
+
+
+## Dropdown summaries
 
 <details><summary> You can hide additional information in a dropdown menu </summary>
 Here's more words that are hidden.
@@ -197,12 +293,12 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2022-02-14                  
+##  date     2022-10-22                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
 ##  assertthat    0.2.1      2019-03-21 [1] RSPM (R 4.0.3)                    
-##  bookdown      0.24       2022-02-11 [1] Github (rstudio/bookdown@88bc4ea) 
+##  bookdown      0.24       2022-02-15 [1] Github (rstudio/bookdown@88bc4ea) 
 ##  callr         3.4.4      2020-09-07 [1] RSPM (R 4.0.2)                    
 ##  cli           2.0.2      2020-02-28 [1] RSPM (R 4.0.0)                    
 ##  crayon        1.3.4      2017-09-16 [1] RSPM (R 4.0.0)                    
@@ -220,16 +316,15 @@ devtools::session_info()
 ##  htmltools     0.5.0      2020-06-16 [1] RSPM (R 4.0.1)                    
 ##  httr          1.4.2      2020-07-20 [1] RSPM (R 4.0.3)                    
 ##  jquerylib     0.1.4      2021-04-26 [1] CRAN (R 4.0.2)                    
-##  knitr         1.33       2022-02-11 [1] Github (yihui/knitr@a1052d1)      
+##  knitr         1.33       2022-02-15 [1] Github (yihui/knitr@a1052d1)      
 ##  lifecycle     1.0.0      2021-02-15 [1] CRAN (R 4.0.2)                    
 ##  magrittr    * 2.0.2      2022-01-26 [1] CRAN (R 4.0.2)                    
 ##  memoise       1.1.0      2017-04-21 [1] RSPM (R 4.0.0)                    
-##  ottrpal          0.1.2      2022-02-11 [1] Github (jhudsl/ottrpal@2d03822)      
+##  ottrpal       0.1.2      2022-02-15 [1] Github (jhudsl/ottrpal@1018848)   
 ##  pillar        1.4.6      2020-07-10 [1] RSPM (R 4.0.2)                    
 ##  pkgbuild      1.1.0      2020-07-13 [1] RSPM (R 4.0.2)                    
 ##  pkgconfig     2.0.3      2019-09-22 [1] RSPM (R 4.0.3)                    
 ##  pkgload       1.1.0      2020-05-29 [1] RSPM (R 4.0.3)                    
-##  png           0.1-7      2013-12-03 [1] CRAN (R 4.0.2)                    
 ##  prettyunits   1.1.1      2020-01-24 [1] RSPM (R 4.0.3)                    
 ##  processx      3.4.4      2020-09-03 [1] RSPM (R 4.0.2)                    
 ##  ps            1.3.4      2020-08-11 [1] RSPM (R 4.0.2)                    
@@ -237,18 +332,18 @@ devtools::session_info()
 ##  R6            2.4.1      2019-11-12 [1] RSPM (R 4.0.0)                    
 ##  readr         1.4.0      2020-10-05 [1] RSPM (R 4.0.2)                    
 ##  remotes       2.2.0      2020-07-21 [1] RSPM (R 4.0.3)                    
-##  rlang         0.4.10     2022-02-11 [1] Github (r-lib/rlang@f0c9be5)      
-##  rmarkdown     2.10       2022-02-11 [1] Github (rstudio/rmarkdown@02d3c25)
+##  rlang         0.4.10     2022-02-15 [1] Github (r-lib/rlang@f0c9be5)      
+##  rmarkdown     2.10       2022-02-15 [1] Github (rstudio/rmarkdown@02d3c25)
 ##  rprojroot     2.0.2      2020-11-15 [1] CRAN (R 4.0.2)                    
 ##  sessioninfo   1.1.1      2018-11-05 [1] RSPM (R 4.0.3)                    
 ##  stringi       1.5.3      2020-09-09 [1] RSPM (R 4.0.3)                    
 ##  stringr       1.4.0      2019-02-10 [1] RSPM (R 4.0.3)                    
-##  testthat      3.0.1      2022-02-11 [1] Github (R-lib/testthat@e99155a)   
+##  testthat      3.0.1      2022-02-15 [1] Github (R-lib/testthat@e99155a)   
 ##  tibble        3.0.3      2020-07-10 [1] RSPM (R 4.0.2)                    
-##  usethis       2.1.5.9000 2022-02-11 [1] Github (r-lib/usethis@57b109a)    
+##  usethis       2.1.5.9000 2022-02-15 [1] Github (r-lib/usethis@57b109a)    
 ##  vctrs         0.3.4      2020-08-29 [1] RSPM (R 4.0.2)                    
 ##  withr         2.3.0      2020-09-22 [1] RSPM (R 4.0.2)                    
-##  xfun          0.26       2022-02-11 [1] Github (yihui/xfun@74c2a66)       
+##  xfun          0.26       2022-02-15 [1] Github (yihui/xfun@74c2a66)       
 ##  yaml          2.2.1      2020-02-01 [1] RSPM (R 4.0.3)                    
 ## 
 ## [1] /usr/local/lib/R/site-library

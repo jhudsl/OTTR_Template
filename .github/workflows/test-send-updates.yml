@@ -14,7 +14,7 @@ jobs:
   test-sync:
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/course_template:main
+      image: jhudsl/base_ottr:main
 
     steps:
       - name: Checkout Repository
@@ -32,7 +32,7 @@ jobs:
           Rscript --vanilla .github/switch_sync_repo.R --repo ${{ github.event.inputs.repo }}
 
       - name: Run Mechanics File Sync
-        uses: BetaHuhn/repo-file-sync-action@v1.17.1
+        uses: BetaHuhn/repo-file-sync-action@v1.17.21
         with:
           GH_PAT: ${{ secrets.GH_PAT }}
           COMMIT_BODY: "test-run"

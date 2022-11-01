@@ -11,22 +11,15 @@ group:
           test-send-updates.yml
           starting-course.yml
           release-notes.yml
+          docker-test.yml
+          docker-build.yml
+      - source: scripts/
+        dest: scripts/
+        deleteOrphaned: true
       - source: .github/ISSUE_TEMPLATE/course-problem-report.md
         dest: .github/ISSUE_TEMPLATE/course-problem-report.md
       - source: .github/ISSUE_TEMPLATE/course-content-add.md
         dest: .github/ISSUE_TEMPLATE/course-content-add.md
-      - source: scripts/make_screenshots.R
-        dest: scripts/make_screenshots.R
-      - source: scripts/spell-check.R
-        dest: scripts/spell-check.R
-      - source: scripts/url-check.R
-        dest: scripts/url-check.R
-      - source: scripts/quiz-check.R
-        dest: scripts/quiz-check.R
-      - source: scripts/git_repo_check.R
-        dest: scripts/git_repo_check.R
-      - source: code_of_conduct.md
-        dest: code_of_conduct.md
       - source: style-sets
         dest: style-sets
       - source: assets/box_images/
@@ -39,7 +32,6 @@ group:
       jhudsl/Computing_for_Cancer_Informatics
       jhudsl/Adv_Reproducibility_in_Cancer_Informatics
       jhudsl/Reproducibility_in_Cancer_Informatics
-      jhudsl/Choosing_Genomics_Tools
       jhudsl/Dissemination_and_Engagement
       jhudsl/Cancer_Clinical_Informatics
       jhudsl/Machine_Learning_for_Cancer_Informatics
@@ -50,6 +42,9 @@ group:
       abyzovlab/CNVpytor-course
       opencasestudies/OCS_Guide
       tmm211/dsp-terra-mooc-test2
+      fhdsl/Choosing_Genomics_Tools
+      fhdsl/NIH_Data_Sharing
+      fhdsl/FH_Cluster_Guide
 ###ADD NEW REPO HERE following the format above#
 
 ### These are custom groups for syncing -- not all files needs to be synced
@@ -58,8 +53,6 @@ group:
       dest: config_automation.yml
     - source: .github/workflows/pull-request.yml
       dest: .github/workflows/pull-request.yml
-    - source: scripts/spell-check.R
-      dest: scripts/spell-check.R
     repos: |
       jhudsl/OTTR_Template_Website
 
@@ -74,8 +67,6 @@ group:
       dest: .github/workflows/test-send-updates.yml
     - source: scripts/make_screenshots.R
       dest: scripts/make_screenshots.R
-    - source: scripts/spell-check.R
-      dest: scripts/spell-check.R
     - source: scripts/switch_sync_repo.R
       dest: scripts/switch_sync_repo.R
     repos: |
@@ -95,12 +86,6 @@ group:
       dest: .github/ISSUE_TEMPLATE/course-content-add.md
     - source: scripts/make_screenshots.R
       dest: scripts/make_screenshots.R
-    - source: scripts/spell-check.R
-      dest: scripts/spell-check.R
-    - source: scripts/url-check.R
-      dest: scripts/url-check.R
-    - source: scripts/quiz-check.R
-      dest: scripts/quiz-check.R
     - source: scripts/git_repo_check.R
       dest: scripts/git_repo_check.R
     - source: code_of_conduct.md
