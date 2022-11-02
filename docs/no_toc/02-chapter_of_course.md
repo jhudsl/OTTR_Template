@@ -98,8 +98,8 @@ dev.off()
 ```
 
 ```
-## quartz_off_screen 
-##                 2
+## png 
+##   2
 ```
 
 ## Image example
@@ -128,8 +128,6 @@ Note that you should use `echo=FALSE` in the code chunk because we don't want th
 
 ### Using HTML
 
-### Using HTML
-
 <iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
 
 ## File examples
@@ -143,8 +141,6 @@ Alternatively you can embed files like PDFs.
 ### Using `knitr`
 
 <iframe src="https://academicaffairs.ucsc.edu/events/documents/Microaggressions_Examples_Arial_2014_11_12.pdf" width="100%" height="400px"></iframe>
-
-
 
 ### Using HTML
 
@@ -166,17 +162,19 @@ Or, you can embed some websites.
 
 This works:
 
-<iframe src="https://yihui.org" width="672" height="400px" data-external="1"></iframe>
-
-
-### Using HTML
-
 <iframe src="https://yihui.org" width="672" height="400px"></iframe>
 
 
 ### Using HTML
 
 <iframe src="https://yihui.org" width="672" height="400px"></iframe>
+
+
+If you'd like the URL to show up in a new tab you can do this:
+
+```
+<a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+```
 
 ## Citation examples
 
@@ -300,7 +298,7 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2022-10-22                  
+##  date     2022-11-02                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
@@ -353,9 +351,8 @@ devtools::session_info()
 ##  xfun          0.26       2022-02-15 [1] Github (yihui/xfun@74c2a66)       
 ##  yaml          2.2.1      2020-02-01 [1] RSPM (R 4.0.3)                    
 ## 
-##  [1] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
-## 
-## ──────────────────────────────────────────────────────────────────────────────
+## [1] /usr/local/lib/R/site-library
+## [2] /usr/local/lib/R/library
 ```
 
 [many links]: https://github.com/jhudsl/OTTR_Template
