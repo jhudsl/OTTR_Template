@@ -16,6 +16,18 @@
     width: 0% !important;
 }
 
+
+
 .book-body.fixed > div > .book-header.fixed > a:nth-child(1) {
   visibility: hidden;
+}
+
+.fa-angle-right:before {
+  color: #FFFFFF;
+  font-size:0em !important;
+}
+
+.fa-angle-left:before {
+  color: #FFFFFF;
+  font-size:0em !important;
 }

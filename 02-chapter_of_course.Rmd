@@ -112,8 +112,6 @@ Alternatively you can embed files like PDFs.
 knitr::include_url("https://academicaffairs.ucsc.edu/events/documents/Microaggressions_Examples_Arial_2014_11_12.pdf")
 ```
 
-
-
 ### Using HTML
 
 <iframe src="https://academicaffairs.ucsc.edu/events/documents/Microaggressions_Examples_Arial_2014_11_12.pdf" width="672" height="800px"></iframe>
@@ -142,6 +140,13 @@ knitr::include_url("https://yihui.org")
 ### Using HTML
 
 <iframe src="https://yihui.org" width="672" height="400px"></iframe>
+
+
+If you'd like the URL to show up in a new tab you can do this:
+
+```
+<a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+```
 
 ## Citation examples
 
@@ -252,3 +257,5 @@ You should print out session info when you have code for [reproducibility purpos
 ```{r}
 devtools::session_info()
 ```
+
+[many links]: https://github.com/jhudsl/OTTR_Template
