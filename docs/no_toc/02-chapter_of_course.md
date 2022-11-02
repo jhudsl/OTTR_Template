@@ -98,8 +98,8 @@ dev.off()
 ```
 
 ```
-## png 
-##   2
+## quartz_off_screen 
+##                 2
 ```
 
 ## Image example
@@ -125,6 +125,8 @@ Note that you should use `echo=FALSE` in the code chunk because we don't want th
 
 
 <iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
+
+### Using HTML
 
 ### Using HTML
 
@@ -163,6 +165,11 @@ Or, you can embed some websites.
 ### Using `knitr`
 
 This works:
+
+<iframe src="https://yihui.org" width="672" height="400px" data-external="1"></iframe>
+
+
+### Using HTML
 
 <iframe src="https://yihui.org" width="672" height="400px"></iframe>
 
@@ -346,6 +353,9 @@ devtools::session_info()
 ##  xfun          0.26       2022-02-15 [1] Github (yihui/xfun@74c2a66)       
 ##  yaml          2.2.1      2020-02-01 [1] RSPM (R 4.0.3)                    
 ## 
-## [1] /usr/local/lib/R/site-library
-## [2] /usr/local/lib/R/library
+##  [1] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+## 
+## ──────────────────────────────────────────────────────────────────────────────
 ```
+
+[many links]: https://github.com/jhudsl/OTTR_Template
