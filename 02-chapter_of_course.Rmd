@@ -109,12 +109,12 @@ Alternatively you can embed files like PDFs.
 ### Using `knitr`
 
 ```{r, fig.align="center", echo=FALSE, out.width="100%"}
-knitr::include_url("https://academicaffairs.ucsc.edu/events/documents/Microaggressions_Examples_Arial_2014_11_12.pdf")
+knitr::include_url("https://drive.google.com/file/d/1mm72K4V7fqpgAfWkr6b7HTZrc3f-T6AV/preview")
 ```
 
 ### Using HTML
 
-<iframe src="https://academicaffairs.ucsc.edu/events/documents/Microaggressions_Examples_Arial_2014_11_12.pdf" width="672" height="800px"></iframe>
+<iframe src="https://drive.google.com/file/d/1mm72K4V7fqpgAfWkr6b7HTZrc3f-T6AV/preview" width="672" height="800px"></iframe>
 
 ## Website Examples
 
