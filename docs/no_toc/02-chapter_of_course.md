@@ -142,8 +142,6 @@ Alternatively you can embed files like PDFs.
 
 <iframe src="https://academicaffairs.ucsc.edu/events/documents/Microaggressions_Examples_Arial_2014_11_12.pdf" width="100%" height="400px"></iframe>
 
-
-
 ### Using HTML
 
 <iframe src="https://academicaffairs.ucsc.edu/events/documents/Microaggressions_Examples_Arial_2014_11_12.pdf" width="672" height="800px"></iframe>
@@ -170,6 +168,13 @@ This works:
 ### Using HTML
 
 <iframe src="https://yihui.org" width="672" height="400px"></iframe>
+
+
+If you'd like the URL to show up in a new tab you can do this:
+
+```
+<a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+```
 
 ## Citation examples
 
@@ -293,7 +298,7 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2022-10-22                  
+##  date     2022-11-08                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
@@ -349,3 +354,5 @@ devtools::session_info()
 ## [1] /usr/local/lib/R/site-library
 ## [2] /usr/local/lib/R/library
 ```
+
+[many links]: https://github.com/jhudsl/OTTR_Template
