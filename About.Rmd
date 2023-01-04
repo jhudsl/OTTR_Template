@@ -24,7 +24,7 @@ These credits are based on our [course contributors table guidelines](https://ww
 |Course Publishing Engineer(s)| Helped with the code for the technical aspects related to the specific course generation|
 |Template Publishing Engineers|[Candace Savonen], [Carrie Wright], [Ava Hoffman]|
 |Publishing Maintenance Engineer|[Candace Savonen]|
-|Technical Publishing Stylists|[Carrie Wright], [Ava Hoffman], [Candace Savonen] |
+|Technical Publishing Stylists|[Carrie Wright], [Ava Hoffman], [Candace Savonen]|
 |Package Developers ([ottrpal]) [Candace Savonen], [John Muschelli], [Carrie Wright]|
 |**Art and Design**||
 |Illustrator(s)| Created graphics for the course|
