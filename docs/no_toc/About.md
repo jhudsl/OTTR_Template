@@ -22,9 +22,9 @@ These credits are based on our [course contributors table guidelines](https://ww
 |Content Publishing Reviewer(s)| Reviewed overall content and aesthetics on publishing platform|
 |**Technical**||
 |Course Publishing Engineer(s)| Helped with the code for the technical aspects related to the specific course generation|
-|Template Publishing Engineers|[Candace Savonen], [Carrie Wright]|
+|Template Publishing Engineers|[Candace Savonen], [Carrie Wright], [Ava Hoffman]|
 |Publishing Maintenance Engineer|[Candace Savonen]|
-|Technical Publishing Stylists|[Carrie Wright], [Candace Savonen]|
+|Technical Publishing Stylists|[Carrie Wright], [Ava Hoffman], [Candace Savonen]|
 |Package Developers ([ottrpal]) [Candace Savonen], [John Muschelli], [Carrie Wright]|
 |**Art and Design**||
 |Illustrator(s)| Created graphics for the course|
@@ -51,7 +51,7 @@ These credits are based on our [course contributors table guidelines](https://ww
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2022-11-15                  
+##  date     2023-01-09                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                            
@@ -111,6 +111,7 @@ These credits are based on our [course contributors table guidelines](https://ww
 [John Muschelli]: https://johnmuschelli.com/
 [Candace Savonen]: https://www.cansavvy.com/
 [Carrie Wright]: https://carriewright11.github.io/
+[Ava Hoffman]: https://www.avahoffman.com/
 
 <!-- Links -->
 
