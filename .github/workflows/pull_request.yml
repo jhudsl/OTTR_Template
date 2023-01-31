@@ -20,7 +20,7 @@ jobs:
 
         # Use the yaml-env-action action.
       - name: Load environment from YAML
-        uses: doughepi/yaml-env-action@v1.0.0
+        uses: doughepi/yaml-env-action@v2.1.0
         with:
             files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
 
