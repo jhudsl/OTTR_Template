@@ -167,7 +167,7 @@ jobs:
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
           git diff origin/main -- docs >/dev/null && changes=true || changes=false
-          echo ::set-output name=changes::$changes
+          echo "changes=$changes" >> $GITHUB_OUTPUT
           git add . --force
           git commit -m 'Render preview' || echo "No changes to commit"
           git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
@@ -189,11 +189,11 @@ jobs:
           bookdown_link=$(echo "https://htmlpreview.github.io/?https://raw.githubusercontent.com/$GITHUB_REPOSITORY/preview-${{ github.event.pull_request.number }}/docs/index.html")
           tocless_link=$(echo "https://htmlpreview.github.io/?https://raw.githubusercontent.com/$GITHUB_REPOSITORY/preview-${{ github.event.pull_request.number }}/docs/no_toc/index.html")
           docx_link=$(echo "https://github.com/$GITHUB_REPOSITORY/raw/preview-${{ github.event.pull_request.number }}/docs/$course_name.docx")
-          echo ::set-output name=bookdown_link::$bookdown_link
-          echo ::set-output name=tocless_link::$tocless_link
-          echo ::set-output name=docx_link::$docx_link
-          echo ::set-output name=time::$(date +'%Y-%m-%d')
-          echo ::set-output name=commit_id::$GITHUB_SHA
+          echo "bookdown_link=$bookdown_link" >> $GITHUB_OUTPUT
+          echo "tocless_link=$tocless_link" >> $GITHUB_OUTPUT
+          echo "docx_link=$docx_link" >> $GITHUB_OUTPUT
+          echo "time=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "commit_id=$GITHUB_SHA" >> $GITHUB_OUTPUT
           echo ${{steps.commit.outputs.changes}}
 
       - name: Create or update comment
