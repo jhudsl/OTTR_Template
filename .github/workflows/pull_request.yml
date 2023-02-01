@@ -25,7 +25,7 @@ jobs:
             files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
 
       - name: Verify Dockerfiles changed?
-        uses: tj-actions/verify-changed-files@v13.1
+        uses: tj-actions/verify-changed-files@v13
         id: verify-changed-files
         with:
           files: |
