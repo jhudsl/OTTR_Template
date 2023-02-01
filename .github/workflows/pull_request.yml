@@ -28,9 +28,7 @@ jobs:
         uses: tj-actions/verify-changed-files@v13
         id: verify-changed-files
         with:
-          files: |
-             docker/Dockerfile
-             docker/github_package_list.tsv
+          files: docker
 
       # Delete the branch if this has been run before
       - name: Delete branch locally and remotely
