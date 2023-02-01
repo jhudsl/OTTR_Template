@@ -16,7 +16,7 @@ jobs:
     if: github.event.repository.name != 'OTTR_Template'
     steps:
       - name: checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Login as jhudsl-robot
         run: |
@@ -63,7 +63,7 @@ jobs:
           git commit -m "Template cleanup"
           pushed_it=true
           git push || pushed_it=false
-          echo ::set-output name=pushed_it::$pushed_it
+          echo "pushed_it=$pushed_it" >> $GITHUB_OUTPUT
 
       # If main is already protected, then file a PR
       - name: Create PR with deleted files
@@ -122,7 +122,7 @@ jobs:
         id: get_org_name
         run: |
           org_name=$(dirname ${{github.repository}})
-          echo ::set-output name=org_name::$org_name
+          echo "org_name=$org_name" >> $GITHUB_OUTPUT
           echo $org_name
 
       # Issue for adding the course to the jhudsl library
