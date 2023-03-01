@@ -243,7 +243,6 @@ reflection text
 </div>
 
 
-
 ## Dropdown summaries
 
 <details><summary> You can hide additional information in a dropdown menu </summary>

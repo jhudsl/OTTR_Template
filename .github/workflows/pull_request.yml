@@ -99,6 +99,7 @@ jobs:
 
       - name: Commit styled files
         run: |
+          git config --system --add safe.directory "$GITHUB_WORKSPACE"
           git add \*.Rmd
           git commit -m 'Style Rmds' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
@@ -122,6 +123,7 @@ jobs:
       # Set up git checkout
       - name: Set up git checkout
         run: |
+          git config --system --add safe.directory "$GITHUB_WORKSPACE"
           git config --local user.email "itcrtrainingnetwork@gmail.com"
           git config --local user.name "jhudsl-robot"
 
