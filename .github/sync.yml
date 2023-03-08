@@ -48,6 +48,7 @@ group:
       fhdsl/FH_Cluster_Guide
       fhdsl/Using_Leanpub
       fhdsl/Overleaf_Tutorial
+      mccoy-lab/hgv_modules
 ###ADD NEW REPO HERE following the format above#
 
 ### These are custom groups for syncing -- not all files needs to be synced
