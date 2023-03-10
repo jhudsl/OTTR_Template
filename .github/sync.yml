@@ -97,6 +97,8 @@ group:
     - source: assets/box_images/
       dest: assets/box_images/
     - source: assets/style.css
-      dest: assets/AnVIL_style/style.css
+      dest: assets/style.css
+    - source: assets/toc_close.css
+      dest: assets/toc_close.css
     repos: |
       jhudsl/AnVIL_Template
