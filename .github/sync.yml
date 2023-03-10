@@ -48,7 +48,11 @@ group:
       fhdsl/FH_Cluster_Guide
       fhdsl/Using_Leanpub
       fhdsl/Overleaf_Tutorial
+      fhdsl/Design_of_Data_Analysis
+      fhdsl/Tools_for_Reproducible_Workflows_in_R
+      fhdsl/Introduction_to_reproducible_research
       mccoy-lab/hgv_modules
+      
 ###ADD NEW REPO HERE following the format above#
 
 ### These are custom groups for syncing -- not all files needs to be synced
