@@ -104,5 +104,10 @@ group:
       dest: assets/style.css
     - source: assets/toc_close.css
       dest: assets/toc_close.css
+    - source: scripts/
+      dest: scripts/
+      deleteOrphaned: true
+    - source: style-sets/fhdasl/
+      dest: style-sets/fhdasl/
     repos: |
       jhudsl/AnVIL_Template
