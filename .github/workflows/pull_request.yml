@@ -33,6 +33,7 @@ jobs:
         run: |
           echo ${GITHUB_WORKSPACE}
           echo "$GITHUB_WORKSPACE"
+          echo $GITHUB_WORKSPACE
           git config --global --add safe.directory ${GITHUB_WORKSPACE}
           git config --global user.email "itcrtrainingnetwork@gmail.com"
           git config --global user.name "jhudsl-robot"
