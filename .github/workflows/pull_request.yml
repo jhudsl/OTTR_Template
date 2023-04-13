@@ -124,7 +124,7 @@ jobs:
       # Set up git checkout
       - name: Set up git checkout
         run: |
-          git config --global --add safe.directory ${GITHUB_WORKSPACE}
+          git config --global --add safe.directory $GITHUB_WORKSPACE
           git config --global user.email "itcrtrainingnetwork@gmail.com"
           git config --global user.name "jhudsl-robot"
 
