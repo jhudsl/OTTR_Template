@@ -58,8 +58,9 @@ jobs:
       - name: Commit deleted files
         id: commit_it
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+          git config --global user.email "itcrtrainingnetwork@gmail.com"
+          git config --global user.name "jhudsl-robot"
           git add .
           git commit -m "Template cleanup"
           pushed_it=true
@@ -84,6 +85,7 @@ jobs:
           labels: |
             automated
           reviewers: $GITHUB_ACTOR
+          token: ${{secrets.GH_PAT}}
 
 ##### Filing issues!
 
