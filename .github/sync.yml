@@ -52,7 +52,9 @@ group:
       fhdsl/Tools_for_Reproducible_Workflows_in_R
       fhdsl/Introduction_to_reproducible_research
       mccoy-lab/hgv_modules
-      
+      griffithlab/pVACtools_Intro_Course
+      griffithlab/CIVIC_SVI_Course
+
 ###ADD NEW REPO HERE following the format above#
 
 ### These are custom groups for syncing -- not all files needs to be synced
