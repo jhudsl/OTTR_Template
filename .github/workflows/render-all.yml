@@ -164,7 +164,7 @@ jobs:
           Rscript -e "ottrpal::bookdown_to_embed_leanpub(
             render = FALSE, \
             chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
-            make_book_txt = as.logical(${{needs.yaml-check.outputs.make_book_txt}}), \
+            make_book_txt = as.logical('${{needs.yaml-check.outputs.make_book_txt}}'), \
             quiz_dir = NULL)"
 
       - name: Run ottrpal::bookdown_to_embed_leanpub
@@ -173,7 +173,7 @@ jobs:
           Rscript -e "ottrpal::bookdown_to_embed_leanpub(
             render = FALSE, \
             chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
-            make_book_txt = as.logical(${{needs.yaml-check.outputs.make_book_txt}}))"
+            make_book_txt = as.logical('${{needs.yaml-check.outputs.make_book_txt}}'))"
 
       # Commit the rendered Leanpub files
       - name: Commit rendered Leanpub files
