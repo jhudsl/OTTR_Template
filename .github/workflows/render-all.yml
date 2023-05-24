@@ -187,8 +187,7 @@ jobs:
           git add --force resources/*
           git add --force docs/*
           git commit -m 'Render Leanpub' || echo "No changes to commit"
-          git fetch 
-          git push --force origin main || echo "No changes to push"
+          git push --force --set-upstream origin main || echo "No changes to push"
 
   render-coursera:
     name: Finish Coursera prep
@@ -227,5 +226,4 @@ jobs:
           git add --force resources/*
           git add --force docs/*
           git commit -m 'Render Coursera quizzes' || echo "No changes to commit"
-          git pull --allow-unrelated-histories --strategy-option=ours
-          git push origin main || echo "No changes to push"
+          git push --force --set-upstream origin main || echo "No changes to push"
