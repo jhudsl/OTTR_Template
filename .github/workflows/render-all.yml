@@ -79,6 +79,7 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
+          git fetch origin
           git add --force docs/*
           git commit -m 'Render bookdown' || echo "No changes to commit"
           git pull --allow-unrelated-histories --strategy-option=ours
@@ -117,6 +118,7 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
+          git fetch origin
           git add --force docs/no_toc*
           git commit -m 'Render toc-less' || echo "No changes to commit"
           git pull --allow-unrelated-histories --strategy-option=ours
@@ -162,6 +164,7 @@ jobs:
         run: |
           rm -rf manuscript/
           git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
+          git fetch origin
           git add .
           git commit -m 'Delete manuscript folder' || echo "No changes to commit"
           git pull --allow-unrelated-histories --strategy-option=ours
@@ -230,6 +233,7 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
+          git fetch origin
           git add --force manuscript/*
           git add --force resources/*
           git add --force docs/*
