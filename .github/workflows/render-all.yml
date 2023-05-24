@@ -83,7 +83,7 @@ jobs:
           git add --force docs/*
           git commit -m 'Render bookdown' || echo "No changes to commit"
           git pull --allow-unrelated-histories --strategy-option=ours
-          git push origin main || echo "No changes to push"
+          git push --set-upstream origin/main  || echo "No changes to push"
 
   render-tocless:
     name: Render TOC-less version for Leanpub or Coursera
@@ -122,7 +122,7 @@ jobs:
           git add --force docs/no_toc*
           git commit -m 'Render toc-less' || echo "No changes to commit"
           git pull --allow-unrelated-histories --strategy-option=ours
-          git push origin main || echo "No changes to push"
+          git push --set-upstream origin/main  || echo "No changes to push"
 
   render-leanpub:
     name: Finish Leanpub prep
@@ -168,7 +168,7 @@ jobs:
           git add .
           git commit -m 'Delete manuscript folder' || echo "No changes to commit"
           git pull --allow-unrelated-histories --strategy-option=ours
-          git push origin main || echo "No changes to push"
+          git push --set-upstream origin/main || echo "No changes to push"
 
       - name: Run ottrpal::bookdown_to_embed_leanpub
         if: needs.yaml-check.outputs.toggle_quiz_check == 'no'
@@ -198,7 +198,7 @@ jobs:
           git add --force docs/*
           git commit -m 'Render Leanpub' || echo "No changes to commit"
           git pull --allow-unrelated-histories --strategy-option=ours
-          git push origin main || echo "No changes to push"
+          git push --set-upstream origin/main || echo "No changes to push"
 
   render-coursera:
     name: Finish Coursera prep
@@ -239,4 +239,4 @@ jobs:
           git add --force docs/*
           git commit -m 'Render Coursera quizzes' || echo "No changes to commit"
           git pull --allow-unrelated-histories --strategy-option=ours
-          git push origin main || echo "No changes to push"
+          git push --set-upstream origin/main || echo "No changes to push"
