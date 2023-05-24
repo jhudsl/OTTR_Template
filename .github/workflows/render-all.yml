@@ -79,10 +79,11 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
+          git fetch origin
           git add --force docs/*
           git commit -m 'Render bookdown' || echo "No changes to commit"
           git pull --allow-unrelated-histories --strategy-option=ours
-          git push origin main || echo "No changes to push"
+          git push -u origin main  || echo "No changes to push"
 
   render-tocless:
     name: Render TOC-less version for Leanpub or Coursera
@@ -117,10 +118,11 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
+          git fetch origin
           git add --force docs/no_toc*
           git commit -m 'Render toc-less' || echo "No changes to commit"
           git pull --allow-unrelated-histories --strategy-option=ours
-          git push origin main || echo "No changes to push"
+          git push -u origin main  || echo "No changes to push"
 
   render-leanpub:
     name: Finish Leanpub prep
@@ -156,8 +158,17 @@ jobs:
             --output_dir resources/chapt_screen_images)
 
       # We want a fresh run of the renders each time
-      - name: Delete old manuscript/
-        run: rm -rf manuscript/
+      - name: Delete manuscript/
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          rm -rf manuscript/
+          git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
+          git fetch origin
+          git add .
+          git commit -m 'Delete manuscript folder' || echo "No changes to commit"
+          git pull --allow-unrelated-histories --strategy-option=ours
+          git push -u origin main || echo "No changes to push"
 
       - name: Run ottrpal::bookdown_to_embed_leanpub
         if: needs.yaml-check.outputs.toggle_quiz_check == 'no'
@@ -182,11 +193,11 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           mkdir -p manuscript
-          git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
           git add --force manuscript/*
           git add --force resources/*
           git add --force docs/*
           git commit -m 'Render Leanpub' || echo "No changes to commit"
+          git pull --allow-unrelated-histories --strategy-option=ours
           git push --force --set-upstream origin main || echo "No changes to push"
 
   render-coursera:
@@ -222,8 +233,10 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
+          git fetch origin
           git add --force manuscript/*
           git add --force resources/*
           git add --force docs/*
           git commit -m 'Render Coursera quizzes' || echo "No changes to commit"
-          git push --force --set-upstream origin main || echo "No changes to push"
+          git pull --allow-unrelated-histories --strategy-option=ours
+          git push -u origin main  || echo "No changes to push"
