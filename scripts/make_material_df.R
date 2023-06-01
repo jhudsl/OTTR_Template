@@ -22,6 +22,18 @@ library(magrittr)
 
 option_list <- list(
   optparse::make_option(
+    c("--owner_id"),
+    type = "character",
+    default = NULL,
+    help = "Owner id",
+  ),
+  optparse::make_option(
+    c("--course_name"),
+    type = "character",
+    default = NULL,
+    help = "Course name for this",
+  ),
+  optparse::make_option(
     c("--repo"),
     type = "character",
     default = NULL,
@@ -44,6 +56,11 @@ option_list <- list(
     type = "character",
     default = NULL,
     help = "Output directory where the chapter's screen images should be stored",
+  ), 
+  optparse::make_option(
+    c("--make_book_txt"),
+    action = "store_true",
+    help = "Should book.txt file be made freshly?",
   )
 )
 
@@ -72,65 +89,33 @@ retrieve_chapters <- ottrpal::get_chapters(base_url)
 ## Get chapter list and urls
 chapter_df <- data.frame(
   retrieve_chapters,
-  full_urls = paste0(base_url, retrieve_chapters$url)
+  full_urls = paste0(base_url, retrieve_chapters$url), 
+  md_name = paste0(gsub(" ", "-", retrieve_chapters$chapt_title), ".md")
 )
 
 ##### Get Quizzes
-quiz_dir <- file.path(root_dir, "quizzes")
+quiz_files <- list.files(file.path(root_dir, "quizzes"), pattern = ".md")
 
-## Autogenerate Book.txt file
-ottrpal::bookdown_to_book_txt(quiz_dir)
+if (opt$make_book_txt) {
+  # Make book.txt fresh
+  ottrpal::bookdown_to_book_txt(md_files = list.files(file.path(root_dir, "manuscript"), pattern = ".md"))
+}
 
 ## Read in Book.txt
 book_txt <- readLines(file.path(root_dir, "manuscript", "Book.txt"))
 
 ## Make a data frame from this
-book_txt_df <- data.frame(file_names = book_txt) %>%
+book_txt_df <- data.frame(md_name = book_txt) %>%
   dplyr::mutate(type = dplyr::case_when(
-    grepl("quiz", file_names) ~ "quiz",
+    grepl("quiz", md_name) ~ "quiz",
     TRUE ~ "chapter"))
 
 # Join it to the chapter df
 book_txt_df <- book_txt_df %>% 
-  dplyr::inner_join(book_txt_df, 
-                    by = "chapt_title") 
+  dplyr::left_join(chapter_df, 
+                    by = "md_name") 
 
-# We need to make this column so we can link swirl modules to their chapters
-chapter_df <- chapter_df %>% 
-  dplyr::mutate(core_file_name = gsub("_quiz.md$", "", chapter_df $quiz_file))
+## Write this file. 
+### You may want to add due dates to this file manually. 
+readr::write_tsv(book_txt_df, file.path("resources", "course_units.tsv")) 
 
-#### Link swirl modules to chapters 
-swirl_modules <- googlesheets4::read_sheet(
-  "https://docs.google.com/spreadsheets/d/1b60iMYr6gtJ0X0ifcXlR4u3TSe1JaUW3uIUN9SOl14E/edit#gid=0",
-  sheet = "Swirl_Key") %>% 
-  dplyr::filter(!is.na(module_name)) %>% 
-  dplyr::select(-rowname)
-
-chapter_df <- chapter_df %>% 
-  dplyr::left_join(swirl_modules, 
-                   by = c("core_file_name" = "associated_chapter"))
-
-### Signify which chapters are projects 
-chapter_df <- chapter_df %>% 
-  dplyr::mutate(type = dplyr::case_when(
-    grepl("Project$", chapter_df$chapt_title) ~ "Project", 
-    grepl(paste0(topics, collapse = "$|"), chapter_df$chapt_title) ~ "New topic",
-    TRUE ~ "Chapter"))
-
-chapter_df <- chapter_df %>%
-  ### Establish unit times 
-  dplyr::mutate(unit_time = dplyr::case_when(type == "Chapter" ~ 1, 
-                                             type == "Project" ~ 5, 
-                                              TRUE ~ 0)) %>% 
-  dplyr::mutate(swirl_yn = !is.na(module_name),
-                quiz_yn = !is.na(quiz_file), 
-                unit_time = unit_time + swirl_yn + quiz_yn) 
-
-googlesheets4::write_sheet(
-  chapter_df,
-  "https://docs.google.com/spreadsheets/d/14PRS2qEed3E636QsorJFkgN94ikj3SeF1AgpoC-0bo0/edit#gid=0", 
-  sheet = "chapter_df"
-  )
-
-# Write this to a TSV 
-readr::write_tsv(chapter_df, file.path(root_dir, "materials_order.tsv"))
