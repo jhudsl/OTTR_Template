@@ -29,7 +29,6 @@ group:
       jhudsl/Documentation_and_Usability
       jhudsl/Informatics_Research_Leadership
       jhudsl/Data_Management_for_Cancer_Research
-      jhudsl/Ethical_Data_Handling_for_Cancer_Research
       jhudsl/Computing_for_Cancer_Informatics
       jhudsl/Adv_Reproducibility_in_Cancer_Informatics
       jhudsl/Reproducibility_in_Cancer_Informatics
@@ -47,6 +46,7 @@ group:
       fhdsl/NIH_Data_Sharing
       fhdsl/FH_Cluster_Guide
       fhdsl/Using_Leanpub
+      fhdsl/Ethical_Data_Handling_for_Cancer_Research
       fhdsl/Overleaf_and_LaTeX_for_Scientific_Articles
       fhdsl/Design_of_Data_Analysis
       fhdsl/Tools_for_Reproducible_Workflows_in_R
