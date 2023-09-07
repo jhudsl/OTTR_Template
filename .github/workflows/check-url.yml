@@ -1,0 +1,42 @@
+name: Periodic URL Check
+
+on:
+  schedule:
+    # At 00:00 on Sundays
+    - cron: '0 0 * * 0'
+
+jobs:
+
+  yaml-check:
+    name: Load user automation choices
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Delete branch locally and remotely
+        run: git push origin --delete preview-${{ github.event.pull_request.number }} || echo "No branch to delete"
+
+      # Make the branch fresh
+      - name: Make the branch fresh
+        run: |
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+          git config --global user.email "itcrtrainingnetwork@gmail.com"
+          git config --global user.name "jhudsl-robot"
+
+          branch_name='preview-${{ github.event.pull_request.number }}'
+          echo branch doesnt exist
+          git checkout -b $branch_name || echo branch exists
+          git push --set-upstream origin $branch_name
+       shell: bash
+
+  url-check:
+    name: Check URLs
+    needs: yaml-check
+    if: ${{needs.yaml-check.outputs.toggle_url_check == 'yes'}}
+    uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
+    with:
+      check_type: urls
+      error_min: 0
+      gh_pat: secrets.GH_PAT
