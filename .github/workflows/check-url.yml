@@ -31,7 +31,7 @@ jobs:
           git push --set-upstream origin $branch_name
        shell: bash
 
-  url-check:
+   url-check:
     name: Check URLs
     needs: yaml-check
     if: ${{needs.yaml-check.outputs.toggle_url_check == 'yes'}}
