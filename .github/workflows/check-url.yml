@@ -2,8 +2,8 @@ name: Periodic URL Check
 
 on:
   schedule:
-    # At 00:00 on Sundays
-    - cron: '0 0 * * 0'
+    # At every 2nd minute
+    - cron: '*/2 * * * *'
 
 jobs:
 
