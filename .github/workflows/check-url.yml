@@ -35,4 +35,5 @@ jobs:
     with:
       check_type: urls
       error_min: 0
-      gh_pat: secrets.GH_PAT
+      gh_pat: ${{ secrets.GH_PAT }}
+
