@@ -6,7 +6,6 @@ on:
     - cron: '*/2 * * * *'
 
 jobs:
-
   yaml-check:
     name: Load user automation choices
     runs-on: ubuntu-latest
@@ -17,8 +16,6 @@ jobs:
           fetch-depth: 0
       - name: Delete branch locally and remotely
         run: git push origin --delete preview-${{ github.event.pull_request.number }} || echo "No branch to delete"
-
-      # Make the branch fresh
       - name: Make the branch fresh
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
@@ -30,8 +27,7 @@ jobs:
           git checkout -b $branch_name || echo branch exists
           git push --set-upstream origin $branch_name
        shell: bash
-
-   url-check:
+  url-check:
     name: Check URLs
     needs: yaml-check
     if: ${{needs.yaml-check.outputs.toggle_url_check == 'yes'}}
