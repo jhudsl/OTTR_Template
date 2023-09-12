@@ -26,6 +26,7 @@ jobs:
           echo branch doesnt exist
           git checkout -b $branch_name || echo branch exists
           git push --set-upstream origin $branch_name
+        shell: bash
   url-check:
     name: Check URLs
     needs: yaml-check
