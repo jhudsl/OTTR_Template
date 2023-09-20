@@ -67,7 +67,7 @@ jobs:
         error_num=$(cat ${{ steps.check_results.outputs.report_path }} | wc -l)
         error_num="$((error_num-1))"
         echo "error_num=$error_num" >> $GITHUB_OUTPUT
-        error_list=$(cat ${{ steps.check_results.outputs.report_path }}
+        error_list=$(cat ${{ steps.check_results.outputs.report_path }})
         echo "error_list=$error_list" >> $GITHUB_OUTPUT
       shell: bash
 
