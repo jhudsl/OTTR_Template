@@ -46,6 +46,7 @@ jobs:
     needs: set-up
     if: ${{needs.set-up.outputs.toggle_url_check_periodically == 'yes'}}
 
+    steps:
     - name: Run the check
       uses: jhudsl/ottr-reports@main
       id: check_results
