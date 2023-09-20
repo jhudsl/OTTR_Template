@@ -43,7 +43,9 @@ jobs:
 
   url-check:
     name: Check URLs
-    needs: set-up
+    runs-on: ubuntu-latest
+    container:
+      image: jhudsl/base_ottr:main
     if: ${{needs.set-up.outputs.toggle_url_check_periodically == 'yes'}}
 
     steps:
