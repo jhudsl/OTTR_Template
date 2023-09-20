@@ -1,6 +1,7 @@
 name: Periodic URL Check
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '*/2 * * * *'
 
