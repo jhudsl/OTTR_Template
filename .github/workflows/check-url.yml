@@ -66,12 +66,10 @@ jobs:
     - name: Declare file path and time
       id: check-report
       run: |
-        echo "time=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
         error_num=$(cat ${{ steps.check_results.outputs.report_path }} | wc -l)
         error_num="$((error_num-1))"
         echo "error_num=$error_num" >> $GITHUB_OUTPUT
-        error_list=$(mapfile -t myArray < ${{ steps.check_results.outputs.report_path }})
-        echo "error_list=$error_list" >> $GITHUB_OUTPUT
+        echo "error_url=https://github.com/${GITHUB_REPOSITORY}/blob/$branch_name/${{ steps.check_results.outputs.report_path }}" >> $GITHUB_OUTPUT
       shell: bash
 
     - name: If too many URL errors, then make an issue
@@ -81,7 +79,7 @@ jobs:
         filename: .github/ISSUE_TEMPLATE/url-error.md
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ERROR_LIST: ${{ steps.check_results.outputs.error_list }}
+        FILE_URL: ${{ steps.check_results.outputs.error_url }}
         ERROR_NUM: ${{ steps.check-report.outputs.error_num }}
 
     - name: Stop if failure
@@ -90,4 +88,6 @@ jobs:
 
     - name: If no URL errors than delete the branch we made
       if: ${{ steps.check-report.outputs.error_num <= 1 }}
-      run: git push origin --delete preview-${{ github.event.pull_request.number }} || echo "No branch to delete"
+      run: |
+        git config --system --add safe.directory "$GITHUB_WORKSPACE"
+        git push origin --delete preview-${{ github.event.pull_request.number }} || echo "No branch to delete"
