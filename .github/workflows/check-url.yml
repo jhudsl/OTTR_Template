@@ -2,7 +2,6 @@ name: Periodic URL Check
 
 on:
   schedule:
-    # At every 2nd minute
     - cron: '*/2 * * * *'
 
 jobs:
@@ -25,10 +24,15 @@ jobs:
           echo branch doesnt exist
           git checkout -b $branch_name || echo branch exists
           git push --set-upstream origin $branch_name
+    outputs:
+      toggle_url_check_periodically: "${{ env.URL_CHECK_PERIODICALLY }}"
 
-      - name: Run the checks
-        uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
-        with:
-          check_type: urls
-          error_min: 0
-          gh_pat: secrets.GH_PAT
+  url-check:
+    name: Check URLs
+    needs: set-up
+    if: ${{needs.yaml-check.outputs.toggle_url_check_periodically == 'yes'}}
+    uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
+    with:
+      check_type: urls
+      error_min: 0
+      gh_pat: secrets.GH_PAT
