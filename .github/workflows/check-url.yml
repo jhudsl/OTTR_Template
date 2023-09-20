@@ -43,10 +43,10 @@ jobs:
 
   url-check:
     name: Check URLs
+    if: ${{needs.set-up.outputs.toggle_url_check_periodically == 'yes'}}
     runs-on: ubuntu-latest
     container:
       image: jhudsl/base_ottr:main
-    if: ${{needs.set-up.outputs.toggle_url_check_periodically == 'yes'}}
 
     steps:
     - name: Run the check
