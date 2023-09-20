@@ -66,13 +66,11 @@ jobs:
     - name: Declare file path and time
       id: check-report
       run: |
-        branch_name='preview-${{ github.event.pull_request.number }}'
         echo "time=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-        echo "error_url=https://github.com/${GITHUB_REPOSITORY}/blob/$branch_name/${{ steps.check_results.outputs.report_path }}" >> $GITHUB_OUTPUT
         error_num=$(cat ${{ steps.check_results.outputs.report_path }} | wc -l)
         error_num="$((error_num-1))"
         echo "error_num=$error_num" >> $GITHUB_OUTPUT
-        error_list=$(cat ${{ steps.check_results.outputs.report_path }})
+        error_list=$(mapfile -t myArray < ${{ steps.check_results.outputs.report_path }})
         echo "error_list=$error_list" >> $GITHUB_OUTPUT
       shell: bash
 
