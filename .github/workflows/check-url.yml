@@ -37,7 +37,7 @@ jobs:
           git checkout -b $branch_name || echo branch exists
           git push --set-upstream origin $branch_name
         shell: bash
-        
+
     outputs:
       toggle_url_check_periodically: "${{ env.URL_CHECK_PERIODICALLY }}"
 
@@ -45,8 +45,42 @@ jobs:
     name: Check URLs
     needs: set-up
     if: ${{needs.set-up.outputs.toggle_url_check_periodically == 'yes'}}
-    uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
-    with:
-      check_type: urls
-      error_min: 0
-      gh_pat: secrets.GH_PAT
+
+    - name: Run the check
+      uses: jhudsl/ottr-reports@main
+      id: check_results
+      continue-on-error: true
+      with:
+        check_type: urls
+        error_min: 1
+
+    - name: Declare file path and time
+      id: check-report
+      run: |
+        branch_name='preview-${{ github.event.pull_request.number }}'
+        echo "time=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+        echo "error_url=https://github.com/${GITHUB_REPOSITORY}/blob/$branch_name/${{ steps.check_results.outputs.report_path }}" >> $GITHUB_OUTPUT
+        error_num=$(cat ${{ steps.check_results.outputs.report_path }} | wc -l)
+        error_num="$((error_num-1))"
+        echo "error_num=$error_num" >> $GITHUB_OUTPUT
+        error_list=$(cat ${{ steps.check_results.outputs.report_path }}
+        echo "error_list=$error_list" >> $GITHUB_OUTPUT
+      shell: bash
+
+    - name: If too many URL errors, then make an issue
+      if: ${{ steps.check-report.outputs.error_num <= 1 }}
+    - uses: JasonEtco/create-an-issue@v2
+      with:
+        filename: .github/ISSUE_TEMPLATE/url-error.md
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ERROR_LIST: ${{ steps.check_results.outputs.error_list }}
+        ERROR_NUM: ${{ steps.check-report.outputs.error_num }}
+
+    - name: Stop if failure
+      if: steps.check_results.outcome == 'failure'
+      run: exit 1
+
+    - name: If no URL errors than delete the branch we made
+      if: ${{ steps.check-report.outputs.error_num <= 1 }}
+      run: git push origin --delete preview-${{ github.event.pull_request.number }} || echo "No branch to delete"
