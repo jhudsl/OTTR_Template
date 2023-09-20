@@ -1,7 +1,7 @@
 name: Periodic URL Check
 
 on:
-  workflow_dispatch:
+  pull_request:
   schedule:
     - cron: '*/2 * * * *'
 
