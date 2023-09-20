@@ -15,6 +15,7 @@ jobs:
         with:
           fetch-depth: 0
 
+        # Use the yaml-env-action action.
       - name: Load environment from YAML
         uses: doughepi/yaml-env-action@v1.0.0
         with:
@@ -24,6 +25,7 @@ jobs:
       - name: Delete branch locally and remotely
         run: git push origin --delete preview-${{ github.event.pull_request.number }} || echo "No branch to delete"
 
+      # Make the branch fresh
       - name: Make the branch fresh
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
@@ -34,6 +36,8 @@ jobs:
           echo branch doesnt exist
           git checkout -b $branch_name || echo branch exists
           git push --set-upstream origin $branch_name
+        shell: bash
+        
     outputs:
       toggle_url_check_periodically: "${{ env.URL_CHECK_PERIODICALLY }}"
 
