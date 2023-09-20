@@ -28,16 +28,10 @@ jobs:
           echo branch doesnt exist
           git checkout -b $branch_name || echo branch exists
           git push --set-upstream origin $branch_name
-        shell: bash
 
-  url-check:
-    name: Check URLs
-    needs: set-up
-    if: ${{needs.yaml-check.outputs.toggle_url_check == 'yes'}}
-
-    - name: Run the checks
-      uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
-      with:
-        check_type: urls
-        error_min: 0
-        gh_pat: secrets.GH_PAT
+      - name: Run the checks
+        uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
+        with:
+          check_type: urls
+          error_min: 0
+          gh_pat: secrets.GH_PAT
