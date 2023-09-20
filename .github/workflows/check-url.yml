@@ -43,6 +43,7 @@ jobs:
 
   url-check:
     name: Check URLs
+    needs: set-up
     if: ${{needs.set-up.outputs.toggle_url_check_periodically == 'yes'}}
     runs-on: ubuntu-latest
     container:
