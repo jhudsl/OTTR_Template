@@ -72,8 +72,17 @@ jobs:
         echo "error_url=https://github.com/${GITHUB_REPOSITORY}/blob/$branch_name/${{ steps.check_results.outputs.report_path }}" >> $GITHUB_OUTPUT
       shell: bash
 
+    - name: Stop if failure
+      if: steps.check_results.outcome == 'failure'
+      run: exit 1
+
+    - name: Print out error variables
+      run: |
+        echo ${{ steps.check-report.outputs.error_url }}
+        echo ${{ steps.check-report.outputs.error_num }}
+
     - name: If too many URL errors, then make an issue
-      if: ${{ steps.check-report.outputs.error_num > 1 }}
+      if: ${{ steps.check-report.outputs.error_num => 1 }}
       uses: JasonEtco/create-an-issue@v2
       with:
         filename: .github/ISSUE_TEMPLATE/url-error.md
@@ -82,12 +91,8 @@ jobs:
         FILE_URL: ${{ steps.check-report.outputs.error_url }}
         ERROR_NUM: ${{ steps.check-report.outputs.error_num }}
 
-    - name: Stop if failure
-      if: steps.check_results.outcome == 'failure'
-      run: exit 1
-
     - name: If no URL errors than delete the branch we made
-      if: ${{ steps.check-report.outputs.error_num <= 1 }}
+      if: ${{ steps.check-report.outputs.error_num < 1 }}
       run: |
         git config --system --add safe.directory "$GITHUB_WORKSPACE"
         git push origin --delete preview-${{ github.event.pull_request.number }} || echo "No branch to delete"
