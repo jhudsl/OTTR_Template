@@ -21,22 +21,6 @@ jobs:
         with:
             files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
 
-      # Delete the branch if this has been run before
-      - name: Delete branch locally and remotely
-        run: git push origin --delete preview-spell-error || echo "No branch to delete"
-
-      # Make the branch fresh
-      - name: Make the branch fresh
-        run: |
-          git config --global --add safe.directory $GITHUB_WORKSPACE
-          git config --global user.email "itcrtrainingnetwork@gmail.com"
-          git config --global user.name "jhudsl-robot"
-
-          echo branch doesnt exist
-          git checkout -b preview-spell-error || echo branch exists
-          git push --set-upstream origin preview-spell-error || echo echo branch exists remotely
-        shell: bash
-
     outputs:
       toggle_url_check_periodically: "${{ env.URL_CHECK_PERIODICALLY }}"
 
@@ -54,6 +38,22 @@ jobs:
       with:
         fetch-depth: 0
 
+    # Delete the branch if this has been run before
+    - name: Delete branch locally and remotely
+      run: git push origin --delete preview-spell-error || echo "No branch to delete"
+
+    # Make the branch fresh
+    - name: Make the branch fresh
+      run: |
+        git config --global --add safe.directory $GITHUB_WORKSPACE
+        git config --global user.email "itcrtrainingnetwork@gmail.com"
+        git config --global user.name "jhudsl-robot"
+
+        echo branch doesnt exist
+        git checkout -b preview-spell-error || echo branch exists
+        git push --set-upstream origin preview-spell-error || echo echo branch exists remotely
+      shell: bash
+
     - name: Run the check
       uses: jhudsl/ottr-reports@main
       id: check_results
@@ -65,10 +65,10 @@ jobs:
     - name: Declare file path and time
       id: check-report
       run: |
-        error_num=$(cat ${{ steps.check_results.outputs.report_path }} | wc -l)
+        error_num=$(cat check_reports/url_checks.tsv | wc -l)
         error_num="$((error_num-1))"
         echo "error_num=$error_num" >> $GITHUB_OUTPUT
-        echo "error_url=https://github.com/${GITHUB_REPOSITORY}/blob/preview-spell-error/${{ steps.check_results.outputs.report_path }}" >> $GITHUB_OUTPUT
+        echo "error_url=https://github.com/${GITHUB_REPOSITORY}/blob/preview-spell-error/check_reports/url_checks.tsv" >> $GITHUB_OUTPUT
       shell: bash
 
     - name: Stop if failure
