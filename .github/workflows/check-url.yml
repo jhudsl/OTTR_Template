@@ -23,7 +23,7 @@ jobs:
 
       # Delete the branch if this has been run before
       - name: Delete branch locally and remotely
-        run: git push origin --delete preview-${{ github.event.pull_request.number }} || echo "No branch to delete"
+        run: git push origin --delete preview-spell-error || echo "No branch to delete"
 
       # Make the branch fresh
       - name: Make the branch fresh
@@ -32,10 +32,9 @@ jobs:
           git config --global user.email "itcrtrainingnetwork@gmail.com"
           git config --global user.name "jhudsl-robot"
 
-          branch_name='preview-${{ github.event.pull_request.number }}'
           echo branch doesnt exist
-          git checkout -b $branch_name || echo branch exists
-          git push --set-upstream origin $branch_name || echo echo branch exists remotely
+          git checkout -b preview-spell-error || echo branch exists
+          git push --set-upstream origin preview-spell-error || echo echo branch exists remotely
         shell: bash
 
     outputs:
@@ -69,7 +68,7 @@ jobs:
         error_num=$(cat ${{ steps.check_results.outputs.report_path }} | wc -l)
         error_num="$((error_num-1))"
         echo "error_num=$error_num" >> $GITHUB_OUTPUT
-        echo "error_url=https://github.com/${GITHUB_REPOSITORY}/blob/$branch_name/${{ steps.check_results.outputs.report_path }}" >> $GITHUB_OUTPUT
+        echo "error_url=https://github.com/${GITHUB_REPOSITORY}/blob/preview-spell-error/${{ steps.check_results.outputs.report_path }}" >> $GITHUB_OUTPUT
       shell: bash
 
     - name: Stop if failure
@@ -95,4 +94,4 @@ jobs:
       if: ${{ steps.check-report.outputs.error_num < 1 }}
       run: |
         git config --system --add safe.directory "$GITHUB_WORKSPACE"
-        git push origin --delete preview-${{ github.event.pull_request.number }} || echo "No branch to delete"
+        git push origin --delete preview-spell-error || echo "No branch to delete"
