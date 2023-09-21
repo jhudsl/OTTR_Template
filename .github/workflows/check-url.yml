@@ -80,16 +80,17 @@ jobs:
         echo ${{ steps.check-report.outputs.error_url }}
         echo ${{ steps.check-report.outputs.error_num }}
 
-    - name: Check if Issue Exists
-      uses: nickderobertis/check-if-issue-exists-action@master
-      id: check_if_issue_exists
+    - name: Find issues
+      uses: actions-cool/issues-helper@v3
+      id: find-issue
       with:
-        repo: ${GITHUB_REPOSITORY}
+        actions: 'find-issues'
         token: ${{ secrets.GITHUB_TOKEN }}
-        title: Broken URLs found in the course!
+        issue-state: 'open'
+        title-includes: 'Broken URLs found in the course!'
 
     - name: If too many URL errors, then make an issue
-      if: ${{ steps.check-report.outputs.error_num >= 1 && steps.check_if_issue_exists.outputs.exists == 'false'}}
+      if: ${{ steps.check-report.outputs.error_num >= 1 && steps.find-issue.outputs.exists == 'false'}}
       uses: JasonEtco/create-an-issue@v2
       with:
         filename: .github/ISSUE_TEMPLATE/url-error.md
