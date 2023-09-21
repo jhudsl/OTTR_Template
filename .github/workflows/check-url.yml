@@ -73,7 +73,7 @@ jobs:
       shell: bash
 
     - name: If too many URL errors, then make an issue
-      if: ${{ steps.check-report.outputs.error_num <= 1 }}
+      if: ${{ steps.check-report.outputs.error_num > 1 }}
       uses: JasonEtco/create-an-issue@v2
       with:
         filename: .github/ISSUE_TEMPLATE/url-error.md
