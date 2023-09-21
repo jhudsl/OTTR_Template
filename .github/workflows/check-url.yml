@@ -79,7 +79,7 @@ jobs:
         filename: .github/ISSUE_TEMPLATE/url-error.md
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        FILE_URL: ${{ steps.check_results.outputs.error_url }}
+        FILE_URL: ${{ steps.check-report.outputs.error_url }}
         ERROR_NUM: ${{ steps.check-report.outputs.error_num }}
 
     - name: Stop if failure
