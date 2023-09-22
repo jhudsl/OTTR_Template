@@ -81,13 +81,6 @@ jobs:
         echo ${{ steps.check-report.outputs.error_num }}
 
     - name: Find issues
-      uses: actions-cool/issues-helper@v3
-      id: find-issue
-      with:
-        actions: 'find-issues'
-        token: ${{ secrets.GITHUB_TOKEN }}
-        issue-state: 'open'
-        title-includes: 'Broken URLs found in the course!'
 
     - name: If too many URL errors, then make an issue
       if: ${{ steps.check-report.outputs.error_num >= 1 && steps.find-issue.outputs.exists == 'false'}}
