@@ -34,7 +34,7 @@ if (!is.character(repo)) {
   repo <- as.character(repo)
 }
 
-install.packages('githubr')
+install.packages('githubr', repos='http://cran.us.r-project.org')
 
 issue_titles <- get_issues(opt$repo)$title, git_pat = opt$git_pat)
 
