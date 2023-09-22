@@ -36,7 +36,7 @@ if (!is.character(repo)) {
 
 install.packages('githubr', repos='http://cran.us.r-project.org')
 
-issue_titles <- get_issues(opt$repo)$title, git_pat = opt$git_pat)
+issue_titles <- get_issues(opt$repo, git_pat = opt$git_pat)$title
 
 issue_exists <- any(grep('Broken URLs found in the course!', issue_titles))
 
