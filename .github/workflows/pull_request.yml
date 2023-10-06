@@ -4,7 +4,8 @@
 name: Pull Request
 
 on:
-  pull_request:
+  pull_request_target:
+    types: [opened, edited, reopened]
     branches: [ main, staging ]
 
 jobs:
