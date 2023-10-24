@@ -34,7 +34,7 @@ if (!is.character(repo)) {
   repo <- as.character(repo)
 }
 
-remotes::install_github("fhdsl/githubr", auth_token = opt$git_pat)
+install.packages('githubr', repos='http://cran.us.r-project.org')
 
 issue_titles <- githubr::get_issues(opt$repo, git_pat = opt$git_pat)$title
 
