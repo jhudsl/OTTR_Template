@@ -56,6 +56,9 @@ group:
       griffithlab/CIVIC_SVI_Course
       PracticalGenomics/cogaps-on-sciserver
       fhdsl/AI_for_software
+      griffithlab/Immuno_Workflow_Course
+      fhdsl/Intro_to_Command_Line
+      fhdsl/S1_Intro_to_R
 
 ###ADD NEW REPO HERE following the format above#
 
@@ -111,3 +114,25 @@ group:
       dest: style-sets/fhdasl/
     repos: |
       jhudsl/AnVIL_Template
+
+  - files:
+    - source: config_automation.yml
+      dest: config_automation.yml
+    - source: .github/workflows/
+      dest: .github/workflows/
+      deleteOrphaned: true
+    - source: .github/switch_sync_repo.R
+      dest: .github/switch_sync_repo.R
+    - source: .github/automatic-issues/
+      dest: .github/automatic-issues/
+    - source: assets/box_images/
+      dest: assets/box_images/
+    - source: assets/style.css
+      dest: assets/style.css
+    - source: assets/toc_close.css
+      dest: assets/toc_close.css
+    - source: scripts/
+      dest: scripts/
+      deleteOrphaned: true
+    repos: |
+      C-MOOR/C-MOOR_Template
