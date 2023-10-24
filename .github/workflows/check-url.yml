@@ -82,6 +82,8 @@ jobs:
 
     - name: Find issues
       id: find-issue
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         issue_exists=$(Rscript --vanilla scripts/find_issue.R --repo "$GITHUB_REPOSITORY" --git_pat "$GH_PAT")
         echo URL issue exists: $issue_exists
