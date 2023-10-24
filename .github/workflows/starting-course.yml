@@ -30,6 +30,7 @@ jobs:
       - name: Cleanup
         run: |
           # Cleanup
+          mv .github/course_README_template.md README.md
           rm -rf \
             .github/workflows/report-maker.yml \
             .github/workflows/send-updates.yml \
