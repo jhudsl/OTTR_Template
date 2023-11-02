@@ -42,4 +42,4 @@ issue_titles <- githubr::get_issues(opt$repo, git_pat = opt$git_pat)$title
 issue_exists <- any(grep('Broken URLs found in the course!', issue_titles))
 
 # Print out the result
-write(as.character(issue_exists), stdout())
+write(sessionInfo(), stdout())
