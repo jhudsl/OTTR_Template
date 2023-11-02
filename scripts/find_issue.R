@@ -23,6 +23,9 @@ option_list <- list(
   )
 )
 
+# Print out the result
+write(sessionInfo(), stdout())
+
 # Read the arguments passed
 opt_parser <- optparse::OptionParser(option_list = option_list)
 opt <- optparse::parse_args(opt_parser)
@@ -42,4 +45,4 @@ issue_titles <- githubr::get_issues(opt$repo, git_pat = opt$git_pat)$title
 issue_exists <- any(grep('Broken URLs found in the course!', issue_titles))
 
 # Print out the result
-write(sessionInfo(), stdout())
+write(as.character(issue_exists), stdout())
