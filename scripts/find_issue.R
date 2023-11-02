@@ -24,7 +24,7 @@ option_list <- list(
 )
 
 # Print out the result
-cat(sessionInfo())
+unlist(sessionInfo())
 
 # Read the arguments passed
 opt_parser <- optparse::OptionParser(option_list = option_list)
