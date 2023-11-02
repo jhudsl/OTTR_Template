@@ -40,9 +40,9 @@ if (!is.character(repo)) {
 install.packages('githubr', repos='http://cran.us.r-project.org')
 # devtools::install_github("fhdsl/githubr", auth_token = opt$git_pat, dependencies = TRUE)
 
-issue_titles <- githubr::get_issues(opt$repo, git_pat = opt$git_pat)$title
+# issue_titles <- githubr::get_issues(opt$repo, git_pat = opt$git_pat)$title
 
-issue_exists <- any(grep('Broken URLs found in the course!', issue_titles))
+#issue_exists <- any(grep('Broken URLs found in the course!', issue_titles))
 
 # Print out the result
 write(as.character(issue_exists), stdout())
