@@ -245,7 +245,7 @@ reflection text
 
 Here is a `<div class = "wip">` box:
 
-<div class = "tip">
+<div class = "wip">
 
 Work in Progress text
 
