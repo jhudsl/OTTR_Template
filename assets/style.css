@@ -250,7 +250,7 @@ li.appendix span, li.part span { /* for TOC part names */
 /* Sidebar formating --------------------------------------------*/
 /* from r-pkgs.org*/
 
-div.notice, div.warning, div.github, div.dictionary, div.reflection {
+div.notice, div.warning, div.github, div.dictionary, div.reflection, div.wip {
   padding: 1em;
   margin: 1em 0;
   padding-left: 100px;
@@ -304,6 +304,14 @@ div.reflection{
   background-image: url("../assets/box_images/thinking_face.png");
 }
 
+div.wip{
+  border: 4px #000000;
+  border-style: solid;
+  background-size: 70px;
+  background-position: 15px center;
+  background-color: #f4d03f;
+  background-image: url("../assets/box_images/under_construction.png");
+}
 
 /* .book .book-body .page-wrapper .page-inner section.normal is needed
    to override the styles produced by gitbook, which are ridiculously

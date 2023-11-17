@@ -243,6 +243,15 @@ reflection text
 </div>
 
 
+Here is a `<div class = "wip">` box:
+
+<div class = "tip">
+
+Work in Progress text
+
+</div>
+
+
 ## Dropdown summaries
 
 <details><summary> You can hide additional information in a dropdown menu </summary>
