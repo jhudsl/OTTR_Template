@@ -98,14 +98,6 @@ knitr::include_url("https://www.youtube.com/embed/VOCYL-FNbr0")
 
 <iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
 
-## File examples
-
-You can again use simple markdown syntax to just include a link to a file like so:
-
-[A file](https://www.bgsu.edu/content/dam/BGSU/center-for-faculty-excellence/docs/TLGuides/TLGuide-Learning-Objectives.pdf).
-
-Alternatively you can embed files like PDFs.
-
 ### Using `knitr`
 
 ```{r, fig.align="center", echo=FALSE, out.width="100%"}
@@ -239,6 +231,15 @@ Here is a `<div class = "reflection">` box:
 <div class = "reflection">
 
 reflection text
+
+</div>
+
+
+Here is a `<div class = "wip">` box:
+
+<div class = "wip">
+
+Work in Progress text
 
 </div>
 
