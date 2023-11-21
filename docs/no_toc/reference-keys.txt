@@ -13,7 +13,6 @@ image-example
 video-examples
 using-knitr
 using-html
-file-examples
 using-knitr-1
 using-html-1
 website-examples
