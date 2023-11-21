@@ -60,6 +60,7 @@ group:
       fhdsl/S1_Intro_to_R
       fhdsl/S1_Intro_to_Command_Line
       fhdsl/S1_Intro_to_Git_GitHub
+      fhdsl/WDL_Workflows_Guide
 
 ###ADD NEW REPO HERE following the format above#
 
