@@ -41,6 +41,7 @@ jobs:
           git push --set-upstream origin $branch_name
         shell: bash
 
+
     outputs:
       toggle_spell_check: "${{ env.SPELL_CHECK }}"
       toggle_style_code: "${{ env.STYLE_CODE }}"
@@ -59,6 +60,7 @@ jobs:
       check_type: spelling
       error_min: 3
       gh_pat: secrets.GH_PAT
+      branch_name: ${GITHUB_REF#refs/heads/}
 
   url-check:
     name: Check URLs
@@ -69,6 +71,7 @@ jobs:
       check_type: urls
       error_min: 0
       gh_pat: secrets.GH_PAT
+      branch_name: ${GITHUB_REF#refs/heads/}
 
   quiz-check:
     name: Check quiz formatting
@@ -79,6 +82,7 @@ jobs:
       check_type: quiz_format
       error_min: 0
       gh_pat: secrets.GH_PAT
+      branch_name: ${GITHUB_REF#refs/heads/}
 
 ############################# Style the code ###################################
   style-code:
