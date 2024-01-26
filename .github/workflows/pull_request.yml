@@ -61,7 +61,7 @@ jobs:
       check_type: spelling
       error_min: 3
       gh_pat: secrets.GH_PAT
-      branch_name: ${GITHUB_REF#refs/heads/}
+      branch_name: ${GITHUB_HEAD_REF}
 
   url-check:
     name: Check URLs
@@ -72,7 +72,7 @@ jobs:
       check_type: urls
       error_min: 0
       gh_pat: secrets.GH_PAT
-      branch_name: ${GITHUB_REF#refs/heads/}
+      branch_name: ${GITHUB_HEAD_REF}
 
   quiz-check:
     name: Check quiz formatting
@@ -83,7 +83,7 @@ jobs:
       check_type: quiz_format
       error_min: 0
       gh_pat: secrets.GH_PAT
-      branch_name: ${GITHUB_REF#refs/heads/}
+      branch_name: ${GITHUB_HEAD_REF}
 
 ############################# Style the code ###################################
   style-code:
