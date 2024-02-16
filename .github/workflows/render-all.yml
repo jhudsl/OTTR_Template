@@ -229,12 +229,16 @@ jobs:
         run: Rscript -e "ottrpal::convert_coursera_quizzes()"
 
       # Commit the rendered bookdown files
+      # Only commit coursera quizzes if the directory is present
       - name: Commit rendered Coursera files
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
           git fetch origin
+          if [ -d 'coursera_quizzes' ]; then
+            git add --force coursera_quizzes/*
+          fi
           git add --force manuscript/*
           git add --force resources/*
           git add --force docs/*
