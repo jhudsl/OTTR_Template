@@ -91,7 +91,7 @@ jobs:
         echo "issue_exists=$issue_exists" >> $GITHUB_OUTPUT
 
     # We want to retrieve this file after this runs so we can see what spell check errors were detected
-    - name: Archive session info 
+    - name: Archive session info
       uses: actions/upload-artifact@v3
       # These arguments underneath `with` are generally action specific so we have to check the documentation: https://github.com/marketplace/actions/upload-a-build-artifact
       with:
@@ -99,7 +99,7 @@ jobs:
         path: session_info.txt
 
     - name: If too many URL errors, then make an issue
-      if: ${{ steps.check-report.outputs.error_num >= 1 && steps.find-issue.outputs.issue_exists == 'FALSE'}}
+      if: ${{ steps.check-report.outputs.error_num >= 1 && steps.find-issue.outputs.issue_exists == ''}}
       uses: JasonEtco/create-an-issue@v2
       with:
         filename: .github/ISSUE_TEMPLATE/url-error.md
