@@ -2,7 +2,6 @@
 
 
 # Introduction
-https://ahuidshiushiufhs.com
 
 
 ## Motivation
