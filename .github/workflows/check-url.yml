@@ -99,7 +99,7 @@ jobs:
         path: session_info.txt
 
     - name: If too many URL errors, then make an issue
-      if: ${{ steps.check-report.outputs.error_num >= 1 && steps.find-issue.outputs.issue_exists == 'true'}}
+      if: ${{ steps.check-report.outputs.error_num >= 1 && steps.find-issue.outputs.issue_exists == true}}
       uses: JasonEtco/create-an-issue@v2
       with:
         filename: .github/ISSUE_TEMPLATE/url-error.md
