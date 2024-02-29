@@ -153,7 +153,8 @@ jobs:
           rm -rf resources/chapt_screen_images
 
           # Make new screenshots
-          chapt_urls=$(Rscript --vanilla scripts/make_screenshots.R \
+          curl -o make_screenshots.R https://raw.githubusercontent.com/jhudsl/ottr-reports/main/scripts/make_screenshots.R
+          chapt_urls=$(Rscript --vanilla make_screenshots.R \
             --git_pat ${{ secrets.GH_PAT }} \
             --repo $GITHUB_REPOSITORY \
             --output_dir resources/chapt_screen_images)
