@@ -23,9 +23,6 @@ option_list <- list(
   )
 )
 
-# Print out the result
-write(unlist(sessionInfo()), "session_info.txt")
-
 # Read the arguments passed
 opt_parser <- optparse::OptionParser(option_list = option_list)
 opt <- optparse::parse_args(opt_parser)
@@ -37,9 +34,11 @@ if (!is.character(repo)) {
   repo <- as.character(repo)
 }
 
-install.packages('githubr', repos='http://cran.us.r-project.org')
+install.packages('gh', repos='http://cran.us.r-project.org')
 
-issue_titles <- githubr::get_issues(repo, git_pat = git_pat)$title
+my_issues <- gh::gh("GET https://api.github.com/repos/{repo}/issues", repo = repo_name, .token = git_pat, per_page = "max")
+my_issues <- unlist(my_issues)
+issue_titles <- my_issues[which(names(my_issues) == "title")]
 
 issue_exists <- any(grep('Broken URLs found in the course!', issue_titles))
 
