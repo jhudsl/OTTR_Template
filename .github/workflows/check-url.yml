@@ -1,9 +1,9 @@
 name: Periodic URL Check
 
 on:
-  pull_request:
+  workflow_dispatch:
   schedule:
-    - cron: '*/2 * * * *'
+    - cron: '0 0 1 * *'
 
 jobs:
   set-up:
