@@ -34,19 +34,22 @@ if (!is.character(repo)) {
   repo <- as.character(repo)
 }
 
-install.packages('gh', repos='http://cran.us.r-project.org')
+# Github api get
+result <- httr::GET(
+  paste0("https://api.github.com/repos/", repo, "/issues"),
+  httr::add_headers(Authorization = paste0("Bearer ", git_pat)),
+  httr::accept_json()
+)
 
-my_issues <- gh::gh("GET https://api.github.com/repos/{repo}/issues",
-                    repo = repo,
-                    .token = git_pat)
+if (httr::status_code(result) != 200) {
+  httr::stop_for_status(result)
+}
+
+# Process and return results
+result_content <- httr::content(result, "text")
+result_list <- jsonlite::fromJSON(result_content)
+
+issue_exists <- length(grep('Broken URLs found in the course!', result_list$title))
 
 # Print out the result
-write(my_issues, stdout())
-
-my_issues <- unlist(my_issues)
-issue_titles <- my_issues[which(names(my_issues) == "title")]
-
-issue_exists <- any(grep('Broken URLs found in the course!', issue_titles))
-
-# Print out the result
-write(length(issue_exists), stdout())
+write(issue_exists, stdout())
