@@ -2,6 +2,7 @@
 
 
 # Introduction
+https://ahuidshiushiufhs.com
 
 
 ## Motivation
@@ -32,7 +33,7 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2024-01-16                  
+##  date     2024-02-29                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version date       lib source                            
