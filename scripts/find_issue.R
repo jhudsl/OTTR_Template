@@ -36,7 +36,7 @@ if (!is.character(repo)) {
 
 install.packages('gh', repos='http://cran.us.r-project.org')
 
-my_issues <- gh::gh("GET https://api.github.com/repos/{repo}/issues", repo = repo_name, .token = git_pat, per_page = "max")
+my_issues <- gh::gh("GET https://api.github.com/repos/{repo}/issues", repo = repo, .token = git_pat, per_page = "max")
 my_issues <- unlist(my_issues)
 issue_titles <- my_issues[which(names(my_issues) == "title")]
 
