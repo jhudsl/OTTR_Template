@@ -36,14 +36,14 @@ if (!is.character(repo)) {
 
 install.packages('gh', repos='http://cran.us.r-project.org')
 
-my_issues <- gh::gh("GET https://api.github.com/repos/{repo}/issues", 
-                    repo = repo, 
-                    .token = git_pat, 
-                    per_page = 100)
+my_issues <- gh::gh("GET https://api.github.com/repos/{repo}/issues",
+                    repo = repo,
+                    .token = git_pat)
+
 my_issues <- unlist(my_issues)
 issue_titles <- my_issues[which(names(my_issues) == "title")]
 
 issue_exists <- any(grep('Broken URLs found in the course!', issue_titles))
 
 # Print out the result
-write(as.character(issue_exists), stdout())
+write(length(issue_exists), stdout())
