@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
         # Use the yaml-env-action action.
       - name: Load environment from YAML
@@ -44,7 +44,7 @@ jobs:
 
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GH_PAT }}
@@ -96,7 +96,7 @@ jobs:
 
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GH_PAT }}
@@ -135,7 +135,7 @@ jobs:
 
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GH_PAT }}
@@ -211,7 +211,7 @@ jobs:
 
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GH_PAT }}
@@ -229,12 +229,16 @@ jobs:
         run: Rscript -e "ottrpal::convert_coursera_quizzes()"
 
       # Commit the rendered bookdown files
+      # Only commit coursera quizzes if the directory is present
       - name: Commit rendered Coursera files
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
           git fetch origin
+          if [ -d 'coursera_quizzes' ]; then
+            git add --force coursera_quizzes/*
+          fi
           git add --force manuscript/*
           git add --force resources/*
           git add --force docs/*

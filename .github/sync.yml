@@ -37,7 +37,7 @@ group:
       jhudsl/Machine_Learning_for_Cancer_Informatics
       jhudsl/Cancer_Informatics_Data_Visualization
       jhudsl/Cancer_Genome_Informatics
-      jhudsl/Cancer-Imaging-Informatics
+      fhdsl/Cancer_Imaging_Informatics
       datatrail-jhu/DataTrail_Template
       abyzovlab/CNVpytor-course
       opencasestudies/OCS_Guide
@@ -56,11 +56,13 @@ group:
       griffithlab/CIVIC_SVI_Course
       PracticalGenomics/cogaps-on-sciserver
       fhdsl/AI_for_software
+      fhdsl/AI_for_Decision_Makers
       griffithlab/Immuno_Workflow_Course
       fhdsl/S1_Intro_to_R
       fhdsl/S1_Intro_to_Command_Line
       fhdsl/S1_Intro_to_Git_GitHub
       fhdsl/WDL_Workflows_Guide
+      fhdsl/S2-Collaborative-Git-GitHub
 
 ###ADD NEW REPO HERE following the format above#
 

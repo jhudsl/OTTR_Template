@@ -130,14 +130,6 @@ Note that you should use `echo=FALSE` in the code chunk because we don't want th
 
 <iframe src="https://www.youtube.com/embed/VOCYL-FNbr0" width="672" height="400px"></iframe>
 
-## File examples
-
-You can again use simple markdown syntax to just include a link to a file like so:
-
-[A file](https://www.bgsu.edu/content/dam/BGSU/center-for-faculty-excellence/docs/TLGuides/TLGuide-Learning-Objectives.pdf).
-
-Alternatively you can embed files like PDFs.
-
 ### Using `knitr`
 
 <iframe src="https://drive.google.com/file/d/1mm72K4V7fqpgAfWkr6b7HTZrc3f-T6AV/preview" width="100%" height="400px"></iframe>
@@ -271,6 +263,15 @@ reflection text
 </div>
 
 
+Here is a `<div class = "wip">` box:
+
+<div class = "wip">
+
+Work in Progress text
+
+</div>
+
+
 ## Dropdown summaries
 
 <details><summary> You can hide additional information in a dropdown menu </summary>
@@ -297,7 +298,7 @@ devtools::session_info()
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       Etc/UTC                     
-##  date     2023-05-24                  
+##  date     2024-01-16                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version date       lib source                            
