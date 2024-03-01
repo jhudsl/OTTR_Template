@@ -1,0 +1,4 @@
+About.Rmd
+docs/*
+style-sets/*
+manuscript/*
