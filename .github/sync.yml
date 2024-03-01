@@ -20,6 +20,8 @@ group:
         dest: .github/ISSUE_TEMPLATE/course-problem-report.md
       - source: .github/ISSUE_TEMPLATE/course-content-add.md
         dest: .github/ISSUE_TEMPLATE/course-content-add.md
+      - source: .github/ISSUE_TEMPLATE/url-error.md
+        dest: .github/ISSUE_TEMPLATE/url-error-add.md
       - source: style-sets
         dest: style-sets
       - source: assets/box_images/
