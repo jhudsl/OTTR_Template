@@ -1,4 +1,4 @@
-## Open-source Tools for Training Resources - OTTR
+## OTTR for Courses!
 
 Go to [ottrproject.org](https://www.ottrproject.org/) to get started! :tada:
 
