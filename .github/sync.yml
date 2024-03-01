@@ -21,11 +21,13 @@ group:
       - source: .github/ISSUE_TEMPLATE/course-content-add.md
         dest: .github/ISSUE_TEMPLATE/course-content-add.md
       - source: .github/ISSUE_TEMPLATE/url-error.md
-        dest: .github/ISSUE_TEMPLATE/url-error-add.md
+        dest: .github/ISSUE_TEMPLATE/url-error.md
       - source: style-sets
         dest: style-sets
       - source: assets/box_images/
         dest: assets/box_images/
+      - source: resources/exclude_files.txt
+        dest: resources/exclude_files.txt
   # Repositories to receive changes
     repos: |
       jhudsl/Documentation_and_Usability
