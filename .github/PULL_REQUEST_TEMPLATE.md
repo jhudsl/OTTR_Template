@@ -30,9 +30,9 @@
 
 - [ ] Any newly necessary packages that are needed have been added to the [Dockerfile and image](https://www.ottrproject.org/customize-docker.html).
 
-- [ ] Images are in the [correct format for rendering](https://www.ottrproject.org/writing_content.html#set-up-images).
+- [ ] Images are in the [correct format for rendering](https://www.ottrproject.org/writing_content_courses.html#set-up-images).
 
-- [ ] Every new image has [alt text and is in a Google Slide](https://www.ottrproject.org/writing_content.html#Accessibility).
+- [ ] Every new image has [alt text and is in a Google Slide](https://www.ottrproject.org/writing_content_courses.html#Accessibility).
 
 - [ ] Each slide is described in the notes of the slide so learners relying on a screen reader can access the content. See https://lastcallmedia.com/blog/accessible-comics for more guidance on this.
 
