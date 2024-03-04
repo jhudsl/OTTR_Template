@@ -1,7 +1,7 @@
 
 Use this checklist to make sure your slides and images are set up correctly!
 
-See [Setting Up Images and Graphics](https://www.ottrproject.org/writing_content.html#set-up-images) for more info!
+See [Setting Up Images and Graphics](https://www.ottrproject.org/writing_content_courses.html#Set_up_images) for more info!
 
 - [ ] Create your course's main Google Slides.
 
