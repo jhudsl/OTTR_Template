@@ -70,6 +70,7 @@ group:
       fhdsl/GitHub_Automation_for_Scientists
 
 ###ADD NEW REPO HERE following the format above#
+      williamtmillsiv/introduction_to_bioinformatics
 
 ### These are custom groups for syncing -- not all files needs to be synced
   - files:
