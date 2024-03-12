@@ -20,11 +20,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@master
 
-      - name: Login as jhudsl-robot
+      - name: Login as github actions bot
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
-          git config --global user.email "itcrtrainingnetwork@gmail.com"
-          git config --global user.name "jhudsl-robot"
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
       - name: Set up test-sync.yml
         run: |

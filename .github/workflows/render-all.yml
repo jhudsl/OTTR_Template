@@ -49,11 +49,11 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GH_PAT }}
 
-      - name: Login as jhudsl-robot
+      - name: Login as github actions bot
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
-          git config --global user.email "itcrtrainingnetwork@gmail.com"
-          git config --global user.name "jhudsl-robot"
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
       # We want a fresh run of the renders each time
       - name: Delete old docs/*
@@ -101,11 +101,11 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GH_PAT }}
 
-      - name: Login as jhudsl-robot
+      - name: Login as github-actions bot
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
-          git config --global user.email "itcrtrainingnetwork@gmail.com"
-          git config --global user.name "jhudsl-robot"
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
       # Rendered content for Leanpub and Coursera is very similar.
       # This job creates a shared scaffold for both.
@@ -140,11 +140,11 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GH_PAT }}
 
-      - name: Login as jhudsl-robot
+      - name: Login as github actions bot
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
-          git config --global user.email "itcrtrainingnetwork@gmail.com"
-          git config --global user.name "jhudsl-robot"
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
       # Create screenshots
       - name: Run the screenshot creation
@@ -217,11 +217,11 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GH_PAT }}
 
-      - name: Login as jhudsl-robot
+      - name: Login as github action
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
-          git config --global user.email "itcrtrainingnetwork@gmail.com"
-          git config --global user.name "jhudsl-robot"
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
       # Run Coursera version
       - name: Convert Leanpub quizzes to Coursera

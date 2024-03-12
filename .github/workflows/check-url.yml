@@ -45,8 +45,8 @@ jobs:
     - name: Make the branch fresh
       run: |
         git config --global --add safe.directory $GITHUB_WORKSPACE
-        git config --global user.email "itcrtrainingnetwork@gmail.com"
-        git config --global user.name "jhudsl-robot"
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
         echo branch doesnt exist
         git checkout -b preview-spell-error || echo branch exists
