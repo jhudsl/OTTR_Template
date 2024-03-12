@@ -4,23 +4,25 @@
 name: Starting a new course
 
 on:
-  create:
+  push:
+    branches: [ main, staging ]
+  workflow_dispatch:
 
 jobs:
-  first-time-setup:
-    # ensure run only once, when repo generated
-    if: github.run_number == 1
-
+  # Run cleaning process only if workflow is triggered by not being in the Bookdown template anymore
+  template-cleanup:
+    name: Template Cleanup
     runs-on: ubuntu-latest
+    if: github.event.repository.name != 'OTTR_Template'
     steps:
       - name: checkout repo
         uses: actions/checkout@v4
 
-      - name: Login as github actions bot
+      - name: Login as jhudsl-robot
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.email "itcrtrainingnetwork@gmail.com"
+          git config --global user.name "jhudsl-robot"
 
 ##### Delete Template-specific files that aren't needed for new courses
 
@@ -52,10 +54,39 @@ jobs:
             docs/*.md \
             manuscript/*
 
-      - name: Commit changed files
-        uses: stefanzweifel/git-auto-commit-action@v4
+
+      # Commit modified files
+      - name: Commit deleted files
+        id: commit_it
+        run: |
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+          git config --global user.email "itcrtrainingnetwork@gmail.com"
+          git config --global user.name "jhudsl-robot"
+          git add .
+          git commit -m "Template cleanup"
+          pushed_it=true
+          git push || pushed_it=false
+          echo "pushed_it=$pushed_it" >> $GITHUB_OUTPUT
+
+      # If main is already protected, then file a PR
+      - name: Create PR with deleted files
+        if: steps.commit_it.outputs.pushed_it == 'false'
+        uses: peter-evans/create-pull-request@v3
+        id: pr
         with:
-          commit_message: "Setup repo"
+          commit-message: Delete unnecessary files
+          signoff: false
+          branch: auto_copy_rendered_files
+          delete-branch: true
+          title: 'Automatic course set up'
+          body: |
+            ### Description:
+             This PR was initiated by the github actions. It helps set up this repository to be ready to write your course.
+             It deletes some remnant files you don't need for your course but were used when this was a template.
+          labels: |
+            automated
+          reviewers: $GITHUB_ACTOR
+          token: ${{secrets.GH_PAT}}
 
 ##### Filing issues!
 
