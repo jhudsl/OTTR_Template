@@ -1,5 +1,9 @@
 # Want to contribute to OTTR?
 
+## Code of Conduct
+
+The [Contributor Covenant Code of Conduct can be found here](https://github.com/jhudsl/OTTR_Template/blob/main/code_of_conduct.md)
+
 ## What are the different OTTR repositories/resources?
 
 Open-source Tools for Training Resources (OTTR) are a set of GitHub repositories designed to offer efficiency and flexibility in creating and maintaining training resources for courses and informatics tools. Below different repositories and resources that part of the OTTR universe are listed with brief explanations of what they do. The repositories and resources are split between "Functionality" and "Documentation" where the "Functionality" section focuses on the repositories or code that make OTTR functional; and the "Documentation" section focuses on the resources that explain how to use and maintain OTTR.
@@ -35,10 +39,6 @@ The [cow repository](https://github.com/jhudsl/cow) isn't officially an OTTR rep
 
 The [ottrproject.org repository](https://github.com/jhudsl/ottrproject.org) renders the [OTTR documentation website](https://www.ottrproject.org/). The repository is generated from the [OTTR_Template_Website template](https://github.com/jhudsl/OTTR_Template_Website).
 
-#### Wiki
-
-Listed as the "main OTTR guide" on some READMEs, there's an [OTTR wiki](https://github.com/jhudsl/OTTR_Template/wiki).
-
 #### OTTR paper
 
 There's an [OTTR paper](https://pubmed.ncbi.nlm.nih.gov/37207236/) published in the Journal of Statistics and Data Science Education by C. Savonen, C. Wright, A. Hoffman, et al. in 2023. [For information on citing the manuscript, see here](https://www.ottrproject.org/index.html#how-to-cite-ottr)
@@ -59,7 +59,7 @@ There are various ways in which you can request or suggest changes to OTTR. Belo
 
 If you want to alert us about an issue or make suggestions, you can open a GitHub Issue or submit a response in our [OTTR Feedback Google Form](https://forms.gle/jGQnd5oemHWyuUq28).
 
-If you aren't sure what repository the suggestion pertains to -- or if the suggestion pertains to multiple repositories file it to the [`OTTR_Template` repo](https://github.com/jhudsl/OTTR_Template/issues/new/choose). 
+If you aren't sure what repository the suggestion pertains to -- or if the suggestion pertains to multiple repositories file it to the [`OTTR_Template` repo](https://github.com/jhudsl/OTTR_Template/issues/new/choose).
 
 #### GitHub Issues
 
@@ -81,12 +81,12 @@ Most of the links above will directly open an issue for you to fill out a descri
 
 * **Feature Request** or **Course Template Feature Request**: Use this issue if you want to make a suggestion for an addition.
 * **Problem Report** or **Course Template Problem Report**: Use this issue if you want to report a problem or possible improvement.
-* **New Content Idea**: This is a template meant for opening an issue in an OTTR course, so that someone can suggest an additional topic or idea for that specific course. It can be used for general suggestions for content. 
+* **New Content Idea**: This is a template meant for opening an issue in an OTTR course, so that someone can suggest an additional topic or idea for that specific course. It can be used for general suggestions for content.
 * **Course Problem Report**: This is a template meant for opening an issue in an OTTR course, so that someone can point out a problem or suggest an improvement for that specific course. It shouldn't be used for opening an issue in one of these repos.
 
 ##### Assign an OTTR maintainer
 
-Assign an OTTR maintainer (`@cansavvy` or `@carriewright11` or `@avahoffman`) to the issue. If you aren't sure who the issue pertains to, assign `@cansavvy` and she'll make sure it gets to the right person. 
+Assign an OTTR maintainer (`@cansavvy` or `@carriewright11` or `@avahoffman`) to the issue. If you aren't sure who the issue pertains to, assign `@cansavvy` and she'll make sure it gets to the right person.
 
 #### Google Form
 
@@ -98,7 +98,7 @@ If you want to implement an improvement or fix a problem, open a branch, make th
 
 #### Request Review
 
-Make sure to request review of your pull request from an OTTR maintainer (`@cansavvy` or `@carriewright11`).
+Make sure to request review of your pull request from an OTTR maintainer (`@cansavvy` or `@carriewright11` or `@avahoffman`).
 
 ## What if you want to make several courses with similar branding using OTTR?
 
@@ -112,11 +112,7 @@ Examples that have done this include:
 |:------------------:|:-------------------------------------------------------------------------:|
 | AnVIL Template     | [GitHub Source Code](https://github.com/jhudsl/AnVIL_Template)            |
 | DataTrail Template | [GitHub Source Code](https://github.com/datatrail-jhu/DataTrail_Template) |
-|Quarto website| [GitHub Source Code](https://github.com/fhdsl/OTTR_Quarto)| 
+|Quarto website| [GitHub Source Code](https://github.com/fhdsl/OTTR_Quarto)|
 |Metric collection dashboard template| [GitHub Source Code](https://github.com/fhdsl/metricminer-dashboard)|
 
-If you are interested in this and have questions, reach out to the OTTR maintainers by filing a GitHub issue and assigning `@cansavvy` and `@carriewright11`.
-
-## Code of Conduct
-
-The [Contributor Covenant Code of Conduct can be found here](https://github.com/jhudsl/OTTR_Template/blob/main/code_of_conduct.md)
+If you are interested in this and have questions, reach out to the OTTR maintainers by filing a GitHub issue and assigning `@cansavvy`, `@carriewright11`, and `@avahoffman`.
