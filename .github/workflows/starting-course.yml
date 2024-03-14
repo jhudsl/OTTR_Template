@@ -50,6 +50,7 @@ jobs:
             resources/images/04-figures_files \
             resources/chapt_screen_images \
             Course_Name.rds \
+            CONTRIBUTING.md \
             docs/*.html \
             docs/*.md \
             manuscript/*

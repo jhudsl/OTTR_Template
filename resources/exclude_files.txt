@@ -2,3 +2,4 @@ About.Rmd
 docs/*
 style-sets/*
 manuscript/*
+CONTRIBUTING.md
