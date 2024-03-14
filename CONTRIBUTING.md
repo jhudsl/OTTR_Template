@@ -112,6 +112,8 @@ Examples that have done this include:
 |:------------------:|:-------------------------------------------------------------------------:|
 | AnVIL Template     | [GitHub Source Code](https://github.com/jhudsl/AnVIL_Template)            |
 | DataTrail Template | [GitHub Source Code](https://github.com/datatrail-jhu/DataTrail_Template) |
+|Quarto website| [GitHub Source Code](https://github.com/fhdsl/OTTR_Quarto)| 
+|Metric collection dashboard template| [GitHub Source Code](https://github.com/fhdsl/metricminer-dashboard)|
 
 If you are interested in this and have questions, reach out to the OTTR maintainers by filing a GitHub issue and assigning `@cansavvy` and `@carriewright11`.
 
