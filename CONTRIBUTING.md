@@ -81,7 +81,7 @@ Most of the links above will directly open an issue for you to fill out a descri
 
 * **Feature Request** or **Course Template Feature Request**: Use this issue if you want to make a suggestion for an addition.
 * **Problem Report** or **Course Template Problem Report**: Use this issue if you want to report a problem or possible improvement.
-* **New Content Idea**: This is a template meant for opening an issue in an OTTR course, so that someone can suggest an additional topic or idea for that specific course. It shouldn't be used for opening an issue in one of these repos.
+* **New Content Idea**: This is a template meant for opening an issue in an OTTR course, so that someone can suggest an additional topic or idea for that specific course. It can be used for general suggestions for content. 
 * **Course Problem Report**: This is a template meant for opening an issue in an OTTR course, so that someone can point out a problem or suggest an improvement for that specific course. It shouldn't be used for opening an issue in one of these repos.
 
 ##### Assign an OTTR maintainer
