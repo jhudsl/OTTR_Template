@@ -57,7 +57,9 @@ There are various ways in which you can request or suggest changes to OTTR. Belo
 
 ### You want to make suggestions, but leave the implementation to someone else
 
-If you want to alert us about an issue or make suggestions, you can open a GitHub Issue or submit a response in our OTTR Feedback Google Form.
+If you want to alert us about an issue or make suggestions, you can open a GitHub Issue or submit a response in our [OTTR Feedback Google Form](https://forms.gle/jGQnd5oemHWyuUq28).
+
+If you aren't sure what repository the suggestion pertains to -- or if the suggestion pertains to multiple repositories file it to the [`OTTR_Template` repo](https://github.com/jhudsl/OTTR_Template/issues/new/choose). 
 
 #### GitHub Issues
 
