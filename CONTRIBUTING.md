@@ -86,7 +86,7 @@ Most of the links above will directly open an issue for you to fill out a descri
 
 ##### Assign an OTTR maintainer
 
-Assign an OTTR maintainer (`@cansavvy` or `@carriewright11`) to the issue.
+Assign an OTTR maintainer (`@cansavvy` or `@carriewright11` or `@avahoffman`) to the issue. If you aren't sure who the issue pertains to, assign `@cansavvy` and she'll make sure it gets to the right person. 
 
 #### Google Form
 
