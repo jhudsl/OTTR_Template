@@ -33,8 +33,8 @@ jobs:
       - name: Make the branch fresh
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
-          git config --global user.email "itcrtrainingnetwork@gmail.com"
-          git config --global user.name "jhudsl-robot"
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
           branch_name='preview-${{ github.event.pull_request.number }}'
           echo branch doesnt exist
@@ -130,8 +130,8 @@ jobs:
       - name: Set up git checkout
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
-          git config --global user.email "itcrtrainingnetwork@gmail.com"
-          git config --global user.name "jhudsl-robot"
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
           branch_name='preview-${{ github.event.pull_request.number }}'
           git fetch --all
