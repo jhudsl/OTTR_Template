@@ -44,7 +44,6 @@ group:
       fhdsl/Cancer_Imaging_Informatics
       datatrail-jhu/DataTrail_Template
       abyzovlab/CNVpytor-course
-      opencasestudies/OCS_Guide
       tmm211/dsp-terra-mooc-test2
       fhdsl/Choosing_Genomics_Tools
       fhdsl/NIH_Data_Sharing
@@ -145,3 +144,19 @@ group:
       deleteOrphaned: true
     repos: |
       C-MOOR/C-MOOR_Template
+      
+  - files:
+    - source: config_automation.yml
+      dest: config_automation.yml
+    - source: .github/workflows/
+      dest: .github/workflows/
+      deleteOrphaned: true
+    - source: .github/switch_sync_repo.R
+      dest: .github/switch_sync_repo.R
+    - source: assets/box_images/
+      dest: assets/box_images/
+    - source: scripts/
+      dest: scripts/
+      deleteOrphaned: true
+    repos: |
+      opencasestudies/OCS_Guide
