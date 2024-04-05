@@ -1,3 +1,12 @@
+---
+name: New Content or Feature
+about: New Content or Feature Update
+title: General Update
+labels: ''
+assignees:
+---
+
+
 <!--This PR Template was modified from https://github.com/AlexsLemonade/OpenPBTA-analysis/blob/master/.github/PULL_REQUEST_TEMPLATE.md-->
 
 ### Purpose/implementation Section
