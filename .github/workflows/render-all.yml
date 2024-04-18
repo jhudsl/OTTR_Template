@@ -8,9 +8,10 @@ on:
   push:
     branches: [ main, staging ]
     paths:
-      - '**.Rmd'
+      - '**md$'
       - assets/*
       - quizzes/*
+      - !docs/*
 
 jobs:
 
