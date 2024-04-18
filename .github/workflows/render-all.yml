@@ -28,7 +28,7 @@ jobs:
         with:
             files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
     outputs:
-      toggle_bookdown: "${{ env.RENDER_BOOKDOWN }}"
+      toggle_website: "${{ env.RENDER_WEBSITE }}"
       toggle_coursera: "${{ env.RENDER_COURSERA }}"
       toggle_leanpub: "${{ env.RENDER_LEANPUB }}"
       make_book_txt: "${{ env.MAKE_BOOK_TXT }}"
@@ -41,7 +41,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ${{needs.yaml-check.outputs.rendering_docker_image}}
-    if: ${{needs.yaml-check.outputs.toggle_bookdown == 'yes'}}
 
     steps:
       - name: checkout
@@ -110,10 +109,16 @@ jobs:
 
       # Rendered content for Leanpub and Coursera is very similar.
       # This job creates a shared scaffold for both.
-      - name: Run TOC-less version of render
-        id: tocless
+      - name: Run TOC-less version of render -- Rmd version
+        if: ${{needs.yaml-check.outputs.toggle_website == 'rmd' }} 
+        id: tocless_rmd
         run: Rscript -e "ottrpal::render_without_toc()"
 
+      - name: Run TOC-less version of render -- quarto version
+        id: tocless_quarto
+        if: ${{needs.yaml-check.outputs.toggle_website == 'quarto' }} 
+        run: Rscript -e "quarto::quarto_render('.', metadata = list(sidebar = F, toc = F))"
+      
       # Commit the TOC-less version files
       - name: Commit tocless bookdown files
         env:
