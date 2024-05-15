@@ -62,9 +62,15 @@ jobs:
       # Run bookdown rendering
       - name: Run bookdown render
         id: bookdown
+        if: ${{needs.yaml-check.outputs.toggle_website == 'rmd' }}
         run: |
           Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all');
           file.copy(from = 'assets', to = 'docs/assets', overwrite = TRUE)"
+
+      - name: Render quarto version
+        id: tocless_quarto
+        if: ${{needs.yaml-check.outputs.toggle_website == 'quarto' }}
+        run: Rscript -e "quarto::quarto_render('.')"
 
       # This checks on the steps before it and makes sure that they completed.
       # If the renders didn't complete we don't want to commit the file changes
@@ -110,15 +116,17 @@ jobs:
       # Rendered content for Leanpub and Coursera is very similar.
       # This job creates a shared scaffold for both.
       - name: Run TOC-less version of render -- Rmd version
-        if: ${{needs.yaml-check.outputs.toggle_website == 'rmd' }} 
+        if: ${{needs.yaml-check.outputs.toggle_website == 'rmd' }}
         id: tocless_rmd
         run: Rscript -e "ottrpal::render_without_toc()"
 
       - name: Run TOC-less version of render -- quarto version
         id: tocless_quarto
-        if: ${{needs.yaml-check.outputs.toggle_website == 'quarto' }} 
-        run: Rscript -e "quarto::quarto_render('.', metadata = list(sidebar = F, toc = F))"
-      
+        if: ${{needs.yaml-check.outputs.toggle_website == 'quarto' }}
+        run: |
+          Rscript -e "quarto::quarto_render('.', metadata = list(sidebar = F, toc = F),
+          quarto_args = c('--output-dir', 'docs/no_toc/'))"
+
       # Commit the TOC-less version files
       - name: Commit tocless bookdown files
         env:
