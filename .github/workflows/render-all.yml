@@ -1,5 +1,5 @@
-
-# Candace Savonen Apr 2021
+# Candace Savonen 2021
+# Updated May 2024
 
 name: Render all output courses
 
@@ -35,8 +35,8 @@ jobs:
       rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
       toggle_quiz_check: "${{ env.CHECK_QUIZZES }}"
 
-  render-bookdown:
-    name: Render bookdown
+  render-course:
+    name: Render course preview
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
@@ -74,14 +74,24 @@ jobs:
 
       # This checks on the steps before it and makes sure that they completed.
       # If the renders didn't complete we don't want to commit the file changes
-      - name: Check on render step
-        if: steps.bookdown.outcome != 'success'
+      - name: Check on Rmd render steps
+        if: ${{needs.yaml-check.outputs.toggle_website == 'rmd' }}
         run: |
           echo Bookdown status ${{steps.bookdown.outcome}}
-          exit 1
+          if [${{steps.bookdown.outcome}} != 'success']; then
+            exit 1
+          fi
 
-      # Commit the rendered bookdown files
-      - name: Commit rendered bookdown files
+      - name: Check on quarto render steps
+        if: ${{needs.yaml-check.outputs.toggle_website == 'quarto' }}
+        run: |
+          echo Quarto status ${{steps.quarto.outcome}}
+          if [${{steps.quarto.outcome}} != 'success']; then
+            exit 1
+          fi
+
+      # Commit the rendered course files
+      - name: Commit rendered course files
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
@@ -243,7 +253,7 @@ jobs:
         id: coursera
         run: Rscript -e "ottrpal::convert_coursera_quizzes()"
 
-      # Commit the rendered bookdown files
+      # Commit the rendered files
       # Only commit coursera quizzes if the directory is present
       - name: Commit rendered Coursera files
         env:

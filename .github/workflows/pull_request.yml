@@ -1,5 +1,5 @@
 # Candace Savonen 2021
-# Updated Jan 2023
+# Updated May 2024
 
 name: Pull Request
 
@@ -39,7 +39,7 @@ jobs:
           branch_name='preview-${{ github.event.pull_request.number }}'
           echo branch doesnt exist
           git checkout -b $branch_name || echo branch exists
-          git push --set-upstream origin $branch_name || echo echo branch exists remotely
+          git push --set-upstream origin $branch_name || echo branch exists remotely
         shell: bash
 
 
@@ -102,13 +102,13 @@ jobs:
           fetch-depth: 0
 
       - name: Run styler
-        run: Rscript -e "styler::style_file(list.files(pattern = 'Rmd$', recursive = TRUE, full.names = TRUE));warnings()"
+        run: Rscript -e "styler::style_file(list.files(pattern = 'md$', recursive = FALSE, full.names = TRUE));warnings()"
 
       - name: Commit styled files
         run: |
           git config --system --add safe.directory "$GITHUB_WORKSPACE"
-          git add \*.Rmd
-          git commit -m 'Style Rmds' || echo "No changes to commit"
+          git add \*md
+          git commit -m 'Style *mds' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
 
 ############################# Render Preview ###################################
@@ -154,11 +154,21 @@ jobs:
 
       # This checks on the steps before it and makes sure that they completed.
       # If the renders didn't complete we don't want to commit the file changes
-      - name: Check on render steps
-        if: steps.bookdown.outcome != 'success' && steps.quarto.outcome != 'success'
+      - name: Check on Rmd render steps
+        if: ${{needs.yaml-check.outputs.toggle_website == 'rmd' }}
         run: |
           echo Bookdown status ${{steps.bookdown.outcome}}
-          exit 1
+          if [${{steps.bookdown.outcome}} != 'success']; then
+            exit 1
+          fi
+
+      - name: Check on quarto render steps
+        if: ${{needs.yaml-check.outputs.toggle_website == 'quarto' }}
+        run: |
+          echo Quarto status ${{steps.quarto.outcome}}
+          if [${{steps.quarto.outcome}} != 'success']; then
+            exit 1
+          fi
 
       - name: Website preview for download
         run: zip website-preview.zip docs/* -r
