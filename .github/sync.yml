@@ -67,7 +67,8 @@ group:
       fhdsl/WDL_Workflows_Guide
       fhdsl/S2-Collaborative-Git-GitHub
       fhdsl/GitHub_Automation_for_Scientists
-      williamtmillsiv/introduction_to_bioinformatics 
+      williamtmillsiv/introduction_to_bioinformatics
+      fhdsl/ottr
 ###ADD NEW REPO HERE following the format above#
 
 ### These are custom groups for syncing -- not all files needs to be synced
@@ -144,7 +145,7 @@ group:
       deleteOrphaned: true
     repos: |
       C-MOOR/C-MOOR_Template
-      
+
   - files:
     - source: config_automation.yml
       dest: config_automation.yml
