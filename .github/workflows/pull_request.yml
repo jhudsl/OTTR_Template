@@ -102,7 +102,7 @@ jobs:
           fetch-depth: 0
 
       - name: Run styler
-        run: Rscript -e "styler::style_file(list.files(pattern = 'md$', recursive = FALSE, full.names = TRUE));warnings()"
+        run: Rscript -e "styler::style_file(list.files(pattern = '(R|q)md$', recursive = FALSE, full.names = TRUE));warnings()"
 
       - name: Commit styled files
         run: |
