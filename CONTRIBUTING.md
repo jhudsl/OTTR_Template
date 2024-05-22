@@ -25,6 +25,10 @@ The [OTTR_Template_Website repository](https://github.com/jhudsl/OTTR_Template_W
 
 The [ottr-reports repository](https://github.com/jhudsl/ottr-reports) houses the functionality for reporting the results of the GitHub Action checks on spelling, URLs, and quiz formatting.
 
+#### ottr_docker
+
+The [ottr_docker repository](https://github.com/jhudsl/ottr_docker) holds the Dockerfiles for docker images available for use with OTTR.
+
 #### ottrpal
 
 The [ottrpal repository](https://github.com/jhudsl/ottrpal) provides the functionality to convert an OTTR course to files ready for use in Leanpub and Coursera
@@ -71,6 +75,7 @@ Open an issue describing the bug or feature request for the relevant repository 
 | OTTR_Quizzes          | [Open an issue here](https://github.com/jhudsl/OTTR_Quizzes/issues/new/choose)         |
 | OTTR_Template_Website | [Open an issue here](https://github.com/jhudsl/OTTR_Template_Website/issues/new/choose)|
 | ottr-reports          | [Open an issue here](https://github.com/jhudsl/ottr-reports/issues/new/choose)         |
+| ottr_docker           | [Open an issue here](https://github.com/jhudsl/ottr_docker/issues/new/choose)          |
 | ottrpal               | [Open an issue here](https://github.com/jhudsl/ottrpal/issues/new/choose)              |
 | cow                   | [Open an issue here](https://github.com/jhudsl/cow/issues/new/choose)                  |
 | ottrproject.org       | [Open an issue here](https://github.com/jhudsl/ottrpal/issues/new/choose)              |
