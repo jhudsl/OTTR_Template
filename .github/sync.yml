@@ -61,14 +61,15 @@ group:
       fhdsl/AI_for_software
       fhdsl/AI_for_Decision_Makers
       griffithlab/Immuno_Workflow_Course
-      fhdsl/S1_Intro_to_R
-      fhdsl/S1_Intro_to_Command_Line
-      fhdsl/S1_Intro_to_Git_GitHub
+      fhdsl/Intro_to_R
+      fhdsl/Intro_to_Command_Line
+      fhdsl/Intro_to_Git_GitHub
       fhdsl/WDL_Workflows_Guide
-      fhdsl/S2-Collaborative-Git-GitHub
+      fhdsl/Intermediate-Git-GitHub
       fhdsl/GitHub_Automation_for_Scientists
       williamtmillsiv/introduction_to_bioinformatics
       fhdsl/bench_to_bytes
+      fhdsl/Intermediate_R
 ###ADD NEW REPO HERE following the format above#
 
 ### These are custom groups for syncing -- not all files needs to be synced
