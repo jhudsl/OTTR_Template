@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: mshick/add-pr-comment@v1
+      - uses: mshick/add-pr-comment@v2
         if: ${{ github.head_ref == 'repo-sync/OTTR_Template/default' }}
         with:
           message: |
