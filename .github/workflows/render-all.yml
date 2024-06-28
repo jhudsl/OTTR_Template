@@ -200,7 +200,7 @@ jobs:
           git push -u origin main || echo "No changes to push"
 
       - name: Run ottrpal::bookdown_to_embed_leanpub
-        if: needs.yaml-check.outputs.toggle_quiz_check == 'no'
+        if: ${{ needs.yaml-check.outputs.toggle_quiz_check == 'no'}}
         run: |
           echo needs.yaml-check.outputs.toggle_make_book_txt == 'yes'
           echo needs.yaml-check.outputs.toggle_make_book_txt
@@ -211,7 +211,7 @@ jobs:
             quiz_dir = NULL)"
 
       - name: Run ottrpal::bookdown_to_embed_leanpub
-        if: needs.yaml-check.outputs.toggle_quiz_check == 'yes'
+        if: ${{ needs.yaml-check.outputs.toggle_quiz_check == 'yes'}}
         run: |
           Rscript -e "ottrpal::bookdown_to_embed_leanpub(
             render = FALSE, \

@@ -58,17 +58,21 @@ group:
       griffithlab/pVACtools_Intro_Course
       griffithlab/CIVIC_SVI_Course
       PracticalGenomics/cogaps-on-sciserver
-      fhdsl/AI_for_software
+      fhdsl/AI_for_Efficient_Programming
       fhdsl/AI_for_Decision_Makers
       griffithlab/Immuno_Workflow_Course
-      fhdsl/S1_Intro_to_R
-      fhdsl/S1_Intro_to_Command_Line
-      fhdsl/S1_Intro_to_Git_GitHub
+      fhdsl/Intro_to_R
+      fhdsl/Intro_to_Command_Line
+      fhdsl/Intro_to_Git_GitHub
       fhdsl/WDL_Workflows_Guide
-      fhdsl/S2-Collaborative-Git-GitHub
+      fhdsl/Intermediate-Git-GitHub
       fhdsl/GitHub_Automation_for_Scientists
       williamtmillsiv/introduction_to_bioinformatics
-      fhdsl/ottr
+      fhdsl/OTTR_Quarto
+      fhdsl/bench_to_bytes
+      fhdsl/Intermediate_R
+      fhdsl/DataViz_Practice
+      fhdsl/DataViz_Considerations
 ###ADD NEW REPO HERE following the format above#
 
 ### These are custom groups for syncing -- not all files needs to be synced
