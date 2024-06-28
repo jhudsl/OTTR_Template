@@ -60,13 +60,13 @@ jobs:
           git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
           git fetch origin
           git pull --rebase --allow-unrelated-histories --strategy-option=ours
-          rm -rf docs/*
 
       # Run Rmd rendering
       - name: Run bookdown render
         id: bookdown
         if: ${{needs.yaml-check.outputs.toggle_website == 'rmd' }}
         run: |
+          rm -rf docs/*
           Rscript -e "bookdown::render_book('index.Rmd', output_format = 'all');
           file.copy(from = 'assets', to = 'docs/assets', overwrite = TRUE)"
 
@@ -100,7 +100,7 @@ jobs:
         run: |
           git add --force docs/*
           git commit -m 'Render course' || echo "No changes to commit"
-          git status
+          git status docs/*
           git push -u origin main  || echo "No changes to push"
 
   render-tocless:
@@ -148,7 +148,7 @@ jobs:
         run: |
           git add --force docs/no_toc*
           git commit -m 'Render toc-less' || echo "No changes to commit"
-          git status
+          git status docs/no_toc*
           git push -u origin main  || echo "No changes to push"
 
   render-leanpub:
@@ -174,6 +174,7 @@ jobs:
           git remote set-url origin https://${GH_PAT}@github.com/${GITHUB_REPOSITORY}
           git fetch origin
           git pull --rebase --allow-unrelated-histories --strategy-option=ours
+          ls docs/no_toc
 
       # Create screenshots
       - name: Run the screenshot creation
@@ -196,16 +197,17 @@ jobs:
           rm -rf manuscript/
           git add .
           git commit -m 'Delete manuscript folder' || echo "No changes to commit"
-          git status
           git push -u origin main || echo "No changes to push"
 
       - name: Run ottrpal::bookdown_to_embed_leanpub
         if: needs.yaml-check.outputs.toggle_quiz_check == 'no'
         run: |
+          echo needs.yaml-check.outputs.toggle_make_book_txt == 'yes'
+          echo needs.yaml-check.outputs.toggle_make_book_txt
           Rscript -e "ottrpal::bookdown_to_embed_leanpub(
             render = FALSE, \
             chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
-            make_book_txt = as.logical('${{needs.yaml-check.outputs.make_book_txt}}'), \
+            make_book_txt = as.logical('${{needs.yaml-check.outputs.make_book_txt == 'yes'}}'), \
             quiz_dir = NULL)"
 
       - name: Run ottrpal::bookdown_to_embed_leanpub
@@ -214,7 +216,7 @@ jobs:
           Rscript -e "ottrpal::bookdown_to_embed_leanpub(
             render = FALSE, \
             chapt_img_key = 'resources/chapt_screen_images/chapter_urls.tsv', \
-            make_book_txt = as.logical('${{needs.yaml-check.outputs.make_book_txt}}'))"
+            make_book_txt = as.logical('${{needs.yaml-check.outputs.make_book_txt == 'yes'}}'))"
 
       # Commit the rendered Leanpub files
       - name: Commit rendered Leanpub files
@@ -226,7 +228,7 @@ jobs:
           git add --force resources/*
           git add --force docs/*
           git commit -m 'Render Leanpub' || echo "No changes to commit"
-          git status
+          git status docs/*
           git pull --rebase --allow-unrelated-histories --strategy-option=ours --autostash
           git push --force --set-upstream origin main || echo "No changes to push"
 
