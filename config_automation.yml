@@ -17,7 +17,7 @@ url-check-periodically: yes
 
 ##### Renderings run upon merge to main branch #####
 # Rendering each platform's content
-render-bookdown: yes
+render-website: rmd
 render-leanpub: yes
 render-coursera: no
 

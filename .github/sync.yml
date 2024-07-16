@@ -68,6 +68,7 @@ group:
       fhdsl/Intermediate-Git-GitHub
       fhdsl/GitHub_Automation_for_Scientists
       williamtmillsiv/introduction_to_bioinformatics
+      fhdsl/OTTR_Quarto
       fhdsl/bench_to_bytes
       fhdsl/Intermediate_R
       fhdsl/DataViz_Practice
@@ -148,7 +149,7 @@ group:
       deleteOrphaned: true
     repos: |
       C-MOOR/C-MOOR_Template
-      
+
   - files:
     - source: config_automation.yml
       dest: config_automation.yml
