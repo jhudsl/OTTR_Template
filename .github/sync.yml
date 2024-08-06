@@ -73,6 +73,7 @@ group:
       fhdsl/Intermediate_R
       fhdsl/DataViz_Practice
       fhdsl/DataViz_Considerations
+      fhdsl/Intro_to_Python
 ###ADD NEW REPO HERE following the format above#
 
 ### These are custom groups for syncing -- not all files needs to be synced
