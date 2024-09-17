@@ -28,6 +28,8 @@ group:
         dest: assets/box_images/
       - source: resources/exclude_files.txt
         dest: resources/exclude_files.txt
+      - source: config_automation.yml
+        dest: config_automation.yml
   # Repositories to receive changes
     repos: |
       jhudsl/Documentation_and_Usability
@@ -98,6 +100,8 @@ group:
       dest: scripts/make_screenshots.R
     - source: scripts/switch_sync_repo.R
       dest: scripts/switch_sync_repo.R
+    - source: config_automation.yml
+      dest: config_automation.yml
     repos: |
       jhudsl/OTTR_Quizzes
 
@@ -126,6 +130,8 @@ group:
       deleteOrphaned: true
     - source: style-sets/fhdasl/
       dest: style-sets/fhdasl/
+    - source: config_automation.yml
+      dest: config_automation.yml
     repos: |
       jhudsl/AnVIL_Template
 
@@ -147,6 +153,8 @@ group:
       dest: assets/toc_close.css
     - source: scripts/
       dest: scripts/
+    - source: config_automation.yml
+      dest: config_automation.yml
       deleteOrphaned: true
     repos: |
       C-MOOR/C-MOOR_Template
@@ -164,5 +172,7 @@ group:
     - source: scripts/
       dest: scripts/
       deleteOrphaned: true
+    - source: config_automation.yml
+      dest: config_automation.yml
     repos: |
       opencasestudies/OCS_Guide
