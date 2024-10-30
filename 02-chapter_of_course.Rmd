@@ -1,20 +1,16 @@
 
 # A new chapter
 
-
-
-```{r panel-setup, include = FALSE}
-install.packages("xaringanExtra", repos = 'https://cloud.r-project.org')
-xaringanExtra::use_panelset()
-xaringanExtra::style_panelset_tabs(font_family = "inherit")
-```
-
-
 If you haven't yet read the getting started Wiki pages; [start there](https://www.ottrproject.org/getting_started.html).
 
 To see the rendered version of this chapter and the rest of the template, see here: https://jhudatascience.org/OTTR_Template/.
 
 Every chapter needs to start out with this chunk of code:
+
+
+```{r, echo=FALSE, fig.alt='I can determine if a DMS plan is required using the table here: https://sharing.nih.gov/sites/default/files/List-of-Activity-Codes-Applicable-to-DMS-Policy.pdf', out.width = '100%', fig.align = 'center'}
+
+```
 
 
 ```{r, include = FALSE}
