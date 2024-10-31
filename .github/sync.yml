@@ -77,8 +77,9 @@ group:
       fhdsl/DataViz_Considerations
       fhdsl/Intro_to_Python
       fhdsl/Containers_for_Scientists
+      acmadeo/GARDE_try2
 ###ADD NEW REPO HERE following the format above#
-
+       
 ### These are custom groups for syncing -- not all files needs to be synced
   - files:
     - source: config_automation.yml
