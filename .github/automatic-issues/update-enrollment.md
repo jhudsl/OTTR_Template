@@ -6,3 +6,6 @@ If you want to receive updates from the original template to your course templat
 
 - [ ] [Follow these instructions](https://www.ottrproject.org/getting_started.html#9_Enroll_your_repository_for_OTTR_updates) to enroll your course repository to receive these updates.
   - [ ] Alternatively, [open an issue in the OTTR_Template repo](https://github.com/jhudsl/OTTR_Template/issues/new?assignees=cansavvy&labels=&projects=&template=new-course-add-to-sync.md&title=), providing us with the necessary information to add the course for you.
+
+In order for these syncs to happen we need credentials to do so. Our `jhudsl-robot` is what you need to give access to. 
+- [ ] [Add the `jhudsl-robot` as a collaborator to your repository.](https://www.ottrproject.org/getting_started.html#5_Add_jhudsl-robot_as_a_collaborator).
