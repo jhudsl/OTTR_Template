@@ -81,7 +81,7 @@ jobs:
         
       # Commit file
     - name: Commit tocless bookdown files
-      if: ${{ steps.check-report.outputs.error_num >= 1
+      if: ${{ steps.check-report.outputs.error_num >= 1 }}
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
