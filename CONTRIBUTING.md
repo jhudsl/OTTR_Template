@@ -62,7 +62,7 @@ There's an [OTTR paper](https://pubmed.ncbi.nlm.nih.gov/37207236/) published in 
 
 #### Cheatsheets
 
-The [cheatsheets]() repository is where we are constructing cheatsheets for OTTR. 
+The [cheatsheets](https://github.com/jhudsl/cheatsheets) repository is where we are constructing cheatsheets for OTTR. 
 
 #### Videos
 
