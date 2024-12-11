@@ -11,31 +11,44 @@ Open-source Tools for Training Resources (OTTR) are a set of GitHub repositories
 ### Functionality
 #### OTTR_Template
 
-The [OTTR_Template repository](https://github.com/jhudsl/OTTR_Template) is a template used to create OTTR courses, specifically when you're writing one course, but publishing it in three places: (bookdown/website), Leanpub, and Coursera. If used with [a pull request model](https://www.ottrproject.org/writing_content_courses.html#about-ottr-and-pull-requests), courses built with the template will be checked for spelling errors and periodically for broken URLs, and can be previewed and automatically rendered after updates.
+The [OTTR_Template repository](https://github.com/jhudsl/OTTR_Template) is a user-facing repository/template that can be used to create OTTR courses, specifically when you're writing one course, but publishing it in three places: (bookdown/website), Leanpub, and Coursera. If used with [a pull request model](https://www.ottrproject.org/writing_content_courses.html#about-ottr-and-pull-requests), courses built with the template will be checked for spelling errors and periodically for broken URLs, and can be previewed and automatically rendered after updates.
 
 #### OTTR_Quizzes
 
-The [OTTR_Quizzes repository](https://github.com/jhudsl/OTTR_Quizzes) can be used when you want your course quizzes to remain private rather being housed in a public, open source repository. Use of this repository is in conjunction with the main OTTR_Template. All edits and additions to non-quiz content should take place
+The [OTTR_Quizzes repository](https://github.com/jhudsl/OTTR_Quizzes) is a user-facing repository/template that can be used when you want your course quizzes to remain private rather being housed in a public, open source repository. Use of this repository is in conjunction with the main OTTR_Template. All edits and additions to non-quiz content should take place within the repository made from the main OTTR_Template.
 
 #### OTTR_Template_Website
 
-The [OTTR_Template_Website repository](https://github.com/jhudsl/OTTR_Template_Website) is a template used to create OTTR websites. Like the main OTTR_Template, if used with [a pull request model](https://www.ottrproject.org/writing_content_courses.html#about-ottr-and-pull-requests), websites built with the template will be checked for spelling errors and periodically for broken URLs, and can be previewed and automatically rendered after updates. Unlike the main OTTR_Template, it only produces a website as output.
+The [OTTR_Template_Website repository](https://github.com/jhudsl/OTTR_Template_Website) is a user-facing repository/template that can be used to create OTTR websites. Like the main OTTR_Template, if used with [a pull request model](https://www.ottrproject.org/writing_content_courses.html#about-ottr-and-pull-requests), websites built with the template will be checked for spelling errors and periodically for broken URLs, and can be previewed and automatically rendered after updates. Unlike the main OTTR_Template, it only produces a website as output.
 
 #### ottr-reports
 
-The [ottr-reports repository](https://github.com/jhudsl/ottr-reports) houses the functionality for reporting the results of the GitHub Action checks on spelling, URLs, and quiz formatting.
+The [ottr-reports repository](https://github.com/jhudsl/ottr-reports) is a non-user facing repository that houses the functionality for running and reporting the results of the GitHub Action checks on spelling, URLs, and quiz formatting.
 
 #### ottr-docker
 
-The [ottr_docker repository](https://github.com/jhudsl/ottr_docker) holds the Dockerfiles for docker images available for use with OTTR.
+The [ottr_docker repository](https://github.com/jhudsl/ottr_docker) is a non-user facing repository that holds the Dockerfiles for docker images available for use with OTTR. It has its own management system for building and pushing those Dockerfiles to Dockerhub. 
 
 #### ottrpal
 
-The [ottrpal repository](https://github.com/jhudsl/ottrpal) provides the functionality to convert an OTTR course to files ready for use in Leanpub and Coursera
+The [ottrpal repository](https://github.com/jhudsl/ottrpal) is a non-user facing repository that provides the functionality to convert an OTTR course to files ready for use in Leanpub and Coursera. (ottrpal functionality is called by ottr-reports, and any course is calling ottr-reports.)
 
 #### cow
 
-The [cow repository](https://github.com/jhudsl/cow) isn't officially an OTTR repository, but is a GitHub API wrapper in R which has additional functions to help wrangle GitHub published courses like OTTR courses.
+The [cow repository](https://github.com/jhudsl/cow) isn't officially an OTTR repository, but is a GitHub API wrapper in R which has additional functions to help wrangle GitHub published courses like OTTR courses. Future work will incorporate the functionality from this repository into the non-user facing OTTR ecosystem.
+
+### OTTR Quarto Templates
+
+Quarto isn't as language biased as Rmarkdown (e.g., Python compatibility) and is quite flexible with css customization -- therefore there are times that using Quarto is preferable to using Rmarkdown when creating a course. 
+
+#### OTTR_Quarto
+The [OTTR_Quarto repository](https://github.com/fhdsl/OTTR_Quarto) is a user-facing repository/template that is used to render Quarto files (`.Qmd`) to create a course. Specifically when you're writing one course, the OTTR ecosystem allows for publishing it in three places: (bookdown/website), Leanpub, and Coursera. If used with [a pull request model](https://www.ottrproject.org/writing_content_courses.html#about-ottr-and-pull-requests), courses built with the template will be checked for spelling errors and periodically for broken URLs, and can be previewed and automatically rendered after updates.
+
+#### OTTR_Quarto_Website
+The [OTTR_Quarto_Website repository](https://github.com/fhdsl/OTTR_Quarto_Website) is a user-facing repository/template that is used to render Quarto files (`.Qmd`) to create a website. It's a leaner version of the OTTR_Quarto template. Like the OTTR_Quarto template, if used with [a pull request model](https://www.ottrproject.org/writing_content_courses.html#about-ottr-and-pull-requests), websites built with the template will be checked for spelling errors and periodically for broken URLs, and can be previewed and automatically rendered after updates. Unlike the OTTR_Quarto template, it only produces a website as output.
+
+#### OTTR_Template
+If you've created a course originally using the OTTR_Template, expecting that you'll be using Rmarkdown files, but partway through the process decided that Quarto functionality would be more preferable, you can still use your repository because the main [OTTR_Template repository](https://github.com/jhudsl/OTTR_Template) now has compatibility to support rendering Quarto files (`.Qmd`) rather than Rmarkdown files to make a course. Settings within the config file can be changed to render a course using Quarto rather than the classic Rmarkdwon approach. In addition, `.Rmd` files should be changed to `.Qmd` files. As usual, if used with [a pull request model](https://www.ottrproject.org/writing_content_courses.html#about-ottr-and-pull-requests), courses built with the template (even with `.Qmd` files) will be checked for spelling errors and periodically for broken URLs, and can be previewed and automatically rendered after updates.
 
 ### Documentation
 
@@ -43,13 +56,13 @@ The [cow repository](https://github.com/jhudsl/cow) isn't officially an OTTR rep
 
 The [ottrproject.org repository](https://github.com/jhudsl/ottrproject.org) renders the [OTTR documentation website](https://www.ottrproject.org/). The repository is generated from the [OTTR_Template_Website template](https://github.com/jhudsl/OTTR_Template_Website).
 
-#### OTTR paper
+#### OTTR paper (not a repository)
 
 There's an [OTTR paper](https://pubmed.ncbi.nlm.nih.gov/37207236/) published in the Journal of Statistics and Data Science Education by C. Savonen, C. Wright, A. Hoffman, et al. in 2023. [For information on citing the manuscript, see here](https://www.ottrproject.org/index.html#how-to-cite-ottr)
 
 #### Cheatsheets
 
-TBA
+The [cheatsheets](https://github.com/jhudsl/cheatsheets) repository is where we are constructing cheatsheets for OTTR. 
 
 #### Videos
 
