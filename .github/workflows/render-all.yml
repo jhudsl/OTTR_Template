@@ -189,6 +189,7 @@ jobs:
             --git_pat ${{ secrets.GH_PAT }} \
             --repo $GITHUB_REPOSITORY \
             --output_dir resources/chapt_screen_images)
+          rm make_screenshots.R
 
       # We want a fresh run of the renders each time
       - name: Delete manuscript/
