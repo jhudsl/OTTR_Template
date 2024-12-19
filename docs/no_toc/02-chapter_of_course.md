@@ -7,9 +7,6 @@ To see the rendered version of this chapter and the rest of the template, see he
 
 Every chapter needs to start out with this chunk of code:
 
-
-
-
 ## Learning Objectives
 
 Every chapter also needs Learning objectives that will look like this:  
@@ -59,7 +56,7 @@ And make plots too:
 hist_plot <- hist(iris$Sepal.Length)
 ```
 
-<img src="resources/images/02-chapter_of_course_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="02-chapter_of_course_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 You can also save these plots to file:
 
@@ -107,7 +104,7 @@ dev.off()
 How to include a Google slide. It's simplest to use the `ottrpal` package:
 
 
-<img src="resources/images/02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" alt="Major point!! example image" width="100%" style="display: block; margin: auto;" />
+<img src="02-chapter_of_course_files/figure-html//1YmwKdIy9BeQ3EShgZhvtb3MgR8P6iDX4DfFD65W_gdQ_gcc4fbee202_0_141.png" alt="Major point!! example image" width="100%" style="display: block; margin: auto;" />
 
 But if you have the slide or some other image locally downloaded you can also use HTML like this:
 
@@ -298,7 +295,7 @@ devtools::session_info()
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       Etc/UTC
-##  date     2024-11-07
+##  date     2024-12-19
 ##  pandoc   3.1.1 @ /usr/local/bin/ (via rmarkdown)
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
