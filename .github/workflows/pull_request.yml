@@ -48,6 +48,7 @@ jobs:
       toggle_style_code: "${{ env.STYLE_CODE }}"
       toggle_url_check: "${{ env.URL_CHECKER }}"
       toggle_quiz_check: "${{ env.CHECK_QUIZZES }}"
+      toggle_md_linter: "${{ env.MARKDOWN_LINTER }}"
       toggle_render_preview: "${{ env.RENDER_PREVIEW }}"
       rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
 
@@ -109,6 +110,23 @@ jobs:
           git add \*md
           git commit -m 'Style *mds' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
+
+############################# Check Markdown Formatting ###################################
+  markdown-linter:
+    name: Markdown linter
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    if: ${{needs.yaml-check.outputs.toggle_md_linter == 'yes'}}
+
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: '*md$'
 
 ############################# Render Preview ###################################
 

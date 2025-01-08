@@ -16,3 +16,4 @@ bookdown::gitbook:
        <p style="text-align:center; font-size: 12px;"> <a href="https://github.com/rstudio4edu/rstudio4edu-book/"> Style adapted from: rstudio4edu-book </a> <a href ="https://creativecommons.org/licenses/by/2.0/"> (CC-BY 2.0) </a></p>
 bookdown::word_document2:
   toc: true
+  always_allow_html: true
