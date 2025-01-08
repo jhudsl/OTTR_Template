@@ -121,8 +121,6 @@ jobs:
     needs: yaml-check
     runs-on: ubuntu-latest
     if: ${{needs.yaml-check.outputs.toggle_md_linter == 'yes'}}
-    container:
-      image: davidanson/markdownlint-cli2:v0.17.1
 
     steps:
       - name: Checkout files
@@ -134,7 +132,8 @@ jobs:
           curl "https://github.com/DavidAnson/markdownlint-cli2/blob/af14a2e768b741b941255b4c6b875339b4acbb73/test/config-files/cfg/.markdownlint-cli2.jsonc" \
           -o resources/.markdownlint-cli2.jsonc
 
-          markdownlint-cli2 "**/*.md" "#node_modules" >> check_reports/markdown_lint_report.txt 2>&1
+          docker run -w /myfolder -v $PWD:/myfolder davidanson/markdownlint-cli2:v0.17.1 \
+           "**/*.md" "#node_modules" >> check_reports/markdown_lint_report.txt 2>&1
 
       # Commit the rendered bookdown files
       - name: Commit markdown report to preview branch
