@@ -121,6 +121,8 @@ jobs:
     needs: yaml-check
     runs-on: ubuntu-latest
     if: ${{needs.yaml-check.outputs.toggle_md_linter == 'yes'}}
+    image :
+      container: davidanson/markdownlint-cli2:v0.17.1
 
     steps:
       - name: Checkout files
@@ -128,12 +130,67 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: DavidAnson/markdownlint-cli2-action@v19
+      - run: |
+          mkdir -p check_reports
+
+          curl "https://github.com/DavidAnson/markdownlint-cli2/blob/af14a2e768b741b941255b4c6b875339b4acbb73/test/markdownlint-cli2-yaml-example/.markdownlint-cli2.yaml"
+          -O resources/.markdownlint-cli2.yaml
+
+          markdownlint-cli2 \
+          --config "resources/.markdownlint-cli2.yaml" "**/*.md" \
+          > check_reports/markdown_lint_report.txt
+
+      # Commit the rendered bookdown files
+      - name: Commit markdown report to preview branch
+        id: commit
+        run: |
+          branch_name='preview-${{ github.event.pull_request.number }}'
+          echo "markdown_issues=$(wc -l check_reports/markdown_lint_report.txt)" >> $GITHUB_OUTPUT
+          git add check_reports/markdown_lint_report.txt --force
+          git commit -m 'Add markdown report' || echo "No report to commit"
+          git pull --rebase --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
+          git push --force || echo "No report to commit"
+        shell: bash
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v2
+        id: fc
         with:
-          globs: |
-            *.Rmd
-            *.md
-            *.qmd
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes:
+
+      - name: Build components of the comment
+        id: build-components
+        run: |
+
+          course_name=$(head -n 1 _bookdown.yml | cut -d'"' -f 2| tr " " "-")
+          report_link=$(echo "https://github.com/$GITHUB_REPOSITORY/raw/preview-${{ github.event.pull_request.number }}/report_link.zip")
+          echo "time=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "commit_id=$GITHUB_SHA" >> $GITHUB_OUTPUT
+          echo ${{steps.commit.outputs.markdown_issues}}
+
+      - name: Create or update comment
+        if: steps.commit.outputs.markdown_issues > 4
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            [Markdown linter report here](${{ steps.build-components.outputs.time }})
+            _Updated at ${{ steps.build-components.outputs.time }} with changes from the latest commit ${{ steps.build-components.outputs.commit_id }}_
+          edit-mode: replace
+
+      - name: Comment if no changes
+        if: steps.commit.outputs.markdown_issues > 4
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Markdown linter report did not find any issues!
+            _Updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
+          edit-mode: replace
 
 ############################# Readability Report ###################################
 
