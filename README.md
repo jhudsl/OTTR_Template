@@ -25,8 +25,13 @@ _This template and guide helps you_:
 - [Advanced Reproducibility in Cancer Informatics](https://jhudatascience.org/Adv_Reproducibility_in_Cancer_Informatics/)
 
 ## To Get Started
+
 - Go to the [ottrproject.org](https://www.ottrproject.org/).
 - Check out the [rendered version of the template](https://jhudatascience.org/OTTR_Template/).
 - Check out our [course on using Leanpub](https://hutchdatascience.org/Using_Leanpub/index.html) for help publishing on this platform.
 - Please take a look at the [code of conduct](./code_of_conduct.md).
 - If you encounter any problems or have ideas for improvements to this template repository or this getting started guide, please [file an issue here](https://github.com/jhudsl/OTTR_Template/issues/new/choose)! Your feedback is very much appreciated.
+
+## Contributing
+
+If you'd like to contribute, we love that! Please go to the [CONTRIBUTING.md doc](https://github.com/jhudsl/OTTR_Template/blob/main/CONTRIBUTING.md).
