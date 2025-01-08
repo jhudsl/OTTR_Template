@@ -137,23 +137,23 @@ jobs:
 
 ############################# Readability Report ###################################
 
-readability-report:
-  name: Readability report
-  needs: yaml-check
-  runs-on: ubuntu-latest
-  if: ${{needs.yaml-check.outputs.toggle_readability == 'yes'}}
+  readability-report:
+    name: Readability report
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    if: ${{needs.yaml-check.outputs.toggle_readability == 'yes'}}
 
-  steps:
-    - name: Checkout repo
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: Readability report
-      uses: Rebilly/lexi@v2
-      with:
-        github-token: ${{ secrets.GH_PAT }}
-        glob: '**/*.md'
+      - name: Readability report
+        uses: Rebilly/lexi@v2
+        with:
+          github-token: ${{ secrets.GH_PAT }}
+          glob: '**/*.md'
 
 ############################# Render Preview ###################################
 
