@@ -121,8 +121,8 @@ jobs:
     needs: yaml-check
     runs-on: ubuntu-latest
     if: ${{needs.yaml-check.outputs.toggle_md_linter == 'yes'}}
-    image :
-      container: davidanson/markdownlint-cli2:v0.17.1
+    container:
+      image: davidanson/markdownlint-cli2:v0.17.1
 
     steps:
       - name: Checkout files
