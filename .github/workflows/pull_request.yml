@@ -133,19 +133,19 @@ jobs:
       - run: |
           mkdir -p check_reports
 
-          curl "https://github.com/DavidAnson/markdownlint-cli2/blob/af14a2e768b741b941255b4c6b875339b4acbb73/test/markdownlint-cli2-yaml-example/.markdownlint-cli2.yaml"
-          -O resources/.markdownlint-cli2.yaml
+          curl "https://github.com/DavidAnson/markdownlint-cli2/blob/af14a2e768b741b941255b4c6b875339b4acbb73/test/config-files/cfg/.markdownlint-cli2.jsonc" \
+          -o resources/.markdownlint-cli2.jsonc
 
-          markdownlint-cli2 \
-          --config "resources/.markdownlint-cli2.yaml" "**/*.md" \
-          > check_reports/markdown_lint_report.txt
+          markdownlint-cli2 "**/*.md" "#node_modules" >> check_reports/markdown_lint_report.txt 2>&1
 
       # Commit the rendered bookdown files
       - name: Commit markdown report to preview branch
         id: commit
         run: |
           branch_name='preview-${{ github.event.pull_request.number }}'
-          echo "markdown_issues=$(wc -l check_reports/markdown_lint_report.txt)" >> $GITHUB_OUTPUT
+          error_num=$(cat check_reports/markdown_lint_report.txt | wc -l)
+          error_num="$((error_num-12))"
+          echo "markdown_issues=$error_num" >> $GITHUB_OUTPUT
           git add check_reports/markdown_lint_report.txt --force
           git commit -m 'Add markdown report' || echo "No report to commit"
           git pull --rebase --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
@@ -163,9 +163,7 @@ jobs:
       - name: Build components of the comment
         id: build-components
         run: |
-
-          course_name=$(head -n 1 _bookdown.yml | cut -d'"' -f 2| tr " " "-")
-          report_link=$(echo "https://github.com/$GITHUB_REPOSITORY/raw/preview-${{ github.event.pull_request.number }}/report_link.zip")
+          report_link=$(echo "https://github.com/$GITHUB_REPOSITORY/raw/preview-${{ github.event.pull_request.number }}/check_reports/markdown_lint_report.txt")
           echo "time=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
           echo "commit_id=$GITHUB_SHA" >> $GITHUB_OUTPUT
           echo ${{steps.commit.outputs.markdown_issues}}
@@ -177,7 +175,8 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            [Markdown linter report here](${{ steps.build-components.outputs.time }})
+            [Markdown linter report here](${{ steps.build-components.outputs.report_link }})
+            $(error_num) potential errors reported
             _Updated at ${{ steps.build-components.outputs.time }} with changes from the latest commit ${{ steps.build-components.outputs.commit_id }}_
           edit-mode: replace
 
