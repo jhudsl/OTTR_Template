@@ -49,6 +49,7 @@ jobs:
       toggle_url_check: "${{ env.URL_CHECKER }}"
       toggle_quiz_check: "${{ env.CHECK_QUIZZES }}"
       toggle_md_linter: "${{ env.MARKDOWN_LINTER }}"
+      toggle_readability: "${{ env.READABILITY_REPORT }}"
       toggle_render_preview: "${{ env.RENDER_PREVIEW }}"
       rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
 
@@ -129,7 +130,27 @@ jobs:
 
       - uses: DavidAnson/markdownlint-cli2-action@v19
         with:
-          globs: '*md$'
+          globs: '**/*.md'
+
+############################# Readability Report ###################################
+
+readability-report:
+  name: Readability report
+  needs: yaml-check
+  runs-on: ubuntu-latest
+  if: ${{needs.yaml-check.outputs.toggle_readability == 'yes'}}
+
+  steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Readability report
+      uses: Rebilly/lexi@v2
+      with:
+        github-token: ${{ secrets.GH_PAT }}
+        glob: '**/*.md'
 
 ############################# Render Preview ###################################
 
