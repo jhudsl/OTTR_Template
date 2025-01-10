@@ -129,7 +129,7 @@ jobs:
       - uses: DavidAnson/markdownlint-cli2-action@v19
         with:
           globs: '**/*.md'
-          continue-on-error: true
+        continue-on-error: true
 
       - name: Find Comment
         uses: peter-evans/find-comment@v2
