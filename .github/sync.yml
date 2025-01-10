@@ -1,4 +1,4 @@
-# Candace Savonen Aug 2021
+# Candace Savonen Jan 2025
 # For info on how to update this file see: https://github.com/marketplace/actions/repo-file-sync-action#%EF%B8%8F-sync-configuration
 
 group:
@@ -7,6 +7,7 @@ group:
         dest: .github/workflows/
         deleteOrphaned: true
         exclude: |
+          transfer-rendered-files.yml
           send-updates.yml
           test-send-updates.yml
           starting-course.yml
@@ -16,14 +17,6 @@ group:
       - source: scripts/
         dest: scripts/
         deleteOrphaned: true
-      - source: .github/ISSUE_TEMPLATE/course-problem-report.md
-        dest: .github/ISSUE_TEMPLATE/course-problem-report.md
-      - source: .github/ISSUE_TEMPLATE/course-content-add.md
-        dest: .github/ISSUE_TEMPLATE/course-content-add.md
-      - source: .github/ISSUE_TEMPLATE/url-error.md
-        dest: .github/ISSUE_TEMPLATE/url-error.md
-      - source: style-sets
-        dest: style-sets
       - source: assets/box_images/
         dest: assets/box_images/
       - source: resources/exclude_files.txt
