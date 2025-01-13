@@ -127,7 +127,9 @@ jobs:
     steps:
       - name: Checkout files
         uses: actions/checkout@v4
-
+        with:
+          token: ${{ secrets.GH_PAT }}
+          
       - name: Make the report
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
