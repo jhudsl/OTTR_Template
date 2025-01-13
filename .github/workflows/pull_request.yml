@@ -130,6 +130,10 @@ jobs:
 
       - name: Make the report
         run: |
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
           mkdir -p check_reports
 
           curl "https://github.com/DavidAnson/markdownlint-cli2/blob/af14a2e768b741b941255b4c6b875339b4acbb73/test/config-files/cfg/.markdownlint-cli2.jsonc" \
