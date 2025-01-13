@@ -128,7 +128,8 @@ jobs:
       - name: Checkout files
         uses: actions/checkout@v4
 
-      - run: |
+      - name: Make the report
+        run: |
           mkdir -p check_reports
 
           curl "https://github.com/DavidAnson/markdownlint-cli2/blob/af14a2e768b741b941255b4c6b875339b4acbb73/test/config-files/cfg/.markdownlint-cli2.jsonc" \
@@ -136,8 +137,9 @@ jobs:
 
           markdownlint-cli2 "**/*.md" "#node_modules" \
           >> check_reports/markdown_lint_report.txt 2>&1
+        continue-on-error: true
 
-      # Commit the rendered bookdown files
+      # Commit the markdown report
       - name: Commit markdown report to preview branch
         id: commit
         run: |
