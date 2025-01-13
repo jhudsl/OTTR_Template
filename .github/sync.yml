@@ -71,6 +71,7 @@ group:
       fhdsl/Intro_to_Python
       fhdsl/Containers_for_Scientists
       acmadeo/GARDE_try2
+      fhdsl/Intermediate_Python
 ###ADD NEW REPO HERE following the format above#
        
 ### These are custom groups for syncing -- not all files needs to be synced
