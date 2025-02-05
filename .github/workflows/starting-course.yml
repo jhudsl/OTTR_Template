@@ -142,3 +142,11 @@ jobs:
           title: Reminder - Add to jhudsl library
           content-filepath: .github/automatic-issues/add-to-library.md
           labels: automated training issue
+
+      # Issue for reminding people to add authors
+      - name: Reminder - Add Authors
+        uses: peter-evans/create-issue-from-file@v4
+        with:
+          title: Reminder - Add Authors
+          content-filepath: .github/automatic-issues/add-authors.md
+          labels: automated training issue
