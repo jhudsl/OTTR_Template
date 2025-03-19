@@ -3,7 +3,7 @@ name: Update your course's info for syncs/OTTR updates
 about: Provide information about your moved/renamed course (which uses the OTTR template) so that it can continue to be enrolled in OTTR updates
 title: ''
 labels: ''
-assignees: cansavvy
+assignees: [carriewright11, kweav]
 
 ---
 
