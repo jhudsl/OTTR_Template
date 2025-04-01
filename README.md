@@ -1,3 +1,6 @@
+**All OTTR related code and templates are moving to https://github.com/orgs/ottrproject/ if you'd like to contribute or use OTTR please go there!**
+
+
 ## OTTR for Courses!
 
 Go to [ottrproject.org](https://www.ottrproject.org/) to get started! :tada:
