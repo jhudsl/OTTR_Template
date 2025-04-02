@@ -3,7 +3,7 @@ name: Course Template Problem Report
 about: Create a report to help improve the template and its documentation
 title: Problem
 labels: bug
-assignees: cansavvy
+assignees: [carriewright11, kweav]
 
 ---
 

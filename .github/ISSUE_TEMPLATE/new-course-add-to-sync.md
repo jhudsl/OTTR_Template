@@ -3,7 +3,7 @@ name: Add your new course to syncs/OTTR updates
 about: Provide information about your new course (which uses the OTTR template) so that we can enroll it in OTTR updates
 title: ''
 labels: ''
-assignees: cansavvy
+assignees: [carriewright11, kweav]
 
 ---
 

@@ -3,7 +3,7 @@ name: Course Problem Report
 about: Create a report to help improve the course
 title: [Problem]
 labels: bug
-assignees:
+assignees: 
 
 ---
 
